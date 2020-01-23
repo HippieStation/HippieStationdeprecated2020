@@ -30,13 +30,13 @@
 	AddComponent(/datum/component/wearertargeting/earprotection, list(SLOT_HEAD))
 
 /obj/item/clothing/head/helmet/examine(mob/user)
-	..()
+	. = ..()
 	if(attached_light)
-		to_chat(user, "It has \a [attached_light] [can_flashlight ? "" : "permanently "]mounted on it.")
+		. += "It has \a [attached_light] [can_flashlight ? "" : "permanently "]mounted on it."
 		if(can_flashlight)
-			to_chat(user, "<span class='info'>[attached_light] looks like it can be <b>unscrewed</b> from [src].</span>")
+			. += "<span class='info'>[attached_light] looks like it can be <b>unscrewed</b> from [src].</span>"
 	else if(can_flashlight)
-		to_chat(user, "It has a mounting point for a <b>seclite</b>.")
+		. += "It has a mounting point for a <b>seclite</b>."
 
 /obj/item/clothing/head/helmet/Destroy()
 	QDEL_NULL(attached_light)
@@ -117,7 +117,7 @@
 			flags_inv ^= visor_flags_inv
 			flags_cover ^= visor_flags_cover
 			icon_state = "[initial(icon_state)][up ? "up" : ""]"
-			to_chat(user, "[up ? alt_toggle_message : toggle_message] \the [src]")
+			to_chat(user, "<span class='notice'>[up ? alt_toggle_message : toggle_message] \the [src].</span>")
 
 			user.update_inv_head()
 			if(iscarbon(user))
@@ -161,6 +161,12 @@
 	clothing_flags = STOPSPRESSUREDAMAGE
 	strip_delay = 80
 	dog_fashion = null
+
+/obj/item/clothing/head/helmet/police
+	name = "police officer's hat"
+	desc = "A police officer's Hat. This hat emphasizes that you are THE LAW."
+	icon_state = "policehelm"
+	dynamic_hair_suffix = ""
 
 /obj/item/clothing/head/helmet/swat/nanotrasen
 	name = "\improper SWAT helmet"
@@ -289,19 +295,18 @@
 	desc = "It can hold a bottle of vodka."
 	icon_state = "rus_helmet"
 	item_state = "rus_helmet"
-	armor = list("melee" = 30, "bullet" = 60, "laser" = 20,"energy" = 15, "bomb" = 50, "bio" = 20, "rad" = 30, "fire" = 20, "acid" = 50)
-	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small/helmet
+	armor = list("melee" = 30, "bullet" = 25, "laser" = 20,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 20, "fire" = 30, "acid" = 50)
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/helmet
 
 /obj/item/clothing/head/helmet/rus_ushanka
 	name = "battle ushanka"
 	desc = "100% bear."
 	icon_state = "rus_ushanka"
 	item_state = "rus_ushanka"
-	clothing_flags = THICKMATERIAL
 	body_parts_covered = HEAD
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 40,"energy" = 20, "bomb" = 20, "bio" = 80, "rad" = 70, "fire" = 20, "acid" = 80)
+	armor = list("melee" = 10, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 5, "bio" = 50, "rad" = 20, "fire" = -10, "acid" = 0)
 
 //LightToggle
 
@@ -344,7 +349,7 @@
 	return ..()
 
 /obj/item/clothing/head/helmet/screwdriver_act(mob/living/user, obj/item/I)
-	..()
+	. = ..()
 	if(can_flashlight && attached_light) //if it has a light but can_flashlight is false, the light is permanently attached.
 		I.play_tool_sound(src)
 		to_chat(user, "<span class='notice'>You unscrew [attached_light] from [src].</span>")

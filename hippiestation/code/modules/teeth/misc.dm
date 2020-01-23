@@ -1,20 +1,27 @@
 /obj/item/bodypart/head
+	var/obj/item/stack/teeth/teeth = null
 	var/list/teeth_list = list() //Teeth are added in carbon/human/New()
 	var/max_teeth = 32 //Changed based on teeth type the species spawns with
 
-/mob/living/carbon/human/regenerate_organs()
+/obj/item/bodypart/head/New()
 	..()
 	update_teeth()
 
-/mob/living/carbon/human/proc/update_teeth()
-	var/obj/item/bodypart/head/U = locate() in bodyparts
-	if(istype(U))
-		U.teeth_list.Cut() //Clear out their mouth of teeth if they had any
-		var/obj/item/stack/teeth/T = new dna.species.teeth_type
-		T.forceMove(U)
-		U.max_teeth = T.max_amount //Set max teeth for the head based on teeth spawntype
-		T.amount = T.max_amount
-		U.teeth_list += T
+/obj/item/bodypart/head/Destroy()
+	QDEL_LIST(teeth_list) //order is sensitive, see warning in handle_atom_del() below
+	if(teeth)
+		QDEL_NULL(teeth)
+	return ..()
+
+/obj/item/bodypart/head/proc/update_teeth()
+	teeth_list.Cut() //Clear out their mouth of teeth if they had any
+	if(teeth)
+		QDEL_NULL(teeth)
+	teeth = new (owner ? owner.dna.species.teeth_type : /obj/item/stack/teeth/generic)
+	teeth.forceMove(src)
+	max_teeth = teeth.max_amount //Set max teeth for the head based on teeth spawntype
+	teeth.amount = teeth.max_amount
+	teeth_list += teeth
 
 /obj/item/bodypart/head/proc/knock_out_teeth(throw_dir, num=32) //Won't support knocking teeth out of a dismembered head or anything like that yet.
 	num = CLAMP(num, 1, 32)
@@ -62,19 +69,6 @@
 	message = prob(intensity) ? replacetext(message, "k", "gh") : message
 	return message
 
-/mob/living/carbon/human // as far as i know,only humans have teeth
-	var/lisp = 0
-
-/mob/living/carbon/human/proc/checklisp()
-	var/obj/item/bodypart/head/O = locate(/obj/item/bodypart/head) in bodyparts
-	if(O)
-		if(!O.teeth_list.len || O.get_teeth() <= 0)
-			lisp = 100 //No teeth = full lisp power
-		else
-			lisp = (1 - (O.get_teeth()/O.max_teeth)) * 100 //Less teeth = more lisp
-	else
-		lisp = 0 //No head = no lisp.
-
 /obj/item/proc/tearoutteeth(var/mob/living/carbon/C, var/mob/living/user)
 	if(ishuman(C) && user.zone_selected == "mouth")
 		var/mob/living/carbon/human/H = C
@@ -108,3 +102,26 @@
 		else
 			to_chat(user, "<span class='notice'>You are already trying to pull out a teeth!</span>")
 		return TRUE
+
+
+/mob/living/carbon/human // as far as i know,only humans have teeth
+	var/lisp = 0
+
+/mob/living/carbon/human/regenerate_organs()
+	..()
+	update_teeth()
+
+/mob/living/carbon/human/proc/update_teeth()
+	var/obj/item/bodypart/head/U = locate() in bodyparts
+	if(istype(U))
+		U.update_teeth()
+
+/mob/living/carbon/human/proc/checklisp()
+	var/obj/item/bodypart/head/O = locate(/obj/item/bodypart/head) in bodyparts
+	if(O)
+		if(!O.teeth_list.len || O.get_teeth() <= 0)
+			lisp = 100 //No teeth = full lisp power
+		else
+			lisp = (1 - (O.get_teeth()/O.max_teeth)) * 100 //Less teeth = more lisp
+	else
+		lisp = 0 //No head = no lisp.

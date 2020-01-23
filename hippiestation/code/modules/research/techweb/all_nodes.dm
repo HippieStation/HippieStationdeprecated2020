@@ -19,6 +19,15 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
+/datum/techweb_node/ancient_weaponry
+	id = "ancient_weapons"
+	display_name = "Ancient Weapons"
+	description = "Plasma power cells are the perfect replacement for the elerium hungry weapons of old Earth"
+	prereq_ids = list("adv_weaponry", "adv_power", "adv_engi")
+	design_ids = list("xcomrifle", "xcomammo")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	export_price = 5000
+
 /datum/techweb_node/engineering
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
@@ -34,6 +43,7 @@
 /datum/techweb_node/emp_super
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
+
 /datum/techweb_node/adv_bluetravel
 	id = "advanced_bluetravel"
 	display_name = "Advanced Bluespace Travel"
@@ -46,9 +56,46 @@
 //Because TG removed them
 /datum/techweb_node/mech_taser
 	id = "mech_taser"
-	display_name =  "Exosuit Weapon (PBT \"Pacifier\" Mounted Taser)"
+	display_name = "Exosuit Weapon (PBT \"Pacifier\" Mounted Taser)"
 	description = "A basic piece of mech weaponry"
 	prereq_ids = list("electronic_weapons")
 	design_ids = list("mech_taser")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
+
+/datum/techweb_node/adv_beam_weapons
+	design_ids = list()
+
+///GAUSS RIFLE///
+/*
+/datum/techweb_node/electromagnetic_weapons
+	id = "gauss_rifle"
+	display_name = "Electromagnetic Weaponry(Gauss Rifle MK1)"
+	description = "The gauss rifle, electromagnetic weaponry at its finest. You won't regret researching this."
+	prereq_ids = list("adv_weaponry", "emp_adv")
+	design_ids = list("gaussrifle")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 5000
+*/
+
+/datum/techweb_node/adv_chem
+	id = "adv_chem"
+	display_name = "Advanced Chemistry"
+	description = "Advanced chemical processing machines."
+	prereq_ids = list("biotech")
+	design_ids = list("lcass_pressure", "lcass_centrifuge", "lcass_radioactive", "lcass_bluespace")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 5000
+
+/datum/techweb_node/autodoc
+	id = "autodoc"
+	display_name = "Complex Anatomical Automation"
+	description = "Advanced automation and complex anatomical knowhow combined to make advanced surgical things!"
+	prereq_ids = list("exp_surgery", "bio_process", "adv_datatheory", "adv_engi", "high_efficiency")
+	design_ids = list("autodoc")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 15000)
+	export_price = 10000
+
+/datum/techweb_node/clown
+	design_ids = list("air_horn", "honker_main", "honker_peri", "honker_targ", "honk_chassis", "honk_head", "honk_torso", "honk_left_arm", "honk_right_arm",
+	"honk_left_leg", "honk_right_leg", "mech_banana_mortar", "mech_mousetrap_mortar", "mech_honker", "mech_punching_face", "implant_trombone", "borg_transform_clown", "rubberducky")

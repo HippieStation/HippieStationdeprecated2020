@@ -35,7 +35,11 @@
 			for(var/X in W.reagents.reagent_list)
 				var/datum/reagent/S = X
 
-				if(synthesis && S.id != synthesis.id)
+				if(!S.can_forge)
+					to_chat(user, "<span class='warning'>[S] cannot be added!</span>")
+					return
+
+				if(synthesis && S.type != synthesis.type)
 					to_chat(user, "<span class='warning'>[src] already has a reagent of a different type, remove it before adding something else!</span>")
 					return
 

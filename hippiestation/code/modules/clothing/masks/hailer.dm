@@ -29,6 +29,12 @@
 	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES|HIDEEARS|HIDEHAIR
 	visor_flags_inv = 0
 
+/obj/item/clothing/mask/gas/sechailer/swat/spacepol
+	name = "spacepol mask"
+	desc = "A close-fitting tactical mask created in cooperation with a certain megacorporation, comes with an especially aggressive Compli-o-nator 3000."
+	icon_state = "spacepol"
+	item_state = "spacepol"
+
 /obj/item/clothing/mask/gas/sechailer/cyborg
 	name = "security hailer"
 	desc = "A set of recognizable pre-recorded messages for cyborgs to use when apprehending criminals."
@@ -75,7 +81,7 @@
 		var/mob/living/carbon/H = user
 		if(H.wear_mask == src)
 			set_obj_flags = "EMAGGED"
-			add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+			ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 			to_chat(user, "<span class='warning'>You overload \the [src]'s Big Guy synthesizer.")
 			aggressiveness = 5
 		else

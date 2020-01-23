@@ -200,7 +200,7 @@
 
 /obj/item/twohanded/bostaff/attack(mob/target, mob/living/user)
 	add_fingerprint(user)
-	if(user.has_trait(TRAIT_CLUMSY) && prob(50))
+	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		to_chat(user, "<span class ='warning'>You club yourself over the head with [src].</span>")
 		user.Paralyze(60)
 		if(ishuman(user))
@@ -300,7 +300,7 @@
 	if(!ishuman(user))
 		return
 	if(slot == SLOT_WEAR_SUIT)
-		add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/mask/gas/carp/freemask = new
 		style.teach(H,1)

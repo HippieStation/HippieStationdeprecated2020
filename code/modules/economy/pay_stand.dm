@@ -109,3 +109,9 @@
 		to_chat(user, "<span class='warning'>The anchored bolts on this paystand are currently locked!</span>")
 		return
 	. = ..()
+
+/obj/machinery/paystand/default_unfasten_wrench(mob/user, obj/item/I, time = 20)
+	if(locked)
+		to_chat(user, "<span class='warning'>The anchored bolts on this paystand are currently locked!</span>")
+		return
+	. = ..()

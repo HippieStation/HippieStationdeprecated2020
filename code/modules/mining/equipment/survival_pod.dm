@@ -34,8 +34,8 @@
 /obj/item/survivalcapsule/examine(mob/user)
 	. = ..()
 	get_template()
-	to_chat(user, "This capsule has the [template.name] stored.")
-	to_chat(user, template.description)
+	. += "This capsule has the [template.name] stored."
+	. += template.description
 
 //hippie start -- to prevent station capsule grief
 /obj/item/survivalcapsule/emag_act(mob/user)
@@ -81,10 +81,17 @@
 		new /obj/effect/particle_effect/smoke(get_turf(src))
 		qdel(src)
 
+//Non-default pods
+
 /obj/item/survivalcapsule/luxury
 	name = "luxury bluespace shelter capsule"
 	desc = "An exorbitantly expensive luxury suite stored within a pocket of bluespace."
 	template_id = "shelter_beta"
+
+/obj/item/survivalcapsule/luxuryelite
+	name = "luxury elite bar capsule"
+	desc = "A luxury bar in a capsule. Bartender required and not included."
+	template_id = "shelter_charlie"
 
 //Pod objects
 
@@ -152,6 +159,19 @@
 	else
 		add_overlay("sleeper_cover")
 
+//Lifeform Stasis Unit
+/obj/machinery/stasis/survival_pod
+	icon = 'icons/obj/lavaland/survival_pod.dmi'
+	icon_state = "sleeper"
+	mattress_state = null
+	buckle_lying = 270
+
+/obj/machinery/stasis/survival_pod/play_power_sound()
+	return
+
+/obj/machinery/stasis/survival_pod/update_icon()
+	return
+
 //Computer
 /obj/item/gps/computer
 	name = "pod computer"
@@ -162,6 +182,7 @@
 	pixel_y = -32
 
 /obj/item/gps/computer/wrench_act(mob/living/user, obj/item/I)
+	..()
 	if(flags_1 & NODECONSTRUCT_1)
 		return TRUE
 
@@ -241,6 +262,7 @@
 	qdel(src)
 
 /obj/structure/fans/wrench_act(mob/living/user, obj/item/I)
+	..()
 	if(flags_1 & NODECONSTRUCT_1)
 		return TRUE
 

@@ -12,25 +12,25 @@
 
 /obj/machinery/washing_machine/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT = CALLBACK(src, .proc/clean_blood)))
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_blood)
 
 /obj/machinery/washing_machine/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click it to start a wash cycle.</span>")
+	. = ..()
+	. += "<span class='notice'>Alt-click it to start a wash cycle.</span>"
 
 /obj/machinery/washing_machine/AltClick(mob/user)
-	if(!user.canUseTopic(src))
+	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 
 	if(busy)
 		return
 
 	if(state_open)
-		to_chat(user, "<span class='notice'>Close the door first</span>")
+		to_chat(user, "<span class='warning'>Close the door first!</span>")
 		return
 
 	if(bloody_mess)
-		to_chat(user, "<span class='warning'>[src] must be cleaned up first.</span>")
+		to_chat(user, "<span class='warning'>[src] must be cleaned up first!</span>")
 		return
 
 	busy = TRUE
@@ -278,7 +278,7 @@
 	if(.)
 		return
 	if(busy)
-		to_chat(user, "<span class='warning'>[src] is busy.</span>")
+		to_chat(user, "<span class='warning'>[src] is busy!</span>")
 		return
 
 	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))

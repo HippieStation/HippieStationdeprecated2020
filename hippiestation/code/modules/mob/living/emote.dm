@@ -27,7 +27,7 @@
 			return 'hippiestation/sound/voice/scream_moth.ogg'
 		if (is_species(user, /datum/species/bird))
 			return 'hippiestation/sound/voice/caw.ogg'
-		if (is_species(user, /datum/species/tarajan))
+		if (is_species(user, /datum/species/human/felinid/tarajan))
 			return 'hippiestation/sound/voice/cat.ogg'
 		if(user.gender == FEMALE)
 			return pick('hippiestation/sound/voice/scream_f1.ogg', 'hippiestation/sound/voice/scream_f2.ogg')

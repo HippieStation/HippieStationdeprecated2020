@@ -10,7 +10,7 @@
 	if(exposed_temperature && !fakeholder)
 		fakeholder = new(get_turf(src))
 		fakeholder.create_reagents(50)
-		fakeholder.reagents.add_reagent(reagent_type.id, 50, reagtemp = exposed_temperature)
+		fakeholder.reagents.add_reagent(reagent_type.type, 50, reagtemp = exposed_temperature)
 		fakeholder.reagents.handle_reactions()
 		QDEL_IN(fakeholder, 150)
 
@@ -36,12 +36,12 @@
 			var/paths = subtypesof(/datum/reagent)
 			for(var/path in paths)
 				var/datum/reagent/RR = new path
-				if(RR.id == reagent_type.id)
+				if(RR.type == reagent_type.type)
 					V.reagent_type = RR
 					break
 				else
 					qdel(RR)
-		ScrapeAway()
+		ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 
 /turf/open/floor/mineral/reagent/proc/reagent_act(atom/A)
@@ -93,7 +93,7 @@
 	else
 		fakeholder = new(get_turf(src))
 		fakeholder.create_reagents(30)
-		fakeholder.reagents.add_reagent(reagent_type.id, 50)
+		fakeholder.reagents.add_reagent(reagent_type.type, 50)
 		for(var/datum/reagent/R in fakeholder.reagents.reagent_list)
 			R.on_ex_act()
 		fakeholder.reagents.handle_reactions()
@@ -114,7 +114,7 @@
 			var/paths = subtypesof(/datum/reagent)
 			for(var/path in paths)
 				var/datum/reagent/RR = new path
-				if(RR.id == reagent_type.id)
+				if(RR.type == reagent_type.type)
 					F.reagent_type = RR
 					F.name ="[reagent_type] floor tiles"
 					F.singular_name = "[reagent_type] floor tile"

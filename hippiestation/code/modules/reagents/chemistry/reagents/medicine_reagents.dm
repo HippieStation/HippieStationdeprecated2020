@@ -1,23 +1,23 @@
 /datum/reagent/medicine/synaptizine/on_mob_life(mob/living/M)
 	M.drowsyness = max(M.drowsyness-5, 0)
-	if(holder.has_reagent("mindbreaker"))
-		holder.remove_reagent("mindbreaker", 5)
+	if(holder.has_reagent(/datum/reagent/toxin/mindbreaker))
+		holder.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
 	M.hallucination = max(0, M.hallucination - 10)
 	if(prob(30))
 		M.adjustToxLoss(1, 0)
 	return FINISHONMOBLIFE(M)
 
 /datum/reagent/medicine/ephedrine/on_mob_life(mob/living/M)
-	M.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
-	M.reagents.remove_reagent("nutriment", rand(0,3))
-	M.reagents.remove_reagent("vitamin", rand(0,3))
+	M.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+	M.reagents.remove_reagent(/datum/reagent/consumable/nutriment, rand(0,3))
+	M.reagents.remove_reagent(/datum/reagent/consumable/nutriment/vitamin, rand(0,3))
 	if(prob(34))
 		M.nutrition = max(M.nutrition - rand(0,10), 1) //Cannot go below 1.
 	return FINISHONMOBLIFE(M)
 
-/datum/reagent/medicine/ephedrine/on_mob_delete(mob/living/M)
+/datum/reagent/medicine/ephedrine/on_mob_end_metabolize(mob/living/M)
 	if (istype(M))
-		M.remove_movespeed_modifier(id)
+		M.remove_movespeed_modifier(type)
 	..()
 
 /datum/reagent/medicine/atropine/on_mob_life(mob/living/M)
@@ -40,7 +40,6 @@
 
 /datum/reagent/medicine/superzine
 	name = "Superzine"
-	id = "superzine"
 	description = "An extremely effective muscle stimulant and stamina restorer."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -49,7 +48,7 @@
 /datum/reagent/medicine/superzine/on_mob_life(mob/living/M as mob)
 	if(prob(15))
 		M.emote(pick("twitch","blink_r","shiver"))
-	M.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+	M.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 	M.adjustStaminaLoss(-5)
 	if(prob(2))
 		M<<"<span class='danger'>You collapse suddenly!"
@@ -57,9 +56,9 @@
 		M.Knockdown(30, 0)
 	..()
 
-/datum/reagent/medicine/superzine/on_mob_delete(mob/living/M)
+/datum/reagent/medicine/superzine/on_mob_end_metabolize(mob/living/M)
 	if (istype(M))
-		M.remove_movespeed_modifier(id)
+		M.remove_movespeed_modifier(type)
 	..()
 
 /datum/reagent/medicine/superzine/overdose_process(mob/living/M)
@@ -73,7 +72,6 @@
 
 /datum/reagent/medicine/defib
 	name = "Exstatic mixture"
-	id = "defib"
 	description = "An amazing chemical that can bring the dead back to life!"
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	metabolization_rate = 4 * REAGENTS_METABOLISM
@@ -86,7 +84,7 @@
 /datum/reagent/medicine/defib/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(M.stat == DEAD)
 		M.electrocute_act(1, "exstatic mixture")
-		if(!M.suiciding && !M.has_trait(TRAIT_HUSK) && !M.hellbound)
+		if(!M.suiciding && !HAS_TRAIT(M, TRAIT_HUSK) && !M.hellbound)
 			if(!M)
 				return
 			if(M.notify_ghost_cloning(source = M))
@@ -102,7 +100,6 @@
 
 /datum/reagent/medicine/sodiumf
 	name = "Sodium fluoride"
-	id = "sodiumf"
 	description = "A powerful antitoxin"
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
@@ -120,7 +117,6 @@
 
 /datum/reagent/medicine/aluminiumf
 	name = "Aluminium fluorate"
-	id = "aluminiumf"
 	description = "A powerful burn and brute healing chemical that is slightly toxic"
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
@@ -133,7 +129,6 @@
 
 /datum/reagent/medicine/liquid_life
 	name = "Liquid Life"
-	id = "liquid_life"
 	description = "The purest form of healing avaliable, unfortunately extremely painful for the user when regenerating"
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose_threshold = 40 //gib nuke
@@ -204,7 +199,6 @@
 
 datum/reagent/medicine/virogone
 	name = "Cyclo-bromazine"
-	id = "virogone"
 	description = "Potent anti viral chemical that puts the user to sleep while purging nearly any viral agents very quickly"
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -224,3 +218,13 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 
 /datum/reagent/medicine/salglu_solution
 	overdose_threshold = 0 //seriously fuck whoever thought this was a good idea.
+
+/datum/reagent/medicine/perfluorodecalin/on_mob_life(mob/living/carbon/human/M)
+	M.adjustOxyLoss(-12*REM, 0)
+	if(prob(33))
+		M.adjustBruteLoss(-0.5*REM, 0)
+		M.adjustFireLoss(-0.5*REM, 0)
+	return FINISHONMOBLIFE(M)
+
+/datum/reagent/medicine/morphine
+	name = "Sleep Toxin"

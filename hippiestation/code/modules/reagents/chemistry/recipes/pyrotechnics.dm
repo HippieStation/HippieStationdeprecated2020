@@ -1,9 +1,9 @@
 /datum/chemical_reaction/cryogenic_fluid
 	name = "cryogenic_fluid"
 	id = "cryogenic_fluid"
-	results = list("cryogenic_fluid" = 4)
-	required_reagents = list("cryostylane" = 2, "lube" = 1, "pyrosium" = 2) //kinda difficult
-	required_catalysts = list("plasma" = 1)
+	results = list(/datum/reagent/cryogenic_fluid = 4)
+	required_reagents = list(/datum/reagent/cryostylane = 2, /datum/reagent/lube = 1, /datum/reagent/pyrosium = 2) //kinda difficult
+	required_catalysts = list(/datum/reagent/toxin/plasma = 1)
 	required_temp = 100
 	is_cold_recipe = TRUE
 	mob_react = FALSE
@@ -17,49 +17,49 @@
 /datum/chemical_reaction/reagent_explosion/superboom//explodes on creation
 	name = "N-amino azidotetrazole"
 	id = "superboom"
-	results = list("superboom" = 4)
-	required_reagents = list("sboom" = 3, "ammonia" = 3,"dizinc" = 2)
-	required_catalysts = list("tabunb" = 1)
+	results = list(/datum/reagent/superboom = 4)
+	required_reagents = list(/datum/reagent/sboom = 3, /datum/reagent/ammonia = 3, /datum/reagent/dizinc = 2)
+	required_catalysts = list(/datum/reagent/toxin/tabun_pb = 1)
 	required_temp = 310
 	pressure_required = 35
 	strengthdiv = 1
 
 /datum/chemical_reaction/reagent_explosion/superboom/on_reaction(datum/reagents/holder, created_volume)//not if stabilising agent is present
-	if(holder.has_reagent("stabilizing_agent") && holder.chem_pressure < 40)
+	if(holder.has_reagent(/datum/reagent/stabilizing_agent) && holder.chem_pressure < 40)
 		return
-	holder.remove_reagent("superboom", created_volume)
+	holder.remove_reagent(/datum/reagent/sboom, created_volume)
 
 /datum/chemical_reaction/reagent_explosion/superboom_explosion//and when heated slightly
 	name = "N-amino azidotetrazole explosion"
 	id = "superboom_explosion"
-	required_reagents = list("superboom" = 1)
+	required_reagents = list(/datum/reagent/superboom = 1)
 	required_temp = 315
 	strengthdiv = 0.5
 
 /datum/chemical_reaction/reagent_explosion/sazide//explodes on creation
 	name = "Sodium Azide"
 	id = "sazide"
-	results = list("sazide" = 4)
-	required_reagents = list("hydrazine" = 1, "sacid" = 1, "nitrogen" = 1 , "ethanol" = 1)
+	results = list(/datum/reagent/toxin/sazide = 4)
+	required_reagents = list(/datum/reagent/toxin/acid/hydrazine = 1, /datum/reagent/toxin/acid = 1, /datum/reagent/nitrogen = 1, /datum/reagent/consumable/ethanol = 1)
 	centrifuge_recipe = TRUE
 	strengthdiv = 8
 
 /datum/chemical_reaction/reagent_explosion/sazide/on_reaction(datum/reagents/holder, created_volume)//not if stabilising agent is present
-	if(holder.has_reagent("stabilizing_agent"))
+	if(holder.has_reagent(/datum/reagent/stabilizing_agent))
 		return
-	holder.remove_reagent("sazide", created_volume)
+	holder.remove_reagent(/datum/reagent/toxin/sazide, created_volume)
 
 /datum/chemical_reaction/reagent_explosion/sazide_explosion//and when heated slightly
 	name = "N-amino azidotetrazole explosion"
 	id = "superboom_explosion"
-	required_reagents = list("sazide" = 1)
+	required_reagents = list(/datum/reagent/toxin/sazide = 1)
 	required_temp = 574
 	strengthdiv = 8
 
 /datum/chemical_reaction/proto_fireball
 	name = "Protomatised Plasma Fireball "
 	id = "proto_fireball"
-	required_reagents = list("proto" = 1)
+	required_reagents = list(/datum/reagent/proto = 1)
 	required_temp = 400
 	mix_message = "<span class='boldannounce'>The protomatised plasma begins to boil very violently; superheating the surrounding air!</span>"
 
@@ -78,7 +78,7 @@
 /datum/chemical_reaction/reagent_explosion/dizinc_explosion
 	name = "Diethly Zinc Explosion"
 	id = "dizinc_explosion"
-	required_reagents = list("dizinc" = 1, "oxygen" = 1)
+	required_reagents = list(/datum/reagent/dizinc = 1, /datum/reagent/oxygen = 1)
 	strengthdiv = 7
 
 
@@ -119,26 +119,26 @@
 /datum/chemical_reaction/hydrazine
 	name = "Hydrazine"
 	id = "hydrazine"
-	results = list("hydrazine" = 4)
-	required_reagents = list("bleach" = 1, "ammonia" = 1)
+	results = list(/datum/reagent/toxin/acid/hydrazine = 4)
+	required_reagents = list(/datum/reagent/toxin/bleach = 1, /datum/reagent/ammonia = 1)
 	required_temp = 430
 	mix_message = "A furiously fuming oily liquid is produced!"
 
 /datum/chemical_reaction/sboom
 	name = "Nitrogenated isopropyl alcohol"
 	id = "sboom"
-	results = list("sboom" = 5, "tabuna" = 5)
-	required_reagents = list("isopropyl" = 1, "nitrogen" = 6,"carbon" = 3)
-	required_catalysts = list("goop" = 1)
+	results = list(/datum/reagent/sboom = 5, /datum/reagent/toxin/tabun_pa = 5)
+	required_reagents = list(/datum/reagent/consumable/ethanol/isopropyl = 1, /datum/reagent/nitrogen = 6, /datum/reagent/carbon = 3)
+	required_catalysts = list(/datum/reagent/toxin/goop = 1)
 	required_temp = 590
 	pressure_required = 50
 
 /datum/chemical_reaction/over_reactible/hexamine
 	name = "Hexamine"
 	id = "hexamine"
-	results = list("hexamine" = 5)
-	required_reagents = list("ammonia" = 3, "carbon" = 3)
-	required_catalysts = list("iron" = 1)
+	results = list(/datum/reagent/hexamine = 5)
+	required_reagents = list(/datum/reagent/ammonia = 3, /datum/reagent/carbon = 3)
+	required_catalysts = list(/datum/reagent/iron = 1)
 	required_temp = 230
 	pressure_required = 35
 	is_cold_recipe = TRUE
@@ -149,9 +149,9 @@
 /datum/chemical_reaction/over_reactible/oxyplas
 	name = "Plasminate"
 	id = "oxyplas"
-	results = list("oxyplas" = 4, "hydrogen" = 4)
-	required_catalysts = list("iron" = 2)
-	required_reagents = list("plasma" = 5, "water" = 3)
+	results = list(/datum/reagent/oxyplas = 4, /datum/reagent/hydrogen = 4)
+	required_catalysts = list(/datum/reagent/iron = 2)
+	required_reagents = list(/datum/reagent/toxin/plasma = 5, /datum/reagent/water = 3)
 	required_temp = 340
 	can_overheat = TRUE
 	overheat_threshold = 370
@@ -159,8 +159,8 @@
 /datum/chemical_reaction/over_reactible/proto
 	name = "Protomatised Plasma"
 	id = "proto"
-	results = list("proto" = 2, "radgoop" = 6)
-	required_reagents = list("oxyplas" = 2, "hexamine" = 3)
+	results = list(/datum/reagent/proto = 2, /datum/reagent/toxin/radgoop = 6)
+	required_reagents = list(/datum/reagent/oxyplas = 2, /datum/reagent/hexamine = 3)
 	required_temp = 320
 	radioactivity_required = 20
 	can_overheat = TRUE
@@ -169,8 +169,8 @@
 /datum/chemical_reaction/over_reactible/proto
 	name = "Protomatised Plasma"
 	id = "proto"
-	results = list("proto" = 2, "radgoop" = 6)
-	required_reagents = list("oxyplas" = 2, "hexamine" = 3)
+	results = list(/datum/reagent/proto = 2, /datum/reagent/toxin/radgoop = 6)
+	required_reagents = list(/datum/reagent/oxyplas = 2, /datum/reagent/hexamine = 3)
 	required_temp = 320
 	radioactivity_required = 20
 	can_overheat = TRUE
@@ -179,16 +179,16 @@
 /datum/chemical_reaction/sparky
 	name = "Electrostatic substance"
 	id = "sparky"
-	results = list("sparky" = 6, "radgoop" = 4)
-	required_reagents = list("uranium" = 4, "carbon" = 2)
+	results = list(/datum/reagent/sparky = 6, /datum/reagent/toxin/radgoop = 4)
+	required_reagents = list(/datum/reagent/uranium = 4, /datum/reagent/carbon = 2)
 	required_temp = 400
 	radioactivity_required = 10
 
 /datum/chemical_reaction/over_reactible/impvolt
 	name = "Translucent mixture"
 	id = "impvolt"
-	results = list("impvolt" = 4, "emit_on" = 2)
-	required_reagents = list("sparky" = 4, "teslium" = 2)
+	results = list(/datum/reagent/impvolt = 4, /datum/reagent/emit_on = 2)
+	required_reagents = list(/datum/reagent/sparky = 4, /datum/reagent/teslium = 2)
 	required_temp = 290
 	is_cold_recipe = TRUE
 	bluespace_recipe = TRUE
@@ -199,8 +199,8 @@
 /datum/chemical_reaction/over_reactible/volt
 	name = "Sparking mixture"
 	id = "volt"
-	results = list("volt" = 2, "dizinc" = 1)
-	required_reagents = list("impvolt" = 1, "methphos" = 1)
+	results = list(/datum/reagent/volt = 2, /datum/reagent/dizinc = 1)
+	required_reagents = list(/datum/reagent/impvolt = 1, /datum/reagent/toxin/methphos = 1)
 	required_temp = 250
 	is_cold_recipe = TRUE
 	can_overheat = TRUE
@@ -210,22 +210,22 @@
 /datum/chemical_reaction/emit
 	name = "Emittrium"
 	id = "emit"
-	results = list("emit" = 8, "radium" = 2)
-	required_reagents = list("uranium" = 2 , "sparky" = 4 , "volt" = 2)
+	results = list(/datum/reagent/emit = 8, /datum/reagent/uranium/radium = 2)
+	required_reagents = list(/datum/reagent/uranium = 2, /datum/reagent/sparky = 4, /datum/reagent/volt = 2)
 	bluespace_recipe = TRUE
 
 /datum/chemical_reaction/emit_on
 	name = "Emittrium_on"
 	id = "emit_on"
-	results = list("emit_on" = 1)
-	required_reagents = list("emit" = 1)
+	results = list(/datum/reagent/emit_on = 1)
+	required_reagents = list(/datum/reagent/emit = 1)
 	required_temp = 400
 
 /datum/chemical_reaction/over_reactible/dizinc
 	name = "Diethyl Mercury"
 	id = "dizinc"
-	results = list("dizinc" = 2)
-	required_reagents = list("mercury" = 1, "ethanol" = 2)
+	results = list(/datum/reagent/dizinc = 2)
+	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/consumable/ethanol = 2)
 	required_temp = 290
 	is_cold_recipe = TRUE
 	can_overheat = TRUE
@@ -235,9 +235,9 @@
 /datum/chemical_reaction/arclumin
 	name = "Arc-Luminol"
 	id = "arclumin"
-	results = list("arclumin" = 2)
-	required_reagents = list("teslium" = 2, "rotatium" = 2, "liquid_dark_matter" = 2, "colorful_reagent" = 2) //difficult
-	required_catalysts = list("plasma" = 1)
+	results = list(/datum/reagent/arclumin = 2)
+	required_reagents = list(/datum/reagent/teslium = 2, /datum/reagent/toxin/rotatium = 2, /datum/reagent/liquid_dark_matter = 2, /datum/reagent/colorful_reagent = 2) //difficult
+	required_catalysts = list(/datum/reagent/toxin/plasma = 1)
 	required_temp = 400
 	mix_message = "<span class='danger'>In a blinding flash of light, a glowing frothing solution forms and begins discharging!</span>"
 	mix_sound = 'sound/effects/pray_chaplain.ogg'//truly a miracle
@@ -289,33 +289,33 @@
 /datum/chemical_reaction/reagent_explosion/remove_all/meth_a
 	name = "Meth Collapse"
 	chem_to_remove = "methamphetamine"
-	required_catalysts = list("methamphetamine" = 1, "smoke_powder" = 1)
+	required_catalysts = list(/datum/reagent/drug/methamphetamine = 1, /datum/reagent/smoke_powder = 1)
 	
 /datum/chemical_reaction/reagent_explosion/remove_all/meth_b
 	name = "Meth Collapse"
 	chem_to_remove = "methamphetamine"
-	required_catalysts = list("methamphetamine" = 1, "potassium" = 1, "sugar" = 1, "phosphorus" = 1)
+	required_catalysts = list(/datum/reagent/drug/methamphetamine = 1, /datum/reagent/potassium = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/phosphorus = 1)
 
 /datum/chemical_reaction/reagent_explosion/remove_all/blackpowder_a
 	name = "Black Powder Collapse"
 	chem_to_remove = "blackpowder"
-	required_catalysts = list("blackpowder" = 1, "smoke_powder" = 1)
+	required_catalysts = list(/datum/reagent/blackpowder = 1, /datum/reagent/smoke_powder = 1)
 	
 /datum/chemical_reaction/reagent_explosion/remove_all/blackpowder_b
 	name = "Black Powder Collapse"
 	chem_to_remove = "blackpowder"
-	required_catalysts = list("blackpowder" = 1, "potassium" = 1, "sugar" = 1, "phosphorus" = 1)
+	required_catalysts = list(/datum/reagent/blackpowder = 1, /datum/reagent/potassium = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/phosphorus = 1)
 
 /datum/chemical_reaction/reagent_explosion/remove_all/superboom_a
 	name = "N-amino azidotetrazole Collapse"
 	chem_to_remove = "superboom"
-	required_catalysts = list("superboom" = 1, "smoke_powder" = 1)
+	required_catalysts = list(/datum/reagent/superboom = 1, /datum/reagent/smoke_powder = 1)
 	modifier = 4
 	
 /datum/chemical_reaction/reagent_explosion/remove_all/superboom_b
 	name = "N-amino azidotetrazole Collapse"
 	chem_to_remove = "superboom"
-	required_catalysts = list("superboom" = 1, "potassium" = 1, "sugar" = 1, "phosphorus" = 1)
+	required_catalysts = list(/datum/reagent/superboom = 1, /datum/reagent/potassium = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/phosphorus = 1)
 	modifier = 4
 	
 	

@@ -8,6 +8,9 @@
 	desc = "For shuttle control."
 	icon_screen = "shuttle"
 	icon_keyboard = "tech_key"
+	ui_x = 400
+	ui_y = 400
+	
 	var/auth_need = 3
 	var/list/authorized = list()
 
@@ -20,8 +23,7 @@
 
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "emergency_shuttle_console", name,
-			400, 400, master_ui, state)
+		ui = new(user, src, ui_key, "emergency_shuttle_console", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/emergency_shuttle/ui_data()
@@ -68,6 +70,8 @@
 		return
 
 	var/old_len = authorized.len
+
+	HIPPIE_HOOK_SHUTTLE_AUTH
 
 	switch(action)
 		if("authorize")
@@ -132,10 +136,13 @@
 		minor_announce("The emergency shuttle will launch in \
 			[TIME_LEFT] seconds", system_error, alert=TRUE)
 		. = TRUE
-
+/* HANDLED IN HIPPIESTATION EMERGENCY.DM  - MODULE: SHUTTLE TOGGLE - Changes here too.
 /obj/machinery/computer/emergency_shuttle/emag_act(mob/user)
 	// How did you even get on the shuttle before it go to the station?
 	if(!IS_DOCKED)
+		return
+
+	if(SSshuttle.emergency.mode == SHUTTLE_DISABLED)
 		return
 
 	if(CHECK_BITFIELD(obj_flags, EMAGGED) || ENGINES_STARTED)	//SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LAUNCH IN 10 SECONDS
@@ -160,7 +167,7 @@
 		authorized += ID
 
 	process()
-
+*/
 /obj/machinery/computer/emergency_shuttle/Destroy()
 	// Our fake IDs that the emag generated are just there for colour
 	// They're not supposed to be accessible
@@ -183,6 +190,8 @@
 	dir = EAST
 	port_direction = WEST
 	var/sound_played = 0 //If the launch sound has been sent to all players on the shuttle itself
+	var/pyko_call = list('hippiestation/sound/pyko/shuttlecall.ogg', 'hippiestation/sound/pyko/shuttlecallF.ogg') // hippie -- pykoai
+	var/pyko_recall = list('hippiestation/sound/pyko/shuttlerecall.ogg', 'hippiestation/sound/pyko/who_the_fuck_just_recalled.ogg') // hippie -- pykoai
 
 /obj/docking_port/mobile/emergency/canDock(obj/docking_port/stationary/S)
 	return SHUTTLE_CAN_DOCK //If the emergency shuttle can't move, the whole game breaks, so it will force itself to land even if it has to crush a few departments in the process
@@ -199,7 +208,7 @@
 			SSshuttle.emergencyDeregister()
 
 	. = ..()
-
+/* HANDLED IN HIPPIESTATION EMERGENCY.DM  - MODULE: SHUTTLE TOGGLE - Changes here too.
 /obj/docking_port/mobile/emergency/request(obj/docking_port/stationary/S, area/signalOrigin, reason, redAlert, set_coefficient=null)
 	if(!isnum(set_coefficient))
 		var/security_num = seclevel2num(get_security_level())
@@ -227,11 +236,15 @@
 	else
 		SSshuttle.emergencyLastCallLoc = null
 
-	priority_announce("The emergency shuttle has been called. [redAlert ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ]", null, 'sound/ai/shuttlecalled.ogg', "Priority")
+	priority_announce("The emergency shuttle has been called. [redAlert ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ] [SSshuttle.adminEmergencyNoRecall ? "\n\nWarning: Shuttle recall subroutines disabled; Recall not possible." : ""]", null, 'sound/AI/shuttlecalled.ogg', "Priority")
 
 /obj/docking_port/mobile/emergency/cancel(area/signalOrigin)
+	if(SSshuttle.adminEmergencyNoRecall)
+		return
+
 	if(mode != SHUTTLE_CALL)
 		return
+
 	if(SSshuttle.emergencyNoRecall)
 		return
 
@@ -243,7 +256,7 @@
 	else
 		SSshuttle.emergencyLastCallLoc = null
 	priority_announce("The emergency shuttle has been recalled.[SSshuttle.emergencyLastCallLoc ? " Recall signal traced. Results can be viewed on any communications console." : "" ]", null, 'sound/ai/shuttlerecalled.ogg', "Priority")
-
+*/
 /obj/docking_port/mobile/emergency/proc/is_hijacked()
 	var/has_people = FALSE
 	var/hijacker_present = FALSE
@@ -284,7 +297,7 @@
 	var/datum/DBQuery/query_round_shuttle_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET shuttle_name = '[name]' WHERE id = [GLOB.round_id]")
 	query_round_shuttle_name.Execute()
 	qdel(query_round_shuttle_name)
-
+/* HANDLED IN HIPPIESTATION EMERGENCY.DM  - MODULE: SHUTTLE TOGGLE - Changes here too.
 /obj/docking_port/mobile/emergency/check()
 	if(!timer)
 		return
@@ -316,7 +329,6 @@
 				send2irc("Server", "The Emergency Shuttle has docked with the station.")
 				priority_announce("The Emergency Shuttle has docked with the station. You have [timeLeft(600)] minutes to board the Emergency Shuttle.", null, 'sound/ai/shuttledock.ogg', "Priority")
 				ShuttleDBStuff()
-
 
 		if(SHUTTLE_DOCKED)
 			if(time_left <= ENGINES_START_TIME)
@@ -370,6 +382,9 @@
 		if(SHUTTLE_STRANDED)
 			SSshuttle.checkHostileEnvironment()
 
+		if(SHUTTLE_DISABLED)
+			SSshuttle.checkHostileEnvironment()
+
 		if(SHUTTLE_ESCAPE)
 			if(sound_played && time_left <= HYPERSPACE_END_TIME)
 				var/list/areas = list()
@@ -409,7 +424,7 @@
 				dock_id(destination_dock)
 				mode = SHUTTLE_ENDGAME
 				timer = 0
-
+*/
 /obj/docking_port/mobile/emergency/transit_failure()
 	..()
 	message_admins("Moving emergency shuttle directly to centcom dock to prevent deadlock.")
@@ -455,13 +470,15 @@
 
 /obj/machinery/computer/shuttle/pod/update_icon()
 	return
-
+/* HANDLED IN HIPPIESTATION EMERGENCY.DM  - MODULE: SHUTTLE TOGGLE - Changes here too.
 /obj/machinery/computer/shuttle/pod/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
+	if(SHUTTLE_DISABLED)//MODULE: SHUTTLE TOGGLE
+		return
 	ENABLE_BITFIELD(obj_flags, EMAGGED)
 	to_chat(user, "<span class='warning'>You fry the pod's alert level checking system.</span>")
-
+*/
 /obj/machinery/computer/shuttle/pod/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	. = ..()
 	if(possible_destinations == initial(possible_destinations) || override)

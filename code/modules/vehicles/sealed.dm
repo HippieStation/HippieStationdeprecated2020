@@ -73,16 +73,16 @@
 				inserted_key.forceMove(drop_location())
 			inserted_key = I
 		else
-			to_chat(user, "<span class='notice'>[I] seems to be stuck to your hand!</span>")
+			to_chat(user, "<span class='warning'>[I] seems to be stuck to your hand!</span>")
 		return
 	return ..()
 
 /obj/vehicle/sealed/proc/remove_key(mob/user)
 	if(!inserted_key)
-		to_chat(user, "<span class='notice'>There is no key in [src]!</span>")
+		to_chat(user, "<span class='warning'>There is no key in [src]!</span>")
 		return
 	if(!is_occupant(user) || !(occupants[user] & VEHICLE_CONTROL_DRIVE))
-		to_chat(user, "<span class='notice'>You must be driving [src] to remove [src]'s key!</span>")
+		to_chat(user, "<span class='warning'>You must be driving [src] to remove [src]'s key!</span>")
 		return
 	to_chat(user, "<span class='notice'>You remove [inserted_key] from [src].</span>")
 	inserted_key.forceMove(drop_location())
@@ -91,7 +91,8 @@
 
 /obj/vehicle/sealed/Destroy()
 	DumpMobs()
-	explosion(loc, 0, 1, 2, 3, 0)
+	if(do_explode) // hippie -- avoid larger-than-wanted explosions with thanos car
+		explosion(loc, 0, 1, 2, 3, 0)
 	return ..()
 
 /obj/vehicle/sealed/proc/DumpMobs(randomstep = TRUE)

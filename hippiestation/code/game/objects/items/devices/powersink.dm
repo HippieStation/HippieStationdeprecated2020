@@ -57,7 +57,7 @@ GLOBAL_VAR_INIT(powersink_transmitted, 0)
 /obj/item/powersink/infiltrator/on_drain(drained)
 	GLOB.powersink_transmitted += drained
 	if(GLOB.powersink_transmitted >= target && !target_reached)
-		alert_radio.talk_into(src, "Power objective reached.", "Syndicate", get_spans(), get_default_language())
+		alert_radio.talk_into(src, "Power objective reached.", "Syndicate")
 		visible_message("<span class='notice'>[src] beeps.</span>")
 		playsound('sound/machines/ping.ogg', 50, 1)
 		target_reached = TRUE

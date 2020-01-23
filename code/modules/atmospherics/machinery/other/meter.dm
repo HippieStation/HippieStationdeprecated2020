@@ -110,10 +110,11 @@
 		. = "The connect error light is blinking."
 
 /obj/machinery/meter/examine(mob/user)
-	..()
-	to_chat(user, status())
+	. = ..()
+	. += status()
 
 /obj/machinery/meter/wrench_act(mob/user, obj/item/I)
+	..()
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 	if (I.use_tool(src, user, 40, volume=50))
 		user.visible_message(

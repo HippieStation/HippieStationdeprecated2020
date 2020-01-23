@@ -9,10 +9,10 @@
 	slowdown = SHOES_SLOWDOWN+1
 	var/footstep = 1
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes/clown
-	
+
 /obj/item/clothing/shoes/hippie/cluwne/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/shoes/hippie/cluwne/step_action()
 	if(footstep > 1)
@@ -22,6 +22,7 @@
 		footstep++
 
 /obj/item/clothing/shoes/hippie/cluwne/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user))
 		return
 	if(slot == SLOT_SHOES)
@@ -48,7 +49,7 @@
 
 /obj/item/clothing/shoes/buttshoes/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, list('hippiestation/sound/effects/fart.ogg'=1), 50)
+	AddComponent(/datum/component/squeak, list('hippiestation/sound/effects/fart.ogg'), 50)
 
 /obj/item/clothing/shoes/jackboots/larp
 	name = "guard boots"

@@ -68,7 +68,7 @@ GLOBAL_LIST(bad_gremlin_items)
 	var/is_hungry = world.time >= next_eat || prob(25)
 	if(istype(target, /obj/item/reagent_containers/food) && is_hungry) //eat food if we're hungry or bored
 		visible_message("<span class='danger'>[src] hungrily devours [target]!</span>")
-		playsound(src, "sound/items/eatfood.ogg", 50, 1)
+		playsound(src, 'sound/items/eatfood.ogg', 50, 1)
 		qdel(target)
 		LoseTarget()
 		next_eat = world.time + rand(700, 3000) //anywhere from 70 seconds to 5 minutes until the gremlin is hungry again
@@ -212,7 +212,7 @@ GLOBAL_LIST(bad_gremlin_items)
 		tamper(A)
 	if(istype(target, /obj/item/reagent_containers/food)) //eat food
 		visible_message("<span class='danger'>[src] hungrily devours [target]!</span>", "<span class='danger'>You hungrily devour [target]!</span>")
-		playsound(src, "sound/items/eatfood.ogg", 50, 1)
+		playsound(src, 'sound/items/eatfood.ogg', 50, 1)
 		qdel(target)
 		LoseTarget()
 		next_eat = world.time + rand(700, 3000) //anywhere from 70 seconds to 5 minutes until the gremlin is hungry again

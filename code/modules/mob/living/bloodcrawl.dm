@@ -29,8 +29,9 @@
 			//TODO make it toggleable to either forcedrop the items, or deny
 			//entry when holding them
 			// literally only an option for carbons though
-			to_chat(C, "<span class='warning'>You may not hold items while blood crawling!</span>")
-			return 0
+			if(!C.bloodcrawl_allow_items) // hippie -- for cluwne bloodcrawl
+				to_chat(C, "<span class='warning'>You may not hold items while blood crawling!</span>")
+				return 0
 		var/obj/item/bloodcrawl/B1 = new(C)
 		var/obj/item/bloodcrawl/B2 = new(C)
 		B1.icon_state = "bloodhand_left"
@@ -74,7 +75,7 @@
 
 	if(victim.stat == CONSCIOUS)
 		src.visible_message("<span class='warning'>[victim] kicks free of the blood pool just before entering it!</span>", null, "<span class='notice'>You hear splashing and struggling.</span>")
-	else if(victim.reagents && victim.reagents.has_reagent("demonsblood"))
+	else if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/consumable/ethanol/demonsblood))
 		visible_message("<span class='warning'>Something prevents [victim] from entering the pool!</span>", "<span class='warning'>A strange force is blocking [victim] from entering!</span>", "<span class='notice'>You hear a splash and a thud.</span>")
 	else
 		victim.forceMove(src)
@@ -89,7 +90,7 @@
 	return 1
 
 /mob/living/proc/bloodcrawl_consume(mob/living/victim)
-	to_chat(src, "<span class='danger'>You begin to feast on [victim]. You can not move while you are doing this.</span>")
+	to_chat(src, "<span class='danger'>You begin to feast on [victim]... You can not move while you are doing this.</span>")
 
 	var/sound
 	if(istype(src, /mob/living/simple_animal/slaughter))
@@ -105,7 +106,7 @@
 	if(!victim)
 		return FALSE
 
-	if(victim.reagents && victim.reagents.has_reagent("devilskiss"))
+	if(victim.reagents && victim.reagents.has_reagent(/datum/reagent/consumable/ethanol/devilskiss))
 		to_chat(src, "<span class='warning'><b>AAH! THEIR FLESH! IT BURNS!</b></span>")
 		adjustBruteLoss(25) //I can't use adjustHealth() here because bloodcrawl affects /mob/living and adjustHealth() only affects simple mobs
 		var/found_bloodpool = FALSE
@@ -143,7 +144,7 @@
 
 /obj/item/bloodcrawl/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /mob/living/proc/exit_blood_effect(obj/effect/decal/cleanable/B)
 	playsound(get_turf(src), 'sound/magic/exit_blood.ogg', 50, 1, -1)
@@ -164,6 +165,15 @@
 		return
 	if(!B)
 		return
+	// hippie start -- don't bloodcrawl with badmin stones
+	var/lost_something = FALSE
+	for(var/obj/item/badmin_stone/BS in GetAllContents())
+		if(!istype(BS.loc, /obj/item/badmin_gauntlet)) // just incase some idiot revives thanos
+			BS.forceMove(get_turf(src))
+			lost_something = TRUE
+	if(lost_something)
+		to_chat(src, "<span class='danger italics'>You feel like you lost something in the normal world...</span>")
+	// hippie end
 	forceMove(B.loc)
 	src.client.eye = src
 	src.visible_message("<span class='warning'><B>[src] rises out of the pool of blood!</B></span>")

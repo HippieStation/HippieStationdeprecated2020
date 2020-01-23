@@ -353,8 +353,7 @@
 		pathpos++ // increase iterator
 
 		// Broadcast the signal
-		spawn()
-			radio_connection.post_signal(src, signal, filter = RADIO_MAGNETS)
+		INVOKE_ASYNC(radio_connection, /datum/radio_frequency.proc/post_signal, src, signal, RADIO_MAGNETS)
 
 		if(speed == 10)
 			sleep(1)

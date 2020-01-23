@@ -14,7 +14,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	potency = 20
 	growthstages = 3
-	reagents_add = list("vitamin" = 0.04, "nutriment" = 0.05)
+	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.05)
 
 /obj/item/reagent_containers/food/snacks/grown/limb_spawn
 	icon = 'hippiestation/icons/obj/hydroponics/harvest.dmi'

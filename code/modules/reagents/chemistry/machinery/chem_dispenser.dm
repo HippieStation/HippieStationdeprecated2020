@@ -1,3 +1,16 @@
+/proc/translate_legacy_chem_id(id)
+	switch (id)
+		if ("sacid")
+			return "sulphuricacid"
+		if ("facid")
+			return "fluorosulfuricacid"
+		if ("co2")
+			return "carbondioxide"
+		if ("mine_salve")
+			return "minerssalve"
+		else
+			return ckey(id)
+
 /obj/machinery/chem_dispenser
 	name = "chem dispenser"
 	desc = "Creates and dispenses chemicals."
@@ -9,6 +22,9 @@
 	interaction_flags_machine = INTERACT_MACHINE_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OFFLINE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	circuit = /obj/item/circuitboard/machine/chem_dispenser
+	ui_x = 565
+	ui_y = 620
+
 	var/obj/item/stock_parts/cell/cell
 	var/powerefficiency = 0.1
 	var/amount = 30
@@ -20,56 +36,61 @@
 	var/has_panel_overlay = TRUE
 	var/macroresolution = 1
 	var/obj/item/reagent_containers/beaker = null
+	//dispensable_reagents is copypasted in plumbing synthesizers. Please update accordingly. (I didn't make it global because that would limit custom chem dispensers)
 	var/list/dispensable_reagents = list(
-		"hydrogen",
-		"lithium",
-		"carbon",
-		"nitrogen",
-		"oxygen",
-		"fluorine",
-		"sodium",
-		"aluminium",
-		"silicon",
-		"phosphorus",
-		"sulfur",
-		"chlorine",
-		"potassium",
-		"iron",
-		"copper",
-		"mercury",
-		"radium",
-		"water",
-		"ethanol",
-		"sugar",
-		"sacid",
-		"welding_fuel",
-		"silver",
-		"iodine",
-		"bromine",
-		"stable_plasma"
+		/datum/reagent/aluminium,
+		/datum/reagent/bromine,
+		/datum/reagent/carbon,
+		/datum/reagent/chlorine,
+		/datum/reagent/copper,
+		/datum/reagent/consumable/ethanol,
+		/datum/reagent/fluorine,
+		/datum/reagent/hydrogen,
+		/datum/reagent/iodine,
+		/datum/reagent/iron,
+		/datum/reagent/lithium,
+		/datum/reagent/mercury,
+		/datum/reagent/nitrogen,
+		/datum/reagent/oxygen,
+		/datum/reagent/phosphorus,
+		/datum/reagent/potassium,
+		/datum/reagent/uranium/radium,
+		/datum/reagent/silicon,
+		/datum/reagent/silver,
+		/datum/reagent/sodium,
+		/datum/reagent/stable_plasma,
+		/datum/reagent/consumable/sugar,
+		/datum/reagent/sulfur,
+		/datum/reagent/toxin/acid,
+		/datum/reagent/water,
+		/datum/reagent/fuel
 	)
 	//these become available once the manipulator has been upgraded to tier 4 (femto)
 	var/list/upgrade_reagents = list(
-		"oil",
-		"ash",
-		"acetone",
-		"saltpetre",
-		"ammonia",
-		"diethylamine"
+		/datum/reagent/acetone,
+		/datum/reagent/ammonia,
+		/datum/reagent/ash,
+		/datum/reagent/diethylamine,
+		/datum/reagent/oil,
+		/datum/reagent/saltpetre
 	)
 	var/list/emagged_reagents = list(
-		"space_drugs",
-		"morphine",
-		"carpotoxin",
-		"mine_salve",
-		"toxin"
+		/datum/reagent/toxin/carpotoxin,
+		/datum/reagent/medicine/mine_salve,
+		/datum/reagent/medicine/morphine,
+		/datum/reagent/drug/space_drugs,
+		/datum/reagent/toxin
 	)
 
 	var/list/saved_recipes = list()
 
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
-	dispensable_reagents = sortList(dispensable_reagents)
+	dispensable_reagents = sortList(dispensable_reagents, /proc/cmp_reagents_asc)
+	if(emagged_reagents)
+		emagged_reagents = sortList(emagged_reagents, /proc/cmp_reagents_asc)
+	if(upgrade_reagents)
+		upgrade_reagents = sortList(upgrade_reagents, /proc/cmp_reagents_asc)
 	update_icon()
 
 /obj/machinery/chem_dispenser/Destroy()
@@ -78,11 +99,12 @@
 	return ..()
 
 /obj/machinery/chem_dispenser/examine(mob/user)
-	..()
+	. = ..()
 	if(panel_open)
-		to_chat(user, "<span class='notice'>[src]'s maintenance hatch is open!</span>")
+		. += "<span class='notice'>[src]'s maintenance hatch is open!</span>"
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: <br>Recharging <b>[recharge_amount]</b> power units per interval.<br>Power efficiency increased by <b>[round((powerefficiency*1000)-100, 1)]%</b>.<br>Macro granularity at <b>[macroresolution]u</b>.<span>")
+		. += {"<span class='notice'>The status display reads: <br>Recharging <b>[recharge_amount]</b> power units per interval.<br>Power efficiency increased by <b>
+		[round((powerefficiency*1000)-100, 1)]%</b>.<br>Macro granularity at <b>[macroresolution]u</b>.<span>"}
 
 /obj/machinery/chem_dispenser/process()
 	if (recharge_counter >= 4)
@@ -105,12 +127,9 @@
 	if(working_state)
 		flick(working_state,src)
 
-/obj/machinery/chem_dispenser/power_change()
-	..()
-	icon_state = "[(nopower_state && !powered()) ? nopower_state : initial(icon_state)]"
-
 /obj/machinery/chem_dispenser/update_icon()
 	cut_overlays()
+	icon_state = "[(nopower_state && !powered()) ? nopower_state : initial(icon_state)]"
 	if(has_panel_overlay && panel_open)
 		add_overlay(mutable_appearance(icon, "[initial(icon_state)]_panel-o"))
 
@@ -147,7 +166,7 @@
 											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "chem_dispenser", name, 565, 550, master_ui, state)
+		ui = new(user, src, ui_key, "chem_dispenser", name, ui_x, ui_y, master_ui, state)
 		if(user.hallucinating())
 			ui.set_autoupdate(FALSE) //to not ruin the immersion by constantly changing the fake chemicals
 		ui.open()
@@ -187,7 +206,7 @@
 			var/chemname = temp.name
 			if(is_hallucinating && prob(5))
 				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			chemicals.Add(list(list("title" = chemname, "id" = temp.id)))
+			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name))))
 	for(var/recipe in saved_recipes)
 		recipes.Add(list(recipe))
 	data["chemicals"] = chemicals
@@ -209,7 +228,7 @@
 		if("dispense")
 			if(!is_operational() || QDELETED(cell))
 				return
-			var/reagent = params["reagent"]
+			var/reagent = GLOB.name2reagent[params["reagent"]]
 			if(beaker && dispensable_reagents.Find(reagent))
 				var/datum/reagents/R = beaker.reagents
 				var/free = R.maximum_volume - R.total_volume
@@ -219,7 +238,6 @@
 					say("Not enough energy to complete operation!")
 					return
 				R.add_reagent(reagent, actual)
-
 				work_animation()
 				. = TRUE
 		if("remove")
@@ -238,19 +256,22 @@
 				return
 			var/recipe_to_use = params["recipe"]
 			var/list/chemicals_to_dispense = process_recipe_list(recipe_to_use)
-			var/res = macroresolution
 			for(var/key in chemicals_to_dispense) // i suppose you could edit the list locally before passing it
 				var/list/keysplit = splittext(key," ")
-				var/r_id = keysplit[1]
+				var/r_id = GLOB.name2reagent[translate_legacy_chem_id(keysplit[1])]
 				if(beaker && dispensable_reagents.Find(r_id)) // but since we verify we have the reagent, it'll be fine
 					var/datum/reagents/R = beaker.reagents
 					var/free = R.maximum_volume - R.total_volume
-					var/actual = min(max(chemicals_to_dispense[key], res), (cell.charge * powerefficiency)*10, free)
+					var/rounded = is_resolution(chemicals_to_dispense[key]) ? chemicals_to_dispense[key] : round(chemicals_to_dispense[key], macroresolution)
+					var/actual = min(rounded, (cell.charge * powerefficiency)*10, free)
 					if(actual)
-						if(!cell.use(actual / powerefficiency))
+						if(!cell.use(abs(actual) / powerefficiency))
 							say("Not enough energy to complete operation!")
 							return
-						R.add_reagent(r_id, actual)
+						if(actual > 0)
+							R.add_reagent(r_id, actual)
+						if(actual < 0)
+							R.remove_reagent(r_id, abs(actual))
 						work_animation()
 		if("clear_recipes")
 			if(!is_operational())
@@ -269,18 +290,19 @@
 				var/list/first_process = splittext(recipe, ";")
 				if(!LAZYLEN(first_process))
 					return
-				var/res = macroresolution
 				var/resmismatch = FALSE
 				for(var/reagents in first_process)
 					var/list/reagent = splittext(reagents, "=")
-					if(dispensable_reagents.Find(reagent[1]))
-						if (!resmismatch && !check_macro_part(reagents, res))
+					var/amt = text2num(reagent[2]) || 0
+					var/reagent_id = GLOB.name2reagent[translate_legacy_chem_id(reagent[1])]
+					if(dispensable_reagents.Find(reagent_id) || (reagent_id && amt < 0))
+						if (!resmismatch && !check_macro_part(reagents))
 							resmismatch = TRUE
 						continue
 					else
 						var/chemid = reagent[1]
 						visible_message("<span class='warning'>[src] buzzes.</span>", "<span class='italics'>You hear a faint buzz.</span>")
-						to_chat(usr, "<span class ='danger'>[src] cannot find Chemical ID: <b>[chemid]</b>!</span>")
+						to_chat(usr, "<span class='danger'>[src] cannot find Chemical ID: <b>[chemid]</b>!</span>")
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
 						return
 				if (resmismatch && alert("[src] is not yet capable of replicating this recipe with the precision it needs, do you want to save it anyway?",, "Yes","No") == "No")
@@ -370,17 +392,20 @@
 	return ..()
 
 /obj/machinery/chem_dispenser/proc/check_macro(macro)
-	var/res = macroresolution
 	for (var/reagent in splittext(trim(macro), ";"))
-		if (!check_macro_part(reagent, res))
+		if (!check_macro_part(reagent))
 			return FALSE
 	return TRUE
 
 /obj/machinery/chem_dispenser/proc/check_macro_part(var/part, var/res = macroresolution)
 	var/detail = splittext(part, "=")
-	if (text2num(detail[2]) < res)
-		return FALSE
-	return TRUE
+	return is_resolution(text2num(detail[2]), res)
+
+/obj/machinery/chem_dispenser/proc/is_resolution(var/amt, var/res = macroresolution)
+	. = FALSE
+	for(var/i in 5 to macroresolution step -1)
+		if(amt % i == 0)
+			return TRUE
 
 /obj/machinery/chem_dispenser/proc/process_recipe_list(var/recipe)
 	var/list/key_list = list()
@@ -437,35 +462,35 @@
 	nopower_state = null
 	pass_flags = PASSTABLE
 	dispensable_reagents = list(
-		"water",
-		"ice",
-		"coffee",
-		"cream",
-		"tea",
-		"icetea",
-		"cola",
-		"spacemountainwind",
-		"dr_gibb",
-		"space_up",
-		"tonic",
-		"sodawater",
-		"lemon_lime",
-		"pwr_game",
-		"shamblers",
-		"sugar",
-		"orangejuice",
-		"grenadine",
-		"limejuice",
-		"tomatojuice",
-		"lemonjuice",
-		"menthol"
+		/datum/reagent/water,
+		/datum/reagent/consumable/ice,
+		/datum/reagent/consumable/coffee,
+		/datum/reagent/consumable/cream,
+		/datum/reagent/consumable/tea,
+		/datum/reagent/consumable/icetea,
+		/datum/reagent/consumable/space_cola,
+		/datum/reagent/consumable/spacemountainwind,
+		/datum/reagent/consumable/dr_gibb,
+		/datum/reagent/consumable/space_up,
+		/datum/reagent/consumable/tonic,
+		/datum/reagent/consumable/sodawater,
+		/datum/reagent/consumable/lemon_lime,
+		/datum/reagent/consumable/pwr_game,
+		/datum/reagent/consumable/shamblers,
+		/datum/reagent/consumable/sugar,
+		/datum/reagent/consumable/orangejuice,
+		/datum/reagent/consumable/grenadine,
+		/datum/reagent/consumable/limejuice,
+		/datum/reagent/consumable/tomatojuice,
+		/datum/reagent/consumable/lemonjuice,
+		/datum/reagent/consumable/menthol
 	)
 	upgrade_reagents = null
 	emagged_reagents = list(
-		"thirteenloko",
-		"whiskeycola",
-		"mindbreaker",
-		"tirizene"
+		/datum/reagent/consumable/ethanol/thirteenloko,
+		/datum/reagent/consumable/ethanol/whiskey_cola,
+		/datum/reagent/toxin/mindbreaker,
+		/datum/reagent/toxin/staminatoxin
 	)
 
 /obj/machinery/chem_dispenser/drinks/fullupgrade //fully ugpraded stock parts, emagged
@@ -493,33 +518,32 @@
 	icon_state = "booze_dispenser"
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/beer
 	dispensable_reagents = list(
-		"beer",
-		"kahlua",
-		"whiskey",
-		"wine",
-		"vodka",
-		"gin",
-		"rum",
-		"tequila",
-		"vermouth",
-		"cognac",
-		"ale",
-		"absinthe",
-		"hcider",
-		"creme_de_menthe",
-		"creme_de_cacao",
-		"triple_sec",
-		"sake",
-		"champagne",
-		"applejack"
+		/datum/reagent/consumable/ethanol/beer,
+		/datum/reagent/consumable/ethanol/kahlua,
+		/datum/reagent/consumable/ethanol/whiskey,
+		/datum/reagent/consumable/ethanol/wine,
+		/datum/reagent/consumable/ethanol/vodka,
+		/datum/reagent/consumable/ethanol/gin,
+		/datum/reagent/consumable/ethanol/rum,
+		/datum/reagent/consumable/ethanol/tequila,
+		/datum/reagent/consumable/ethanol/vermouth,
+		/datum/reagent/consumable/ethanol/cognac,
+		/datum/reagent/consumable/ethanol/ale,
+		/datum/reagent/consumable/ethanol/absinthe,
+		/datum/reagent/consumable/ethanol/hcider,
+		/datum/reagent/consumable/ethanol/creme_de_menthe,
+		/datum/reagent/consumable/ethanol/creme_de_cacao,
+		/datum/reagent/consumable/ethanol/triple_sec,
+		/datum/reagent/consumable/ethanol/sake,
+		/datum/reagent/consumable/ethanol/applejack
 	)
 	upgrade_reagents = null
 	emagged_reagents = list(
-		"ethanol",
-		"iron",
-		"minttoxin",
-		"atomicbomb",
-		"fernet"
+		/datum/reagent/consumable/ethanol,
+		/datum/reagent/iron,
+		/datum/reagent/toxin/minttoxin,
+		/datum/reagent/consumable/ethanol/atomicbomb,
+		/datum/reagent/consumable/ethanol/fernet
 	)
 
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade //fully ugpraded stock parts, emagged
@@ -543,9 +567,9 @@
 /obj/machinery/chem_dispenser/mutagen
 	name = "mutagen dispenser"
 	desc = "Creates and dispenses mutagen."
-	dispensable_reagents = list("mutagen")
+	dispensable_reagents = list(/datum/reagent/toxin/mutagen)
 	upgrade_reagents = null
-	emagged_reagents = list("plasma")
+	emagged_reagents = list(/datum/reagent/toxin/plasma)
 
 
 /obj/machinery/chem_dispenser/mutagensaltpeter
@@ -554,19 +578,19 @@
 	flags_1 = NODECONSTRUCT_1
 
 	dispensable_reagents = list(
-		"mutagen",
-		"saltpetre",
-		"eznutriment",
-		"left4zednutriment",
-		"robustharvestnutriment",
-		"water",
-		"plantbgone",
-		"weedkiller",
-		"pestkiller",
-		"cryoxadone",
-		"ammonia",
-		"ash",
-		"diethylamine")
+		/datum/reagent/toxin/mutagen,
+		/datum/reagent/saltpetre,
+		/datum/reagent/plantnutriment/eznutriment,
+		/datum/reagent/plantnutriment/left4zednutriment,
+		/datum/reagent/plantnutriment/robustharvestnutriment,
+		/datum/reagent/water,
+		/datum/reagent/toxin/plantbgone,
+		/datum/reagent/toxin/plantbgone/weedkiller,
+		/datum/reagent/toxin/pestkiller,
+		/datum/reagent/medicine/cryoxadone,
+		/datum/reagent/ammonia,
+		/datum/reagent/ash,
+		/datum/reagent/diethylamine)
 	upgrade_reagents = null
 
 /obj/machinery/chem_dispenser/mutagensaltpeter/Initialize()

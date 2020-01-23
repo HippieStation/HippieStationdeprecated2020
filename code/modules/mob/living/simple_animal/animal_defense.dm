@@ -12,8 +12,8 @@
 			grabbedby(M)
 
 		if("harm", "disarm")
-			if(M.has_trait(TRAIT_PACIFISM))
-				to_chat(M, "<span class='notice'>You don't want to hurt [src]!</span>")
+			if(HAS_TRAIT(M, TRAIT_PACIFISM))
+				to_chat(M, "<span class='warning'>You don't want to hurt [src]!</span>")
 				return
 			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			visible_message("<span class='danger'>[M] [response_harm] [src]!</span>",\
@@ -24,17 +24,14 @@
 			updatehealth()
 			return TRUE
 
-/mob/living/simple_animal/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
-	if(user.a_intent == INTENT_HARM)
-		if(user.has_trait(TRAIT_PACIFISM))
-			to_chat(user, "<span class='notice'>You don't want to hurt [src]!</span>")
-			return FALSE
-		..(user, 1)
-		playsound(loc, "punch", 25, 1, -1)
-		visible_message("<span class='danger'>[user] has punched [src]!</span>", \
-			"<span class='userdanger'>[user] has punched [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-		adjustBruteLoss(15)
-		return TRUE
+/mob/living/simple_animal/attack_hulk(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
+		return
+	playsound(loc, "punch", 25, 1, -1)
+	visible_message("<span class='danger'>[user] has punched [src]!</span>", \
+		"<span class='userdanger'>[user] has punched [src]!</span>", null, COMBAT_MESSAGE_RANGE)
+	adjustBruteLoss(15)
 
 /mob/living/simple_animal/attack_paw(mob/living/carbon/monkey/M)
 	if(..()) //successful monkey bite.
@@ -113,21 +110,23 @@
 	if(origin && istype(origin, /datum/spacevine_mutation) && isvineimmune(src))
 		return
 	..()
+	if(QDELETED(src))
+		return
 	var/bomb_armor = getarmor(null, "bomb")
 	switch (severity)
-		if (1)
+		if (EXPLODE_DEVASTATE)
 			if(prob(bomb_armor))
 				adjustBruteLoss(500)
 			else
 				gib()
 				return
-		if (2)
+		if (EXPLODE_HEAVY)
 			var/bloss = 60
 			if(prob(bomb_armor))
 				bloss = bloss / 1.5
 			adjustBruteLoss(bloss)
 
-		if(3)
+		if(EXPLODE_LIGHT)
 			var/bloss = 30
 			if(prob(bomb_armor))
 				bloss = bloss / 1.5

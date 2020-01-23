@@ -434,7 +434,7 @@
 			H.dropItemToGround(W)
 			if(prob(50))
 				step(W, pick(GLOB.alldirs))
-		H.add_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_DISFIGURED, TRAIT_GENERIC)
 		H.bleed_rate = 5
 		H.gib_animation()
 		sleep(3)
@@ -443,3 +443,10 @@
 		H.spill_organs()
 		H.spread_bodyparts()
 	return (BRUTELOSS)
+
+/obj/item/book/manual/wiki/plumbing
+	name = "Chemical Factories Without Narcotics"
+	icon_state ="plumbingbook"
+	author = "Nanotrasen"
+	title = "Chemical Factories Without Narcotics"
+	page_link = "Guide_to_plumbing"

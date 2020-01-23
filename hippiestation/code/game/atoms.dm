@@ -1,5 +1,6 @@
 /atom
 	var/icon_hippie
+	var/next_spam_shot = 0
 
 /atom/proc/check_hippie_icon()
 	if (!icon || !icon_state || !icon_hippie)

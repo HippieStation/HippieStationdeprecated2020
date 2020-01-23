@@ -292,7 +292,7 @@
 		else
 			. += "-robotic"
 
-	if(has_trait(TRAIT_HUSK))
+	if(HAS_TRAIT(src, TRAIT_HUSK))
 		. += "-husk"
 
 

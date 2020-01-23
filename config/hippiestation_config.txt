@@ -20,3 +20,19 @@ TOKEN_CONSUMER http://127.0.0.1:9000/byondLinker.php
 
 ## Enables the text-to-speech subsystem, allowing humans to use it
 ENABLE_TTS
+
+# The command to run for TTS generation.
+# %I is input textfile,  %O is output wavefile, %V is voice name.
+#TTS_COMMAND mimic -f "%I" -o "%O" -voice "%V"
+
+# A comma seperated list of male voices
+#TTS_VOICE_MALE ap,kal,awb,kal16,rms
+
+# A comma seperated list of female voices
+#TTS_VOICE_FEMALE slt
+
+## Enables the GeoIP subsystem when you give it an ipstack.com API key
+#IPSTACK_API_KEY
+
+## Enables the Replay/Demo subsystem. This is now an option because it has high cpu/ram usage.
+#ENABLE_DEMO

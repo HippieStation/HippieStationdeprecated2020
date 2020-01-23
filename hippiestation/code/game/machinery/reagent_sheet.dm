@@ -76,7 +76,7 @@
 	RS.amount = sheet_amount
 	for(var/path in subtypesof(/datum/reagent))
 		var/datum/reagent/RR = new path
-		if(RR.id == working.reagent_type)
+		if(RR.type == working.reagent_type)
 			RS.reagent_type = RR
 			RS.name = "[RR.name] ingots"
 			RS.singular_name = "[RR.name] ingot"

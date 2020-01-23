@@ -155,25 +155,21 @@
 						build_step++
 
 		if(7)
-			var/newname = ""
 			switch(lasercolor)
 				if("b")
 					if(!istype(W, /obj/item/gun/energy/laser/bluetag))
 						return
-					newname = "bluetag ED-209 assembly"
 				if("r")
 					if(!istype(W, /obj/item/gun/energy/laser/redtag))
 						return
-					newname = "redtag ED-209 assembly"
 				if("")
-					if(!istype(W, /obj/item/gun/energy/e_gun/advtaser))
+					if(!istype(W, /obj/item/gun/energy/e_gun/advtaser)) //Hippie - Changed from dragnet to hybrid tasers
 						return
-					newname = "taser ED-209 assembly"
 				else
 					return
 			if(!user.temporarilyRemoveItemFromInventory(W))
 				return
-			name = newname
+			name = "[W.name] ED-209 assembly"
 			to_chat(user, "<span class='notice'>You add [W] to [src].</span>")
 			item_state = "[lasercolor]ed209_taser"
 			icon_state = "[lasercolor]ed209_taser"
@@ -185,7 +181,7 @@
 				to_chat(user, "<span class='notice'>You start attaching the gun to the frame...</span>")
 				if(W.use_tool(src, user, 40, volume=100))
 					name = "armed [name]"
-					to_chat(user, "<span class='notice'>Taser gun attached.</span>")
+					to_chat(user, "<span class='notice'>The gun is now securely fastened to the frame.</span>")
 					build_step++
 
 		if(9)
@@ -226,41 +222,6 @@
 			desc = "It's a toolbox with tiles sticking out the top and a sensor attached."
 			name = "incomplete floorbot assembly"
 			icon_state = "[toolbox_color]toolbox_tiles_sensor"
-
-/obj/item/storage/toolbox/attackby(obj/item/stack/tile/plasteel/T, mob/user, params)
-	var/list/allowed_toolbox = list(/obj/item/storage/toolbox/emergency,	//which toolboxes can be made into floorbots
-							/obj/item/storage/toolbox/electrical,
-							/obj/item/storage/toolbox/mechanical,
-							/obj/item/storage/toolbox/artistic,
-							/obj/item/storage/toolbox/syndicate)
-
-	if(!istype(T, /obj/item/stack/tile/plasteel))
-		..()
-		return
-	if(!is_type_in_list(src, allowed_toolbox))
-		return
-	if(contents.len >= 1)
-		to_chat(user, "<span class='warning'>They won't fit in, as there is already stuff inside!</span>")
-		return
-	if(T.use(10))
-		var/obj/item/bot_assembly/floorbot/B = new
-		B.toolbox = type
-		switch(B.toolbox)
-			if(/obj/item/storage/toolbox/emergency)
-				B.toolbox_color = "r"
-			if(/obj/item/storage/toolbox/electrical)
-				B.toolbox_color = "y"
-			if(/obj/item/storage/toolbox/artistic)
-				B.toolbox_color = "g"
-			if(/obj/item/storage/toolbox/syndicate)
-				B.toolbox_color = "s"
-		user.put_in_hands(B)
-		B.update_icon()
-		to_chat(user, "<span class='notice'>You add the tiles into the empty [src.name]. They protrude from the top.</span>")
-		qdel(src)
-	else
-		to_chat(user, "<span class='warning'>You need 10 floor tiles to start building a floorbot!</span>")
-		return
 
 /obj/item/bot_assembly/floorbot/attackby(obj/item/W, mob/user, params)
 	..()
@@ -437,7 +398,7 @@
 				qdel(I)
 				qdel(src)
 			if(I.tool_behaviour == TOOL_WRENCH)
-				to_chat(user, "You adjust [src]'s arm slots to mount extra weapons")
+				to_chat(user, "<span class='notice'>You adjust [src]'s arm slots to mount extra weapons.</span>")
 				build_step ++
 				return
 			if(istype(I, /obj/item/toy/sword))
@@ -495,7 +456,7 @@
 			else if(I.tool_behaviour == TOOL_SCREWDRIVER) //deconstruct
 				build_step--
 				icon_state = initial(icon_state)
-				to_chat(user, "<span class='notice'>You unbolt [src]'s energy swords</span>")
+				to_chat(user, "<span class='notice'>You unbolt [src]'s energy swords.</span>")
 				for(var/IS in 1 to swordamt)
 					new /obj/item/melee/transforming/energy/sword/saber(Tsec)
 

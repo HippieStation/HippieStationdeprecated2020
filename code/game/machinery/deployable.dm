@@ -148,8 +148,8 @@
 	var/mode = SINGLE
 
 /obj/item/grenade/barrier/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click to toggle modes.</span>")
+	. = ..()
+	. += "<span class='notice'>Alt-click to toggle modes.</span>"
 
 /obj/item/grenade/barrier/AltClick(mob/living/carbon/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
@@ -165,7 +165,7 @@
 		if(HORIZONTAL)
 			mode = SINGLE
 
-	to_chat(user, "[src] is now in [mode] mode.")
+	to_chat(user, "<span class='notice'>[src] is now in [mode] mode.</span>")
 
 /obj/item/grenade/barrier/prime()
 	new /obj/structure/barricade/security(get_turf(src.loc))

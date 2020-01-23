@@ -4,5 +4,6 @@
 	name = "contender internal magazine"
 	caliber = "all"
 	ammo_type = /obj/item/ammo_casing
+	start_empty = TRUE
 	max_ammo = 2
 	multiload = 0 // thou must load every shot individually

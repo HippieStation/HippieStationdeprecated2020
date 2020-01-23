@@ -12,7 +12,7 @@
 
 /obj/item/storage/bag/bio/holding/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 200
 	STR.max_items = 100
 	STR.insert_preposition = "in"

@@ -15,7 +15,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 /obj/item/extraction_pack/examine()
 	. = ..()
-	usr.show_message("It has [uses_left] use\s remaining.", 1)
+	. += "It has [uses_left] use\s remaining."
 
 /obj/item/extraction_pack/attack_self(mob/user)
 	var/list/possible_beacons = list()
@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			possible_beacons += EP
 
 	if(!possible_beacons.len)
-		to_chat(user, "There are no extraction beacons in existence!")
+		to_chat(user, "<span class='warning'>There are no extraction beacons in existence!</span>")
 		return
 
 	else
@@ -36,17 +36,17 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 		if(!A)
 			return
 		beacon = A
-		to_chat(user, "You link the extraction pack to the beacon system.")
+		to_chat(user, "<span class='notice'>You link the extraction pack to the beacon system.</span>")
 
 /obj/item/extraction_pack/afterattack(atom/movable/A, mob/living/carbon/human/user, flag, params)
 	. = ..()
 	if(!beacon)
-		to_chat(user, "[src] is not linked to a beacon, and cannot be used.")
+		to_chat(user, "<span class='warning'>[src] is not linked to a beacon, and cannot be used!</span>")
 		return
 	if(!can_use_indoors)
 		var/area/area = get_area(A)
 		if(!area.outdoors)
-			to_chat(user, "[src] can only be used on things that are outdoors!")
+			to_chat(user, "<span class='warning'>[src] can only be used on things that are outdoors!</span>")
 			return
 	if(!flag)
 		return
@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 		return
 	else
 		if(!safe_for_living_creatures && check_for_living_mobs(A))
-			to_chat(user, "[src] is not safe for use with living creatures, they wouldn't survive the trip back!")
+			to_chat(user, "<span class='warning'>[src] is not safe for use with living creatures, they wouldn't survive the trip back!</span>")
 			return
 		if(!isturf(A.loc)) // no extracting stuff inside other stuff
 			return

@@ -401,6 +401,7 @@
 	if(copytext(seed.name, 1, 13) == "experimental")
 		return // Already modded name and icon
 	seed.name = "experimental " + seed.name
+	seed.icon = 'icons/obj/hydroponics/seeds.dmi' //hippie edit -- Fixes having invisible experimental seeds due to them using the hippiestation/icons/obj/hydroponics/seeds.dmi file.
 	seed.icon_state = "seed-x"
 
 // Gene modder for seed vault ship, built with high tech alien parts.
@@ -437,7 +438,7 @@
 	to_chat(user, "<span class='notice'>You flip the write-protect tab to [src.read_only ? "protected" : "unprotected"].</span>")
 
 /obj/item/disk/plantgene/examine(mob/user)
-	..()
+	. = ..()
 	if(gene && (istype(gene, /datum/plant_gene/core/potency)))
-		to_chat(user,"<span class='notice'>Percent is relative to potency, not maximum volume of the plant.</span>")
-	to_chat(user, "The write-protect tab is set to [src.read_only ? "protected" : "unprotected"].")
+		. += "<span class='notice'>Percent is relative to potency, not maximum volume of the plant.</span>"
+	. += "The write-protect tab is set to [src.read_only ? "protected" : "unprotected"]."

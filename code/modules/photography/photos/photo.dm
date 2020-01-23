@@ -9,7 +9,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
-	grind_results = list("iodine" = 4)
+	grind_results = list(/datum/reagent/iodine = 4)
 	var/datum/picture/picture
 	var/scribble		//Scribble on the back.
 
@@ -62,19 +62,19 @@
 	..()
 
 /obj/item/photo/examine(mob/user)
-	..()
+	. = ..()
 
 	if(in_range(src, user) || isobserver(user))
 		show(user)
 	else
-		to_chat(user, "<span class='warning'>You need to get closer to get a good look at this photo!</span>")
+		. += "<span class='warning'>You need to get closer to get a good look at this photo!</span>"
 
 /obj/item/photo/proc/show(mob/user)
 	if(!istype(picture) || !picture.picture_image)
 		to_chat(user, "<span class='warning'>[src] seems to be blank...</span>")
 		return
 	user << browse_rsc(picture.picture_image, "tmp_photo.png")
-	user << browse("<html><head><title>[name]</title></head>" \
+	user << browse("<html><head>[UTF8HEADER]<title>[name]</title></head>" \
 		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
 		+ "<img src='tmp_photo.png' width='480' style='-ms-interpolation-mode:nearest-neighbor' />" \
 		+ "[scribble ? "<br>Written on the back:<br><i>[scribble]</i>" : ""]"\

@@ -18,7 +18,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/item/clothing/suit/space/shadowling/Initialize()
-	add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 	. = ..()
 
 /obj/item/clothing/head/shadowling
@@ -37,5 +37,5 @@
 	item_flags = ABSTRACT
 
 /obj/item/clothing/head/shadowling/Initialize()
-	add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 	. = ..()

@@ -56,6 +56,8 @@
 	integrity_failure = 50
 	resistance_flags = FIRE_PROOF
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
+	ui_x = 450 
+	ui_y = 460
 
 	var/lon_range = 1.5
 	var/area/area
@@ -254,33 +256,33 @@
 	addtimer(CALLBACK(src, .proc/update), 5)
 
 /obj/machinery/power/apc/examine(mob/user)
-	..()
+	. = ..()
 	if(stat & BROKEN)
 		return
 	if(opened)
 		if(has_electronics && terminal)
-			to_chat(user, "The cover is [opened==APC_COVER_REMOVED?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"].")
+			. += "The cover is [opened==APC_COVER_REMOVED?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"]."
 		else
-			to_chat(user, "It's [ !terminal ? "not" : "" ] wired up.")
-			to_chat(user, "The electronics are[!has_electronics?"n't":""] installed.")
+			. += {"It's [ !terminal ? "not" : "" ] wired up.\n
+			The electronics are[!has_electronics?"n't":""] installed."}
 		if(user.Adjacent(src) && integration_cog)
-			to_chat(user, "<span class='warning'>[src]'s innards have been replaced by strange brass machinery!</span>")
+			. += "<span class='warning'>[src]'s innards have been replaced by strange brass machinery!</span>"
 
 	else
 		if (stat & MAINT)
-			to_chat(user, "The cover is closed. Something is wrong with it. It doesn't work.")
+			. += "The cover is closed. Something is wrong with it. It doesn't work."
 		else if (malfhack)
-			to_chat(user, "The cover is broken. It may be hard to force it open.")
+			. += "The cover is broken. It may be hard to force it open."
 		else
-			to_chat(user, "The cover is closed.")
+			. += "The cover is closed."
 
 	if(integration_cog && is_servant_of_ratvar(user))
-		to_chat(user, "<span class='brass'>There is an integration cog installed!</span>")
+		. += "<span class='brass'>There is an integration cog installed!</span>"
 
-	to_chat(user, "<span class='notice'>Alt-Click the APC to [ locked ? "unlock" : "lock"] the interface.</span>")
+	. += "<span class='notice'>Alt-Click the APC to [ locked ? "unlock" : "lock"] the interface.</span>"
 
 	if(issilicon(user))
-		to_chat(user, "<span class='notice'>Ctrl-Click the APC to switch the breaker [ operating ? "off" : "on"].</span>")
+		. += "<span class='notice'>Ctrl-Click the APC to switch the breaker [ operating ? "off" : "on"].</span>"
 
 // update the APC icon to show the three base states
 // also add overlays for indicator lights
@@ -521,16 +523,18 @@
 		return
 	else
 		panel_open = !panel_open
-		to_chat(user, "The wires have been [panel_open ? "exposed" : "unexposed"]")
+		to_chat(user, "<span class='notice'>The wires have been [panel_open ? "exposed" : "unexposed"].</span>")
 		update_icon()
 
 /obj/machinery/power/apc/wirecutter_act(mob/living/user, obj/item/W)
+	. = ..()
 	if (terminal && opened)
 		terminal.dismantle(user, W)
 		return TRUE
 
 
 /obj/machinery/power/apc/welder_act(mob/living/user, obj/item/W)
+	. = ..()
 	if (opened && !has_electronics && !terminal)
 		if(!W.tool_start_check(user, amount=3))
 			return
@@ -578,7 +582,6 @@
 		var/turf/host_turf = get_turf(src)
 		if(!host_turf)
 			CRASH("attackby on APC when it's not on a turf")
-			return
 		if (host_turf.intact)
 			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first!</span>")
 			return
@@ -656,7 +659,7 @@
 			return
 	else if (istype(W, /obj/item/wallframe/apc) && opened)
 		if (!(stat & BROKEN || opened==APC_COVER_REMOVED || obj_integrity < max_integrity)) // There is nothing to repair
-			to_chat(user, "<span class='warning'>You found no reason for repairing this APC</span>")
+			to_chat(user, "<span class='warning'>You found no reason for repairing this APC!</span>")
 			return
 		if (!(stat & BROKEN) && opened==APC_COVER_REMOVED) // Cover is the only thing broken, we do not need to remove elctronicks to replace cover
 			user.visible_message("[user.name] replaces missing APC's cover.",\
@@ -804,10 +807,8 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "apc", name, 535, 515, master_ui, state)
+		ui = new(user, src, ui_key, "apc", name, ui_x, ui_y, master_ui, state)
 		ui.open()
-	if(ui)
-		ui.set_autoupdate(state = (failure_timer ? 1 : 0))
 
 /obj/machinery/power/apc/ui_data(mob/user)
 	var/list/data = list(
@@ -925,7 +926,7 @@
 		if("lock")
 			if(usr.has_unlimited_silicon_privilege)
 				if((obj_flags & EMAGGED) || (stat & (BROKEN|MAINT)))
-					to_chat(usr, "The APC does not respond to the command.")
+					to_chat(usr, "<span class='warning'>The APC does not respond to the command!</span>")
 				else
 					locked = !locked
 					update_icon()
@@ -990,7 +991,7 @@
 		return
 	operating = !operating
 	add_hiddenprint(user)
-	log_combat(user, src, "turned [operating ? "on" : "off"]")
+	log_game("[key_name(user)] turned [operating ? "on" : "off"] the [src] in [AREACOORD(src)]")
 	update()
 	update_icon()
 
@@ -1000,9 +1001,9 @@
 	if(get_malf_status(malf) != 1)
 		return
 	if(malf.malfhacking)
-		to_chat(malf, "You are already hacking an APC.")
+		to_chat(malf, "<span class='warning'>You are already hacking an APC!</span>")
 		return
-	to_chat(malf, "Beginning override of APC systems. This takes some time, and you cannot perform other actions during the process.")
+	to_chat(malf, "<span class='notice'>Beginning override of APC systems. This takes some time, and you cannot perform other actions during the process.</span>")
 	malf.malfhack = src
 	malf.malfhacking = addtimer(CALLBACK(malf, /mob/living/silicon/ai/.proc/malfhacked, src), 600, TIMER_STOPPABLE)
 
@@ -1121,9 +1122,9 @@
 	if(terminal && terminal.powernet)
 		terminal.add_load(amount)
 
-/obj/machinery/power/apc/avail()
+/obj/machinery/power/apc/avail(amount)
 	if(terminal)
-		return terminal.avail()
+		return terminal.avail(amount)
 	else
 		return 0
 

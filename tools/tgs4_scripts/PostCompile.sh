@@ -66,6 +66,16 @@ else
 	cd ..
 fi
 
+if [ ! -d "quickwrite" ]; then
+	echo "Cloning quickwrite..."
+	git clone https://github.com/MCHSL/byond-quickwrite
+else
+	echo "Fetching quickwrite..."
+	cd quickwrite
+	git fetch
+	cd ..
+fi
+
 echo "Deploying rust-g..."
 cd rust-g
 git checkout $RUST_G_VERSION
@@ -82,6 +92,13 @@ cd artifacts
 cmake .. -DCMAKE_CXX_COMPILER=g++-6 -DMARIA_LIBRARY=/usr/lib/i386-linux-gnu/libmariadb.so.2
 make
 mv src/BSQL/libBSQL.so $1/
+cd ..
+
+echo "Deploying quickwrite..."
+cd quickwrite
+git checkout $QUICKWRITE_TAG
+g++ -m32 -shared -o libquickwrite.so -fPIC dllmain.cpp
+mv libquickwrite.so $1/
 
 #run deploy.sh
 echo 'Deploying tgstation compilation...'

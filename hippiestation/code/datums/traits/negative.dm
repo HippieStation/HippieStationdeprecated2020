@@ -179,7 +179,7 @@
 	medical_record_text = "Patient suffers from acute Reality Dissociation Syndrome and experiences vivid hallucinations."
 
 /datum/quirk/insanity/on_process()
-	if(quirk_holder.reagents.has_reagent("mindbreaker"))
+	if(quirk_holder.reagents.has_reagent(/datum/reagent/toxin/mindbreaker))
 		quirk_holder.hallucination = 0
 		return
 	if(prob(2)) //we'll all be mad soon enough
@@ -570,7 +570,7 @@
 			qdel(src)
 			return
 
-		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+		var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
 		if(STR.max_items > 0)
 			STR.max_items = STR.max_items - 1
 		else
@@ -584,7 +584,7 @@
 		if(!B)
 			return
 
-		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+		var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
 		STR.max_items = STR.max_items + 1
 
 

@@ -51,6 +51,9 @@
 		animate(src, pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), time = 2)
 		setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
 
+/mob/living/Initialize()
+	. = ..()
+	update_transform()
 
 //Called when we bump onto a mob
 /mob/living/MobBump(mob/M)

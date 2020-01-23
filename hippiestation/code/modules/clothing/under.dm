@@ -8,10 +8,10 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	item_flags = DROPDEL
 	can_adjust = 0
-	
+
 /obj/item/clothing/under/hippie/cluwne/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/under/hippie/cluwne/equipped(mob/living/carbon/user, slot)
 	if(!ishuman(user))
@@ -59,3 +59,7 @@
 
 /obj/item/clothing/under/jabroni
 	alternate_screams = list('hippiestation/sound/voice/jabroni1.ogg','hippiestation/sound/voice/jabroni2.ogg','hippiestation/sound/voice/jabroni3.ogg','hippiestation/sound/voice/jabroni4.ogg','hippiestation/sound/voice/jabroni5.ogg')
+
+/obj/item/clothing/under
+	random_sensor = FALSE
+	sensor_mode = SENSOR_COORDS

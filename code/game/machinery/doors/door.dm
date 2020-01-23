@@ -38,14 +38,14 @@
 	var/unres_sides = 0 //Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
 
 /obj/machinery/door/examine(mob/user)
-	..()
+	. = ..()
 	if(red_alert_access)
 		if(GLOB.security_level >= SEC_LEVEL_RED)
-			to_chat(user, "<span class='notice'>Due to a security threat, its access requirements have been lifted!</span>")
+			. += "<span class='notice'>Due to a security threat, its access requirements have been lifted!</span>"
 		else
-			to_chat(user, "<span class='notice'>In the event of a red alert, its access requirements will automatically lift.</span>")
+			. += "<span class='notice'>In the event of a red alert, its access requirements will automatically lift.</span>"
 	if(!poddoor)
-		to_chat(user, "<span class='notice'>Its maintenance panel is <b>screwed</b> in place.</span>")
+		. += "<span class='notice'>Its maintenance panel is <b>screwed</b> in place.</span>"
 
 /obj/machinery/door/check_access_list(list/access_list)
 	if(red_alert_access && GLOB.security_level >= SEC_LEVEL_RED)
@@ -71,10 +71,6 @@
 	else
 		layer = initial(layer)
 
-/obj/machinery/door/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/door/Destroy()
 	update_freelook_sight()
 	GLOB.airlocks -= src
@@ -84,6 +80,7 @@
 	return ..()
 
 /obj/machinery/door/Bumped(atom/movable/AM)
+	. = ..() // hippie -- port bumped comsig for better guardian booms
 	if(operating || (obj_flags & EMAGGED))
 		return
 	if(ismob(AM))
@@ -112,7 +109,16 @@
 			else
 				do_animate("deny")
 		return
-	return
+
+	if(isitem(AM))
+		var/obj/item/I = AM
+		if(!density || (I.w_class < WEIGHT_CLASS_NORMAL && !LAZYLEN(I.GetAccess())))
+			return
+		if(check_access(I))
+			open()
+		else
+			do_animate("deny")
+		return
 
 /obj/machinery/door/Move()
 	var/turf/T = loc
@@ -160,7 +166,7 @@
 			open()
 		else
 			close()
-		return
+		return TRUE
 	if(density)
 		do_animate("deny")
 
@@ -182,14 +188,18 @@
 
 /obj/machinery/door/attackby(obj/item/I, mob/user, params)
 	if(user.a_intent != INTENT_HARM && (I.tool_behaviour == TOOL_CROWBAR || istype(I, /obj/item/twohanded/fireaxe)))
-		try_to_crowbar(I, user)
-		return 1
+		var/forced_open = FALSE
+		if(istype(I, /obj/item/crowbar))
+			var/obj/item/crowbar/C = I
+			forced_open = C.force_opens
+		try_to_crowbar(I, user, forced_open)
+		return TRUE
 	else if(I.tool_behaviour == TOOL_WELDER)
 		try_to_weld(I, user)
-		return 1
+		return TRUE
 	else if(!(I.item_flags & NOBLUDGEON) && user.a_intent != INTENT_HARM)
 		try_to_activate_door(user)
-		return 1
+		return TRUE
 	return ..()
 
 /obj/machinery/door/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
@@ -324,8 +334,10 @@
 		var/turf/location = get_turf(src)
 		//add_blood doesn't work for borgs/xenos, but add_blood_floor does.
 		L.add_splatter_floor(location)
+		log_combat(src, L, "crushed")
 	for(var/obj/mecha/M in get_turf(src))
 		M.take_damage(DOOR_CRUSH_DAMAGE)
+		log_combat(src, M, "crushed")
 
 /obj/machinery/door/proc/autoclose()
 	if(!QDELETED(src) && !density && !operating && !locked && !welded && autoclose)

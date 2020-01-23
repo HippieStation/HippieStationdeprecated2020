@@ -7,6 +7,8 @@
 	density = TRUE
 	anchored = FALSE
 	use_power = NO_POWER_USE
+	ui_x = 450
+	ui_y = 340
 
 	var/active = FALSE
 	var/power_gen = 5000
@@ -24,6 +26,9 @@
 /obj/machinery/power/port_gen/Destroy()
 	QDEL_NULL(soundloop)
 	return ..()
+
+/obj/machinery/power/port_gen/should_have_node()
+	return anchored
 
 /obj/machinery/power/port_gen/connect_to_network()
 	if(!anchored)
@@ -68,8 +73,8 @@
 		handleInactive()
 
 /obj/machinery/power/port_gen/examine(mob/user)
-	..()
-	to_chat(user, "It is[!active?"n't":""] running.")
+	. = ..()
+	. += "It is[!active?"n't":""] running."
 
 /////////////////
 // P.A.C.M.A.N //
@@ -114,12 +119,12 @@
 	consumption = consumption_coeff
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>The generator has [sheets] units of [sheet_name] fuel left, producing [DisplayPower(power_gen)] per cycle.</span>")
+	. = ..()
+	. += "<span class='notice'>The generator has [sheets] units of [sheet_name] fuel left, producing [DisplayPower(power_gen)] per cycle.</span>"
 	if(anchored)
-		to_chat(user, "<span class='notice'>It is anchored to the ground.</span>")
+		. += "<span class='notice'>It is anchored to the ground.</span>"
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Fuel efficiency increased by <b>[(consumption*100)-100]%</b>.<span>")
+		. += "<span class='notice'>The status display reads: Fuel efficiency increased by <b>[(consumption*100)-100]%</b>.<span>"
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	if(sheets >= 1 / (time_per_sheet / power_output) - sheet_left)
@@ -216,12 +221,12 @@
 
 /obj/machinery/power/port_gen/pacman/attack_paw(mob/user)
 	interact(user)
-/*hippie start -- removed tgui interface on portgen
+
 /obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 												datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "portable_generator", name, 450, 340, master_ui, state)
+		ui = new(user, src, ui_key, "portable_generator", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/power/port_gen/pacman/ui_data()
@@ -263,7 +268,7 @@
 			if (power_output < 4 || (obj_flags & EMAGGED))
 				power_output++
 				. = TRUE
-hippie end -- removed tgui interface on portgen*/
+
 /obj/machinery/power/port_gen/pacman/super
 	name = "\improper S.U.P.E.R.P.A.C.M.A.N.-type portable generator"
 	icon_state = "portgen1_0"

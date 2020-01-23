@@ -103,28 +103,28 @@
 	return ..()
 
 /obj/machinery/camera/examine(mob/user)
-	..()
+	. += ..()
 	if(isEmpProof(TRUE)) //don't reveal it's upgraded if was done via MALF AI Upgrade Camera Network ability
-		to_chat(user, "It has electromagnetic interference shielding installed.")
+		. += "It has electromagnetic interference shielding installed."
 	else
-		to_chat(user, "<span class='info'>It can be shielded against electromagnetic interference with some <b>plasma</b>.</span>")
+		. += "<span class='info'>It can be shielded against electromagnetic interference with some <b>plasma</b>.</span>"
 	if(isXRay(TRUE)) //don't reveal it's upgraded if was done via MALF AI Upgrade Camera Network ability
-		to_chat(user, "It has an X-ray photodiode installed.")
+		. += "It has an X-ray photodiode installed."
 	else
-		to_chat(user, "<span class='info'>It can be upgraded with an X-ray photodiode with an <b>analyzer</b>.</span>")
+		. += "<span class='info'>It can be upgraded with an X-ray photodiode with an <b>analyzer</b>.</span>"
 	if(isMotion())
-		to_chat(user, "It has a proximity sensor installed.")
+		. += "It has a proximity sensor installed."
 	else
-		to_chat(user, "<span class='info'>It can be upgraded with a <b>proximity sensor</b>.</span>")
+		. += "<span class='info'>It can be upgraded with a <b>proximity sensor</b>.</span>"
 
 	if(!status)
-		to_chat(user, "<span class='info'>It's currently deactivated.</span>")
+		. += "<span class='info'>It's currently deactivated.</span>"
 		if(!panel_open && powered())
-			to_chat(user, "<span class='notice'>You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on.</span>")
+			. += "<span class='notice'>You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on.</span>"
 	if(panel_open)
-		to_chat(user, "<span class='info'>Its maintenance panel is currently open.</span>")
+		. += "<span class='info'>Its maintenance panel is currently open.</span>"
 		if(!status && powered())
-			to_chat(user, "<span class='info'>It can reactivated with a <b>screwdriver</b>.</span>")
+			. += "<span class='info'>It can reactivated with a <b>screwdriver</b>.</span>"
 
 /obj/machinery/camera/emp_act(severity)
 	. = ..()
@@ -157,7 +157,7 @@
 				if (M.client.eye == src)
 					M.unset_machine()
 					M.reset_perspective(null)
-					to_chat(M, "The screen bursts into static.")
+					to_chat(M, "<span class='warning'>The screen bursts into static!</span>")
 
 /obj/machinery/camera/ex_act(severity, target)
 	if(invuln)
@@ -189,24 +189,27 @@
 	return TRUE
 
 /obj/machinery/camera/wirecutter_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(!panel_open)
-		return FALSE
+		return
 	toggle_cam(user, 1)
 	obj_integrity = max_integrity //this is a pretty simplistic way to heal the camera, but there's no reason for this to be complex.
 	I.play_tool_sound(src)
 	return TRUE
 
 /obj/machinery/camera/multitool_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(!panel_open)
-		return FALSE
+		return
 
 	setViewRange((view_range == initial(view_range)) ? short_range : initial(view_range))
 	to_chat(user, "<span class='notice'>You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus.</span>")
 	return TRUE
 
 /obj/machinery/camera/welder_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(!panel_open)
-		return FALSE
+		return
 
 	if(!I.tool_start_check(user, amount=0))
 		return TRUE
@@ -230,7 +233,7 @@
 				to_chat(user, "<span class='notice'>You attach [I] into [assembly]'s inner circuits.</span>")
 				qdel(I)
 			else
-				to_chat(user, "<span class='notice'>[src] already has that upgrade!</span>")
+				to_chat(user, "<span class='warning'>[src] already has that upgrade!</span>")
 			return
 
 		else if(istype(I, /obj/item/stack/sheet/mineral/plasma))
@@ -239,7 +242,7 @@
 					upgradeEmpProof(FALSE, TRUE)
 					to_chat(user, "<span class='notice'>You attach [I] into [assembly]'s inner circuits.</span>")
 			else
-				to_chat(user, "<span class='notice'>[src] already has that upgrade!</span>")
+				to_chat(user, "<span class='warning'>[src] already has that upgrade!</span>")
 			return
 
 		else if(istype(I, /obj/item/assembly/prox_sensor))
@@ -250,7 +253,7 @@
 				to_chat(user, "<span class='notice'>You attach [I] into [assembly]'s inner circuits.</span>")
 				qdel(I)
 			else
-				to_chat(user, "<span class='notice'>[src] already has that upgrade!</span>")
+				to_chat(user, "<span class='warning'>[src] already has that upgrade!</span>")
 			return
 
 	// OTHER
@@ -277,13 +280,13 @@
 				if(AI.control_disabled || (AI.stat == DEAD))
 					return
 				if(U.name == "Unknown")
-					to_chat(AI, "<b>[U]</b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
+					to_chat(AI, "<span class='name'>[U]</span> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
 				else
 					to_chat(AI, "<b><a href='?src=[REF(AI)];track=[html_encode(U.name)]'>[U]</a></b> holds <a href='?_src_=usr;show_paper=1;'>\a [itemname]</a> up to one of your cameras ...")
-				AI.last_paper_seen = "<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
+				AI.last_paper_seen = "<HTML><HEAD>[UTF8HEADER]<TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
 			else if (O.client && O.client.eye == src)
-				to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
-				O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
+				to_chat(O, "<span class='name'>[U]</span> holds \a [itemname] up to one of the cameras ...")
+				O << browse(text("<HTML><HEAD>[UTF8HEADER]<TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 		return
 
 	else if(istype(I, /obj/item/camera_bug))
@@ -362,7 +365,8 @@
 	if(status)
 		change_msg = "reactivates"
 		triggerCameraAlarm()
-		addtimer(CALLBACK(src, .proc/cancelCameraAlarm), 100)
+		if(!QDELETED(src)) //We'll be doing it anyway in destroy
+			addtimer(CALLBACK(src, .proc/cancelCameraAlarm), 100)
 	if(displaymessage)
 		if(user)
 			visible_message("<span class='danger'>[user] [change_msg] [src]!</span>")
@@ -380,7 +384,7 @@
 		if (O.client && O.client.eye == src)
 			O.unset_machine()
 			O.reset_perspective(null)
-			to_chat(O, "The screen bursts into static.")
+			to_chat(O, "<span class='warning'>The screen bursts into static!</span>")
 
 /obj/machinery/camera/proc/triggerCameraAlarm()
 	alarm_on = TRUE
@@ -423,14 +427,12 @@
 	for(var/obj/machinery/camera/C in oview(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
-			break
 	return null
 
 /proc/near_range_camera(var/mob/M)
 	for(var/obj/machinery/camera/C in range(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
-			break
 
 	return null
 

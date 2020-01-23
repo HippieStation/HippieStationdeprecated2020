@@ -1,5 +1,6 @@
 macro "default"
 
+
 menu "menu"
 	elem
 		name = "&File"
@@ -39,11 +40,6 @@ menu "menu"
 		command = "adminhelp"
 		category = "&Help"
 		saved-params = "is-checked"
-	elem
-		name = "&Hotkeys"
-		command = "hotkeys-help"
-		category = "&Help"
-		saved-params = "is-checked"
 
 
 window "mainwindow"
@@ -56,7 +52,7 @@ window "mainwindow"
 		background-color = #272727
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
-		icon = 'icons\\ss13_64.png'
+		icon = 'icons\\tg_32.png'
 		macro = "default"
 		menu = "menu"
 	elem "split"

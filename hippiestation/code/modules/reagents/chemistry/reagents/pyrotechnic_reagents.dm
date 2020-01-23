@@ -1,6 +1,5 @@
 /datum/reagent/cryogenic_fluid
 	name = "Cryogenic Fluid"
-	id = "cryogenic_fluid"
 	description = "Extremely cold superfluid used to put out fires that will viciously freeze people on contact causing severe pain and burn damage, weak if ingested."
 	color = "#b3ffff"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
@@ -61,7 +60,6 @@
 
 /datum/reagent/impvolt
 	name = "Translucent mixture"
-	id = "impvolt"
 	description = "It's sparking slightly."
 	color = "#CABFAC"
 	metabolization_rate = 2 * REAGENTS_METABOLISM
@@ -74,7 +72,6 @@
 
 /datum/reagent/volt
 	name = "Sparking mixture"
-	id = "volt"
 	description = " A bubbling concoction of sparks and static electricity."
 	color = "#11BFAC"
 
@@ -84,18 +81,16 @@
 			M.Beam(T, icon_state="lightning[rand(1,12)]",time=5)
 			T.electrocute_act(15, "\a lightning from [M]")
 		playsound(M.loc, 'sound/magic/lightningbolt.ogg', 50, 1)
-		holder.remove_reagent(src.id,10, safety = 1)
+		holder.remove_reagent(src.type,10, safety = 1)
 	..()
 
 /datum/reagent/emit
 	name = "Emittrium"
-	id = "emit"
 	description = "An unstable compound prone to emitting intense bursts of plasma when in an excited state, it currently appears inert."
 	color = "#AAFFAA"
 
 /datum/reagent/emit_on
 	name = "Glowing Emittrium"
-	id = "emit_on"
 	description = "It's rather radioactive and glowing painfully bright, you feel the need to RUN!"
 	color = "#1211FB"
 	processes = TRUE
@@ -118,7 +113,7 @@
 				if(8)
 					P.fire(dir2angle(8))
 
-		holder.remove_reagent(src.id,10,safety = 1)
+		holder.remove_reagent(src.type,10,safety = 1)
 	..()
 
 /datum/reagent/emit_on/on_mob_life(mob/living/M)
@@ -127,13 +122,11 @@
 
 /datum/reagent/sboom
 	name = "Nitrogenated isopropyl alcohol"
-	id = "sboom"
 	description = "Hmm , needs more nitrogen!"
 	color = "#13BC5E"
 
 /datum/reagent/superboom//oh boy
 	name = "N-amino azidotetrazole"
-	id = "superboom"
 	description = "An absurdly unstable chemical prone to causing gigantic explosions when even slightly disturbed. Only an idiot would attempt to create this."
 	color = "#13BC5E"
 	processes = TRUE
@@ -157,6 +150,8 @@
 
 /datum/reagent/superboom/process()
 	if(prob(0.5) && holder) //even if you do nothing it can explode
+		if(holder.has_reagent(/datum/reagent/stabilizing_agent)) //unless its stabilised :spoi:
+			return ..()
 		var/location = get_turf(holder.my_atom)
 		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(round(volume, 0.5), location, 0, 0, message = 0)
@@ -166,7 +161,6 @@
 
 /datum/reagent/sparky
 	name = "Electrostatic substance"
-	id = "sparky"
 	description = "A charged substance that generates an electromagnetic field capable of interfering with light fixtures."
 	color = "#A300B3"
 
@@ -184,12 +178,11 @@
 		do_sparks(2, TRUE, M)
 	if(prob(5))
 		M.adjust_fire_stacks(2)
-		holder.remove_reagent(src.id,5,safety = 1)
+		holder.remove_reagent(src.type,5,safety = 1)
 	..()
 
 /datum/reagent/dizinc//more dangerous than clf3 when ingested with slower metabolism, less effective on touch and doesn't burn objects
 	name = "Diethyl zinc"
-	id = "dizinc"
 	description = "Highly pyrophoric substance that incinerates carbon based life, although it's not so effective on objects"
 	color = "#000067"
 	metabolization_rate = 2 * REAGENTS_METABOLISM
@@ -207,7 +200,6 @@
 
 /datum/reagent/hexamine
 	name = "Hexamine"
-	id = "hexamine"
 	description = "Used in fuel production"
 	color = "#000067"
 	metabolization_rate = 4 * REAGENTS_METABOLISM
@@ -222,7 +214,6 @@
 
 /datum/reagent/oxyplas//very rapidly heats people up then metabolises
 	name = "Plasminate"
-	id = "oxyplas"
 	description = "A toxic and flammable precursor"
 	color = "#FF32A1"
 	metabolization_rate = 4 * REAGENTS_METABOLISM
@@ -240,7 +231,6 @@
 
 /datum/reagent/proto//volatile. causes fireballs when heated or put in a burning human
 	name = "Protomatised plasma"
-	id = "proto"
 	description = "An exceedingly pyrophoric state of plasma that superheats air and lifeforms alike"
 	color = "#FF0000"
 
@@ -261,9 +251,7 @@
 
 /datum/reagent/arclumin//memechem made in honour of the late arclumin
 	name = "Arc-Luminol"
-	id = "arclumin"
 	description = "You have no idea what the fuck this is but it looks absurdly unstable. It is emitting a sickly glow suggesting ingestion is probably not a great idea."
-	reagent_state = LIQUID
 	color = "#ffff66" //RGB: 255, 255, 102
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 
@@ -278,7 +266,7 @@
 
 			if(1)
 				playsound(T, 'sound/magic/lightningbolt.ogg', 50, 1)
-				tesla_zap(T, zap_range = 6, power = 1000, explosive = FALSE)//weak tesla zap
+				tesla_zap(T, 6, 1000)//weak tesla zap
 				M.Stun(2)
 
 			if(2)
@@ -305,7 +293,7 @@
 				T.atmos_spawn_air("water_vapor= 40 ;TEMP= 298")//janitor friendly
 	..()
 
-/datum/reagent/arclumin/on_mob_delete(mob/living/M)// so you don't remain at luminosity 3 forever
+/datum/reagent/arclumin/on_mob_end_metabolize(mob/living/M)// so you don't remain at luminosity 3 forever
 	M.set_light(0)
 
 /datum/reagent/arclumin/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)//weak on touch, short teleport and low damage shock, will however give a permanent weak glow
@@ -320,8 +308,8 @@
 
 /datum/reagent/cryostylane/process()
 	if(holder)
-		if(holder.has_reagent("oxygen"))
-			holder.remove_reagent("oxygen", 1)
+		if(holder.has_reagent(/datum/reagent/oxygen))
+			holder.remove_reagent(/datum/reagent/oxygen, 1)
 			holder.chem_temp -= 10
 			holder.handle_reactions()
 	..()
@@ -331,8 +319,8 @@
 
 /datum/reagent/pyrosium/process()
 	if(holder)
-		if(holder.has_reagent("oxygen"))
-			holder.remove_reagent("oxygen", 1)
+		if(holder.has_reagent(/datum/reagent/oxygen))
+			holder.remove_reagent(/datum/reagent/oxygen, 1)
 			holder.chem_temp += 10
 			holder.handle_reactions()
 	..()

@@ -4,12 +4,14 @@
 
 /datum/preferences
 	features = list("mcolor" = "FFF", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "ipc_screen" = "Sunburst")
+	max_save_slots = 6
+	friendlyGenders = list("Male" = "male", "Female" = "female")
 	var/gear_points = 5
 	var/list/gear_categories
 	var/list/chosen_gear
 	var/gear_tab
-	max_save_slots = 6
 	var/hippie_toggles = HIPPIE_TOGGLES_DEFAULT // our own toggles.
+	var/voice
 
 /datum/preferences/New(client/C)
 	..()
@@ -29,11 +31,17 @@
 /datum/preferences/proc/process_hippie_link(mob/user, list/href_list)
 	switch(href_list["task"])
 		if("input")
-			if(href_list["preference"] == "ipc_screen")
-				var/new_ipc_screen
-				new_ipc_screen = input(user, "Choose your character's screen:", "Character Preference") as null|anything in GLOB.ipc_screens_list
-				if(new_ipc_screen)
-					features["ipc_screen"] = new_ipc_screen
+			switch(href_list["preference"])
+				if("ipc_screen")
+					var/new_ipc_screen
+					new_ipc_screen = input(user, "Choose your character's screen:", "Character Preference") as null|anything in GLOB.ipc_screens_list
+					if(new_ipc_screen)
+						features["ipc_screen"] = new_ipc_screen
+				if("voice")
+					var/list/voices = ((gender == FEMALE) ? splittext(CONFIG_GET(string/tts_voice_female), ",") : splittext(CONFIG_GET(string/tts_voice_male), ","))
+					var/new_voice = input(user, "Choose your character's TTS voice:", "Character Preference") as null|anything in voices
+					if(new_voice)
+						voice = new_voice
 		else
 			switch(href_list["preference"])
 				if("hear_tts")
@@ -79,7 +87,7 @@
 			. += "<b>Play AI Vox:</b> <a href='?_src_=prefs;preference=hear_vox'>[(hippie_toggles & SOUND_VOX) ? "Enabled":"Disabled"]</a><br>" // let user toggle AI vox
 
 			. += "</tr></table>"
-		if(3)
+		if(4)
 			if(!gear_tab)
 				gear_tab = GLOB.loadout_items[1]
 			. += "<table align='center' width='100%'>"
@@ -139,3 +147,8 @@
 		else
 			if(L[slot_to_string(slot)] < DEFAULT_SLOT_AMT)
 				return TRUE
+
+/datum/preferences/copy_to(mob/living/carbon/human/character, icon_updates, roundstart_checks)
+	. = ..()
+	if(character.dna && voice)
+		character.dna.tts_voice = voice

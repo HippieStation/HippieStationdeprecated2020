@@ -24,7 +24,7 @@
 		if(target == user)
 			to_chat(target,"<span class='notice'>You can't implant yourself!</span>")
 			return 0
-		if(target.mind.current.has_trait(TRAIT_MINDSHIELD))
+		if(HAS_TRAIT(target.mind.current, TRAIT_MINDSHIELD))
 			to_chat(target,"<span class='danger'>Your loyalty implant rejects [user]'s mindslave!</span>")
 			to_chat(user,"<span class='danger'>[target] somehow rejects the mindslave implant!</span>")
 			return 0
