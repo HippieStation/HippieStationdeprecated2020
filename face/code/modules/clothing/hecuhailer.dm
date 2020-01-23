@@ -1,3 +1,4 @@
+// IS NOT READY, DO NOT ENABLE
 /obj/item/clothing/mask/gas/face/custom/hecumask // big fuck you to whoever did the sechailer code oh my GOD
 	name = "Hazard gas mask"
 	desc = "A specalist gas mask with an upgraded'Compli-o-nator 9000' device. Plays whatever you can think of, as long as it's in the unit's memory."

@@ -200,9 +200,9 @@ SUBSYSTEM_DEF(ticker)
 				toggle_ooc(TRUE) // Turn it on
 				toggle_dooc(TRUE)
 				declare_completion(force_ending)
-				Master.SetRunLevel(RUNLEVEL_POSTGAME)
-				for(var/obj/effect/forcefield/centcom_dock/field in GLOB.centcom_forcefields)
-					qdel(field)
+//				Master.SetRunLevel(RUNLEVEL_POSTGAME)
+//				for(var/obj/effect/forcefield/centcom_dock/field in GLOB.centcom_forcefields)
+//					qdel(field)
 
 
 /datum/controller/subsystem/ticker/proc/setup()
@@ -296,7 +296,10 @@ SUBSYSTEM_DEF(ticker)
 		'face/sound/roundstart/n313.ogg',
 		'face/sound/roundstart/halo.ogg',
 		'face/sound/roundstart/goagain.ogg',
-		'face/sound/roundstart/ts2story.ogg',
+		'face/sound/roundstart/cs.ogg',
+		'face/sound/roundstart/gameboy.ogg',
+		'face/sound/roundstart/stationapproach.ogg',
+		'face/sound/roundstart/welcomestation.ogg',
 		'face/sound/roundstart/ts2spawn.ogg'\
 		)
 	SEND_SOUND(world, sound(round_starting_sound)) // This will probably cause conflict issues, but... I can't see a better way to change this? Hooray hardcoding.
