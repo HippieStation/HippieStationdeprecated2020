@@ -1,3 +1,4 @@
+// is not READY OKAY AAAA
 // List is required to compile the resources into the game when it loads.
 // Dynamically loading it has bad results with sounds overtaking each other, even with the wait variable.
 // Hey. You. Whoever set this up. I hate you. Is this seriously the best way to do it? You digust me.
