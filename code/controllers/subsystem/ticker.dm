@@ -200,9 +200,9 @@ SUBSYSTEM_DEF(ticker)
 				toggle_ooc(TRUE) // Turn it on
 				toggle_dooc(TRUE)
 				declare_completion(force_ending)
-				Master.SetRunLevel(RUNLEVEL_POSTGAME)
-				for(var/obj/effect/forcefield/centcom_dock/field in GLOB.centcom_forcefields)
-					qdel(field)
+//				Master.SetRunLevel(RUNLEVEL_POSTGAME)
+//				for(var/obj/effect/forcefield/centcom_dock/field in GLOB.centcom_forcefields)
+//					qdel(field)
 
 
 /datum/controller/subsystem/ticker/proc/setup()

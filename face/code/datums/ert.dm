@@ -17,8 +17,8 @@
 
 	backpack_contents = list(/obj/item/storage/box/engineer=1,\
 		/obj/item/storage/firstaid/advanced=1,\
-		/obj/item/grenade/plastic/c4=1,
-		/obj/item/stack/sheet/mineral/bananium/twenty=1)
+		/obj/item/grenade/plastic/c4=1)
+
 
 
 /datum/antagonist/ert/commander/krieg
