@@ -4,7 +4,7 @@
 
 /obj/item/stack/cable_coil/Initialize(mapload, new_amount = null, param_color = null)
 	. = ..()
-	recipes = list(new/datum/stack_recipe("cable restraints", /obj/item/restraints/handcuffs/cable, 15), new/datum/stack_recipe("noose", /obj/structure/chair/noose, 30, time = 80, one_per_turf = 1, on_floor = 1))
+	recipes = list(new/datum/stack_recipe("cable restraints", /obj/item/restraints/handcuffs/cable, 15), new/datum/stack_recipe("noose", /obj/structure/chair/noose, 30, time = 80, one_per_turf = 1, on_floor = 1), new/datum/stack_recipe("cable bridge", /obj/structure/cable_bridge, 15))
 
 
 /obj/item/stack/cable_coil/attack(mob/living/carbon/human/H, mob/user)

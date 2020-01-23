@@ -12,18 +12,18 @@
 	var/skip = FALSE //Skip creation of blood when destroyed?
 	var/amount = 3
 
-/obj/effect/decal/cleanable/blood/hitsplatter/Initialize()
+/obj/effect/decal/cleanable/blood/hitsplatter/Initialize(mapload, blood)
 	. = ..()
+	if(blood)
+		blood_source = blood
 	prev_loc = loc //Just so we are sure prev_loc exists
 
 /obj/effect/decal/cleanable/blood/hitsplatter/proc/GoTo(turf/T, var/range)
 	for(var/i in 1 to range)
 		step_towards(src,T)
-		sleep(2)
+		sleep(1)
 		prev_loc = loc
 		for(var/atom/A in get_turf(src))
-			if(amount <= 0)
-				break
 			if(istype(A,/obj/item))
 				var/obj/item/I = A
 				I.add_mob_blood(blood_source)
@@ -37,9 +37,9 @@
 					H.w_uniform.add_mob_blood(blood_source)
 					H.update_inv_w_uniform()    //updates mob overlays to show the new blood (no refresh)
 				amount--
-		if(amount <= 0) // we used all the puff so we delete it.
+		if(!amount) // we used all the puff so we delete it.
 			qdel(src)
-			return
+			break
 	qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/A)
@@ -56,8 +56,7 @@
 					B.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
 		else //This will only happen if prev_loc is not even a turf, which is highly unlikely.
 			loc = A //Either way we got this.
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 3)
-		return
+			QDEL_IN(src, 3)
 	qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Destroy()
