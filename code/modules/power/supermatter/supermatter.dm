@@ -808,6 +808,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		else
 			supermatter_zap(target_mob, 5, power / 1.5)
 
+<<<<<<< HEAD
 	else if(target_machine)
 		if(prob(15))
 			supermatter_zap(target_machine, 5, power / 2)
@@ -819,6 +820,29 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(prob(15))
 			supermatter_zap(target_structure, 5, power / 2)
 			supermatter_zap(target_structure, 5, power / 2)
+=======
+		else if(isliving(target))//If we got a fleshbag on our hands
+			var/mob/living/mob = target
+			mob.set_shocked()
+			addtimer(CALLBACK(mob, /mob/living/proc/reset_shocked), 10)
+			mob.electrocute_act(rand(5,10), "Supermatter Discharge Bolt", 1, SHOCK_NOSTUN)
+			zap_str /= 1.5 //Meatsacks are conductive, makes working in pairs more destructive
+
+		else if(isobj(target))
+			var/obj/junk = target
+			junk.zap_act(zap_str, ZAP_SUPERMATTER_FLAGS, list())
+			zap_str /= 1.8 // worse then living things, better then coils
+		//Then we finish it all up
+		//This gotdamn variable is a boomer and keeps giving me problems
+		var/turf/T = get_turf(target)
+		var/pressure = max(1,T.return_air().return_pressure())
+		//We get our range with the strength of the zap and the pressure, the lower the former and the higher the latter the better
+		var/new_range = CLAMP(zap_str / pressure * 10, 2, 7)
+		if(prob(5))
+			zap_str = zap_str - (zap_str/10)
+			supermatter_zap(target, new_range, zap_str, targets_copy)
+			supermatter_zap(target, new_range, zap_str, targets_copy)
+>>>>>>> b04934a0d1... Fixes runtimes & some cleanup (#48776)
 		else
 			supermatter_zap(target_structure, 5, power / 1.5)
 
