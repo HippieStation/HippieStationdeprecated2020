@@ -131,7 +131,7 @@
 	name = "Badmin Gauntlet"
 	desc = "A gauntlet capable of holding the Badmin Stones. <b>Wearing this will trigger a war declaration!</b>. Before you wear it, you can refund it by hitting it against the spellbook. \
 		<b>You cannot buy this if you have bought anything else!</b> \
-		Requires 27+ crew."
+		Requires 18+ crew."
 	item_path = /obj/item/badmin_gauntlet
 	category = "Rituals"
 	cost = 10
@@ -147,7 +147,7 @@
 	for(var/SP in book.bought_things)
 		if(book.bought_things[SP] > 0)
 			return FALSE
-	return ..() && (GLOB.Debug2 || GLOB.joined_player_list.len >= 27)
+	return ..() && (GLOB.Debug2 || GLOB.joined_player_list.len >= 18)
 
 /datum/spellbook_entry/the_world
 	name = "THE WORLD"
