@@ -1,0 +1,5 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - tweak: "Portals now look even better."
+  - bugfix: "You can now much easier click on portals."

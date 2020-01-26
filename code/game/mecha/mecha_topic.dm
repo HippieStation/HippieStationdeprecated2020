@@ -282,11 +282,13 @@
 		radio.set_frequency(new_frequency)
 		send_byjax(usr,"exosuit.browser","rfreq","[format_frequency(radio.frequency)]")
 
-	if (href_list["change_name"])
-		var/userinput = input(occupant, "Choose new exosuit name", "Rename exosuit", "") as null|text
-		if(!isnull(userinput))
-			var/newname = copytext(sanitize(userinput),1,MAX_NAME_LEN)
-			name = newname ? newname : initial(name)
+	//Changes the exosuit name.
+	if(href_list["change_name"])
+		var/userinput = stripped_input(usr, "Choose a new exosuit name.", "Rename exosuit", "", MAX_NAME_LEN)
+		if(!userinput || usr != occupant || usr.incapacitated())
+			return
+		name = userinput
+		return
 
 	if (href_list["toggle_id_upload"])
 		add_req_access = !add_req_access
