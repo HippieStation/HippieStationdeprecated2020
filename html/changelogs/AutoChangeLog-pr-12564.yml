@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - tweak: "Pop requirement for the Badmin Gauntlet reduced to 18."
