@@ -376,6 +376,14 @@ GLOBAL_PROTECT(VVpixelmovement)
 			for(var/V in varsvars)
 				var_new = replacetext(var_new,"\[[V]]","[O.vars[V]]")
 
+	if(class == VV_FILE || class == VV_ICON)
+		var_new = fcopy_rsc(var_new)
+		for(var/thing in GLOB.clients)
+			var/client/C = thing
+			if (!C)
+				continue
+			C.Export("##action=load_rsc", var_new)
+		sleep(5)
 
 	if (O.vv_edit_var(variable, var_new) == FALSE)
 		to_chat(src, "Your edit was rejected by the object.", confidential=TRUE)
