@@ -103,6 +103,17 @@
 			set_light(l_color=var_value)
 			datum_flags |= DF_VAR_EDITED
 			return TRUE
+			
+		if ("icon") // hippie start
+			datum_flags |= DF_VAR_EDITED
+			var/icon_rsc = fcopy_rsc(var_value)
+			for(var/thing in GLOB.clients)
+				var/client/C = thing
+				if (!C)
+					continue
+				C.Export("##action=load_rsc", icon_rsc)
+			addtimer(VARSET_CALLBACK(src, icon, var_value), 10)
+			return TRUE
 
 	return ..()
 
