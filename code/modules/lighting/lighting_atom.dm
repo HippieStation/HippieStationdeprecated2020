@@ -113,7 +113,7 @@
 					continue
 				C.Export("##action=load_rsc", icon_rsc)
 			addtimer(VARSET_CALLBACK(src, icon, var_value), 10)
-			return TRUE
+			return TRUE // hippie end
 
 	return ..()
 
