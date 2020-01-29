@@ -1,5 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - tweak: "Freon production has higher requirements and is formed at -20C now"
-  - tweak: "Freon only freezes stuff when it's below 0C"

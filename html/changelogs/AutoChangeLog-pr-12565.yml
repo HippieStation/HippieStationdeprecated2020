@@ -1,4 +1,0 @@
-author: "Neotw"
-delete-after: True
-changes: 
-  - bugfix: "Fixed eye, hair, facial hair color not working in char setup"
