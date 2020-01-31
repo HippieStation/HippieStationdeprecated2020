@@ -30,7 +30,7 @@
 	search_objects = 1 // So that it can see through walls
 
 /mob/living/simple_animal/hostile/scp_173/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
-	return 0
+	return FALSE
 
 /mob/living/simple_animal/hostile/scp_173/Initialize(mapload, var/mob/living/creator)
 	. = ..()
