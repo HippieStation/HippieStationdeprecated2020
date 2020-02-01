@@ -85,9 +85,9 @@ SUBSYSTEM_DEF(air)
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
-		currentpart = SSAIR_REACTQUEUE
+		currentpart = SSAIR_ACTIVETURFS
 
-	if(currentpart == SSAIR_REACTQUEUE)
+	if(currentpart == SSAIR_ACTIVETURFS)
 		timer = TICK_USAGE_REAL
 		process_react_queue(resumed)
 		cost_turf_reactions = MC_AVERAGE(cost_turf_reactions, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -269,13 +269,13 @@ SUBSYSTEM_DEF(air)
 /datum/controller/subsystem/air/proc/add_to_react_queue(turf/open/T)
 	if(istype(T) && T.air)
 		turf_react_queue |= T
-		if(currentpart == SSAIR_REACTQUEUE)
+		if(currentpart == SSAIR_ACTIVETURFS)
 			currentrun |= T
 	return
 
 /datum/controller/subsystem/air/proc/remove_from_react_queue(turf/open/T)
 	turf_react_queue -= T
-	if(currentpart == SSAIR_REACTQUEUE)
+	if(currentpart == SSAIR_ACTIVETURFS)
 		currentrun -= T
 
 /datum/controller/subsystem/air/StartLoadingMap()
