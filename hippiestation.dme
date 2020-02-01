@@ -2911,6 +2911,7 @@
 #include "face\code\_globalvars\lists\objects_misc.dm"
 #include "face\code\datums\ert.dm"
 #include "face\code\game\area\space_station_13_areas.dm"
+#include "face\code\game\areas\facepunch_areas.dm"
 #include "face\code\game\machinery\vending.dm"
 #include "face\code\game\objects\effects\loot_spawners.dm"
 #include "face\code\game\objects\effects\decals\turfdecals\tilecoloring.dm"
