@@ -137,7 +137,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	victim.dust(TRUE)
 #else
 	var/obj/effect/snap_rt/snap_effect = new(victim.loc, REF(victim))
-	victim.filters += filter(type="displace", size=256, render_source="*snap[REF(victim)]")
+	UNLINT(victim.filters += filter(type="displace", size=256, render_source="*snap[REF(victim)]"))
 	animate(victim, alpha=0, time=20, easing=(EASE_IN | SINE_EASING))
 	sleep(5)
 	victim.spawn_dust(TRUE)
