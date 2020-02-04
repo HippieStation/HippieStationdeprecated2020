@@ -1,5 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - tweak: "Grape blast will now cause auditory hallucinations"
-  - code_imp: "Grape blast visuals have been significantly improved and won't cause screens to go black or crash clients"

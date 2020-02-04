@@ -1,4 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - code_imp: "Emitters now fire on time when upgraded"
