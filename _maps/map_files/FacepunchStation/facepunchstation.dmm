@@ -504,6 +504,27 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"abw" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 8
+	},
+/obj/machinery/power/rad_collector/anchored,
+/obj/structure/window/plasma/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Supermatter Chamber";
+	dir = 2;
+	network = list("engine");
+	pixel_x = 11
+	},
+/obj/structure/cable/layer1,
+/obj/structure/cable_bridge,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "abx" = (
 /obj/structure/cable,
 /obj/machinery/power/tracker,
@@ -546,6 +567,22 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"abD" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 8
+	},
+/obj/machinery/power/rad_collector/anchored,
+/obj/structure/window/plasma/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable/layer1,
+/obj/structure/cable/layer1,
+/obj/structure/cable_bridge,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "abE" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -691,6 +728,21 @@
 /obj/machinery/power/tracker,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/starboard/fore)
+"abW" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
+	},
+/obj/machinery/power/rad_collector/anchored,
+/obj/structure/window/plasma/reinforced{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable/layer1,
+/obj/structure/cable_bridge,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "abX" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -52952,20 +53004,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/security/prison)
-"dMV" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 5
-	},
-/obj/machinery/power/rad_collector/anchored,
-/obj/structure/window/plasma/reinforced{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/cable/layer1,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "dNC" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line{
@@ -55106,26 +55144,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"hpW" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	dir = 8
-	},
-/obj/machinery/power/rad_collector/anchored,
-/obj/structure/window/plasma/reinforced{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Supermatter Chamber";
-	dir = 2;
-	network = list("engine");
-	pixel_x = 11
-	},
-/obj/structure/cable/layer1,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "hqn" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -56399,21 +56417,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"jxj" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	dir = 8
-	},
-/obj/machinery/power/rad_collector/anchored,
-/obj/structure/window/plasma/reinforced{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/cable/layer1,
-/obj/structure/cable/layer1,
-/turf/open/floor/plating,
-/area/engine/engineering)
 "jxw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -93756,9 +93759,9 @@ cBu
 keK
 clH
 cDi
-hpW
-jxj
-dMV
+abw
+abD
+abW
 rPl
 jjf
 kvn
