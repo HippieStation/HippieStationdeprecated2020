@@ -111,7 +111,7 @@
 	if(materials)
 		for(var/mat_id in materials.materials)
 			var/datum/material/M = materials.materials[mat_id]
-			output += "<span class=\"res_name\">[M.name, 2]: </span>[M.amount] cm&sup3;"
+			output += "<span class=\"res_name\">[M.name]: </span>[M.amount] cm&sup3;"
 			if(M.amount >= MINERAL_MATERIAL_AMOUNT)
 				output += "<span style='font-size:80%;'>- Remove \[<a href='?src=[REF(src)];remove_mat=1;material=[M.id]'>1</a>\]"
 				if(M.amount >= (MINERAL_MATERIAL_AMOUNT * 10))
