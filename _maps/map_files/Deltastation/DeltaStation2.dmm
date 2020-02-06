@@ -28816,6 +28816,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
+"bfG" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/warning/pods{
+	name = "MINING POD"
+	},
+/turf/open/floor/plating,
+/area/quartermaster/miningoffice)
 "bfH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/ore_box,
@@ -29477,11 +29484,17 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningoffice)
 "bgS" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
 /obj/effect/turf_decal/caution/stand_clear,
 /turf/open/floor/plasteel,
@@ -116744,14 +116757,6 @@
 /obj/machinery/door/poddoor/incinerator_toxmix,
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
-"sww" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/caution/stand_clear,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "sJw" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -117415,13 +117420,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/science/mixing/chamber)
-"xWw" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningoffice)
 "xXn" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/engine/vacuum,
@@ -163825,12 +163823,7 @@ aZg
 aQR
 bcG
 bcG
-<<<<<<< HEAD
-bei
-bgT
-=======
 bfG
->>>>>>> 9d6960d59236aeb316c5f290b1c9757e3fe90dac
 bgQ
 baU
 bcG
@@ -164084,16 +164077,10 @@ aUo
 aVX
 aXD
 aZh
-<<<<<<< HEAD
-aQT
-bej
-=======
 aQR
 aad
 bcG
->>>>>>> 9d6960d59236aeb316c5f290b1c9757e3fe90dac
 bfH
-xWw
 bgR
 bis
 bcG
@@ -164348,9 +164335,9 @@ aVY
 aXE
 aQQ
 aQQ
+aaa
 bek
 bfI
-sww
 bgS
 bit
 bek
@@ -164605,21 +164592,12 @@ aVR
 aXF
 aQR
 aad
-<<<<<<< HEAD
-bel
-bfJ
-bgT
-bgT
-biu
-bkf
-=======
 aaa
 bcG
 bcG
 bgT
 bcG
 bcG
->>>>>>> 9d6960d59236aeb316c5f290b1c9757e3fe90dac
 aaa
 aaa
 aaa
