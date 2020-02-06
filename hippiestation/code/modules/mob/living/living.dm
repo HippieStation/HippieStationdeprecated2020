@@ -69,3 +69,8 @@
 	if (!hud_used.tts)
 		return
 	hud_used.tts.icon_state = "tts_ready"
+
+/mob/living/resist()
+	..()
+	if(pinned_to && last_special <= world.time) //escape cuffs pinned to a wall
+		resist_restraints() //trying to remove cuffs.
