@@ -173,7 +173,7 @@
 			to_chat(user, "<span class='notice'>There is already a paper in \the [src]!</span>")
 
 //coffin nailing for stapler instead of welding
-/obj/structure/closet/coffin/update_icon()
+/obj/structure/closet/crate/coffin/update_icon()
 	cut_overlays()
 	if(!opened)
 		if(icon_door)
@@ -196,7 +196,7 @@
 	else
 		add_overlay("[icon_state]_open")
 
-/obj/structure/closet/coffin/attackby(obj/item/W, mob/user, params)
+/obj/structure/closet/crate/coffin/attackby(obj/item/W, mob/user, params)
 	if(user in src)
 		return
 	if(opened)
