@@ -451,3 +451,14 @@
 
 /obj/machinery/mecha_part_fabricator/maint
 	link_on_init = FALSE
+
+// hippie start -- percussive maintenance
+
+/obj/machinery/mecha_part_fabricator/attack_hand(mob/living/user)
+	if(user.mind && user.a_intent == INTENT_HARM && HAS_TRAIT(user.mind, TRAIT_BOOT_OF_LIFE))
+		maintain_percussively(user)
+		return TRUE
+	else
+		. = ..()
+
+// hippie end
