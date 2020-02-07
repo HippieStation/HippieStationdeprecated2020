@@ -105,9 +105,9 @@
 /obj/item/gun/ballistic/automatic/magrifle_e/examine(mob/user)
 	. = ..()
 	if(cell)
-		to_chat(user, "<span class='notice'>[src]'s cell is [round(cell.charge / cell.maxcharge, 0.1) * 100]% full.</span>")
+		. += "[src]'s cell is [round(cell.charge / cell.maxcharge, 0.1) * 100]% full."
 	else
-		to_chat(user, "<span class='notice'>[src] doesn't seem to have a cell!</span>")
+		. += "[src] doesn't seem to have a cell!"
 
 /obj/item/gun/ballistic/automatic/magrifle_e/can_shoot()
 	if(QDELETED(cell))
@@ -168,9 +168,9 @@
 /obj/item/gun/ballistic/automatic/pistol/mag_e/examine(mob/user)
 	. = ..()
 	if(cell)
-		to_chat(user, "<span class='notice'>[src]'s cell is [round(cell.charge / cell.maxcharge, 0.1) * 100]% full.</span>")
+		. += "[src]'s cell is [round(cell.charge / cell.maxcharge, 0.1) * 100]% full."
 	else
-		to_chat(user, "<span class='notice'>[src] doesn't seem to have a cell!</span>")
+		. += "[src] doesn't seem to have a cell!"
 
 /obj/item/gun/ballistic/automatic/pistol/mag_e/can_shoot()
 	if(QDELETED(cell))

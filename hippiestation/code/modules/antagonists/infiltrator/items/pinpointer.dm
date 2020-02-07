@@ -17,7 +17,7 @@
 
 /obj/item/pinpointer/infiltrator/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>It is tracking [mode == MODE_CUTTER ? "the syndicate cutter" : "an objective target"].</span>")
+	. += "It is tracking [mode == MODE_CUTTER ? "the syndicate cutter" : "an objective target"]."
 
 /obj/item/pinpointer/infiltrator/scan_for_target()
 	target = current_target

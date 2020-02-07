@@ -29,11 +29,11 @@
 	cell.use(10)
 
 /obj/item/clothing/shoes/magboots/antigrav/examine(mob/user)
-	..()
+	. = ..()
 	if(cell)
-		to_chat(user, "<span class='notice'>Cell charge:[cell.percent()]%.</span>")
+		. += "Cell charge:[cell.percent()]%."
 	else
-		to_chat(user, "<span class='warning'>No cell detected.</span>")
+		. += "<span class='warning'>No cell detected.</span>"
 
 /obj/item/clothing/shoes/magboots/antigrav/equipped(mob/user, slot)
 	..()

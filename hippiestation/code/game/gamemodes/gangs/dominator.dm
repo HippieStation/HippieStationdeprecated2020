@@ -63,16 +63,16 @@
 		icon_state = "dominator-broken"
 
 /obj/machinery/dominator/examine(mob/user)
-	..()
+	. = ..()
 	if(!(stat & BROKEN))
 		if(gang && gang.domination_time != NOT_DOMINATING)
 			if(gang.domination_time > world.time)
-				to_chat(user, "<span class='notice'>Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain.</span>")
+				. += "Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain."
 			else
-				to_chat(user, "<span class='notice'>Hostile Takeover of [station_name()] successful. Have a great day.</span>")
+				. += "Hostile Takeover of [station_name()] successful. Have a great day."
 		else
-			to_chat(user, "<span class='notice'>System on standby.</span>")
-	to_chat(user, "<span class='danger'>System Integrity: [round((obj_integrity/max_integrity)*100,1)]%</span>")
+			. += "System on standby."
+	. += "<span class='danger'>System Integrity: [round((obj_integrity/max_integrity)*100,1)]%</span>"
 
 /obj/machinery/dominator/process()
 	..()

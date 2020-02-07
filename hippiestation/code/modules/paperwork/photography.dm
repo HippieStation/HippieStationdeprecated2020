@@ -64,16 +64,14 @@
 		. = ..()
 
 /obj/structure/closet/cardboard/examine(mob/user)
-	// If you're examining it from far enough away it looks like a regular person
-	if (get_dist(src, user) > 1 && disguise && !opened)
-		to_chat(user, disguise.examine_override)
-		return
-
 	. = ..()
-
-	if (get_dist(src, user) <= 1 && disguise && !opened)
-		to_chat(user, "<span class='warning'>Upon close inspection it looks like a shoddy impersonation of [disguise]!</span>")
-		to_chat(user, "<span class='notice'>Alt-click to remove the impersonation</span>")
+	// If you're examining it from far enough away it looks like a regular person
+	if(disguise && !opened)
+		if(in_range(src, user))
+			. += "<span class='warning'>Upon close inspection it looks like a shoddy impersonation of [disguise]!</span>"
+			. += "Alt-click to remove the impersonation"
+		else
+			. += disguise.examine_override
 
 /obj/structure/closet/cardboard/AltClick(mob/user)
 	if (disguise)

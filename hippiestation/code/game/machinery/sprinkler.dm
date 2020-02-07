@@ -18,10 +18,10 @@
 	plane = FLOOR_PLANE
 
 /obj/machinery/sprinkler/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>It has <b>[uses]</b> uses of foam remaining.</span>")
+	. = ..()
+	. += "It has <b>[uses]</b> uses of foam remaining."
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>A closer look reveals the temperature threshold has been set to <b>[temp_range]C.</b><span>")
+		. += "A closer look reveals the temperature threshold has been set to <b>[temp_range]C.</b>"
 
 /obj/machinery/sprinkler/temperature_expose(datum/gas_mixture/air, temperature, volume)
 	if(temperature > T0C + temp_range)
