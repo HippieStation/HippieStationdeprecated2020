@@ -8,19 +8,19 @@ GLOBAL_LIST_EMPTY(chempiles)
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 
 /obj/effect/decal/cleanable/chempile/examine(mob/user)
-	..()
-	to_chat(user, "It contains:")
+	. = ..()
+	. += "It contains:"
 	if(reagents.reagent_list.len)
 		if(user.can_see_reagents()) //Show each individual reagent
 			for(var/datum/reagent/R in reagents.reagent_list)
-				to_chat(user, "[R.volume] units of [R.name]")
+				. += "[R.volume] units of [R.name]"
 		else //Otherwise, just show the total volume
 			var/total_volume = 0
 			for(var/datum/reagent/R in reagents.reagent_list)
 				total_volume += R.volume
-			to_chat(user, "[total_volume] units of various reagents")
+			. += "[total_volume] units of various reagents"
 	else
-		to_chat(user, "Nothing.")
+		. += "Nothing."
 
 /obj/effect/decal/cleanable/chempile/experience_pressure_difference(pressure_difference)
 	if(reagents)
