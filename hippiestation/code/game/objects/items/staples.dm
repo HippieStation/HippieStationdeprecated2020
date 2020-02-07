@@ -43,7 +43,7 @@
 	var/obj/item/organ/butt/B
 
 /obj/item/staplegun/Initialize()
-	.=..()
+	. = ..()
 	update_icon()
 
 /obj/item/staplegun/examine(mob/user)
