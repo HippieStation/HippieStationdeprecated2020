@@ -1,0 +1,4 @@
+author: "zennerx"
+delete-after: True
+changes: 
+  - tweak: "Exosuit fabricator now uses the ore silo."

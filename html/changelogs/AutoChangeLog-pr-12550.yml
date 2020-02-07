@@ -1,5 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - rscadd: "Guns now cause blood splattering"
-  - tweak: "Blood splatter should behave a bit better"

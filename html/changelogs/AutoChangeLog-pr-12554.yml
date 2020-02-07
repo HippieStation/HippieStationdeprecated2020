@@ -1,0 +1,5 @@
+author: "QuarianCommando"
+delete-after: True
+changes: 
+  - balance: "Medical borgs have been given a defibrillator and surgical processor by default."
+  - rscdel: "Borg defib and surgical processor have been removed from the tech web, for obvious reasons."
