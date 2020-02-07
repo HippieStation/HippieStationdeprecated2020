@@ -47,12 +47,12 @@
 	update_icon()
 
 /obj/item/staplegun/examine(mob/user)
-	..()
-	. += "<span class='notice'>It contains [ammo]/[max_ammo] staples.</span>"
+	. = ..()
+	. += "It contains [ammo]/[max_ammo] staples."
 	if(istype(P))
-		. += "<span class='notice'>There's [P] loaded in it.</span>"
+		. += "There's [P] loaded in it."
 	if(istype(B))
-		. += "<span class='notice'>There's a butt loaded in it... What?</span>"
+		. += "There's a butt loaded in it... What?"
 
 /obj/item/staplegun/update_icon()
 	var/amt = max(0, min(round(ammo/1.5), 6))
