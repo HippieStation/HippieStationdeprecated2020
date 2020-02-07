@@ -14,12 +14,12 @@
 	max_amount = 10
 	attack_verb = list("stapled")
 
-/obj/item/stack/staples/Initialize(loc, amount=0)
+/obj/item/stack/staples/Initialize(loc, amount)
 	. = ..()
 	update_icon()
 
 /obj/item/stack/staples/update_icon()
-	if(get_amount() <= 1)
+	if(!get_amount())
 		icon_state = "staple"
 		name = "staple"
 	else
@@ -48,11 +48,11 @@
 
 /obj/item/staplegun/examine(mob/user)
 	..()
-	to_chat(user, "<span class='notice'>It contains [ammo]/[max_ammo] staples.</span>")
+	. += "<span class='notice'>It contains [ammo]/[max_ammo] staples.</span>"
 	if(istype(P))
-		to_chat(user, "<span class='notice'>There's [P] loaded in it.</span>")
+		. += "<span class='notice'>There's [P] loaded in it.</span>"
 	if(istype(B))
-		to_chat(user, "<span class='notice'>There's a butt loaded in it... What?</span>")
+		. += "<span class='notice'>There's a butt loaded in it... What?</span>"
 
 /obj/item/staplegun/update_icon()
 	var/amt = max(0, min(round(ammo/1.5), 6))
@@ -60,7 +60,7 @@
 	add_overlay(icon(icon, "[icon_state][amt]"))
 
 /obj/item/staplegun/attack(mob/living/target, mob/living/user)
-	if(ammo <= 0)
+	if(!ammo)
 		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
 		return
 
@@ -87,7 +87,7 @@
 				H.try_to_embed(P,O)//forceembed it
 				P = null
 			else
-				var/obj/item/stack/staples/S = new /obj/item/stack/staples
+				var/obj/item/stack/staples/S = new
 				H.try_to_embed(S,O)
 			user.visible_message("<span class='danger'>[user] has stapled [target] in the [O]!</span>", "<span class='userdanger'>You staple [target]!</span>")
 			H.update_damage_overlays()
@@ -105,20 +105,19 @@
 	if(!proximity)
 		return
 
-	if(ammo <= 0)
+	if(!ammo)
 		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
 		return
 
-	if(istype(P))
-		if(isturf(target))
-			var/turf/T = target
-			playsound(T, 'hippiestation/sound/weapons/staplegun.ogg', 50, 1)
-			user.visible_message("<span class='danger'>[user] has stapled [P] into the [target]!</span>")
-			P.forceMove(T)
-			P.anchored = TRUE //like why would you want to pull this around
-			P = null
-			ammo -= 1
-			update_icon()
+	if(istype(P) && isturf(target))
+		var/turf/T = target
+		playsound(T, 'hippiestation/sound/weapons/staplegun.ogg', 50, 1)
+		user.visible_message("<span class='danger'>[user] has stapled [P] into the [target]!</span>")
+		P.forceMove(T)
+		P.anchored = TRUE //like why would you want to pull this around
+		P = null
+		ammo--
+		update_icon()
 
 /obj/item/staplegun/attack_self(mob/user)
 	if(istype(P))
@@ -143,7 +142,7 @@
 			if(S.amount < maxamt)
 				maxamt = S.amount
 			S.amount -= maxamt
-			if(S.amount <= 0)
+			if(!S.amount)
 				user.doUnEquip(S, 1)
 				qdel(S)
 			ammo += maxamt
@@ -160,6 +159,7 @@
 			to_chat(user, "<span class='notice'>You put \the [P] in \the [src].")
 		else
 			to_chat(user, "<span class='notice'>There is already a paper in \the [src]!")
+
 	if(istype(I, /obj/item/organ/butt))
 		if(!istype(P))
 			if(!istype(B))
@@ -172,75 +172,46 @@
 		else
 			to_chat(user, "<span class='notice'>There is already a paper in \the [src]!</span>")
 
-//coffin nailing for stapler instead of welding
-/obj/structure/closet/crate/coffin/update_icon()
-	cut_overlays()
-	if(!opened)
-		if(icon_door)
-			add_overlay("[icon_door]_door")
-		else
-			add_overlay("[icon_state]_door")
-		if(welded)
-			add_overlay("nailed")
-		if(secure)
-			if(!broken)
-				if(locked)
-					add_overlay("locked")
-				else
-					add_overlay("unlocked")
-			else
-				add_overlay("off")
-
-	else if(icon_door_override)
-		add_overlay("[icon_door]_open")
-	else
-		add_overlay("[icon_state]_open")
 
 /obj/structure/closet/crate/coffin/attackby(obj/item/W, mob/user, params)
-	if(user in src)
+	if(user in contents)
+		to_chat(user, "<span class='warning'>It's too cramped to use [W]!</span>")
 		return
-	if(opened)
-		if(user.dropItemToGround(W))
-			W.forceMove(loc)
-			return TRUE
-	else if(istype(W, /obj/item/staplegun) && !welded)
+	if(istype(W, /obj/item/staplegun) && !welded && !opened)
 		var/obj/item/staplegun/WS = W
 		if(WS.ammo >= 10)
 			to_chat(user, "<span class='notice'>You begin stapling \the [src]...</span>")
 			playsound(loc, 'hippiestation/sound/weapons/staplegun.ogg', 50, 1)
 			if(do_after(user,40,5,1, target = src))
-				if(opened || !istype(src, /obj/structure/closet) || !user || !WS || !user.loc )
+				if(welded || opened || !user || !WS)
 					return
 				playsound(loc, 'hippiestation/sound/weapons/staplegun.ogg', 50, 1)
 				welded = TRUE
-				to_chat(user, "<span class='notice'>You staple [src] shut.</span>")
 				update_icon()
 				user.visible_message("[user.name] has stapled [src] shut with \the [WS].", "<span class='warning'>You staple [src] shut.</span>")
 				WS.ammo -= 10
-			return
-	else if(istype(W, /obj/item/crowbar) && welded)
-		to_chat(user, "<span class='notice'>You begin prying out staples from \the [src]...</span>")
-		playsound(loc, 'sound/items/crowbar.ogg', 50, 1)
-		if(do_after(user,80,5,1, target = src))
-			if(opened || !istype(src, /obj/structure/closet) || !user || !W || !user.loc )
-				return
-			playsound(loc, 'sound/items/crowbar.ogg', 50, 1)
-			welded = FALSE
-			to_chat(user, "<span class='notice'>You pry off the staples keeping [src] shut.</span>")
-			update_icon()
-			user.visible_message("[user.name] has pried out the staples keeping [src] shut.", "<span class='warning'>You pry out staples keeping [src] shut.</span>")
-			for(var/i = 1; i <= 9; i++)
-				new/obj/item/stack/staples(src.loc)
-			return
+		else
+			to_chat(user, "<span class='warning'>You require 10 staples to do that!</span>")
+		return
+	if(welded)
+		to_chat(user, "<span class='warning'>[src] is already stapled shut!</span>")
+		return
+	return ..()
 
-	else if(istype(W, /obj/item/wrench))
-		if(isinspace() && !anchored)
+/obj/structure/closet/crate/coffin/crowbar_act(mob/living/user, obj/item/I)
+	if(!welded)
+		return
+	to_chat(user, "<span class='notice'>You begin prying out staples from \the [src]...</span>")
+	playsound(loc, 'sound/items/crowbar.ogg', 50, 1)
+	if(I.use_tool(src, user, 80, volume = 50))
+		if(opened || !user || !I)
 			return
-		anchored = !anchored
-		playsound(src.loc, W.usesound, 75, 1)
-		user.visible_message("<span class='notice'>[user] [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground.</span>", \
-					"<span class='notice'>You [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground.</span>", \
-					"<span class='italics'>You hear a ratchet.</span>")
+		welded = FALSE
+		update_icon()
+		user.visible_message("[user.name] has pried out the staples keeping [src] shut.", "<span class='warning'>You pry out staples keeping [src] shut.</span>")
+		for(var/i = 0; i <= 9; i++)
+			new/obj/item/stack/staples(loc)
+	return TRUE
 
 /mob/living/carbon/human/proc/try_to_embed(var/obj/item/I, var/obj/item/bodypart/L, var/message = FALSE)
 	if(dna && HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))

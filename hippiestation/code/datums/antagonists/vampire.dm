@@ -192,7 +192,7 @@
 		C.hud_used.vamp_blood_display.invisibility = FALSE
 		C.hud_used.vamp_blood_display.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#dd66dd'>[round(usable_blood, 1)]</font></div>"
 	handle_vampire_cloak()
-	if(istype(C.loc, /obj/structure/closet/coffin))
+	if(istype(C.loc, /obj/structure/closet/crate/coffin))
 		C.adjustBruteLoss(-4)
 		C.adjustFireLoss(-4)
 		C.adjustToxLoss(-4)
