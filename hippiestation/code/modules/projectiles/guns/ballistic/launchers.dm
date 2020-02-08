@@ -99,7 +99,7 @@
 	return
 
 /obj/item/gun/ballistic/crossbow/examine(mob/user)
-	..()
+	. = ..()
 	var/bowstring = "The bow string is "
 	if (charge > 2)
 		bowstring = bowstring + "drawn back fully"
@@ -109,10 +109,10 @@
 		bowstring = bowstring + "drawn back a little"
 	else
 		bowstring = bowstring + "not drawn"
-	to_chat(user, "[bowstring][charge > 2 ? "!" : "."]")
+	. += "[bowstring][charge > 2 ? "!" : "."]"
 
 	if (chambered?.BB)
-		to_chat(user, "A [chambered.BB] is loaded.")
+		. += "A [chambered.BB] is loaded."
 
 /obj/item/gun/ballistic/crossbow/update_icon()
 	..()
