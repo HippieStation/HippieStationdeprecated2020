@@ -19,9 +19,9 @@
 
 /obj/machinery/sprinkler/examine(mob/user)
 	. = ..()
-	. += "It has <b>[uses]</b> uses of foam remaining."
+	. += "<span class='notice'>It has <b>[uses]</b> uses of foam remaining.</span>"
 	if(in_range(user, src) || isobserver(user))
-		. += "A closer look reveals the temperature threshold has been set to <b>[temp_range]C.</b>"
+		. += "<span class='notice'>A closer look reveals the temperature threshold has been set to <b>[temp_range]C.</b></span>"
 
 /obj/machinery/sprinkler/temperature_expose(datum/gas_mixture/air, temperature, volume)
 	if(temperature > T0C + temp_range)

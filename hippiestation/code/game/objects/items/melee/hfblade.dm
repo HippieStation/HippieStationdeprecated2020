@@ -125,7 +125,7 @@
 /obj/item/storage/belt/hfblade/examine(mob/user)
 	. = ..()
 	if(length(contents))
-		. += "Alt-click it to quickly draw the blade."
+		. += "<span class='notice'>Alt-click it to quickly draw the blade.</span>"
 
 /obj/item/storage/belt/hfblade/AltClick(mob/user)
 	if(!iscarbon(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))

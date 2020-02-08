@@ -67,11 +67,11 @@
 	if(!(stat & BROKEN))
 		if(gang && gang.domination_time != NOT_DOMINATING)
 			if(gang.domination_time > world.time)
-				. += "Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain."
+				. += "<span class='notice'>Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain.</span>"
 			else
-				. += "Hostile Takeover of [station_name()] successful. Have a great day."
+				. += "<span class='notice'>Hostile Takeover of [station_name()] successful. Have a great day.</span>"
 		else
-			. += "System on standby."
+			. += "<span class='notice'>System on standby.</span>"
 	. += "<span class='danger'>System Integrity: [round((obj_integrity/max_integrity)*100,1)]%</span>"
 
 /obj/machinery/dominator/process()

@@ -31,7 +31,7 @@
 /obj/item/clothing/shoes/magboots/antigrav/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += "Cell charge:[cell.percent()]%."
+		. += "<span class='notice'>Cell charge: [cell.percent()]%.</span>"
 	else
 		. += "<span class='warning'>No cell detected.</span>"
 

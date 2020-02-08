@@ -367,7 +367,7 @@
 /obj/item/gun/energy/watcherprojector/examine(mob/user)
 	. = ..()
 	if(cell)
-		. +="[src]'s diamond core is [round(cell.percent())]% energized."
+		. +="<span class='notice'>[src]'s diamond core is [round(cell.percent())]% energized.</span>"
 
 /obj/item/gun/energy/watcherprojector/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/sheet/mineral/plasma))

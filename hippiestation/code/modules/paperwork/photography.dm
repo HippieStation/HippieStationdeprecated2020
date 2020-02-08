@@ -34,9 +34,9 @@
 				continue
 			if(C.invisibility)
 				continue
-			var/datum/photo_disguise/D = new()
+			var/datum/photo_disguise/D = new
 			D.name = C.name
-			D.examine_override = C.examine(null) // Don't actually print anything please
+			D.examine_override = C.examine(user) // Don't actually print anything please
 			D.special_appearance = C.appearance
 			picture.potential_disguises[C.name] = D
 	..()
@@ -48,15 +48,12 @@
 		var/datum/picture/P = photo.picture
 		if (LAZYLEN(P.potential_disguises) > 0)
 			var/chosen = input("Select a target to disguise as", "Pick target") as null|anything in P.potential_disguises
-
 			if (chosen)
 				var/datum/photo_disguise/D = P.potential_disguises[chosen]
-
 				if (D)
 					to_chat(user, "<span class='notice'>You gently place the cut-out of [chosen] onto the box, careful to make sure it looks genuine.</span>")
 					disguise = D
 					qdel(W)
-
 					if (!opened)
 						icon = null
 						appearance = D.special_appearance
@@ -69,16 +66,15 @@
 	if(disguise && !opened)
 		if(in_range(src, user))
 			. += "<span class='warning'>Upon close inspection it looks like a shoddy impersonation of [disguise]!</span>"
-			. += "Alt-click to remove the impersonation"
+			. += "<span class='notice'>Alt-click to remove the impersonation</span>"
 		else
-			. += disguise.examine_override
+			. = disguise.examine_override
 
 /obj/structure/closet/cardboard/AltClick(mob/user)
 	if (disguise)
 		visible_message("<span class='warning'>[user] rips the cut-out of [disguise] from the [src]!<span>")
 		playsound(loc, 'sound/items/poster_ripped.ogg', 100, 1)
 		disguise = null
-
 		if (!opened)
 			appearance = initial(appearance)
 	else
@@ -86,11 +82,9 @@
 
 /obj/structure/closet/cardboard/close(mob/living/user)
 	. = ..()
-
 	if (disguise)
 		appearance = disguise.special_appearance
 
 /obj/structure/closet/cardboard/open(mob/living/user)
 	appearance = initial(appearance)
-
 	. = ..()

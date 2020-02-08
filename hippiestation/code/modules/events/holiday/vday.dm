@@ -157,7 +157,7 @@
 			user << browse("<HTML><HEAD>[UTF8HEADER]<TITLE>[name]</TITLE></HEAD><BODY>[message]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 	else
-		. += "It is too far away."
+		. += "<span class='notice'>It is too far away.</span>"
 
 /obj/item/valentine/attack_self(mob/user)
 	user.examinate(src)
