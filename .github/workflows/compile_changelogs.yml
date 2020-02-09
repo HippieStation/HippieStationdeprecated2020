@@ -1,7 +1,7 @@
 name: Automatic changelog compile
 
 on:
-  schedule:
+  push:
   - cron: "0 0 * * *"
       
 jobs:
