@@ -2,7 +2,8 @@ name: Automatic changelog compile
 
 on:
   push:
-  - cron: "0 0 * * *"
+    branches:
+      - 'master'
       
 jobs:
   compile:
