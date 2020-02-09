@@ -1,8 +1,9 @@
 name: Automatic changelog compile
 
 on:
-  schedule:
-  - cron: "0 0 * * *"
+  push:
+    branches:
+      - 'master'
       
 jobs:
   compile:
@@ -39,4 +40,4 @@ jobs:
     - name: Push
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.ACTION_SECRET }}
