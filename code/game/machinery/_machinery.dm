@@ -131,7 +131,7 @@ Class Procs:
 
 	// hippie start -- percussive maintenance
 
-	var/percussive_delay = 300		
+	var/percussive_delay = 300
 	var/percussively_maintained	= FALSE
 
 	// hippie end
@@ -391,7 +391,7 @@ Class Procs:
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN
 		SEND_SIGNAL(src, COMSIG_MACHINERY_BROKEN, damage_flag)
-		
+
 /obj/machinery/contents_explosion(severity, target)
 	if(occupant)
 		occupant.ex_act(severity, target)
@@ -546,7 +546,7 @@ Class Procs:
 	. = 1
 
 /obj/machinery/tesla_act(power, tesla_flags, shocked_objects)
-	..()
+	. = ..()
 	if(prob(85) && (tesla_flags & TESLA_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
 		explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
 	if(tesla_flags & TESLA_OBJ_DAMAGE)
