@@ -1,5 +1,5 @@
 /obj/item/clothing/shoes/face/custom/kazshoes
-	name = "Miller's shoes"
+	name = "Executive Officer's shoes"
 	desc = "Fancy."
 	icon_state = "kazshoes"
 	item_state = "kazshoes"
