@@ -1,8 +1,9 @@
 /obj/item/robot_module
     var/hippie_cyborg_base_icon
-
+// I know changing this might bite me in the ass, but nobody has touched it since I first coded this so I'M HOPING that future yske will have to deal with this rather then me. Fuck you, future yske. - past yske
 /obj/item/robot_module/standard/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
+	alternate_screams = list('face/sound/screams/silicon/standard1.ogg','face/sound/screams/silicon//standard2.ogg','face/sound/screams/silicon/standard3.ogg','face/sound/screams/silicon/standard4.ogg','face/sound/screams/silicon/standard5.ogg')
 	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Standard", "Classic Style", "Hydro-bot", "Captain")
 	if(!borg_icon)
 		return FALSE

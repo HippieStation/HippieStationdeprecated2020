@@ -4,3 +4,7 @@
 
 /obj/item/clothing/under/rank/security/blueshirt
 	alternate_screams = list('face/sound/screams/ba1.ogg','face/sound/screams/ba2.ogg','face/sound/screams/ba3.ogg','face/sound/screams/ba4.ogg','face/sound/screams/ba5.ogg','face/sound/screams/ba6.ogg')
+// here's a wack ass test
+
+/obj/item/robot_module/standard
+	alternate_screams = list('face/sound/screams/silicon/standard1.ogg','face/sound/screams/silicon//standard2.ogg','face/sound/screams/silicon/standard3.ogg','face/sound/screams/silicon/standard4.ogg','face/sound/screams/silicon/standard5.ogg')
