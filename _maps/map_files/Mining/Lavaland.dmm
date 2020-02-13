@@ -798,7 +798,6 @@
 	name = "Mining Shuttle Airlock";
 	opacity = 0
 	},
-/obj/structure/fans/tiny,
 /turf/open/floor/plasteel,
 /area/mine/production)
 "ck" = (
@@ -17942,8 +17941,8 @@ ab
 ab
 bN
 cj
-cj
 br
+ab
 ab
 aj
 aj
@@ -18199,8 +18198,8 @@ aj
 ab
 br
 bP
-bP
 br
+ab
 aj
 aj
 aj
@@ -18456,7 +18455,7 @@ aj
 br
 br
 WE
-WE
+br
 br
 ab
 aj

@@ -532,17 +532,17 @@
 
 //assumes format #RRGGBB #rrggbb
 /proc/color_hex2num(A)
-	if(!A)
+	if(!A || length(A) != length_char(A))
 		return 0
-	var/R = hex2num(copytext(A,2,4))
-	var/G = hex2num(copytext(A,4,6))
-	var/B = hex2num(copytext(A,6,0))
+	var/R = hex2num(copytext(A, 2, 4))
+	var/G = hex2num(copytext(A, 4, 6))
+	var/B = hex2num(copytext(A, 6, 8))
 	return R+G+B
 
 //word of warning: using a matrix like this as a color value will simplify it back to a string after being set
 /proc/color_hex2color_matrix(string)
 	var/length = length(string)
-	if(length != 7 && length != 9)
+	if((length != 7 && length != 9) || length != length_char(string))
 		return color_matrix_identity()
 	var/r = hex2num(copytext(string, 2, 4))/255
 	var/g = hex2num(copytext(string, 4, 6))/255
@@ -601,9 +601,12 @@
 		return
 	var/r
 	var/c
-	for(var/i = 1 to length(str))
+	var/i = 1
+	var/l = length(str)
+	while(i <= l) // this is a while loop because BYOND is stupid and the compiler is also stupid
 		c= text2ascii(str,i)
-		r+= num2hex(c)
+		r += num2hex(c)
+		i++	
 	return r
 
 // Decodes hex to raw byte string.
@@ -613,9 +616,12 @@
 		return
 	var/r
 	var/c
-	for(var/i = 1 to length(str)/2)
+	var/l = length(str)/2
+	var/i = 1
+	while(i <= l) // this is a while loop because BYOND is stupid and the compiler is also stupid
 		c = hex2num(copytext(str,i*2-1,i*2+1), safe)
 		if(isnull(c))
 			return null
 		r += ascii2text(c)
+		i++
 	return r

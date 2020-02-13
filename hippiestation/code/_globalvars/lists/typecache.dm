@@ -26,22 +26,12 @@ GLOBAL_LIST_INIT(no_reagent_statechange_typecache, typecacheof(list(
 ))
 
 GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
-	/datum/reagent/water,
-	/datum/reagent/toxin/bleach,
-	/datum/reagent/consumable/condensedcapsaicin,
-	/datum/reagent/space_cleaner,
-	/datum/reagent/smoke_powder,
-	/datum/reagent/consumable/sugar,
-	/datum/reagent/thermite,
-	/datum/reagent/toxin/plasma,
-	/datum/reagent/radium,
 	/datum/reagent/oxygen,
 	/datum/reagent/nitrogen,
 	/datum/reagent/nitrous_oxide,
-	/datum/reagent/carbondioxide,
-	/datum/reagent/cryostylane,
-	/datum/reagent/consumable/ethanol/neurotoxin,
-	/datum/reagent/mutationtoxin)
+	/datum/reagent/toxin/plasma,
+	/datum/reagent/smoke_powder,
+	/datum/reagent/carbondioxide)
 ))
 
 GLOBAL_LIST_INIT(vaporchange_reagent_blacklist, typecacheof(list(

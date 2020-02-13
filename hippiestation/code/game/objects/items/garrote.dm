@@ -10,8 +10,8 @@
 
 /obj/item/garrotehandles/attackby(obj/item/I, mob/user, params)
 	..()
-	if(istype(I, /obj/item/stack/pipe_cleaner_coil))
-		var/obj/item/stack/pipe_cleaner_coil/R = I
+	if(istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/R = I
 		if (R.use(20))
 			var/obj/item/garrote/W = new /obj/item/garrote
 			if(!remove_item_from_storage(user))

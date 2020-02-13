@@ -73,6 +73,7 @@ SUBSYSTEM_DEF(demo)
 	if(!CONFIG_GET(flag/enable_demo))
 		disabled = TRUE
 		flags |= SS_NO_INIT
+		can_fire = FALSE
 		return FALSE
 	demo_file = "[GLOB.log_directory]/demo.log"
 	quickwrite_open(demo_file)
