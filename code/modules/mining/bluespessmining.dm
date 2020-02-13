@@ -1,3 +1,20 @@
+/datum/techweb_node/adv_mining
+	id = "bluespace_mining"
+	display_name = "Bluespace Mining Technology"
+	description = "Harness the power of bluespace to make materials out of nothing. Slowly."
+	prereq_ids = list("practical_bluespace", "adv_mining")
+	design_ids = list("bluespace_miner")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 5000
+
+/datum/design/board/bluespace_miner
+	name = "Machine Design (Bluespace Miner)"
+	desc = "The circuit board for a Bluespace Miner."
+	id = "bluespace_miner"
+	build_path = /obj/item/circuitboard/machine/bluespace_miner
+	category = list ("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
+
 /obj/item/circuitboard/machine/bluespace_miner
 	name = "Bluespace Miner (Machine Board)"
 	build_path = /obj/machinery/mineral/bluespace_miner
