@@ -2929,6 +2929,7 @@
 #include "face\code\modules\clothing\gloves.dm"
 #include "face\code\modules\clothing\head.dm"
 #include "face\code\modules\clothing\mask.dm"
+#include "face\code\modules\clothing\screams.dm"
 #include "face\code\modules\clothing\shoes.dm"
 #include "face\code\modules\clothing\suit.dm"
 #include "face\code\modules\clothing\tie.dm"

@@ -1,6 +1,6 @@
 /obj/item/robot_module
     var/hippie_cyborg_base_icon
-
+// I know changing this might bite me in the ass, but nobody has touched it since I first coded this so I'M HOPING that future yske will have to deal with this rather then me. Fuck you, future yske. - past yske
 /obj/item/robot_module/standard/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
 	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Standard", "Classic Style", "Hydro-bot", "Captain")
