@@ -12,7 +12,7 @@
 						   /obj/item/clothing/under/face/custom/vg/russobluecamooutfit = 2,
 						   /obj/item/clothing/under/face/custom/sysadmin = 1,
 						   /obj/item/clothing/under/face/custom/redcoat = 1,
-						   /obj/item/clothing/under/face/custom/beater = 1,
+//						   /obj/item/clothing/under/face/custom/beater = 1, // rest in piss beater
 						   /obj/item/clothing/under/face/custom/duke = 1,
 						   /obj/item/clothing/under/face/custom/dd = 2,
 						   /obj/item/clothing/under/face/custom/gorka = 1,
