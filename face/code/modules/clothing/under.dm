@@ -116,11 +116,11 @@
 
 
 
-/obj/item/clothing/under/face/custom/beater // wont appear for some reason?
-	name = "Wife BeaterTM"
-	desc = "EY CLEATUS, THOSE SYNDIES OUR BREAKING DER TRUCK AGAIN"
-	icon_state = "wife"
-	item_state = "wife"
+///obj/item/clothing/under/face/custom/beater // hippie readded this so no point really having this here, huh
+//	name = "Wife BeaterTM"
+//	desc = "EY CLEATUS, THOSE SYNDIES OUR BREAKING DER TRUCK AGAIN"
+//	icon_state = "wife"
+//	item_state = "wife"
 
 
 /obj/item/clothing/under/face/custom/duke // Sounds are sped up?
@@ -136,7 +136,8 @@
 	desc = "I'll make them give back our past!"
 	icon_state = "DDBDU"
 	item_state = "DDBDU"
-
+	armor = list(melee = 10, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 00, rad = 00, fire = 5, acid = 05)
+// if the mgs uniform has it, why not this one?
 
 /obj/item/clothing/under/face/custom/hosnavy
 	name = "Head of Security's Alternative Uniform"
@@ -225,3 +226,4 @@
 	desc = "The HECU Marines are usually sent in to clean up any mess a pesky crew has made"
 	icon_state = "HECU"
 	item_state = "HECU"
+	armor = list(melee = 10, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 00, rad = 00, fire = 5, acid = 05)
