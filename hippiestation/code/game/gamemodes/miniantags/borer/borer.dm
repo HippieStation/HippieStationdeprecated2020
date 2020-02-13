@@ -306,7 +306,7 @@ GLOBAL_VAR_INIT(total_borer_hosts_needed, 10)
 		waketimerid = null
 
 /mob/living/simple_animal/borer/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
-	if(dd_hasprefix(message, ";"))
+	if(findtext(message, ";", 1, 2))
 		message = copytext(message,2)
 		for(var/borer in GLOB.borers)
 			to_chat(borer, "<span class='borer'>Cortical Link: [truename] sings, \"[message]\"")

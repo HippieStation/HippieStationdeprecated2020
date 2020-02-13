@@ -398,7 +398,7 @@
 /obj/machinery/plantgenes/proc/repaint_seed()
 	if(!seed)
 		return
-	if(copytext(seed.name, 1, 13) == "experimental")
+	if(copytext(seed.name, 1, 13) == "experimental")//13 == length("experimental") + 1
 		return // Already modded name and icon
 	seed.name = "experimental " + seed.name
 	seed.icon = 'icons/obj/hydroponics/seeds.dmi' //hippie edit -- Fixes having invisible experimental seeds due to them using the hippiestation/icons/obj/hydroponics/seeds.dmi file.

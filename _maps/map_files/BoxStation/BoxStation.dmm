@@ -4731,25 +4731,9 @@
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
 "ajY" = (
-<<<<<<< HEAD
-/obj/docking_port/stationary{
-	dheight = 0;
-	dir = 8;
-	dwidth = 8;
-	height = 30;
-	id = "merchant_home";
-	json_key = null;
-	name = "SS13: Special Purpose Dock: Station-Port";
-	roundstart_template = null;
-	width = 17
-	},
-/turf/open/space/basic,
-/area/space)
-=======
 /obj/effect/mapping_helpers/dead_body_placer,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
->>>>>>> 9d6960d59236aeb316c5f290b1c9757e3fe90dac
 "ajZ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external{
@@ -58839,7 +58823,7 @@ aaa
 aaa
 aaa
 aaa
-aae
+aaa
 aaa
 aaa
 aaa
@@ -60113,10 +60097,10 @@ aaa
 aaa
 aaa
 aaa
-ajY
 aaa
 aaa
 aaa
+aae
 aaa
 aaa
 aaa
@@ -60369,9 +60353,9 @@ aaa
 aaa
 aaa
 aaa
-awW
-aXI
-awW
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -60626,9 +60610,9 @@ aaa
 aaa
 aaa
 aaa
-awW
-auP
-awW
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -60882,11 +60866,11 @@ aaa
 aaa
 aaa
 aaa
-awW
-awW
-cyl
-awW
-awW
+aaf
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -61139,12 +61123,12 @@ aaa
 aaa
 aaa
 aaa
-awW
-awZ
-ayl
-ayl
-awW
+aaf
 aaa
+aaa
+aaa
+aaa
+aaf
 aaa
 aaa
 aaa
@@ -61396,12 +61380,12 @@ aaa
 aaa
 aaa
 aaa
-arB
-awZ
-ayl
-ayl
-arB
+aaf
 aaa
+aaa
+aaa
+aaf
+aaf
 aaa
 aaa
 aaa
@@ -61653,12 +61637,12 @@ aaa
 aaa
 aaa
 aaa
-arB
-awZ
-ayl
-ayl
-aAC
+aaf
 aaa
+aaf
+aaa
+aAC
+aaf
 aaa
 aaa
 aaa
@@ -61911,11 +61895,11 @@ aaa
 aaa
 aaa
 arB
-awZ
-ayl
+awW
+awW
 asE
 arB
-aaa
+aaf
 aaa
 aaa
 aaa

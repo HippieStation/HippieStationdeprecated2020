@@ -102,9 +102,9 @@
 			t += "<span class='linkOff'>Eject GPS</span>"
 		t += "<div class='statusDisplay'>[temp_msg]</div><BR>"
 		t += "<A href='?src=\ref[src];setrotation=1'>Set Bearing</A>"
-		t += "<div class='statusDisplay'>[rotation]°</div>"
+		t += "<div class='statusDisplay'>[rotation]ï¿½</div>"
 		t += "<A href='?src=\ref[src];setangle=1'>Set Elevation</A>"
-		t += "<div class='statusDisplay'>[angle]°</div>"
+		t += "<div class='statusDisplay'>[angle]ï¿½</div>"
 		t += "<span class='linkOn'>Set Power</span>"
 		t += "<div class='statusDisplay'>"
 
@@ -243,16 +243,16 @@
 								log_msg += "[key_name(Q)], "
 							else
 								log_msg += "[Q.name], "
-						if (dd_hassuffix(log_msg, "("))
+						if (findtext(log_msg, "(", length(log_msg) - 1, null))
 							log_msg += "empty)"
 						else
-							log_msg = dd_limittext(log_msg, length(log_msg) - 2)
+							log_msg = copytext(log_msg, 1, length(log_msg) - 2)
 							log_msg += ")"
 					log_msg += ", "
 				do_teleport(ROI, dest)
 
-			if (dd_hassuffix(log_msg, ", "))
-				log_msg = dd_limittext(log_msg, length(log_msg) - 2)
+			if (findtext(log_msg, ", ", length(log_msg) - 2, null))
+				log_msg = copytext(log_msg, 1, length(log_msg) - 2)
 			else
 				log_msg += "nothing"
 			log_msg += " [sending ? "to" : "from"] [trueX], [trueY], [z_co] ([A ? A.name : "null area"])"

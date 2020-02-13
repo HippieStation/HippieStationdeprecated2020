@@ -23,10 +23,19 @@
 /obj/item/projectile/bullet/p50 // Sniper rifles
 	stun = 10
 	paralyze = 10
-	
+
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	damage = 6.25
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	damage = 1.5
 	stamina = 12.5
+
+/obj/item/projectile/bullet/process_hit(turf/T, atom/target, qdel_self, hit_something = FALSE)
+	. = ..()
+	if(ishuman(target) && damage && !nodamage)
+		var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(target.loc, target)
+		B.add_blood_DNA(return_blood_DNA())
+		var/dist = rand(2,5)
+		var/turf/targ = get_ranged_target_turf(target, get_dir(starting, target), dist)
+		B.GoTo(targ, dist)

@@ -235,7 +235,7 @@
 	var/strin = get_pin_data(IC_INPUT, 1)
 	var/delimiter = get_pin_data(IC_INPUT, 2)
 	if(delimiter == null)
-		set_pin_data(IC_OUTPUT, 1, string2charlist(strin))
+		set_pin_data(IC_OUTPUT, 1, text2charlist(strin))
 	else
 		set_pin_data(IC_OUTPUT, 1, splittext(strin, delimiter))
 	push_data()

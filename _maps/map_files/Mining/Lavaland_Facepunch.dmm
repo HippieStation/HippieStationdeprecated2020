@@ -574,7 +574,7 @@
 	icon_state = "term";
 	dir = 8
 	},
-/obj/structure/cable/yellow{
+/obj/structure/cable{
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
@@ -1160,7 +1160,7 @@
 /turf/open/floor/wood,
 /area/mine/facepunch_base/canteen)
 "it" = (
-/obj/structure/chair/office/dark,
+/obj/structure/chair/office,
 /obj/effect/turf_decal/tile/facepunch_alt/red,
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/laborcamp/security)
@@ -1434,7 +1434,7 @@
 /obj/machinery/power/port_gen/pacman{
 	anchored = 1
 	},
-/obj/structure/cable/yellow{
+/obj/structure/cable{
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating,
@@ -2019,7 +2019,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
 	},
-/obj/structure/cable/yellow{
+/obj/structure/cable{
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating,
@@ -2903,19 +2903,6 @@
 /obj/machinery/computer/shuttle/mining,
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
-"ue" = (
-/obj/machinery/vr_sleeper{
-	icon_state = "sleeper";
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/facepunch_alt/green,
-/obj/effect/turf_decal/tile/facepunch_alt/green{
-	icon_state = "tile_corner";
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/facepunch/white,
-/area/mine/facepunch_base/aft)
 "uf" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -4228,10 +4215,6 @@
 /turf/open/floor/plasteel/facepunch,
 /area/mine/eva)
 "Ce" = (
-/obj/machinery/vr_sleeper{
-	icon_state = "sleeper";
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/facepunch_alt/green,
 /obj/effect/turf_decal/tile/facepunch_alt/green{
 	icon_state = "tile_corner";
@@ -6050,10 +6033,10 @@
 /area/mine/laborcamp)
 "MZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable/yellow{
+/obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/cable/yellow{
+/obj/structure/cable{
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating,
@@ -7599,7 +7582,7 @@
 /obj/machinery/power/port_gen/pacman{
 	anchored = 1
 	},
-/obj/structure/cable/yellow{
+/obj/structure/cable{
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating,
@@ -7967,7 +7950,7 @@
 /area/mine/facepunch_base/aft)
 "YJ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable/yellow{
+/obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
@@ -57682,7 +57665,7 @@ aa
 aa
 gY
 Qt
-ue
+Fo
 Ce
 Tl
 il
