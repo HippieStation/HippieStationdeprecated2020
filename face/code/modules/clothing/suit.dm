@@ -165,10 +165,10 @@
 
 /obj/item/clothing/suit/armor/face/defender
 	name = "Defender MK2 Body Armor"
-	desc = "A New-Russia combat armor vest with a flat-green camoflauge. It uses ceramic plates to grant the wearer extremely effective protection against ballistic weaponry and moderate protection from explosions."
+	desc = "A New-Russia combat armor vest with a flat-green camoflauge. It uses ceramic plates to grant the wearer extremely effective protection against ballistic weaponry and moderate protection from explosions. The cloth is made of old cloth with a low melting point, so it probably won't be too good against laser or fires."
 	icon_state = "defender"
 	item_state = "defender"
-	armor = list(melee = 35, bullet = 80, laser = 20, energy = 15, bomb = 45, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 60, laser = 10, energy = 10, bomb = 45, bio = 0, rad = 0) // bigger nerf since it spawns a bit too often. still pretty good against guns
 
 /obj/item/clothing/suit/armor/face/Ionpmc
 	name = "MK48 Heavy Combat Armor"
