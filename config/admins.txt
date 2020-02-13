@@ -9,4 +9,3 @@ AdmiralHippie = Host
 MaybeJessica = Host
 MatthewMiller = Game Admin
 KeckoDragon = Game Admin
-Borndeadman = Host
