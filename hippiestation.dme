@@ -2938,7 +2938,6 @@
 #include "face\code\modules\clothing\suit.dm"
 #include "face\code\modules\clothing\tie.dm"
 #include "face\code\modules\clothing\under.dm"
-#include "face\code\modules\hydroponics\grown\flowers.dm"
 #include "face\code\modules\hydroponics\grown\towercap.dm"
 #include "face\code\modules\mob\living\say.dm"
 #include "face\code\modules\mob\living\silicon\ai\ai.dm"
