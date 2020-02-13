@@ -8,30 +8,40 @@
 
 /mob/living/silicon/robot/modules/standard
 	alternate_screams = list('face/sound/screams/silicon/standard1.ogg','face/sound/screams/silicon/standard2.ogg','face/sound/screams/silicon/standard3.ogg','face/sound/screams/silicon/standard4.ogg','face/sound/screams/silicon/standard5.ogg')
+	deathsound = 'face/sound/screams/silicon/standarddeath.ogg'
 
 /mob/living/silicon/robot/modules/medical
 	alternate_screams = list('face/sound/screams/silicon/med1.ogg','face/sound/screams/silicon/med2.ogg','face/sound/screams/silicon/med3.ogg','face/sound/screams/silicon/med4.ogg','face/sound/screams/silicon/med5.ogg')
+	deathsound = 'face/sound/screams/silicon/meddie1.ogg'
 
 /mob/living/silicon/robot/modules/syndicate
 	alternate_screams = list('face/sound/screams/silicon/synd1.ogg','face/sound/screams/silicon/synd2.ogg','face/sound/screams/silicon/synd3.ogg')
+	deathsound = 'face/sound/screams/silicon/synddie.ogg'
 
 /mob/living/silicon/robot/modules/janitor
 	alternate_screams = list('face/sound/screams/silicon/jani1.ogg','face/sound/screams/silicon/jani2.ogg','face/sound/screams/silicon/jani3.ogg')
+	deathsound = 'face/sound/screams/silicon/janidie.ogg'
 
 /mob/living/silicon/robot/modules/engineering
 	alternate_screams = list('face/sound/screams/silicon/eng1.ogg','face/sound/screams/silicon/eng2.ogg','face/sound/screams/silicon/eng3.ogg')
+	deathsound = 'face/sound/screams/silicon/engdie.ogg'
 
 /mob/living/silicon/robot/modules/peacekeeper
 	alternate_screams = list('face/sound/screams/silicon/pea1.ogg','face/sound/screams/silicon/pea2.ogg','face/sound/screams/silicon/pea3.ogg','face/sound/screams/silicon/pea4.ogg','face/sound/screams/silicon/pea5.ogg')
+	deathsound = 'face/sound/screams/silicon/peadie.ogg'
 
 /mob/living/silicon/robot/modules/security
-	alternate_screams = list('face/sound/screams/silicon/sec1.ogg','face/sound/screams/silicon/sec2.ogg','face/sound/screams/silicon/sec3.ogg')
+	alternate_screams = list('face/sound/screams/silicon/sec1.ogg','face/sound/screams/silicon/sec2.ogg','face/sound/screams/silicon/sec3.ogg','face/sound/screams/silicon/sec4.ogg','face/sound/screams/silicon/sec5.ogg','face/sound/screams/silicon/sec6.ogg')
+	deathsound = 'face/sound/screams/silicon/secdeath.ogg'
 
 /mob/living/silicon/robot/modules/miner
 	alternate_screams = list('face/sound/screams/silicon/mine1.ogg','face/sound/screams/silicon/mine2.ogg','face/sound/screams/silicon/mine3.ogg','face/sound/screams/silicon/mine4.ogg')
+	deathsound = 'face/sound/screams/silicon/minedie.ogg'
 
 /mob/living/silicon/robot/modules/syndicate/medical
 	alternate_screams = list('face/sound/screams/silicon/syndm1.ogg','face/sound/screams/silicon/syndm2.ogg','face/sound/screams/silicon/syndm3.ogg','face/sound/screams/silicon/syndm4.ogg')
+	deathsound = 'face/sound/screams/silicon/syndmdie.ogg'
 
 /mob/living/silicon/robot/modules/clown
 	alternate_screams = list('face/sound/screams/silicon/clo1.ogg','face/sound/screams/silicon/clo2.ogg','face/sound/screams/silicon/clo3.ogg','face/sound/screams/silicon/clo4.ogg','face/sound/screams/silicon/clo5.ogg')
+	deathsound = 'face/sound/screams/silicon/clodie.ogg'
