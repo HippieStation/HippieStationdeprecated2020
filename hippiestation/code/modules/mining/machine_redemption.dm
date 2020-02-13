@@ -207,6 +207,14 @@
 		output_dir = turn(output_dir, -90)
 		to_chat(user, "<span class='notice'>You change [src]'s I/O settings, setting the input to [dir2text(input_dir)] and the output to [dir2text(output_dir)].</span>")
 		return TRUE
+		. = ..()
+	else if (istype(I))
+		to_chat(user, "<span class='notice'>You update [src] with the multitool's buffer.</span>")
+		materials?.silo = I.buffer
+		return TRUE
+	else
+		to_chat(user, "<span class='notice'>The buffer is empty.</span>")
+		return FALSE
 
 /obj/machinery/mineral/ore_redemption/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
