@@ -1251,6 +1251,21 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/security/main)
+"acT" = (
+/obj/structure/table,
+/obj/item/stack/sheet/glass/fifty{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/clothing/glasses/welding,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/circuitboard/machine/bluespace_miner,
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "acU" = (
 /obj/structure/cable,
 /obj/structure/lattice/catwalk,
@@ -1463,6 +1478,15 @@
 	},
 /turf/open/floor/plating,
 /area/security/main)
+"adr" = (
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard)
 "ads" = (
 /obj/structure/cable,
 /obj/structure/lattice/catwalk,
@@ -1481,6 +1505,14 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/port/fore)
+"adv" = (
+/obj/structure/table,
+/obj/item/clipboard,
+/obj/item/book/manual/wiki/experimentor,
+/turf/open/floor/plasteel/white/corner{
+	dir = 4
+	},
+/area/science/explab)
 "adw" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space,
@@ -24769,20 +24801,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/lab)
-"bon" = (
-/obj/structure/table,
-/obj/item/stack/sheet/glass/fifty{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/clothing/glasses/welding,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "boo" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -30733,14 +30751,6 @@
 /area/science/nanite)
 "bEK" = (
 /turf/closed/wall,
-/area/science/explab)
-"bEL" = (
-/obj/structure/table,
-/obj/item/clipboard,
-/obj/item/book/manual/wiki/experimentor,
-/turf/open/floor/plasteel/white/corner{
-	dir = 4
-	},
 /area/science/explab)
 "bEN" = (
 /obj/structure/closet/radiation,
@@ -62364,15 +62374,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"tAq" = (
-/obj/structure/sign/poster/contraband/random{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard)
 "tAB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
@@ -113232,7 +113233,7 @@ xPA
 bjC
 bin
 bmx
-bon
+acT
 brp
 bpJ
 bsN
@@ -114784,7 +114785,7 @@ bxD
 byX
 bBR
 bDf
-bEL
+adv
 bFS
 luM
 bIq
@@ -116583,7 +116584,7 @@ aaa
 aaa
 aaa
 brs
-tAq
+adr
 bEQ
 vGE
 bHj

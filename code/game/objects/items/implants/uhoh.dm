@@ -11,7 +11,7 @@
 
 /obj/item/implant/uhoh/trigger(emote, mob/source)
 	if(emote == "deathgasp")
-		playsound(loc, 'face/sound/screams/uhoh.ogg', 50, 0)
+		playsound(loc, 'face/sound/screams/uhoh.ogg', 100, 0)
 
 /obj/item/implanter/uhoh
 	name = "implanter (Stinky)"
