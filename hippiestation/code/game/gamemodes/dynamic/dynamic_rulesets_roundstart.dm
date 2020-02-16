@@ -143,6 +143,7 @@
 /datum/dynamic_ruleset/roundstart/bloodcult
 	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Chaplain", "Head of Personnel", "Vice Officer")
 	weight = 30
+	high_population_requirement = 10
 
 /datum/dynamic_ruleset/roundstart/infiltrator
 	name = "Infiltration Unit"
