@@ -1092,7 +1092,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
 "eQ" = (
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 4
 	},
@@ -1170,7 +1170,7 @@
 /turf/open/floor/plating,
 /area/engine/storage)
 "hY" = (
-/obj/structure/fluff/railing/corner,
+/obj/structure/railing/corner,
 /turf/open/floor/plating,
 /area/hallway/secondary/service)
 "ij" = (
@@ -1194,7 +1194,7 @@
 /area/hallway/secondary/service)
 "iH" = (
 /obj/effect/turf_decal/stripes/white/line,
-/obj/structure/fluff/railing/corner{
+/obj/structure/railing/corner{
 	icon_state = "railing_corner";
 	dir = 4
 	},
@@ -1218,8 +1218,7 @@
 /turf/open/floor/plating,
 /area/engine/storage)
 "jD" = (
-/obj/structure/fluff/railing/corner{
-	icon_state = "railing_corner";
+/obj/structure/railing/corner{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -1314,12 +1313,18 @@
 "qo" = (
 /turf/open/openspace,
 /area/engine/storage)
+"qx" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/construction)
 "qR" = (
 /obj/effect/turf_decal/stripes/white/line{
 	icon_state = "warningline_white";
 	dir = 9
 	},
-/obj/structure/fluff/railing/corner{
+/obj/structure/railing/corner{
 	icon_state = "railing_corner";
 	dir = 1
 	},
@@ -1348,7 +1353,7 @@
 /turf/open/floor/plating,
 /area/construction)
 "su" = (
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 8
 	},
@@ -1359,7 +1364,7 @@
 	icon_state = "warningline_white";
 	dir = 4
 	},
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 8
 	},
@@ -1449,11 +1454,11 @@
 /turf/open/floor/plasteel,
 /area/construction)
 "zd" = (
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 4
 	},
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 8
 	},
@@ -1477,7 +1482,7 @@
 /turf/open/floor/plating,
 /area/engine/storage)
 "Ai" = (
-/obj/structure/fluff/railing/corner{
+/obj/structure/railing/corner{
 	icon_state = "railing_corner";
 	dir = 8
 	},
@@ -1533,8 +1538,7 @@
 /turf/open/floor/plating,
 /area/hallway/secondary/service)
 "CP" = (
-/obj/structure/fluff/railing{
-	icon_state = "railing";
+/obj/structure/railing{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -1557,7 +1561,7 @@
 /area/engine/storage)
 "Eb" = (
 /obj/effect/turf_decal/stripes/white/line,
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 1
 	},
@@ -1610,8 +1614,7 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "In" = (
-/obj/structure/fluff/railing{
-	icon_state = "railing";
+/obj/structure/railing{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -1621,8 +1624,8 @@
 /turf/open/floor/plating,
 /area/hallway/secondary/service)
 "IL" = (
-/obj/structure/fluff/railing/corner,
-/obj/structure/fluff/railing/corner{
+/obj/structure/railing/corner,
+/obj/structure/railing/corner{
 	icon_state = "railing_corner";
 	dir = 8
 	},
@@ -1670,7 +1673,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
 "Lu" = (
-/obj/structure/fluff/railing{
+/obj/structure/railing{
 	icon_state = "railing";
 	dir = 4
 	},
@@ -1701,8 +1704,7 @@
 /turf/open/floor/plating,
 /area/engine/storage)
 "Pm" = (
-/obj/structure/fluff/railing/corner{
-	icon_state = "railing_corner";
+/obj/structure/railing/corner{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -1746,8 +1748,7 @@
 /turf/open/floor/plasteel,
 /area/construction)
 "Tf" = (
-/obj/structure/fluff/railing{
-	icon_state = "railing";
+/obj/structure/railing{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -1797,7 +1798,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
 "XN" = (
-/obj/structure/fluff/railing,
+/obj/structure/railing,
 /turf/open/floor/plating,
 /area/hallway/secondary/service)
 "XQ" = (
@@ -1811,6 +1812,10 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/service)
+"Zv" = (
+/obj/structure/railing/corner,
+/turf/open/floor/plating,
+/area/construction)
 "ZH" = (
 /obj/structure/disposalpipe/trunk/multiz,
 /turf/open/floor/plating,
@@ -2886,7 +2891,7 @@ dn
 dn
 dn
 dn
-dn
+Zv
 In
 jD
 dL
@@ -2994,7 +2999,7 @@ dn
 dn
 dn
 dn
-dn
+qx
 CP
 Pm
 ij
