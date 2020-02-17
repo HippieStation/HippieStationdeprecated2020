@@ -3,7 +3,7 @@
 // I know changing this might bite me in the ass, but nobody has touched it since I first coded this so I'M HOPING that future yske will have to deal with this rather then me. Fuck you, future yske. - past yske
 /obj/item/robot_module/standard/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Standard", "Classic Style", "Hydro-bot", "Captain")
+	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Standard", "Classic Style", "Hydro-bot")
 	if(!borg_icon)
 		return FALSE
 	switch(borg_icon)
@@ -13,13 +13,13 @@
 			hippie_cyborg_base_icon = "robot_old"
 		if("Hydro-bot")
 			hippie_cyborg_base_icon = "Hydrobot"
-		if("Captain")
-			hippie_cyborg_base_icon = "captainborg"
+// kept off for the time being because he's too damn fucking smol		if("PDX")
+//			hippie_cyborg_base_icon = "pdx"
 	return ..()
 
 /obj/item/robot_module/medical/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Standard", "Classic", "Humanoid")
+	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Standard", "Classic", "MED-E")
 	if(!borg_icon)
 		return FALSE
 	switch(borg_icon)
@@ -27,13 +27,13 @@
 			hippie_cyborg_base_icon = "medical"
 		if("Classic")
 			hippie_cyborg_base_icon = "Medbot"
-		if("Humanoid")
-			hippie_cyborg_base_icon = "cmoborg"
+		if("MED-E")
+			hippie_cyborg_base_icon = "mede"
 	return ..()
 
 /obj/item/robot_module/security/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Standard", "Classic", "Humanoid", "Black Scheme Humanoid", "PISSED OFF BEEPSKY")
+	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Standard", "Classic", "Roger", "Black Scheme Humanoid", "PISSED OFF BEEPSKY")
 	if(!borg_icon)
 		return FALSE
 	switch(borg_icon)
@@ -41,8 +41,8 @@
 			hippie_cyborg_base_icon = "sec"
 		if("Classic")
 			hippie_cyborg_base_icon = "secborg"
-		if("Humanoid")
-			hippie_cyborg_base_icon = "Security"
+		if("Roger")
+			hippie_cyborg_base_icon = "roger"
 		if("Black Scheme Humanoid")
 			hippie_cyborg_base_icon = "hosborg"
 		if("PISSED OFF BEEPSKY")
@@ -52,7 +52,7 @@
 
 /obj/item/robot_module/engineering/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Standard", "Classic Style", "Tech-Priest", "Super Oldschool", "Thicc", "Humanoid")
+	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Standard", "Classic Style", "Tech-Priest", "Super Oldschool", "Man of Iron", "Gonk")
 	if(!borg_icon)
 		return FALSE
 	switch(borg_icon)
@@ -66,12 +66,12 @@
 			hippie_cyborg_base_icon = "engineering_drone"
 			special_light_key = "medical"
 			hat_offset = 3
-		if("Thicc")
+		if("Man of Iron")
 			hippie_cyborg_base_icon = "Engineering3"
 			special_light_key = null
 			hat_offset = INFINITY //He is already wearing a hat
-		if("Humanoid")
-			hippie_cyborg_base_icon = "ceborg"
+		if("Gonk")
+			hippie_cyborg_base_icon = "gonk"
 	return ..()
 
 /obj/item/robot_module/janitor/be_transformed_to(obj/item/robot_module/old_module)
