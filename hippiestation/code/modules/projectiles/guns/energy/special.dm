@@ -365,9 +365,9 @@
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 
 /obj/item/gun/energy/watcherprojector/examine(mob/user)
-	..()
+	. = ..()
 	if(cell)
-		to_chat(user, "<span class='notice'>[src]'s diamond core is [round(cell.percent())]% energized.</span>")
+		. +="<span class='notice'>[src]'s diamond core is [round(cell.percent())]% energized.</span>"
 
 /obj/item/gun/energy/watcherprojector/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/sheet/mineral/plasma))
