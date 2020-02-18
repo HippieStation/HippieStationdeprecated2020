@@ -1162,7 +1162,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("hair")
 					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#"+hair_color) as color|null
 					if(new_hair)
-						hair_color = new_hair
+						hair_color = sanitize_hexcolor(new_hair)
 
 				if("hair_style")
 					var/new_hair_style
@@ -1194,7 +1194,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("facial")
 					var/new_facial = input(user, "Choose your character's facial-hair colour:", "Character Preference","#"+facial_hair_color) as color|null
 					if(new_facial)
-						facial_hair_color = new_facial
+						facial_hair_color = sanitize_hexcolor(new_facial)
 
 				if("facial_hair_style")
 					var/new_facial_hair_style
@@ -1251,10 +1251,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_socks)
 						socks = new_socks
 
-				if(BODY_ZONE_PRECISE_EYES)
+				if("eyes")
 					var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference","#"+eye_color) as color|null
 					if(new_eyes)
-						eye_color = new_eyes
+						eye_color = sanitize_hexcolor(new_eyes)
 
 				if("species")
 
@@ -1275,7 +1275,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(new_mutantcolor == "#000000")
 							features["mcolor"] = pref_species.default_color
 						else if((MUTCOLORS_PARTSONLY in pref_species.species_traits) || ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
-							features["mcolor"] = new_mutantcolor
+							features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
 						else
 							to_chat(user, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
 
