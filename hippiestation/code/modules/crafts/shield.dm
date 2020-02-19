@@ -18,14 +18,14 @@
 	var/max_damage = 60 //Amount of max damage the trayshield can withstand
 
 /obj/item/shield/trayshield/examine(mob/user)
-	..()
+	. = ..()
 	var/a = max(0, max_damage - damage_received)
 	if(a <= max_damage/4) //20
-		to_chat(user, "It's falling apart.")
+		. += "It's falling apart."
 	else if(a <= max_damage/2) //40
-		to_chat(user, "It's badly damaged.")
+		. += "It's badly damaged."
 	else if(a < max_damage)
-		to_chat(user, "It's slightly damaged.")
+		. += "It's slightly damaged."
 
 /obj/item/shield/trayshield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 4, attack_type = MELEE_ATTACK)
 	if(..())

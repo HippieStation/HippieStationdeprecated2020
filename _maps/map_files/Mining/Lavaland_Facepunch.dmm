@@ -142,7 +142,7 @@
 "cn" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
-	name = "Mining Station EVA";
+	name = "Mining Station Mech Bay";
 	req_access_txt = "54"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -753,9 +753,9 @@
 "gw" = (
 /obj/machinery/vending/boozeomat/all_access,
 /obj/machinery/camera{
-	c_tag = "Gravity Generator";
+	c_tag = "Mining Station Bar";
 	dir = 8;
-	network = list("SS13")
+	network = list("mine")
 	},
 /turf/open/floor/wood,
 /area/mine/facepunch_base/canteen)
@@ -928,6 +928,10 @@
 /obj/effect/turf_decal/tile/facepunch_alt/neutral,
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal/bin,
+/obj/machinery/camera{
+	c_tag = "Mining Station Living Hall North";
+	network = list("mine")
+	},
 /turf/open/floor/plasteel/facepunch/white,
 /area/mine/facepunch_base/aft)
 "ht" = (
@@ -977,8 +981,9 @@
 /area/mine/facepunch_base/aft)
 "hK" = (
 /obj/machinery/camera{
-	c_tag = "Dormitory South";
-	dir = 4
+	c_tag = "Mining Station Fore Wing South";
+	dir = 4;
+	network = list("mine")
 	},
 /obj/effect/turf_decal/tile/facepunch_alt/purple{
 	icon_state = "tile_corner";
@@ -1300,9 +1305,9 @@
 	},
 /obj/structure/closet/emcloset,
 /obj/machinery/camera{
-	c_tag = "Supermatter Chamber";
+	c_tag = "Mining Exit Airlock";
 	dir = 2;
-	network = list("engine");
+	network = list("mine");
 	pixel_x = 11
 	},
 /turf/open/floor/plasteel/facepunch/dark,
@@ -1404,7 +1409,10 @@
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/facepunch_base)
 "kq" = (
-/obj/machinery/camera,
+/obj/machinery/camera{
+	c_tag = "Mining Station Aft Wing Central";
+	network = list("mine")
+	},
 /obj/effect/turf_decal/tile/facepunch_alt/neutral{
 	icon_state = "tile_corner";
 	dir = 1
@@ -1464,6 +1472,13 @@
 	id = "gulag"
 	},
 /turf/open/floor/plating,
+/area/mine/laborcamp)
+"kC" = (
+/obj/machinery/camera{
+	c_tag = "Labor Camp External Access";
+	network = list("labor")
+	},
+/turf/open/floor/plasteel/facepunch/dark,
 /area/mine/laborcamp)
 "kF" = (
 /obj/structure/table,
@@ -1876,6 +1891,14 @@
 /obj/effect/turf_decal/loading_area/red{
 	icon_state = "loadingarea_red";
 	dir = 1
+	},
+/turf/open/floor/plasteel/facepunch/dark,
+/area/mine/laborcamp)
+"nJ" = (
+/obj/machinery/camera{
+	c_tag = "Labor Camp Storage";
+	dir = 8;
+	network = list("labor")
 	},
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/laborcamp)
@@ -2359,7 +2382,6 @@
 /turf/open/floor/plasteel/facepunch/white,
 /area/mine/laborcamp)
 "qo" = (
-/obj/machinery/camera,
 /obj/effect/turf_decal/tile/facepunch_alt/neutral{
 	icon_state = "tile_corner";
 	dir = 1
@@ -2603,8 +2625,9 @@
 /area/mine/facepunch_base/aft)
 "rA" = (
 /obj/machinery/camera{
-	c_tag = "Arrivals Docking Bay 1 - Port";
-	dir = 4
+	c_tag = "Labor Camp Exterior";
+	dir = 4;
+	network = list("labor")
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/mine/laborcamp)
@@ -2627,8 +2650,9 @@
 	dir = 8
 	},
 /obj/machinery/camera{
-	c_tag = "Gateway";
-	dir = 4
+	c_tag = "Mining Station Aft Wing Southern Central";
+	dir = 4;
+	network = list("mine")
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/facepunch/white,
@@ -2889,9 +2913,9 @@
 /area/mine/facepunch_base)
 "tM" = (
 /obj/machinery/camera{
-	c_tag = "Gravity Generator";
+	c_tag = "Mining Station Communications";
 	dir = 8;
-	network = list("SS13")
+	network = list("mine")
 	},
 /turf/open/floor/circuit,
 /area/mine/maintenance)
@@ -3204,8 +3228,9 @@
 	dir = 1
 	},
 /obj/machinery/camera{
-	c_tag = "Locker Room Toilets";
-	dir = 8
+	c_tag = "Labor Camp Canteen";
+	dir = 8;
+	network = list("labor")
 	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/laborcamp)
@@ -4239,9 +4264,9 @@
 "Cn" = (
 /obj/effect/turf_decal/tile/facepunch_alt/brown,
 /obj/machinery/camera{
-	c_tag = "Testing Chamber";
+	c_tag = "Mining Station Mech Bay";
 	dir = 1;
-	network = list("test","rd")
+	network = list("mine")
 	},
 /obj/machinery/mineral/equipment_vendor,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -4311,8 +4336,9 @@
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
 /obj/machinery/camera{
-	c_tag = "Arrivals Docking Bay 1 - Port";
-	dir = 4
+	c_tag = "Labor Camp Medical";
+	dir = 4;
+	network = list("labor")
 	},
 /turf/open/floor/plasteel/facepunch/white,
 /area/mine/laborcamp)
@@ -5096,8 +5122,9 @@
 	},
 /obj/effect/turf_decal/tile/facepunch_alt/neutral,
 /obj/machinery/camera{
-	c_tag = "Fore Primary Hallway West";
-	dir = 1
+	c_tag = "Mining Station Aft Wing East";
+	dir = 1;
+	network = list("mine")
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5313,7 +5340,10 @@
 	icon_state = "tile_corner";
 	dir = 1
 	},
-/obj/machinery/camera,
+/obj/machinery/camera{
+	c_tag = "Mining Station Living Hall South";
+	network = list("mine")
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -5663,8 +5693,9 @@
 	dir = 1
 	},
 /obj/machinery/camera{
-	c_tag = "Gateway";
-	dir = 4
+	c_tag = "Mining Station Aft Wing South";
+	dir = 4;
+	network = list("mine")
 	},
 /turf/open/floor/plasteel/facepunch/white,
 /area/mine/facepunch_base/aft)
@@ -5809,7 +5840,10 @@
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
 "LO" = (
-/obj/machinery/camera,
+/obj/machinery/camera{
+	c_tag = "Labor Camp Processing North";
+	network = list("labor")
+	},
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/laborcamp)
 "LP" = (
@@ -5875,9 +5909,9 @@
 "Mk" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/camera{
-	c_tag = "Gravity Generator";
+	c_tag = "Mining Station Fore Wing North";
 	dir = 8;
-	network = list("SS13")
+	network = list("mine")
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
@@ -6179,8 +6213,9 @@
 "Of" = (
 /obj/effect/turf_decal/tile/facepunch_alt/red,
 /obj/machinery/camera{
-	c_tag = "EVA Storage";
-	dir = 1
+	c_tag = "Labor Camp Prisoner Intake";
+	dir = 1;
+	network = list("labor")
 	},
 /obj/machinery/flasher{
 	pixel_y = -28;
@@ -6421,7 +6456,10 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/camera,
+/obj/machinery/camera{
+	c_tag = "Labor Camp Security Airlock";
+	network = list("labor")
+	},
 /obj/machinery/button/door{
 	name = "Labor Camp Security Lockdown";
 	pixel_y = 24;
@@ -6678,7 +6716,10 @@
 	icon_state = "tile_corner";
 	dir = 4
 	},
-/obj/machinery/camera,
+/obj/machinery/camera{
+	c_tag = "Mining Processing Room";
+	network = list("mine")
+	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
 "RM" = (
@@ -6715,8 +6756,9 @@
 /area/mine/laborcamp)
 "RR" = (
 /obj/machinery/camera{
-	c_tag = "Port Engineering Secure Storage";
-	dir = 8
+	c_tag = "Labor Camp Processing South";
+	dir = 8;
+	network = list("labor")
 	},
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/laborcamp)
@@ -7190,7 +7232,10 @@
 	pixel_x = 0;
 	pixel_y = 26
 	},
-/obj/machinery/camera,
+/obj/machinery/camera{
+	c_tag = "Labor Camp Security";
+	network = list("labor")
+	},
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/laborcamp/security)
 "Uq" = (
@@ -7722,9 +7767,9 @@
 /area/lavaland/surface/outdoors)
 "Xr" = (
 /obj/machinery/camera{
-	c_tag = "Testing Chamber";
+	c_tag = "Mining Station Aft Wing West";
 	dir = 1;
-	network = list("test","rd")
+	network = list("mine")
 	},
 /obj/effect/turf_decal/tile/facepunch_alt/neutral{
 	icon_state = "tile_corner";
@@ -7775,8 +7820,9 @@
 	dir = 8
 	},
 /obj/machinery/camera{
-	c_tag = "Fore Primary Hallway West";
-	dir = 1
+	c_tag = "Mining Station Storage";
+	dir = 1;
+	network = list("mine")
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/facepunch,
@@ -7802,8 +7848,9 @@
 /area/mine/facepunch_base/canteen)
 "XE" = (
 /obj/machinery/camera{
-	c_tag = "Gateway";
-	dir = 4
+	c_tag = "Mining Station Living Hall Central";
+	dir = 4;
+	network = list("mine")
 	},
 /obj/effect/turf_decal/tile/facepunch_alt/purple{
 	icon_state = "tile_corner";
@@ -7936,9 +7983,9 @@
 	dir = 8
 	},
 /obj/machinery/camera{
-	c_tag = "Testing Chamber";
+	c_tag = "Mining Station Medbay";
 	dir = 1;
-	network = list("test","rd")
+	network = list("mine")
 	},
 /obj/structure/sign/warning/nosmoking/circle{
 	pixel_y = -29
@@ -35130,7 +35177,7 @@ Xp
 JR
 lT
 ov
-RR
+nJ
 RQ
 Xp
 ig
@@ -35384,7 +35431,7 @@ JR
 AE
 kA
 Xp
-LO
+kC
 Xp
 Xp
 Xp
