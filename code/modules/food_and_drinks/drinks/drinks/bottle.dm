@@ -326,7 +326,7 @@
 	icon_state = "fernetbottle"
 	list_reagents = list(/datum/reagent/consumable/ethanol/fernet = 100)
 
-// hippie -- New bottled version of Nuka Cola for use in Cola vending machines
+// hippie start -- New bottled version of Nuka Cola for use in Cola vending machines
 /obj/item/reagent_containers/food/drinks/bottle/nukacola
 	name = "Nuka Cola"
 	desc = "Don't cry, Don't raise your eye, It's only nuclear wasteland."
