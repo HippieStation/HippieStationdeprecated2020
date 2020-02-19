@@ -169,6 +169,8 @@
 	C.dust()
 
 /proc/tesla_zap(atom/source, zap_range = 3, power, tesla_flags = TESLA_DEFAULT_FLAGS, list/shocked_targets)
+	if(QDELETED(source))
+		return
 	. = source.dir
 	if(power < 1000)
 		return
@@ -274,7 +276,7 @@
 				closest_structure = S
 				closest_atom = A
 				closest_dist = dist
-				
+
 		else if(closest_structure)
 			continue
 
