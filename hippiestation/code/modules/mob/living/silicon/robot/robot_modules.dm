@@ -3,7 +3,7 @@
 // I know changing this might bite me in the ass, but nobody has touched it since I first coded this so I'M HOPING that future yske will have to deal with this rather then me. Fuck you, future yske. - past yske
 /obj/item/robot_module/standard/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
-	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Standard", "Classic Style", "Hydro-bot")
+	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Standard", "Classic Style", "Hydro-bot", "PDX")
 	if(!borg_icon)
 		return FALSE
 	switch(borg_icon)
@@ -13,8 +13,10 @@
 			hippie_cyborg_base_icon = "robot_old"
 		if("Hydro-bot")
 			hippie_cyborg_base_icon = "Hydrobot"
-// kept off for the time being because he's too damn fucking smol		if("PDX")
-//			hippie_cyborg_base_icon = "pdx"
+		if("PDX")
+			hippie_cyborg_base_icon = "pdx"
+			R.resize = 1.3 // Okay, if they change module then they stay big. Infact, they can spam this endlessly. I'm not sure how to fix this so I'm declaring this a feature not a bug TM.
+			R.update_transform()
 	return ..()
 
 /obj/item/robot_module/medical/be_transformed_to(obj/item/robot_module/old_module)
@@ -72,6 +74,8 @@
 			hat_offset = INFINITY //He is already wearing a hat
 		if("Gonk")
 			hippie_cyborg_base_icon = "gonk"
+			R.resize = 1.3
+			R.update_transform()
 	return ..()
 
 /obj/item/robot_module/janitor/be_transformed_to(obj/item/robot_module/old_module)
