@@ -108,9 +108,8 @@ GLOBAL_LIST_INIT(maintenance_loot, list(
 	/obj/item/clothing/under/hippie/cosby = 3,
 	/obj/item/reagent_containers/pill/floorpill = 1,
 	/obj/item/brick = 6,
-	/obj/item/toy/meme = 1,
-	/obj/item/clothing/mask/gas/face/custom/jason = 2,
-	/obj/item/clothing/mask/gas/face/custom/hockey = 2,
+	/obj/item/clothing/mask/gas/face/custom/jason = 1,
+	/obj/item/clothing/mask/gas/face/custom/hockey = 1,
 	/obj/item/gun/energy/laser/retro/face/custom/lasgun = 1, // It's a really, really shit gun. Why not.
 	/obj/item/clothing/head/face/custom/vg/russofurhat = 1,
 	/obj/item/clothing/suit/armor/face/defender = 1, // might not be the best idea, tbh. Let's see how it works out

@@ -1463,12 +1463,11 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "adp" = (
-/obj/item/storage/secure/safe/HoS{
-	pixel_x = 35
-	},
-/obj/structure/closet/secure_closet/hos,
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
+/obj/structure/closet/secure_closet/security/sec,
+/obj/effect/turf_decal/bot,
+/obj/item/clothing/under/face/custom/officeralt,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/main)
 "adq" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = -32
@@ -1517,6 +1516,32 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/port/fore)
+"adx" = (
+/obj/item/storage/secure/safe/HoS{
+	pixel_x = 35
+	},
+/obj/structure/closet/secure_closet/hos,
+/obj/item/clothing/under/face/custom/hosnavy,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
+"ady" = (
+/obj/structure/closet/secure_closet/warden,
+/obj/structure/cable,
+/obj/item/clothing/under/face/custom/wardenalt,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
+"adz" = (
+/obj/machinery/camera{
+	c_tag = "Clown Office";
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/clown,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/item/melee/unicycle,
+/turf/open/floor/plasteel,
+/area/hippie/clown)
 "adA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
@@ -1940,6 +1965,12 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aed" = (
+/obj/effect/landmark/blobstart,
+/obj/item/toy/beach_ball/holoball,
+/obj/item/toy/meme,
+/turf/open/floor/plating,
+/area/crew_quarters/bar)
 "aee" = (
 /obj/structure/cable,
 /obj/machinery/power/solar{
@@ -2615,6 +2646,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
+"afn" = (
+/obj/structure/closet/secure_closet/detective,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/clothing/under/face/custom/vicedetective,
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
 "afo" = (
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -3473,6 +3512,17 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
+"ahd" = (
+/obj/structure/closet/secure_closet/RD,
+/obj/machinery/button/door{
+	id = "rdoffice";
+	name = "Privacy Shutters";
+	pixel_y = -26;
+	req_access_txt = "47"
+	},
+/obj/item/clothing/suit/armor/face/hev_suit,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/hor)
 "ahe" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	icon_state = "vent_map_on-1";
@@ -3989,11 +4039,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig)
-"aih" = (
-/obj/structure/closet/secure_closet/warden,
-/obj/structure/cable,
-/turf/open/floor/plasteel/showroomfloor,
-/area/security/warden)
 "aii" = (
 /obj/structure/table,
 /obj/structure/cable,
@@ -13322,17 +13367,6 @@
 /obj/item/bedsheet/mime,
 /turf/open/floor/plasteel/dark,
 /area/hippie/mime)
-"aIj" = (
-/obj/machinery/camera{
-	c_tag = "Clown Office";
-	dir = 4
-	},
-/obj/structure/closet/secure_closet/clown,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hippie/clown)
 "aIk" = (
 /obj/machinery/light{
 	dir = 1
@@ -17392,11 +17426,6 @@
 	icon_state = "wood"
 	},
 /area/crew_quarters/bar)
-"aTi" = (
-/obj/effect/landmark/blobstart,
-/obj/item/toy/beach_ball/holoball,
-/turf/open/floor/plating,
-/area/crew_quarters/bar)
 "aTj" = (
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel/showroomfloor,
@@ -20942,13 +20971,6 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
-/area/security/detectives_office)
-"bdE" = (
-/obj/structure/closet/secure_closet/detective,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
 "bdF" = (
 /obj/machinery/computer/med_data,
@@ -35767,16 +35789,6 @@
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -29
-	},
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/heads/hor)
-"bRw" = (
-/obj/structure/closet/secure_closet/RD,
-/obj/machinery/button/door{
-	id = "rdoffice";
-	name = "Privacy Shutters";
-	pixel_y = -26;
-	req_access_txt = "47"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
@@ -86741,7 +86753,7 @@ aCY
 aEv
 aFB
 aGV
-aIj
+adz
 aJv
 aLb
 aMK
@@ -88040,7 +88052,7 @@ aUp
 aUp
 aUp
 bbT
-bdE
+afn
 bfm
 bfm
 bhC
@@ -93654,7 +93666,7 @@ abe
 agz
 ahc
 ahH
-aih
+ady
 aiP
 aji
 ajS
@@ -96987,8 +96999,8 @@ abq
 abP
 abN
 abN
-abN
-abN
+adp
+adp
 abq
 abq
 abq
@@ -98529,7 +98541,7 @@ yeg
 abU
 acm
 acR
-adp
+adx
 adW
 aeM
 afx
@@ -102939,7 +102951,7 @@ aNs
 aOK
 aQB
 aNo
-aTi
+aed
 aNt
 aWm
 aXL
@@ -112997,7 +113009,7 @@ bLQ
 jCN
 nvr
 bQh
-bRw
+ahd
 bFR
 bUa
 bUY
