@@ -179,7 +179,7 @@
 
 /obj/item/clothing/suit/armor/face/hev_suit
 	name = "H.E.V Suit"
-	desc = "A highly advanced Hazardous Environment suit, this is the Mk7 version. Able to efficiently protect the user from just about any danger that a true scientist in the field may encounter. Also has some moderate protection from lasers, bullets, and blunt objects, just incase an angry military force decides to attempt to stop the progression of SCIENCE!"
+	desc = "A highly advanced Hazardous Environment suit, this is the Mk7 version. Able to efficiently protect the user from just about any danger that a true scientist in the field may encounter. Also has some moderate protection from lasers, bullets, and blunt objects, just incase an angry military force decides to attempt to stop the progression of SCIENCE! Most models of HEV are space proof, but this one is not. You can thank whoever stole the helmet and it's mounting system."
 	icon_state = "hev"
 	item_state = "armor"
 	w_class = 4		//bulky item
