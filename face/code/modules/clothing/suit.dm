@@ -182,7 +182,7 @@
 	desc = "A highly advanced Hazardous Environment suit, this is the Mk7 version. Able to efficiently protect the user from just about any danger that a true scientist in the field may encounter. Also has some moderate protection from lasers, bullets, and blunt objects, just incase an angry military force decides to attempt to stop the progression of SCIENCE! Most models of HEV are space proof, but this one is not. You can thank whoever stole the helmet and it's mounting system."
 	icon_state = "hev"
 	item_state = "armor"
-	w_class = 4		//bulky item
+	w_class = WEIGHT_CLASS_BULKY		//bulky item
 	armor = list(melee = 40, bullet = 45, laser = 45, energy = 30, bomb = 90, bio = 100, rad = 90)
 
 /obj/item/clothing/suit/armor/face/hecu_armor
@@ -197,5 +197,5 @@
 	desc = "Anyone who wears this clearly isn't a casul."
 	icon_state = "giantdad"
 	item_state = "giantdad"
-	w_class = 4
+	w_class = WEIGHT_CLASS_HUGE
 	armor = list(melee = 40, bullet = 00, laser = 00, energy = 00, bomb = 00, bio = 0, rad = 0) // only protects against melee. a true giant dad would just roll out the way of anything else.
