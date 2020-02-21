@@ -191,3 +191,11 @@
 	icon_state = "hecuvest"
 	item_state = "hecuvest"
 	armor = list(melee = 40, bullet = 70, laser = 45, energy = 30, bomb = 60, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/armor/face/giantarmor
+	name = "Giant's Armor"
+	desc = "Anyone who wears this clearly isn't a casul."
+	icon_state = "giantdad"
+	item_state = "giantdad"
+	w_class = 4
+	armor = list(melee = 40, bullet = 00, laser = 00, energy = 00, bomb = 00, bio = 0, rad = 0) // only protects against melee. a true giant dad would just roll out the way of anything else.

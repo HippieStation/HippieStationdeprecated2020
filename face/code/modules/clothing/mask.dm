@@ -33,3 +33,8 @@
 	flags_inv = HIDEFACIALHAIR|HIDEFACE
 	flags_cover = MASKCOVERSMOUTH
 
+/obj/item/clothing/mask/gas/face/custom/father
+	name = "Fathermask"
+	desc = "There's a tag left on it. It reads, 'WOT R U FAGIT' "
+	icon_state = "fathermask"
+	item_state = "fathermask"

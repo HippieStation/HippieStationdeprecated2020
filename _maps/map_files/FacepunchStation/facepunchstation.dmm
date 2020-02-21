@@ -1859,6 +1859,7 @@
 	dir = 5
 	},
 /obj/structure/cable,
+/obj/structure/bed/dogbed,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "adT" = (
@@ -1874,6 +1875,7 @@
 	icon_state = "pipe11-1";
 	dir = 8
 	},
+/mob/living/simple_animal/pet/dog/corgi/Barney,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "adU" = (
@@ -4039,6 +4041,20 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig)
+"aih" = (
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/commiespy";
+	dir = 1;
+	name = "Stronk Russian APC";
+	pixel_y = 24
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/vending/face/sovietvend,
+/turf/open/floor/plasteel/dark,
+/area/maintenance/commiespy)
 "aii" = (
 /obj/structure/table,
 /obj/structure/cable,
@@ -4329,6 +4345,14 @@
 /obj/structure/bodycontainer/morgue,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"aiM" = (
+/obj/item/airlock_painter,
+/obj/structure/lattice,
+/obj/structure/closet,
+/obj/item/clothing/mask/gas/face/custom/father,
+/obj/item/clothing/suit/armor/face/giantarmor,
+/turf/open/space,
+/area/space/nearstation)
 "aiN" = (
 /obj/structure/bed,
 /obj/item/clothing/suit/straight_jacket,
@@ -5030,23 +5054,6 @@
 	pixel_y = 25;
 	prison_radio = 1
 	},
-/turf/open/floor/plasteel/dark,
-/area/maintenance/commiespy)
-"aki" = (
-/obj/structure/rack,
-/obj/item/clothing/head/ushanka,
-/obj/item/clothing/shoes/jackboots,
-/obj/item/clothing/under/soviet,
-/obj/machinery/power/apc{
-	areastring = "/area/maintenance/commiespy";
-	dir = 1;
-	name = "Stronk Russian APC";
-	pixel_y = 24
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/commiespy)
 "akj" = (
@@ -9845,12 +9852,6 @@
 /obj/item/reagent_containers/blood/random,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"axX" = (
-/obj/item/airlock_painter,
-/obj/structure/lattice,
-/obj/structure/closet,
-/turf/open/space,
-/area/space/nearstation)
 "axY" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -81348,7 +81349,7 @@ ali
 qmT
 ako
 aaM
-axX
+aiM
 aai
 ako
 uIT
@@ -110888,7 +110889,7 @@ aad
 ahy
 aaa
 ajz
-aki
+aih
 akX
 alN
 amH

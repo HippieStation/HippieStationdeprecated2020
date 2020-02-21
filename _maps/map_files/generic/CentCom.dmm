@@ -8279,9 +8279,6 @@
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "sj" = (
-/obj/structure/toilet{
-	dir = 8
-	},
 /obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
@@ -8290,6 +8287,9 @@
 	icon_state = "right";
 	dir = 8;
 	opacity = 1
+	},
+/obj/structure/toilet{
+	dir = 8
 	},
 /turf/open/floor/plasteel/freezer{
 	dir = 2
@@ -8762,11 +8762,6 @@
 /turf/open/floor/holofloor/carpet,
 /area/holodeck/rec_center/photobooth)
 "tm" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "tn" = (
@@ -12343,6 +12338,21 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/xeno,
 /turf/open/floor/grass,
 /area/wizard_station)
+"Bj" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/face/syndicate,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
+"Bk" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "Bo" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -37203,7 +37213,7 @@ pZ
 pZ
 pZ
 pZ
-pZ
+Bj
 ng
 ng
 ng
@@ -37714,7 +37724,7 @@ ng
 ng
 rh
 ng
-ng
+pZ
 tm
 pZ
 wp
@@ -37970,11 +37980,11 @@ ng
 ng
 qN
 ri
-Wj
 ng
-nz
-uJ
-nz
+ng
+pZ
+pZ
+Bk
 ng
 xH
 xG
@@ -38227,10 +38237,10 @@ ng
 qO
 OA
 ri
-sj
+Wj
 ng
 nz
-ll
+uJ
 nz
 ng
 xI
@@ -38484,7 +38494,7 @@ nz
 pY
 qP
 rj
-ng
+sj
 ng
 nz
 ll
