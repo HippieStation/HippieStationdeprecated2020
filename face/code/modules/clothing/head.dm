@@ -39,7 +39,7 @@
 
 /obj/item/clothing/head/face/custom/krieg
 	name = "Krieg helmet"
-	desc = "Patroling the Death World almost makes you wish for an extermantus."
+	desc = "Patrolling the Death World almost makes you wish for an extermantus."
 	icon_state = "krieghelmet"
 	item_state = "krieghelmet"
 	armor = list(melee = 40, bullet = 30, laser = 40, energy = 15, bomb = 35, bio = 50, rad = 20)
@@ -109,4 +109,4 @@
 	desc = "A combat helmet made to withstand anything thrown at the HECU Marines."
 	icon_state = "jojihelm2"
 	item_state = "jojihelm2"
-	armor = list(melee = 35, bullet = 35, laser = 30, energy = 25, bomb = 30, bio = 0, rad = 0)
+	armor = list(melee = 35, bullet = 35, laser = 30, energy = 25, bomb = 30, bio = 50, rad = 50) // buffed because  they're operating in hazardous enviroments, they probably should have some sort of protection against said hazardous enviroments.
