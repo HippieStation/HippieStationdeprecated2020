@@ -71,7 +71,7 @@
 /datum/reagent/toxin/mutagen
 	special_traits = list(SPECIAL_TRAIT_METALLIC, SPECIAL_TRAIT_RADIOACTIVE)
 
-/datum/reagent/radium
+/datum/reagent/uranium/radium
 	special_traits = list(SPECIAL_TRAIT_RADIOACTIVE)
 
 /datum/reagent/toxin/radgoop

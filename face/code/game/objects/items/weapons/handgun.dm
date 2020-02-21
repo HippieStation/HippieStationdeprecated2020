@@ -1,7 +1,7 @@
 // A literal nerf. What did you expect?
 // Cannabailzing the balisong code here, it's a hacky way to do it but it'll do
 /obj/item/melee/face/nerf
-	name = "Kiddy Revolver"
+	name = "Broken Toy Revolver"
 	desc = " A old toy gun. Pretty useless, and the spring has broken many years ago. Still, It probably would scare someone if you used harm intent to their back!"
 	flags_1 = CONDUCT_1
 	force = 0
@@ -34,7 +34,7 @@
 	if(!affecting || U == user || U.stat == DEAD) //no chest???!!!!
 		return
 
-	U.visible_message("<span class='danger'>[user] has pointed their finger at [U] 's back, and they panic!</span>", \
+	U.visible_message("<span class='danger'>[user] has pointed some sort of gun at [U] 's back, and they panic!</span>", \
 						"<span class='userdanger'>[user] points something to your back!</span>")
 
 	src.add_fingerprint(user)

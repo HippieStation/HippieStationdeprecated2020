@@ -1,10 +1,10 @@
 /obj/item/projectile/beam/laser/lasgun
-	damage = 5
+	damage = 3.5 // sorry bud, but you spawn a bit too often and need a nerf.
 
 
 /obj/item/ammo_casing/energy/lasergun/lasgun
 	projectile_type = /obj/item/projectile/beam/laser/lasgun
-	e_cost = 25
+	e_cost = 10 // less power if it does no fucking damage
 	select_name = "kill"
 
 /obj/item/gun/energy/laser/retro/face/custom/lasgun

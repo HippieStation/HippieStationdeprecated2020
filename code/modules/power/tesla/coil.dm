@@ -96,7 +96,7 @@
 		addtimer(CALLBACK(src, .proc/reset_shocked), 10)
 		tesla_buckle_check(power)
 	else
-		..()
+		. = ..()
 
 /obj/machinery/power/tesla_coil/proc/zap()
 	if((last_zap + zap_cooldown) > world.time || !powernet)
@@ -134,7 +134,7 @@
 		addtimer(CALLBACK(src, .proc/reset_shocked), 10)
 		tesla_buckle_check(power)
 	else
-		..()
+		. = ..()
 
 /obj/machinery/power/tesla_coil/research/default_unfasten_wrench(mob/user, obj/item/wrench/W, time = 20)
 	. = ..()
@@ -190,4 +190,4 @@
 		flick("grounding_rodhit", src)
 		tesla_buckle_check(power)
 	else
-		..()
+		. = ..()

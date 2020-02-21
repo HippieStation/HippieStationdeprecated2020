@@ -165,10 +165,10 @@
 
 /obj/item/clothing/suit/armor/face/defender
 	name = "Defender MK2 Body Armor"
-	desc = "A New-Russia combat armor vest with a flat-green camoflauge. It uses ceramic plates to grant the wearer extremely effective protection against ballistic weaponry and moderate protection from explosions."
+	desc = "A New-Russia combat armor vest with a flat-green camoflauge. It uses ceramic plates to grant the wearer extremely effective protection against ballistic weaponry and moderate protection from explosions. The cloth is made of old cloth with a low melting point, so it probably won't be too good against laser or fires."
 	icon_state = "defender"
 	item_state = "defender"
-	armor = list(melee = 35, bullet = 80, laser = 20, energy = 15, bomb = 45, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 60, laser = 10, energy = 10, bomb = 45, bio = 0, rad = 0) // bigger nerf since it spawns a bit too often. still pretty good against guns
 
 /obj/item/clothing/suit/armor/face/Ionpmc
 	name = "MK48 Heavy Combat Armor"
@@ -179,7 +179,7 @@
 
 /obj/item/clothing/suit/armor/face/hev_suit
 	name = "H.E.V Suit"
-	desc = "A highly advanced Hazardous Environment suit, this is the Mk7 version. Able to efficiently protect the user from just about any danger that a true scientist in the field may encounter. Also has some moderate protection from lasers, bullets, and blunt objects, just incase an angry military force decides to attempt to stop the progression of SCIENCE!"
+	desc = "A highly advanced Hazardous Environment suit, this is the Mk7 version. Able to efficiently protect the user from just about any danger that a true scientist in the field may encounter. Also has some moderate protection from lasers, bullets, and blunt objects, just incase an angry military force decides to attempt to stop the progression of SCIENCE! Most models of HEV are space proof, but this one is not. You can thank whoever stole the helmet and it's mounting system."
 	icon_state = "hev"
 	item_state = "armor"
 	w_class = 4		//bulky item
