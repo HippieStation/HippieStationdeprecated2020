@@ -42674,7 +42674,7 @@
 	},
 /area/maintenance/strangeroom)
 "clm" = (
-/obj/machinery/telecomms/message_server,
+/obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "cln" = (
