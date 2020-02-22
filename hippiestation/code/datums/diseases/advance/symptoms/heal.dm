@@ -199,24 +199,28 @@
 	var/temp_rate = 4
 
 /datum/symptom/heal/heatresistance/Heal(mob/living/carbon/M, datum/disease/advance/A)
-	var/heal_amt = 4 * power
+	var/heal_amt = 0 //set the heal amount to 0. We declared the variable so that we can reference later.
 
 	var/list/parts = M.get_damaged_bodyparts(1,1) //1,1 because it needs inputs.
 
 	if(M.fire_stacks > 0)
-		power = power + (M.fire_stacks*0.75)
+		heal_amt = 1.5 * (power + (M.fire_stacks*0.75)) //Now we give the var heal_amt an actual value.
 	else
-		power = initial(power)
+		power = initial(power)//if the mob is not on fire, heal amt stays at 0.
 
 	if(M.bodytemperature > BODYTEMP_NORMAL)	//Shamelessly stolen from plasma fixation, whew lad
 		M.adjust_bodytemperature(-20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,BODYTEMP_NORMAL)
 	else if(M.bodytemperature < (BODYTEMP_NORMAL + 1))
 		M.adjust_bodytemperature(20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,0,BODYTEMP_NORMAL)
 	for(var/obj/item/bodypart/L in parts)
-		if(L.heal_damage(0, heal_amt/parts.len))
+	if(prob(5))
+		to_chat(M, "<span class='notice'>The pain from your wounds fades rapidly.</span>") //this is where healing takes place
+	for(var/obj/item/bodypart/L in parts)
+		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len, null, BODYPART_ORGANIC))
 			M.update_damage_overlays()
+	return 1
 
-	return TRUE
+
 
 /datum/symptom/heal/dna
 	name = "Deoxyribonucleic Acid Restoration"
