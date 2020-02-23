@@ -3598,6 +3598,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
+/obj/effect/landmark/start/vice_officer,
 /turf/open/floor/plasteel,
 /area/security/main)
 "ahp" = (
@@ -3617,6 +3618,7 @@
 	dir = 4;
 	sortType = 8
 	},
+/obj/effect/landmark/start/vice_officer,
 /turf/open/floor/plasteel,
 /area/security/main)
 "ahr" = (
