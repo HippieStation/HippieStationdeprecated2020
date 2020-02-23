@@ -53765,11 +53765,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
-"gkX" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space,
-/area/solar/port/fore)
 "glI" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -56316,6 +56311,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"kzP" = (
+/obj/effect/landmark/start/vice_officer,
+/turf/open/floor/plasteel,
+/area/security/main)
 "kAD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -57635,6 +57634,18 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"mKR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 5
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "mKZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -57904,18 +57915,6 @@
 	name = "floor"
 	},
 /area/engine/port_engineering)
-"nfM" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 5
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "ngj" = (
 /obj/structure/chair,
 /turf/open/floor/plating,
@@ -58545,6 +58544,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"ooY" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start/vice_officer,
+/turf/open/floor/plasteel,
+/area/security/main)
 "opg" = (
 /obj/structure/table,
 /obj/effect/turf_decal/stripes/line,
@@ -60463,6 +60467,11 @@
 /obj/structure/sign/poster/official/dont_panic,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"rJD" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/open/space,
+/area/solar/starboard/fore)
 "rKd" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -60661,11 +60670,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"sbF" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space,
-/area/solar/starboard/fore)
 "sdz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -61683,6 +61687,11 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/starboard/aft)
+"tKh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "tLL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -62340,11 +62349,6 @@
 /obj/effect/landmark/start/station_engineer,
 /turf/open/floor/plating,
 /area/engine/port_engineering)
-"uTI" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/turf/open/floor/plasteel,
-/area/security/prison)
 "uTS" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	icon_state = "manifold-1";
@@ -64213,6 +64217,11 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"xUB" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/open/space,
+/area/solar/port/fore)
 "xUX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -79154,15 +79163,15 @@ aaa
 abp
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aaX
@@ -79411,15 +79420,15 @@ aaa
 abp
 aai
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aai
 aai
@@ -79668,15 +79677,15 @@ aaa
 abp
 aaa
 aee
-gkX
+xUB
 aee
 aai
 aee
-gkX
+xUB
 aee
 aai
 aee
-gkX
+xUB
 aee
 aaa
 aai
@@ -79925,15 +79934,15 @@ aaa
 aai
 aai
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aai
 aai
@@ -80182,15 +80191,15 @@ aaX
 aai
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aai
@@ -80693,8 +80702,8 @@ aaa
 aaX
 aai
 abx
-gkX
-gkX
+xUB
+xUB
 adw
 adw
 adw
@@ -81210,15 +81219,15 @@ aaX
 aai
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aai
@@ -81467,15 +81476,15 @@ aaa
 aai
 aai
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aai
 aai
@@ -81724,15 +81733,15 @@ aaa
 aaX
 aaa
 aee
-gkX
+xUB
 aee
 aai
 aee
-gkX
+xUB
 aee
 aai
 aee
-gkX
+xUB
 aee
 aaa
 aai
@@ -81981,15 +81990,15 @@ aaa
 aaX
 aai
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aai
 aai
@@ -82238,15 +82247,15 @@ aaa
 aaX
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aee
-gkX
+xUB
 aee
 aaa
 aaX
@@ -90965,7 +90974,7 @@ aad
 aak
 aad
 aam
-uTI
+tKh
 aaA
 aav
 aav
@@ -90989,7 +90998,7 @@ ajp
 ajL
 akA
 alq
-nfM
+mKR
 anj
 aoe
 aoV
@@ -92017,7 +92026,7 @@ ajf
 ajP
 akA
 alu
-nfM
+mKR
 anm
 aoe
 aoY
@@ -96891,7 +96900,7 @@ adT
 yeg
 afu
 agj
-agj
+kzP
 aho
 ahU
 aix
@@ -97405,7 +97414,7 @@ adV
 yeg
 afw
 agl
-agl
+ooY
 ahq
 ahW
 aiz
@@ -104083,15 +104092,15 @@ aad
 aaX
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aaX
@@ -104340,15 +104349,15 @@ aad
 aaX
 aai
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aai
 aai
@@ -104597,15 +104606,15 @@ aaa
 aaX
 aaa
 aeS
-sbF
+rJD
 aeS
 aai
 aeS
-sbF
+rJD
 aeS
 aai
 aeS
-sbF
+rJD
 aeS
 aaa
 aai
@@ -104854,15 +104863,15 @@ aaa
 aai
 aai
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aai
 aai
@@ -105111,15 +105120,15 @@ aaX
 aai
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aai
@@ -105622,8 +105631,8 @@ aad
 aaX
 aai
 abV
-sbF
-sbF
+rJD
+rJD
 aea
 aea
 aea
@@ -106139,15 +106148,15 @@ aaX
 acp
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aai
@@ -106396,15 +106405,15 @@ aaa
 aai
 aai
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aai
 aai
@@ -106653,15 +106662,15 @@ aaa
 aaX
 aaa
 aeS
-sbF
+rJD
 aeS
 aai
 aeS
-sbF
+rJD
 aeS
 aai
 aeS
-sbF
+rJD
 aeS
 aaa
 aai
@@ -106910,15 +106919,15 @@ aaa
 aaX
 aai
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aai
 aai
@@ -107167,15 +107176,15 @@ aaa
 aaX
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aeS
-sbF
+rJD
 aeS
 aaa
 aaX
