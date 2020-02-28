@@ -1,0 +1,7 @@
+author: "Toxici11i"
+delete-after: True
+changes: 
+  - tweak: "173 can now see farther and has less retarded nightvision"
+  - bugfix: "173 no longer can be \"seen\" in darkness"
+  - bugfix: "173 can now attack simplemobs"
+  - tweak: "173 can also attack anything that has the living flag"
