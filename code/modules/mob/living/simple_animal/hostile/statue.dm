@@ -190,8 +190,10 @@
 /obj/effect/proc_holder/spell/aoe_turf/blindness/cast(list/targets,mob/user = usr)
 	for(var/mob/living/L in GLOB.alive_mob_list)
 		var/turf/T = get_turf(L.loc)
-		if(T && (T in targets))
+		if(T && (T in targets) && T != user)
 			L.blind_eyes(4)
+		else
+			return
 	return
 
 //Toggle Night Vision
