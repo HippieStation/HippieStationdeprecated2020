@@ -9157,12 +9157,6 @@
 "ug" = (
 /turf/open/floor/carpet,
 /area/centcom/evac)
-"uh" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/centcom/evac)
 "ui" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -9825,6 +9819,9 @@
 /area/syndicate_mothership/control)
 "vy" = (
 /obj/structure/window/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
 "vz" = (
@@ -10231,6 +10228,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/closet/crate/bin,
 /obj/structure/window/reinforced,
+/obj/effect/spawner/lootdrop/snowdin/weaponryheavy,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
 "wi" = (
@@ -10529,10 +10527,10 @@
 "wR" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/snowdin/dungeonheavy,
-/turf/open/floor/plasteel/white/telecomms,
+/turf/open/floor/plasteel/white,
 /area/centcom/evac)
 "wS" = (
-/turf/open/floor/plasteel/white/telecomms,
+/turf/open/floor/plasteel/white,
 /area/centcom/evac)
 "wT" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -10803,7 +10801,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/turf/open/floor/plasteel/white/telecomms,
+/turf/open/floor/plasteel/white,
 /area/centcom/evac)
 "xE" = (
 /obj/effect/turf_decal/tile/green{
@@ -11013,7 +11011,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plasteel/white/telecomms,
+/turf/open/floor/plasteel/white,
 /area/centcom/evac)
 "yh" = (
 /obj/structure/table/wood/bar,
@@ -11314,12 +11312,12 @@
 "yS" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/snowdin/dungeonlite,
-/turf/open/floor/plasteel/white/telecomms,
+/turf/open/floor/plasteel/white,
 /area/centcom/evac)
 "yT" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/snowdin/dungeonmid,
-/turf/open/floor/plasteel/white/telecomms,
+/turf/open/floor/plasteel/white,
 /area/centcom/evac)
 "yU" = (
 /obj/machinery/door/firedoor,
@@ -11357,7 +11355,7 @@
 "yW" = (
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/snowdin/weaponrylite,
-/turf/open/floor/plasteel/white/telecomms,
+/turf/open/floor/plasteel/white,
 /area/centcom/evac)
 "yX" = (
 /obj/structure/chair/stool,
@@ -67275,7 +67273,7 @@ iC
 kh
 io
 qz
-uh
+ug
 uI
 sO
 tT
