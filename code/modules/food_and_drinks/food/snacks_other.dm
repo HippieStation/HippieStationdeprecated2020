@@ -179,13 +179,14 @@
 	foodtype = MEAT | GRAIN
 
 /obj/item/reagent_containers/food/snacks/beans
-	name = "tin of beans"
+	name = "can of beans"
 	desc = "Musical fruit in a slightly less musical container."
 	icon_state = "beans"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	filling_color = "#B22222"
 	tastes = list("beans" = 1)
+	throwforce = 20 // YOU JUST OPENED UP A GREAT BIG CAN OF WHOOP-ASS
 	foodtype = VEGETABLES
 
 /obj/item/reagent_containers/food/snacks/spidereggs
