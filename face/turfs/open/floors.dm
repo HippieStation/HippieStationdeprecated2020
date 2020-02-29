@@ -40,6 +40,13 @@
 /turf/open/floor/plasteel/facepunch/security/full
 	icon_state = "secfull"
 
+//FP Lavaland outdoor plating
+
+/turf/open/floor/plating/airless/lavaland
+	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+	planetary_atmos = TRUE
+	baseturfs = /turf/open/lava/smooth/lava_land_surface
+
 //facepunch-specific mineral turfs
 
 /turf/closed/mineral/random/low_chance/volcanic
