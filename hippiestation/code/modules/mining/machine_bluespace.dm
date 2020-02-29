@@ -12,6 +12,15 @@
 		/obj/item/stack/sheet/mineral/uranium = 1)
 	needs_anchored = FALSE
 
+/datum/techweb_node/bluemining
+	id = "bluemining"
+	display_name = "Bluespace Mining Technologies"
+	description = "Through the power of Bluespace-Assisted A.S.S Compression it is possible to mine resources."
+	prereq_ids = list("practical_bluespace")
+	design_ids = list("bluemine")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	export_price = 1000
+
 /datum/design/bluemine
 	name = "Bluespace Mining"
 	desc = "Through the joint effort of Bluespace-A.S.S Technologies, It is now possible to mine a trickle of resources via Bluespace Magic..."
