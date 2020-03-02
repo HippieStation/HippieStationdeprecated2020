@@ -210,3 +210,7 @@
 
 /area/shuttle/caravan/freighter3
 	name = "Tiny Freighter"
+
+/area/shuttle/caravan/merchant
+	name = "Merchant Freighter"
+	requires_power = FALSE

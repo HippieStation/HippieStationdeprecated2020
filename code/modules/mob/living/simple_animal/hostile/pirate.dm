@@ -38,11 +38,11 @@
 	melee_damage_upper = 30
 	armour_penetration = 35
 	attacktext = "slashes"
-	attack_sound = 'sound/weapons/blade1.ogg'
+	attack_sound = 'face/sound/weapons/blade1.ogg'
 	var/obj/effect/light_emitter/red_energy_sword/sord
 
 	do_footstep = TRUE
- 
+
 /mob/living/simple_animal/hostile/pirate/melee/space
 	name = "Space Pirate Swashbuckler"
 	icon_state = "piratespace"

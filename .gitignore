@@ -212,4 +212,13 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 
 #Text to speech
 /hippiestation/tools/tts_generator/*
+<<<<<<< HEAD
+
+#PDN DMI FileType
+tools/Paint.NetDMIPlugin/.vs/**
+tools/Paint.NetDMIPlugin/bin/**
+tools/Paint.NetDMIPlugin/obj/**
+tools/Paint.NetDMIPlugin/Paint.NetDMIPlugin.csproj.user
+=======
 tts/
+>>>>>>> 9d6960d59236aeb316c5f290b1c9757e3fe90dac

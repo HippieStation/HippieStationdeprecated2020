@@ -204,7 +204,7 @@
 	switch(damage_type)
 		if(BRUTE)
 			if(damage_amount)
-				playsound(src, 'sound/effects/grillehit.ogg', 80, 1)
+				playsound(src, 'face/sound/impacts/grillehitnew.ogg', 80, 1)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, 1)
 		if(BURN)

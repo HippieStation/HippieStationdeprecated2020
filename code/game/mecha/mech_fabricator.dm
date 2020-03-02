@@ -169,9 +169,6 @@
 	being_built = null
 
 	updateUsrDialog()
-
-	process_malfunction(1, (((1/time_coeff) ** 2) * 3)) // hippie -- scientist cremation -- Roboticists are goddamn wankers so I'll give them a 3% chance at low tier to an 18.75% chance at high tier
-
 	return TRUE
 
 /obj/machinery/mecha_part_fabricator/proc/update_queue_on_page()
@@ -448,17 +445,3 @@
 		return FALSE
 
 	return TRUE
-
-/obj/machinery/mecha_part_fabricator/maint
-	link_on_init = FALSE
-
-// hippie start -- percussive maintenance
-
-/obj/machinery/mecha_part_fabricator/attack_hand(mob/living/user)
-	if(user.mind && user.a_intent == INTENT_HARM && HAS_TRAIT(user.mind, TRAIT_BOOT_OF_LIFE))
-		maintain_percussively(user)
-		return TRUE
-	else
-		. = ..()
-
-// hippie end

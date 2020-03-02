@@ -52,7 +52,7 @@
 		force = 30
 		icon_state = "sword[item_color]"
 		w_class = WEIGHT_CLASS_BULKY
-		hitsound = 'sound/weapons/blade1.ogg'
+		hitsound = 'face/sound/weapons/blade1.ogg'
 		playsound(user, 'sound/weapons/saberon.ogg', 20, 1)
 		to_chat(user, "<span class='notice'>[src] is now active.</span>")
 	else

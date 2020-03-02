@@ -49,24 +49,24 @@ MULTIPLICATIVE_MOVESPEED /mob/living/simple_animal 1
 
 ## NAMES ###
 ## If uncommented this adds a random surname to a player's name if they only specify one name.
-#HUMANS_NEED_SURNAMES
+HUMANS_NEED_SURNAMES
 
 ## If uncommented, this forces all players to use random names !and appearances!.
 #FORCE_RANDOM_NAMES
 
 ## Unhash this to turn on automatic reopening of a player's job if they suicide at roundstart
-#REOPEN_ROUNDSTART_SUICIDE_ROLES
+REOPEN_ROUNDSTART_SUICIDE_ROLES
 
 ## Unhash to enable reopening of command level positions
-#REOPEN_ROUNDSTART_SUICIDE_ROLES_COMMAND_POSITIONS
+REOPEN_ROUNDSTART_SUICIDE_ROLES_COMMAND_POSITIONS
 
 ## Define the delay for roles to be reopened after the round starts in seconds.
 ## Has a minimum delay of 30 seconds, though it's suggested to keep over 1 min
 ## If undefined, the delay defaults to 4 minutes.
-#REOPEN_ROUNDSTART_SUICIDE_ROLES_DELAY 240
+REOPEN_ROUNDSTART_SUICIDE_ROLES_DELAY 240
 
 ## Unhash to enable a printed command report for reopened roles listing what roles were reopened.
-#REOPEN_ROUNDSTART_SUICIDE_ROLES_COMMAND_REPORT
+REOPEN_ROUNDSTART_SUICIDE_ROLES_COMMAND_REPORT
 
 
 ## ALERT LEVELS ###
@@ -89,14 +89,14 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 ## Set to 0 to disable that mode.
 
 PROBABILITY TRAITOR 5
-PROBABILITY TRAITORBRO 2
-PROBABILITY TRAITORCHAN 4
+PROBABILITY TRAITORBRO 5
+PROBABILITY TRAITORCHAN 2
 PROBABILITY INTERNAL_AFFAIRS 3
-PROBABILITY NUCLEAR 2
+PROBABILITY NUCLEAR 3
 PROBABILITY REVOLUTION 2
 PROBABILITY CULT 2
 PROBABILITY CHANGELING 2
-PROBABILITY WIZARD 4
+PROBABILITY WIZARD 3
 PROBABILITY KOTD 2
 PROBABILITY MONKEY 0
 PROBABILITY METEOR 0
@@ -122,10 +122,10 @@ CONTINUOUS TRAITORCHAN
 CONTINUOUS INTERNAL_AFFAIRS
 #CONTINUOUS NUCLEAR
 #CONTINUOUS REVOLUTION
-CONTINUOUS CULT
-CONTINUOUS CLOCKWORK_CULT
+#CONTINUOUS CULT
+#CONTINUOUS CLOCKWORK_CULT
 CONTINUOUS CHANGELING
-CONTINUOUS WIZARD
+#CONTINUOUS WIZARD
 CONTINUOUS KOTD
 #CONTINUOUS MONKEY
 CONTINUOUS HIVEMIND
@@ -164,28 +164,28 @@ MIDROUND_ANTAG WIZARD
 #MIN_POP TRAITORBRO 0
 #MAX_POP TRAITORBRO -1
 
-#MIN_POP TRAITORCHAN 15
+MIN_POP TRAITORCHAN 0
 #MAX_POP TRAITORCHAN -1
 
-#MIN_POP DOUBLE_AGENTS 25
+MIN_POP DOUBLE_AGENTS 10
 #MAX_POP DOUBLE_AGENTS -1
 
-#MIN_POP NUCLEAR 0
+MIN_POP NUCLEAR 16
 #MAX_POP NUCLEAR -1
 
-#MIN_POP REVOLUTION 20
+MIN_POP REVOLUTION 15
 #MAX_POP REVOLUTION -1
 
-#MIN_POP CULT 24
+MIN_POP CULT 15
 #MAX_POP CULT -1
 
-#MIN_POP CLOCKWORK_CULT 24
+MIN_POP CLOCKWORK_CULT 15
 #MAX_POP CLOCKWORK_CULT -1
 
-#MIN_POP CHANGELING 15
+#MIN_POP CHANGELING 12
 #MAX_POP CHANGELING -1
 
-#MIN_POP WIZARD 20
+#MIN_POP WIZARD 18
 #MAX_POP WIZARD -1
 
 #MIN_POP MONKEY 20
@@ -295,7 +295,7 @@ ALLOW_AI_MULTICAM
 #VIRTUAL_REALITY
 
 ## Uncomment to load one of the missions from awaymissionconfig.txt at roundstart.
-#ROUNDSTART_AWAY
+ROUNDSTART_AWAY
 
 ## How long the delay is before the Away Mission gate opens. Default is half an hour.
 ## 600 is one minute.
@@ -374,8 +374,8 @@ RANDOM_LAWS corporate
 #RANDOM_LAWS drone
 #RANDOM_LAWS liveandletlive
 #RANDOM_LAWS peacekeeper
-#RANDOM_LAWS reporter
-#RANDOM_LAWS hulkamania
+RANDOM_LAWS reporter
+RANDOM_LAWS hulkamania
 
 ## Bad idea laws. Probably shouldn't enable these
 #RANDOM_LAWS syndie
@@ -443,8 +443,8 @@ ROUNDSTART_RACES human
 
 ## Races that are strictly worse than humans that could probably be turned on without balance concerns
 ROUNDSTART_RACES lizard
-#ROUNDSTART_RACES fly
-#ROUNDSTART_RACES moth
+ROUNDSTART_RACES fly
+ROUNDSTART_RACES moth
 ROUNDSTART_RACES plasmaman
 #ROUNDSTART_RACES shadow
 
@@ -486,7 +486,7 @@ OVERFLOW_CAP -1
 
 ## Starlight for exterior walls and breaches. Uncomment for starlight!
 ## This is disabled by default to make testing quicker, should be enabled on production servers or testing servers messing with lighting
-#STARLIGHT
+STARLIGHT
 
 ## Uncomment to bring back old grey suit assistants instead of the now default rainbow colored assistants.
 #GREY_ASSISTANTS
@@ -532,7 +532,7 @@ BOMBCAP 20
 LAVALAND_BUDGET 60
 
 ## Space Ruin Budged
-Space_Budget 16
+Space_Budget 30
 
 ## Time in ds from when a player latejoins till the arrival shuttle docks at the station
 ## Must be at least 30. At least 55 recommended to be visually/aurally appropriate
@@ -546,10 +546,10 @@ ARRIVALS_SHUTTLE_DOCK_WINDOW 55
 
 ## How many wirechewing rodents you want to spawn on exposed maintenane wires at the start of the round. You may wish to set this to 0 if you're testing powernets.
 
-MICE_ROUNDSTART 10
+MICE_ROUNDSTART 2
 
 ## If the percentage of players alive (doesn't count conversions) drops below this threshold the emergency shuttle will be forcefully called (provided it can be)
-#EMERGENCY_SHUTTLE_AUTOCALL_THRESHOLD 0.2
+EMERGENCY_SHUTTLE_AUTOCALL_THRESHOLD 0.4
 
 ## Determines if players are allowed to print integrated circuits, uncomment to allow.
 #IC_PRINTING
@@ -559,7 +559,7 @@ MICE_ROUNDSTART 10
 ROUNDSTART_TRAITS
 
 ## Uncomment to disable human moods.
-#DISABLE_HUMAN_MOOD
+DISABLE_HUMAN_MOOD
 
 ## Enable night shifts ##
 #ENABLE_NIGHT_SHIFTS
@@ -574,4 +574,4 @@ ROUNDSTART_TRAITS
 MONKEYCAP 64
 
 ## Enable the capitalist agenda on your server.
-ECONOMY
+#ECONOMY

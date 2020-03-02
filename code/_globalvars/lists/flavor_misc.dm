@@ -79,6 +79,7 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 	"Too Deep",
 	"Triumvirate",
 	"Triumvirate-M",
+	"Facepunch", // I know this is going to bite me in the ass sooner or later, but fuck it.
 	"Weird"))
 
 /proc/resolve_ai_icon(input)

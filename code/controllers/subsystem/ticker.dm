@@ -18,7 +18,8 @@ SUBSYSTEM_DEF(ticker)
 	var/datum/game_mode/mode = null
 
 	var/login_music							//music played in pregame lobby
-	var/round_end_sound						//music/jingle played when the world reboots
+	var/round_end_sound					//music/jingle played when the world reboots
+	var/round_starting_sound
 	var/round_end_sound_sent = TRUE			//If all clients have loaded it
 
 	var/list/datum/mind/minds = list()		//The characters in the game. Used for objective tracking.
@@ -199,7 +200,9 @@ SUBSYSTEM_DEF(ticker)
 				toggle_ooc(TRUE) // Turn it on
 				toggle_dooc(TRUE)
 				declare_completion(force_ending)
-				Master.SetRunLevel(RUNLEVEL_POSTGAME)
+//				Master.SetRunLevel(RUNLEVEL_POSTGAME)
+//				for(var/obj/effect/forcefield/centcom_dock/field in GLOB.centcom_forcefields)
+//					qdel(field)
 
 
 /datum/controller/subsystem/ticker/proc/setup()
@@ -287,7 +290,17 @@ SUBSYSTEM_DEF(ticker)
 	SSdbcore.SetRoundStart()
 
 	to_chat(world, "<span class='notice'><B>Welcome to [station_name()], enjoy your stay!</B></span>")
-	SEND_SOUND(world, sound(pick('hippiestation/sound/AI/welcome1.ogg', 'hippiestation/sound/AI/welcome2.ogg'))) // hippie -- really should not be touching ticker, but it must be done.
+	if(!round_starting_sound)
+		round_starting_sound = pick(\
+		'sound/ai/welcome.ogg',
+		'face/sound/roundstart/n313.ogg',
+		'face/sound/roundstart/halo.ogg',
+		'face/sound/roundstart/goagain.ogg',
+		'face/sound/roundstart/cs.ogg',
+		'face/sound/roundstart/gameboy.ogg',
+		'face/sound/roundstart/ts2spawn.ogg'\
+		)
+	SEND_SOUND(world, sound(round_starting_sound)) // This will probably cause conflict issues, but... I can't see a better way to change this? Hooray hardcoding.
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)

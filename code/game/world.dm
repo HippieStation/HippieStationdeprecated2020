@@ -280,7 +280,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 		s += "<br>Mode: <b>STARTING</b>"
 	if (hostedby)
 		s += "<br>Hosted by <b>[hostedby]</b>."
-	s += "<img src=\"https://i.imgur.com/xfWVypg.png\">" //Banner image
+	s += "<img src=\"https://i.imgur.com/Yonhjb1.png\">" //Banner image
 
 	var/players = GLOB.clients.len
 

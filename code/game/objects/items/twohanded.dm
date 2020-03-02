@@ -383,7 +383,7 @@
 	if(wielded)
 		sharpness = IS_SHARP
 		w_class = w_class_on
-		hitsound = 'sound/weapons/blade1.ogg'
+		hitsound = 'face/sound/weapons/blade1.ogg'
 		START_PROCESSING(SSobj, src)
 		set_light(brightness_on)
 

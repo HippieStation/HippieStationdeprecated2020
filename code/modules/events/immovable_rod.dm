@@ -149,7 +149,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	if(ishuman(user))
 		var/mob/living/carbon/human/U = user
 		if(U.job in list("Research Director"))
-			playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
+			playsound(src, 'face/sound/impacts/meteorimpact.ogg', 100, 1)
 			for(var/mob/M in urange(8, src))
 				if(!M.stat)
 					shake_camera(M, 2, 3)

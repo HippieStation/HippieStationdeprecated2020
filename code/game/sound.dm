@@ -136,7 +136,7 @@
 			if ("pageturn")
 				soundin = pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
 			if ("ricochet")
-				soundin = pick(	'sound/weapons/effects/ric1.ogg', 'sound/weapons/effects/ric2.ogg','sound/weapons/effects/ric3.ogg','sound/weapons/effects/ric4.ogg','sound/weapons/effects/ric5.ogg')
+				soundin = pick(	'face/sound/impacts/ricochet1.ogg', 'face/sound/impacts/ricochet2.ogg','face/sound/impacts/ricochet3.ogg')
 			if ("terminal_type")
 				soundin = pick('sound/machines/terminal_button01.ogg', 'sound/machines/terminal_button02.ogg', 'sound/machines/terminal_button03.ogg', \
 								'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg', \
@@ -170,5 +170,9 @@
 			/* hippie end */
 			if("goose")
 				soundin = pick('sound/creatures/goose1.ogg', 'sound/creatures/goose2.ogg', 'sound/creatures/goose3.ogg', 'sound/creatures/goose4.ogg')
+			/* Facepunch start -- Custom sounds */
+			if ("bullet_impact_flesh")
+				soundin = pick('face/sound/impacts/bullethitmob1.ogg', 'face/sound/impacts/bullethitmob2.ogg')
+			/*Facepunch end */
 	return soundin
 

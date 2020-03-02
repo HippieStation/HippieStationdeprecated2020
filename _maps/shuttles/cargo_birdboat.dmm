@@ -68,6 +68,7 @@
 	id = "cargoshuttle";
 	name = "cargo shuttle conveyor belt"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "n" = (
@@ -78,6 +79,7 @@
 	name = "Supply Shuttle Airlock";
 	req_access_txt = "31"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "p" = (
@@ -111,6 +113,7 @@
 	dwidth = 3;
 	width = 10
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "r" = (
@@ -123,6 +126,7 @@
 	id = "cargoshuttle";
 	name = "cargo shuttle conveyor belt"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "u" = (

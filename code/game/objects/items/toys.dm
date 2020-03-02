@@ -1023,7 +1023,7 @@
 
 /obj/item/toy/minimeteor/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(!..())
-		playsound(src, 'sound/effects/meteorimpact.ogg', 40, 1)
+		playsound(src, 'face/sound/impacts/meteorimpact.ogg', 40, 1)
 		for(var/mob/M in urange(10, src))
 			if(!M.stat && !isAI(M))
 				shake_camera(M, 3, 1)

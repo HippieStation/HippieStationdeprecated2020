@@ -215,7 +215,7 @@
 			return FALSE
 
 		if(prob(chance))
-			playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
+			playsound(src, 'face/sound/impacts/meteorimpact.ogg', 100, 1)
 			W.dismantle_wall(TRUE)
 
 		else

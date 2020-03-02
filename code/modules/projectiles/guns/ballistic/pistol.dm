@@ -9,7 +9,7 @@
 	fire_delay = 0
 	actions_types = list()
 	bolt_type = BOLT_TYPE_LOCKING
-	fire_sound = 'sound/weapons/gunshot.ogg'
+	fire_sound = 'face/sound/weapons/firearms/gunshot_10mm.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 80
 	rack_sound = 'sound/weapons/pistolrack.ogg'
@@ -31,6 +31,7 @@
 /obj/item/gun/ballistic/automatic/pistol/m1911
 	name = "\improper M1911"
 	desc = "A classic .45 handgun with a small magazine capacity."
+	fire_sound = 'face/sound/weapons/firearms/gunshot_45.ogg'
 	icon_state = "m1911"
 	w_class = WEIGHT_CLASS_NORMAL
 	mag_type = /obj/item/ammo_box/magazine/m45
@@ -42,6 +43,7 @@
 /obj/item/gun/ballistic/automatic/pistol/deagle
 	name = "\improper Desert Eagle"
 	desc = "A robust .50 AE handgun."
+	fire_sound = 'face/sound/weapons/firearms/gunshot_generic_heavy.ogg'
 	icon_state = "deagle"
 	force = 14
 	mag_type = /obj/item/ammo_box/magazine/m50
@@ -71,6 +73,7 @@
 	name = "stechkin APS pistol"
 	desc = "The original Russian version of a widely used Syndicate sidearm. Uses 9mm ammo."
 	icon_state = "aps"
+	fire_sound = 'face/sound/weapons/firearms/gunshot_generic.ogg'
 	w_class = WEIGHT_CLASS_SMALL
 	mag_type = /obj/item/ammo_box/magazine/pistolm9mm
 	can_suppress = FALSE

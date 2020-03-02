@@ -487,7 +487,7 @@
 	uses--
 
 
-/obj/item/nullrod/monk_manual
+/obj/item/monk_manual // god fuck monks
 	name = "monk manual"
 	desc = "A small, black manual. Inside is the collective history of all Monk orders to ever exist."
 	icon = 'icons/obj/library.dmi'
@@ -495,7 +495,7 @@
 	force = 1
 	throwforce = 1
 
-/obj/item/nullrod/monk_manual/attack_self(mob/living/carbon/human/user)
+/obj/item/monk_manual/attack_self(mob/living/carbon/human/user)
 	if(!istype(user) || !user)
 		return
 	to_chat(user, "<span class='boldannounce'>You have become a Monk!</span>")
@@ -504,7 +504,7 @@
 	visible_message("<span class='warning'>You tear up [src] as described in the final pages.</span>")
 	qdel(src)
 
-/obj/item/monk_manual
+/obj/item/disciple_manual
 	name = "disciple monk manual"
 	desc = "A small, black manual. Inside is the collective history of all Monk orders to ever exist."
 	icon = 'icons/obj/library.dmi'

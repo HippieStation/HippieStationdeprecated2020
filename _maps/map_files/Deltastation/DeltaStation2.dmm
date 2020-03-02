@@ -32680,7 +32680,7 @@
 	melee_damage_lower = 20;
 	melee_damage_upper = 20;
 	name = "Lia";
-	random_color = FALSE
+	random_color = 0
 	},
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/heads/hos)
@@ -95490,8 +95490,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/delivery,
-/obj/machinery/mecha_part_fabricator/maint{
-	name = "forgotten exosuit fabricator"
+/obj/machinery/mecha_part_fabricator{
+	name = "forgotten exosuit fabricator";
+	req_access = null
 	},
 /turf/open/floor/plasteel,
 /area/science/research/abandoned)

@@ -11,7 +11,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
-	var/obj/item/gun/ballistic/minigun/gun
+	var/obj/item/gun/ballistic/minigun/gun = /obj/item/gun/ballistic/minigun
 	var/armed = 0 //whether the gun is attached, 0 is attached, 1 is the gun is wielded.
 	var/overheat = 0
 	var/overheat_max = 40
@@ -19,7 +19,8 @@
 
 /obj/item/minigunpack/Initialize()
 	. = ..()
-	gun = new(src)
+	if(gun)
+		gun = new gun(src)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/minigunpack/Destroy()
@@ -113,10 +114,11 @@
 	tac_reloads = FALSE
 	casing_ejector = FALSE
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
-	var/obj/item/minigunpack/ammo_pack
+	var/obj/item/minigunpack/ammo_pack = /obj/item/minigunpack
+	pickup_sound = 'face/sound/weapons/firearms/minigun_pickup.ogg'
 
 /obj/item/gun/ballistic/minigun/Initialize()
-	if(istype(loc, /obj/item/minigunpack)) //We should spawn inside an ammo pack so let's use that one.
+	if(istype(loc, /obj/item/minigunpack || /obj/item/minigunpack/shotgun)) //We should spawn inside an ammo pack so let's use that one.
 		ammo_pack = loc
 	else
 		return INITIALIZE_HINT_QDEL //No pack, no gun

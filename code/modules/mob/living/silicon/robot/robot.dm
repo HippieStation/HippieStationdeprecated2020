@@ -776,6 +776,7 @@
 
 /mob/living/silicon/robot/modules/standard
 	set_module = /obj/item/robot_module/standard
+	alternate_screams = list('face/sound/screams/silicon/standard1.ogg','face/sound/screams/silicon//standard2.ogg','face/sound/screams/silicon/standard3.ogg','face/sound/screams/silicon/standard4.ogg','face/sound/screams/silicon/standard5.ogg')
 
 /mob/living/silicon/robot/modules/medical
 	set_module = /obj/item/robot_module/medical
@@ -787,6 +788,7 @@
 
 /mob/living/silicon/robot/modules/security
 	set_module = /obj/item/robot_module/security
+
 	icon_state = "sec"
 
 /mob/living/silicon/robot/modules/clown

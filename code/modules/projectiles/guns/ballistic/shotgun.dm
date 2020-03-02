@@ -3,7 +3,7 @@
 	desc = "A traditional shotgun with wood furniture and a four-shell capacity underneath."
 	icon_state = "shotgun"
 	item_state = "shotgun"
-	fire_sound = 'sound/weapons/shotgunshot.ogg'
+	fire_sound = 'face/sound/weapons/firearms/gunshot_shotgun_pump.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 90
 	rack_sound = 'sound/weapons/shotgunpump.ogg'
@@ -57,6 +57,7 @@
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "combat shotgun"
 	desc = "A semi automatic shotgun with tactical furniture and a six-shell capacity underneath."
+	fire_sound = 'face/sound/weapons/firearms/gunshot_shotgun_auto.ogg'
 	icon_state = "cshotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
 	w_class = WEIGHT_CLASS_HUGE
@@ -116,6 +117,7 @@
 /obj/item/gun/ballistic/shotgun/bulldog
 	name = "\improper Bulldog Shotgun"
 	desc = "A semi-auto, mag-fed shotgun for combat in narrow corridors, nicknamed 'Bulldog' by boarding parties. Compatible only with specialized 8-round drum magazines."
+	fire_sound = 'face/sound/weapons/firearms/gunshot_shotgun_bulldog.ogg'
 	icon_state = "bulldog"
 	item_state = "bulldog"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -149,6 +151,7 @@
 /obj/item/gun/ballistic/shotgun/doublebarrel
 	name = "double-barreled shotgun"
 	desc = "A true classic."
+	fire_sound = 'face/sound/weapons/firearms/gunshot_shotgun_db.ogg'
 	icon_state = "dshotgun"
 	item_state = "shotgun"
 	w_class = WEIGHT_CLASS_BULKY

@@ -197,7 +197,7 @@
 		roundstart_template = SSmapping.shuttle_templates[sid]
 		if(!roundstart_template)
 			CRASH("json_key:[json_key] value \[[sid]\] resulted in a null shuttle template for [src]")
-	else if(roundstart_template) // passed a PATH
+	else if(roundstart_template) // passed a PATH | Future reference: Example for what this var should look like if you use it: /datum/map_template/shuttle/emergency/backup
 		var/sid = "[initial(roundstart_template.port_id)]_[initial(roundstart_template.suffix)]"
 
 		roundstart_template = SSmapping.shuttle_templates[sid]

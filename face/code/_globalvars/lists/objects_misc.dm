@@ -1,0 +1,1 @@
+GLOBAL_LIST_EMPTY(centcom_forcefields)			//Forcefield subtype specific to CentCom, obj/effect/forcefield/centcom_dock

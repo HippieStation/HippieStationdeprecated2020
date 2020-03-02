@@ -3,7 +3,7 @@
 	desc = "A suspicious revolver. Uses .357 ammo." //usually used by syndicates
 	icon_state = "revolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder
-	fire_sound = 'sound/weapons/revolver357shot.ogg'
+	fire_sound = 'face/sound/weapons/firearms/gunshot_357.ogg'
 	load_sound = 'sound/weapons/revolverload.ogg'
 	eject_sound = 'sound/weapons/revolverempty.ogg'
 	vary_fire_sound = FALSE
@@ -75,7 +75,7 @@
 /obj/item/gun/ballistic/revolver/detective
 	name = "\improper Colt Detective Special"
 	desc = "A classic, if not outdated, law enforcement firearm. Uses .38-special rounds."
-	fire_sound = 'sound/weapons/revolver38shot.ogg'
+	fire_sound = 'face/sound/weapons/firearms/gunshot_38_alt.ogg'
 	icon_state = "detective"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38
 	unique_reskin = list("Default" = "detective",

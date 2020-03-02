@@ -286,11 +286,26 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
 /area/shuttle/mining)
+"x" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "Mining Shuttle Airlock"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/shuttle/mining)
 
 (1,1,1) = {"
 a
-a
 b
+x
 i
 b
 a
@@ -325,8 +340,8 @@ a
 "}
 (5,1,1) = {"
 a
-a
 b
+m
 m
 b
 a

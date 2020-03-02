@@ -1,15 +1,9 @@
-## HippieStation 13 [![GitHub forks](https://img.shields.io/github/forks/HippieStation/HippieStation.svg?style=social&label=Fork)](https://github.com/HippieStation/HippieStation#fork-destination-box)
+## FPStation
 
-**Website:** http://www.hippiestation.com <BR>
-**Code:** https://github.com/hippiestation/hippiestation <BR>
-**Wiki** https://wiki.hippiestation.com/index.php?title=Main_Page <BR>
-**Discord:** [Request access here.](https://hippiestation.com/threads/discord-invites.6055) <BR>
+[![Build Status](https://travis-ci.org/brushtool/fpstation.svg?branch=master)](https://travis-ci.org/brushtool/fpstation)[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/brushtool/fpstation.svg)](http://isitmaintained.com/project/brushtool/fpstation "Average time to resolve an issue")[![Percentage of issues still open](http://isitmaintained.com/badge/open/brushtool/fpstation.svg)](http://isitmaintained.com/project/brushtool/fpstation "Percentage of issues still open")
+[![forthebadge](https://forthebadge.com/images/badges/compatibility-club-penguin.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://forthebadge.com) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
-[![Build Status](https://travis-ci.org/HippieStation/HippieStation.png)](https://travis-ci.org/HippieStation/HippieStation/) [![Krihelimeter](http://www.krihelinator.xyz/badge/HippieStation/HippieStation)](http://www.krihelinator.xyz/repositories/HippieStation/HippieStation)
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/HippieStation/HippieStation.svg)](https://isitmaintained.com/project/HippieStation/HippieStation "Percentage of issues still open") [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/HippieStation/HippieStation.svg)](https://isitmaintained.com/project/HippieStation/HippieStation "Average time to resolve an issue") ![Coverage](https://img.shields.io/badge/coverage---777%25-red.svg)
-[![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://forthebadge.com) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
-
-## ABOUT
+## ABOUT (HippieStation)
 
 This is the Github page for the HippieStation codebase, used on the Space Station 13 server. This codebase is built off the work of many different servers, primarily that of /tg/station 13.
 Because of this, the repository inherits /tg/station's licensing, among other things.
@@ -102,11 +96,10 @@ the new version.
 ## MAPS
 Hippie Station currently comes equipped with five maps.
 * [Hippie BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
-* [BoxStation](https://tgstation13.org/wiki/Boxstation)
+* [BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
 * [MetaStation](https://tgstation13.org/wiki/MetaStation)
 * [DeltaStation](https://tgstation13.org/wiki/DeltaStation)
 * [PubbyStation](https://tgstation13.org/wiki/PubbyStation)
-* [DonutStation](https://tgstation13.org/wiki/Donutstation)
 
 
 All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.

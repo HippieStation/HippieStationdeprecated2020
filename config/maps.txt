@@ -13,10 +13,17 @@ Format:
 	votable (is this map votable)
 endmap
 
-map hippiestation
+map facepunchstation
 	default
 	#voteweight 1.5
 	votable
+endmap
+
+map calderastation
+endmap
+
+map hippiestation
+	#voteweight 1.5
 endmap
 
 map metalake
