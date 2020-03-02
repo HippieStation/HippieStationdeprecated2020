@@ -23,6 +23,6 @@ export NODE_VERSION=12
 export PHP_VERSION=5.6
 
 # SpacemanDMM git tag
-export SPACEMAN_DMM_VERSION=suite-1.2
+export SPACEMAN_DMM_VERSION=suite-1.3
 
 export QUICKWRITE_TAG=98b5183e3da5d14e59c38030a9b6824a615c8260

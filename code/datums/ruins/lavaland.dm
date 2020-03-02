@@ -1,5 +1,5 @@
 // Hey! Listen! Update \config\lavaruinblacklist.txt with your new ruins!
-
+// Some ruins will be commented out, simply uncomment them to have them reimplemented.
 /datum/map_template/ruin/lavaland
 	prefix = "_maps/RandomRuins/LavaRuins/"
 
@@ -7,12 +7,14 @@
 	cost = 5
 	allow_duplicates = FALSE
 
+/*
 /datum/map_template/ruin/lavaland/biodome/beach
 	name = "Biodome Beach"
 	id = "biodome-beach"
 	description = "Seemingly plucked from a tropical destination, this beach is calm and cool, with the salty waves roaring softly in the background. \
 	Comes with a rustic wooden bar and suicidal bartender."
 	suffix = "lavaland_biodome_beach.dmm"
+*/
 
 /datum/map_template/ruin/lavaland/biodome/winter
 	name = "Biodome Winter"
@@ -43,7 +45,16 @@
 	suffix = "lavaland_surface_seed_vault.dmm"
 	cost = 10
 	allow_duplicates = FALSE
-
+/*
+/datum/map_template/ruin/lavaland/dwarves
+	name = "Dwarven Settlement"
+	id = "dwarves"
+	description = "A settlement of dwarves from a strange faraway land."
+	suffix = "lavaland_surface_dwarves.dmm"
+	cost = 20
+	always_place = FALSE
+	allow_duplicates = FALSE
+*/
 /datum/map_template/ruin/lavaland/ash_walker
 	name = "Ash Walker Nest"
 	id = "ash-walker"
@@ -70,6 +81,7 @@
 	suffix = "lavaland_surface_golem_ship.dmm"
 	allow_duplicates = FALSE
 
+/*
 /datum/map_template/ruin/lavaland/animal_hospital
 	name = "Animal Hospital"
 	id = "animal-hospital"
@@ -77,6 +89,7 @@
 	cost = 5
 	suffix = "lavaland_surface_animal_hospital.dmm"
 	allow_duplicates = FALSE
+*/
 
 /datum/map_template/ruin/lavaland/sin
 	cost = 10
