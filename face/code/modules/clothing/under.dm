@@ -227,3 +227,10 @@
 	icon_state = "HECU"
 	item_state = "HECU"
 	armor = list(melee = 10, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 00, rad = 00, fire = 5, acid = 05)
+
+/obj/item/clothing/under/face/custom/debt
+	name = "Debt Collector's Uniform"
+	desc = "A extremely hated sight on all stations, Debt collectors wear these with pride. This one has been reinforced to help prevent any attacks from angry crew who just can't pay their bills on time."
+	icon_state = "BDU_PURPLE"
+	item_state = "BDU_PURPLE"
+	armor = list(melee = 30, bullet = 15, laser = 15,energy = 15, bomb = 15, bio = 00, rad = 00, fire = 5, acid = 00) // They're going to need this extra help.
