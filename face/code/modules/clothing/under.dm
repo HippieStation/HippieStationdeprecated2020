@@ -227,10 +227,16 @@
 	icon_state = "HECU"
 	item_state = "HECU"
 	armor = list(melee = 10, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 00, rad = 00, fire = 5, acid = 05)
-
+// getting rid of unused bdus by repurposing them ayy
 /obj/item/clothing/under/face/custom/debt
 	name = "Debt Collector's Uniform"
 	desc = "A extremely hated sight on all stations, Debt collectors wear these with pride. This one has been reinforced to help prevent any attacks from angry crew who just can't pay their bills on time."
 	icon_state = "BDU_PURPLE"
 	item_state = "BDU_PURPLE"
 	armor = list(melee = 30, bullet = 15, laser = 15,energy = 15, bomb = 15, bio = 00, rad = 00, fire = 5, acid = 00) // They're going to need this extra help.
+
+/obj/item/clothing/under/face/custom/pizza
+	name = "Pizza Delivery Uniform"
+	desc = "Dead or alive, They gotta keep that 30 minute or free pizza rule."
+	icon_state = "BDU_RED"
+	item_state = "BDU_RED"
