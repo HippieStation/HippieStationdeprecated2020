@@ -33,8 +33,17 @@
 	r_pocket = /obj/item/pda/heads
 	id = /obj/item/card/id/ert
 
-	backpack_contents = list(/obj/item/storage/box/survival_mining=1,\
-		/obj/item/bodybag/bluespace=3)
+/datum/outfit/ert/pizza // these guys only exist to be used to get ghosts back into the round, or to be thrown in the meat grinder. No equipment, No access, Final destination.
+	name = "Pizza Delivery"
+	uniform = /obj/item/clothing/under/face/custom/pizza
+	shoes = /obj/item/clothing/shoes/sneakers/black
+	ears = /obj/item/radio/headset/headset_cent
+	back = /obj/item/storage/backpack/satchel
+	r_pocket = /obj/item/pda/heads
+	id = /obj/item/card/id
+
+
+//	backpack_contents = list(/effect/spawner/lootdrop/pizzaparty=7) // i was hoping this would work so they had a small chance to get weapons but i guess not, will admin spawn in their equipment instead
 
 /datum/antagonist/ert/commander/krieg
 	outfit = /datum/outfit/ert/commander/krieg
@@ -44,6 +53,9 @@
 	outfit = /datum/outfit/ert/debt
 	role = "Debt Collector"
 
+/datum/antagonist/ert/pizza
+	outfit = /datum/outfit/ert/debt
+	role = "Pizza Delivery"
 
 /datum/ert/deathkorp
 	leader_role = /datum/antagonist/ert/commander/krieg
@@ -53,8 +65,16 @@
 	polldesc = "an Nanotrasen Anti-Xeno Korps team"
 
 /datum/ert/debtcollector
-	leader_role = /datum/antagonist/ert.debt
+	leader_role = /datum/antagonist/ert/debt
 	roles = list(/datum/antagonist/ert/debt)
 	code = "Blue"
 	mission = "Steal EVERYTHING. ONLY attack the crew in self defense or you may be banned!"
 	polldesc = "an debt collector team"
+
+/datum/ert/pizza
+	leader_role = /datum/antagonist/ert/pizza
+	roles = list(/datum/antagonist/ert/pizza)
+	code = "Blue"
+	mission = "Central Command requests you to deliver pizza to Space Station 13. If you don't do it in 30 minutes, the customer gets it free and that's coming out your wages, bucko."
+	polldesc = "a pizza delivery lad"
+
