@@ -43,7 +43,7 @@
 	id = /obj/item/card/id
 
 
-	backpack_contents = list(/effect/spawner/lootdrop/pizzaparty=7)
+//	backpack_contents = list(/effect/spawner/lootdrop/pizzaparty=7) // i was hoping this would work so they had a small chance to get weapons but i guess not, will admin spawn in their equipment instead
 
 /datum/antagonist/ert/commander/krieg
 	outfit = /datum/outfit/ert/commander/krieg
