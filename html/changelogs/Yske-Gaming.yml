@@ -32,8 +32,5 @@ delete-after: True
 # Also, this gets changed to [] after reading.  Just remove the brackets when you add new shit.
 # Please surround your changes in  double quotes ("). It works without them, but if you use certain characters it screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - rscadd: "Central Command has deemed the usage of a new pet for the HOS an important topic. A dog has been dispatched. We hope this maybe curbs his violent, sociopath tendancies. "
-  - tweak: "Various typos and minor balance changes"
-  - rscadd: "The soviet vending machine has been fixed after like two years. Whoops. You can find it in the russian room."
-  - rscadd: "A large father's armor has been abandoned in maintance. Apparently, it helps wards away ''casuls.''"
-  - rscadd: "Syndicate base has been freshened up a little."
+  - rscadd: "Central Command has recruited their own In-house Debt collectors rather then relying on external companies."
+  - rscadd: "Centcomm also have expanded their empire by creating their own Pizza company. Business seems to be booming, but they always arrive at just the worst time. Don't forget their slogan, ''Our pizza delivery folk will fight over every obstacle to get your pizza to you, Thirty minutes or your money back!"
