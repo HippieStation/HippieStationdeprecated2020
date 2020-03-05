@@ -67,6 +67,8 @@
 // /turf/open/space/Initialize
 
 /atom/proc/Initialize(mapload, ...)
+	SHOULD_NOT_SLEEP(TRUE)
+	SHOULD_CALL_PARENT(TRUE)
 	if(flags_1 & INITIALIZED_1)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_1 |= INITIALIZED_1
@@ -119,6 +121,8 @@
 	return
 
 /atom/proc/CanPass(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_BE_PURE(TRUE)
 	return !density
 
 /atom/proc/onCentCom()
