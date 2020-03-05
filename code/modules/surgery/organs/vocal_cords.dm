@@ -251,6 +251,16 @@
 	var/static/regex/clap_words = regex("clap|applaud")
 	var/static/regex/honk_words = regex("ho+nk") //hooooooonk
 	var/static/regex/multispin_words = regex("like a record baby|right round")
+	// hippie start - New power words are fun, and references are very useful for humans
+	var/static/regex/fart_words = regex("fart|shit|poo|poop|defecate|shart")
+	var/static/regex/scream_words = regex("fear me|scream|shriek|roar|howl|yell|boo")
+
+		// Cooldown References
+	// COOLDOWN_STUN = 20 Seconds
+	// COOLDOWN_ATTACK = 10 Seconds
+	// COOLDOWN_MEME = 1 Second
+	// You're welcome for the reference
+	//hippie end
 
 	var/i = 0
 	//STUN
@@ -562,6 +572,25 @@
 			var/mob/living/L = V
 			L.SpinAnimation(speed = 10, loops = 5)
 
+	// hippie start -- Actual code for the new powers
+
+	//FART
+	else if((findtext(message, fart_words)))
+		cooldown = COOLDOWN_MEME
+		for(var/V in listeners)
+			var/mob/living/L = V
+			addtimer(CALLBACK(L, /mob/living/.proc/emote, "fart"), 5 * i)
+			i++
+
+	//SCREAM
+	else if((findtext(message, scream_words)))
+		cooldown = COOLDOWN_DAMAGE
+		for(var/V in listeners)
+			var/mob/living/L = V
+			addtimer(CALLBACK(L, /mob/living/.proc/emote, "scream"), 5 * i)
+			i++
+
+	// hippie end
 	else
 		cooldown = COOLDOWN_NONE
 
