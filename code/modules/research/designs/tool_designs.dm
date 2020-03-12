@@ -43,19 +43,6 @@
 	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
-// hippie start - moved floral somatoray here
-/datum/design/flora_gun
-	name = "Floral Somatoray"
-	desc = "A tool that discharges controlled radiation which induces mutation in plant cells. Harmless to other organic life."
-	id = "flora_gun"
-	build_type = PROTOLATHE
-	materials = list(MAT_METAL = 2000, MAT_GLASS = 500)
-	reagents_list = list(/datum/reagent/uranium/radium = 20)
-	build_path = /obj/item/gun/energy/floragun
-	category = list("Tool Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
-// hippie end
-
 /////////////////////////////////////////
 //////////////Alien Tools////////////////
 /////////////////////////////////////////
