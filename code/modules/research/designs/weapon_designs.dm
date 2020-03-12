@@ -167,6 +167,8 @@ hippie end */
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/* hippie start - moved to tool designs cus it's a tool
+
 /datum/design/flora_gun
 	name = "Floral Somatoray"
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells. Harmless to other organic life."
@@ -177,6 +179,8 @@ hippie end */
 	build_path = /obj/item/gun/energy/floragun
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+
+hippie end*/
 
 /datum/design/large_grenade
 	name = "Large Grenade"

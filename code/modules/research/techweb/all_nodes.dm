@@ -557,7 +557,7 @@
 	description = "Plant goes in, something else comes out!"
 	prereq_ids = list("adv_biotech", "bio_process")
 	design_ids = list("diskplantgene", "portaseeder", "plantgenes", "flora_gun", "hydro_tray", "biogenerator", "seed_extractor")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
 //hippie end
