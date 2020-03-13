@@ -47,7 +47,7 @@
 
 /obj/item/projectile/bullet/bul67
 	name = "6.7mm bullet"
-	damage = 20
+	damage = 17
 	icon = 'hippiestation/icons/obj/AA2.dmi'
 	icon_state = "xcombullet"
 
