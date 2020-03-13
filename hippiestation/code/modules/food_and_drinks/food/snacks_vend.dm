@@ -4,4 +4,4 @@
 	icon = 'hippiestation/icons/obj/food/food.dmi'
 	icon_state = "prisonchips"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/sodiumchloride = 1)
-	tastes = list("salt" = 1, "soggy crisps" = 1)
+	tastes = list("salt" = 1, "existential dread" = 1)
