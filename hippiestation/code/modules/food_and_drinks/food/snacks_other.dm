@@ -16,3 +16,10 @@
 	filling_color = "F0D830"
 	tastes = list("taco" = 2, "leg" = 4, "cheese" = 2, "lettuce" = 1)
 	foodtype = MEAT | DAIRY | GRAIN | VEGETABLES | GROSS
+
+/obj/item/reagent_containers/food/snacks/beans/old
+	name = "rusted tin of beans"
+	desc = "You get the feeling this has been around longer than most things in the history books."
+	icon = 'hippiestation/icons/obj/food/food.dmi'
+	icon_state = "oldbeans"
+	tastes = list("beans" = 3, "dust" = 1)
