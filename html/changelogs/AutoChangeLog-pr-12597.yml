@@ -1,0 +1,5 @@
+author: "TriggeredBoi"
+delete-after: True
+changes: 
+  - bugfix: "The Infective Exo-Locomotion and Nanite Sting programs now actually work."
+  - bugfix: "Fixed a runtime with the Nanite Chamber Control Console. It should also work now."
