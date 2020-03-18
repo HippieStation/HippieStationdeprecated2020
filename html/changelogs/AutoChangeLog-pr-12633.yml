@@ -1,7 +1,0 @@
-author: "ProtozoaPrime"
-delete-after: True
-changes: 
-  - rscadd: "Added old and rusted variant of beans to sustenance vendor"
-  - rscadd: "Added some disgusting chips to sustenance vendor"
-  - imageadd: "added oldbeans sprite to hippiestation/icons/obj/food/food.dmi"
-  - imageadd: "added prisonchips sprite to hippiestation/icons/obj/food/food.dmi"
