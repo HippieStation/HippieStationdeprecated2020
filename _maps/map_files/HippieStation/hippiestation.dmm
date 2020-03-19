@@ -49682,9 +49682,9 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "ejc" = (
-/obj/structure/table/wood,
+/obj/item/bikehorn/airhorn,
 /turf/open/floor/mineral/bananium,
-/area/space)
+/area/maintenance/longface)
 "eje" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
@@ -50134,6 +50134,11 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating/airless,
 /area/engine/port_engineering)
+"eXd" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/maintenance/longface)
 "eXs" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line{
@@ -50144,6 +50149,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"eYb" = (
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plating,
+/area/maintenance/longface)
 "eYA" = (
 /obj/machinery/vending/cart/old,
 /turf/open/floor/plating,
@@ -50948,6 +50957,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"glx" = (
+/obj/structure/lattice/catwalk,
+/obj/item/stack/rods,
+/turf/open/space/basic,
+/area/space/nearstation)
 "glI" = (
 /obj/machinery/camera{
 	c_tag = "Toxins Lab - West";
@@ -51717,6 +51731,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
+"hFy" = (
+/obj/item/stack/rods,
+/turf/open/space/basic,
+/area/space/nearstation)
 "hGp" = (
 /turf/closed/wall,
 /area/security/checkpoint/auxiliary{
@@ -51943,11 +51961,6 @@
 /obj/structure/cable,
 /turf/open/floor/carpet,
 /area/security/detectives_office)
-"hTR" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/bananalamp,
-/turf/open/floor/mineral/bananium,
-/area/maintenance/longface)
 "hWI" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -53697,6 +53710,14 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/science/nanite)
+"kGL" = (
+/obj/item/bedsheet/rainbow,
+/obj/structure/bed,
+/obj/item/grown/corncob,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/longface)
 "kHC" = (
 /obj/machinery/door/airlock/research{
 	name = "Testing Lab";
@@ -53901,10 +53922,6 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"lam" = (
-/obj/structure/grille,
-/turf/open/space/basic,
-/area/space)
 "laI" = (
 /obj/structure/closet/crate/bin,
 /turf/open/floor/carpet,
@@ -55515,12 +55532,6 @@
 /obj/structure/cable/layer1,
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
-"nyV" = (
-/obj/item/bedsheet/rainbow,
-/obj/structure/bed,
-/obj/item/grown/corncob,
-/turf/open/floor/mineral/bananium,
-/area/maintenance/longface)
 "nzH" = (
 /obj/machinery/door/airlock/external{
 	name = "External Access";
@@ -55820,6 +55831,11 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"ofC" = (
+/obj/item/flashlight/lamp/bananalamp,
+/obj/structure/table/wood,
+/turf/open/floor/mineral/bananium,
+/area/maintenance/longface)
 "ofH" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
@@ -56199,6 +56215,12 @@
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"oLw" = (
+/obj/item/bikehorn/airhorn{
+	dir = 8
+	},
+/turf/open/floor/mineral/bananium,
+/area/maintenance/longface)
 "oLC" = (
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -57310,6 +57332,12 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
+"qBf" = (
+/obj/structure/table/wood,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/longface)
 "qBB" = (
 /obj/machinery/vending/cola/random,
 /turf/open/floor/carpet,
@@ -57403,6 +57431,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
+"qJs" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/bananalamp,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/longface)
 "qJw" = (
 /turf/open/floor/plating/airless,
 /area/science/mixing)
@@ -58415,6 +58450,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"sII" = (
+/obj/structure/lattice,
+/obj/structure/window{
+	dir = 8
+	},
+/turf/open/space/basic,
+/area/maintenance/longface)
 "sJq" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -59137,6 +59179,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"tOa" = (
+/obj/structure/lattice/catwalk,
+/turf/closed/wall,
+/area/maintenance/longface)
 "tOr" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -59352,6 +59398,10 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"udZ" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "uet" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -60085,6 +60135,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"vtp" = (
+/obj/item/stack/rods{
+	amount = 50
+	},
+/turf/open/space/basic,
+/area/space)
 "vuq" = (
 /obj/machinery/button/door{
 	desc = "A remote control-switch for secure storage.";
@@ -60356,6 +60412,11 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"vUF" = (
+/obj/structure/lattice,
+/obj/item/stack/rods,
+/turf/open/space/basic,
+/area/space/nearstation)
 "vVb" = (
 /obj/machinery/door/airlock/external{
 	name = "External Access";
@@ -60937,6 +60998,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/engine/engineering)
+"wNw" = (
+/obj/item/stack/rods,
+/turf/open/space/basic,
+/area/space)
 "wOn" = (
 /obj/structure/table/wood,
 /obj/structure/cable,
@@ -111822,7 +111887,7 @@ xsI
 qqx
 qqx
 uha
-alO
+udZ
 ajz
 avB
 aai
@@ -112069,7 +112134,7 @@ aaa
 aaa
 bqy
 aaj
-aad
+vUF
 pUU
 pUU
 pUU
@@ -112077,9 +112142,9 @@ pUU
 jAc
 pUU
 pUU
-ajz
-ajz
-ajz
+pUU
+pUU
+pUU
 ajz
 aad
 aaj
@@ -112325,22 +112390,22 @@ aaa
 aaa
 aaa
 bqy
-aaj
-aad
+glx
+glx
 pUU
 obP
 pUU
 ejc
 oZa
-nyV
+ejc
 pUU
-aad
-aad
-aad
-aad
-aad
-aak
-avB
+qJs
+qBf
+uTC
+hFy
+hFy
+aFi
+aai
 aai
 avB
 avB
@@ -112582,21 +112647,21 @@ aaa
 aaa
 aaa
 bqy
-aaj
 aad
+vUF
 pUU
 pUU
 pUU
-hTR
+kdS
+yfw
 oZa
-oZa
-pUU
-aad
-aad
-aaj
-aaj
-aaj
-aaj
+eYb
+eXd
+kGL
+tOa
+hFy
+hFy
+aFi
 aaa
 aaa
 aaa
@@ -112838,20 +112903,20 @@ aaa
 aaa
 aaa
 aaa
-bqy
-aaj
+aaa
+aFi
 aad
 pUU
 ybG
 ptn
-oZa
-kdS
-yfw
+oLw
+ofC
+oLw
 pUU
-aaa
-aad
-aaj
-aaa
+pUU
+uTC
+tOa
+wNw
 aaa
 aaa
 aaa
@@ -113096,19 +113161,19 @@ aaa
 aaa
 aaa
 aaa
-aaj
-aad
+aaa
+aaa
 pUU
 uTC
 pUU
 pUU
+sII
 pUU
 pUU
-pUU
-aaa
+vtp
 ahy
-aaj
-aaa
+wNw
+wNw
 aaa
 aaa
 aaa
@@ -113353,18 +113418,18 @@ aaa
 aaa
 aaa
 aaa
-aaj
-aFi
+aaa
+aaa
 aaa
 aaa
 aad
 aad
+hFy
 aad
 aad
-aaa
-aaa
-aaa
-aaj
+wNw
+wNw
+wNw
 aaa
 aaa
 aaa
@@ -113609,19 +113674,19 @@ aaa
 aaa
 aaa
 aaa
-lam
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
-aaj
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -113866,18 +113931,18 @@ aaa
 aaa
 aaa
 aaa
-lam
-ahy
-aFi
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -114129,11 +114194,11 @@ aaa
 aaa
 aaa
 aaa
-ahy
-ahy
-ahy
-ahy
-ahy
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
