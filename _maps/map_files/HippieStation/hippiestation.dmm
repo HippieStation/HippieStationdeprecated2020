@@ -27578,6 +27578,8 @@
 /area/medical/medbay/central)
 "bBt" = (
 /obj/machinery/light,
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/o2,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bBv" = (
@@ -32634,6 +32636,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bPK" = (
@@ -53895,6 +53898,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"kXC" = (
+/obj/machinery/defibrillator_mount/loaded,
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "kYE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
@@ -56665,6 +56673,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"pnU" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "ppc" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -98565,7 +98578,7 @@ bnJ
 bwO
 bnJ
 oaV
-bnJ
+bnK
 bCE
 bEe
 bFq
@@ -98822,7 +98835,7 @@ bvt
 bvo
 bnJ
 oaV
-bnJ
+pnU
 bCD
 bEf
 bFr
@@ -99079,7 +99092,7 @@ bmf
 bvo
 sKz
 oaV
-bnJ
+kXC
 bCE
 bEf
 bFs
