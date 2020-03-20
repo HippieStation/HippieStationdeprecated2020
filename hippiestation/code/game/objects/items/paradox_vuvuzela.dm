@@ -5,7 +5,7 @@
 	var/cooldown = 15 SECONDS
 	var/next_play = 0
 
-/obj/item/paradoxical_vuvuzela/attack_hand(mob/user)
+/obj/item/paradoxical_vuvuzela/attack_self(mob/user)
 	. = ..()
 	if(world.time > next_play)
 		to_chat(user, "<span class='notice'>You need to wait [DisplayTimeText(next_play - world.time)] before you can use \the [src] again.</span>")
