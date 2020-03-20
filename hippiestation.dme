@@ -3117,6 +3117,7 @@
 #include "hippiestation\code\game\objects\items\holy_weapons.dm"
 #include "hippiestation\code\game\objects\items\manuals.dm"
 #include "hippiestation\code\game\objects\items\meat.dm"
+#include "hippiestation\code\game\objects\items\paradox_vuvuzela.dm"
 #include "hippiestation\code\game\objects\items\plushes.dm"
 #include "hippiestation\code\game\objects\items\scrolls.dm"
 #include "hippiestation\code\game\objects\items\shields.dm"
