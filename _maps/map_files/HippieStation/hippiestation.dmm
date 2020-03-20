@@ -11865,30 +11865,53 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
-"aHK" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/reagent_dispensers/watertank,
 /obj/machinery/power/apc{
 	areastring = "/area/chapel/main";
 	name = "Chapel APC";
 	pixel_y = -24
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"aHK" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/turf/closed/wall,
+/area/chapel/main)
 "aHL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/reagent_dispensers/watertank,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
+/obj/structure/table/wood/fancy,
+/obj/item/soulstone/anybody/purified{
+	desc = "A piece of blue-stained glass, so it seems. Its true nature is unknown by anybody Nanotrasen has access to.";
+	name = "mysterious piece of glass"
+	},
+/obj/item/dnainjector/mindread{
+	desc = "A syringe that contains liquid magic. It can be injected to gain its properties.";
+	name = "Liquid telepathy"
+	},
+/obj/item/book/granter/spell/smoke/lesser{
+	name = "mysterious old book of cloud-chasing"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/nullrod,
+/obj/item/candle/infinite{
+	lit = 1;
+	name = "Candle of Infinity";
+	pixel_x = 8;
+	pixel_y = 11
+	},
+/obj/item/toy/eightball/haunted{
+	desc = "A magic eightball not produced by Nanotrasen.\n This one has strange connections to otherworldly spirits.";
+	name = "magical magic eightball"
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "aHM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -12926,17 +12949,6 @@
 /obj/machinery/vending/wardrobe/chap_wardrobe,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
-"aKA" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/requests_console{
-	department = "Chapel";
-	departmentType = 2;
-	pixel_y = 30
-	},
-/turf/open/floor/plasteel/grimy,
-/area/chapel/office)
 "aKB" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -12950,6 +12962,9 @@
 "aKC" = (
 /obj/machinery/airalarm{
 	pixel_y = 25
+	},
+/obj/machinery/light/small{
+	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
@@ -14193,7 +14208,6 @@
 "aNK" = (
 /obj/structure/table/wood,
 /obj/item/pen,
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -14204,7 +14218,6 @@
 /area/chapel/office)
 "aNL" = (
 /obj/structure/table/wood,
-/obj/item/nullrod,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -18922,6 +18935,7 @@
 /obj/structure/table/wood/poker,
 /obj/item/clothing/mask/cigarette/cigar,
 /obj/item/toy/cards/deck,
+/obj/item/toy/gun,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bcx" = (
@@ -48910,6 +48924,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
+"cXz" = (
+/obj/machinery/requests_console{
+	department = "Chapel";
+	departmentType = 2;
+	dir = 2;
+	pixel_y = -30
+	},
+/turf/open/floor/plasteel/grimy,
+/area/chapel/office)
 "cXR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
@@ -59099,6 +59122,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"tFl" = (
+/obj/structure/cable,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "tFq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/green{
@@ -60063,6 +60091,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"vmn" = (
+/obj/machinery/door/morgue{
+	name = "Magical Item Storage"
+	},
+/turf/open/floor/plasteel/dark,
+/area/chapel/office)
 "vmZ" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -107027,7 +107061,7 @@ aBf
 aBf
 aBf
 aBf
-aBf
+tFl
 aHJ
 aIR
 aIR
@@ -107284,7 +107318,7 @@ aBh
 aBh
 aDQ
 aFg
-aBh
+aQV
 aHK
 aIR
 aKz
@@ -107541,14 +107575,14 @@ alO
 auo
 tVk
 avs
-atn
+aGu
 aHL
-aIR
-aKA
+vmn
+aKD
 aMd
 aNK
 aPh
-aKD
+cXz
 aIR
 aGu
 aGu
