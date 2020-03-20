@@ -7,7 +7,7 @@
 
 /obj/item/paradoxical_vuvuzela/attack_self(mob/user)
 	. = ..()
-	if(world.time > next_play)
+	if(next_play > world.time)
 		to_chat(user, "<span class='notice'>You need to wait [DisplayTimeText(next_play - world.time)] before you can use \the [src] again.</span>")
 		return
 	user.visible_message("<span class='notice'>[user] blows into \the [src], releasing a horrible sound!</span>", \
