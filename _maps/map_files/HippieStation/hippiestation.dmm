@@ -10982,13 +10982,6 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"aFg" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 1
-	},
-/turf/closed/wall,
-/area/chapel/office)
 "aFh" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Chapel Maintenance";
@@ -11855,17 +11848,17 @@
 	dir = 8
 	},
 /turf/closed/wall,
-/area/chapel/office)
+/area/chapel/main)
 "aHK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/table/wood/fancy,
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
 /obj/item/nullrod,
+/obj/item/reagent_containers/food/drinks/bottle/holywater,
 /obj/item/soulstone/anybody/chaplain,
 /turf/open/floor/plasteel/dark,
-/area/chapel/office)
+/area/chapel/main)
 "aHL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -11879,7 +11872,7 @@
 /turf/open/floor/carpet{
 	icon_state = "carpetsymbol"
 	},
-/area/chapel/office)
+/area/chapel/main)
 "aHM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -50490,6 +50483,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
+"fyN" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "fzx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -52157,14 +52155,14 @@
 /turf/open/floor/plating,
 /area/maintenance/strangeroom)
 "ipm" = (
+/obj/structure/table/wood/fancy/black,
 /obj/item/flashlight/lamp{
 	pixel_y = 10
 	},
-/obj/structure/table/wood/fancy/black,
 /obj/item/book/granter/spell/smoke/lesser,
 /obj/item/clothing/shoes/bronze/slow,
 /turf/open/floor/plasteel/dark,
-/area/chapel/office)
+/area/chapel/main)
 "ipu" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -53934,7 +53932,7 @@
 "lbd" = (
 /obj/structure/cable,
 /turf/closed/wall,
-/area/chapel/office)
+/area/chapel/main)
 "lcC" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -60777,6 +60775,11 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"wwB" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "wxm" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -106781,7 +106784,7 @@ alO
 ajz
 azQ
 alO
-arm
+fyN
 tVk
 alO
 alO
@@ -107297,8 +107300,8 @@ szb
 aBh
 aBh
 aBh
-aFg
-aFg
+aQV
+aQV
 aHK
 aIR
 aKz
@@ -107553,8 +107556,8 @@ alO
 oFf
 alO
 auo
-auo
-aIR
+wwB
+aGu
 ipm
 aHL
 vmn
