@@ -13,7 +13,7 @@
 /obj/machinery/vending
 	icon_hippie = 'hippiestation/icons/obj/vending.dmi'
 	light_color = LIGHT_COLOR_WHITE
-	var/brightness_on = 4
+	var/brightness_on = 1
 	var/hippie_products = list()
 	var/hippie_contraband = list()
 	var/hippie_premium = list()
