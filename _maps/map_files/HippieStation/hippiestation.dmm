@@ -52191,7 +52191,7 @@
 	name = "mysterious old book of cloud-chasing";
 	pixel_x = 5
 	},
-/obj/item/clothing/shoes/clockwork/slow,
+/obj/item/clothing/shoes/bronze/slow,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "ipu" = (

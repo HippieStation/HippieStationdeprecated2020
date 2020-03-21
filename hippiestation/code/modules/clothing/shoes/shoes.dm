@@ -20,8 +20,8 @@
 	icon_state = "dress-white"
 	item_color = "dress-white"
 
-/obj/item/clothing/shoes/clockwork/slow
+/obj/item/clothing/shoes/bronze/slow
     name = "Ratvar's Boots of Deceleration"
     desc = "A cruel joke forged by the machine god himself. Just looking at them makes you feel lethargic."
-    slowdown = SHOES_SLOWDOWN+3
+    slowdown = SHOES_SLOWDOWN+4
     resistance_flags = INDESTRUCTIBLE
