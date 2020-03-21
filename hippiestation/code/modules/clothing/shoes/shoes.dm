@@ -19,3 +19,9 @@
 	icon = 'hippiestation/icons/mob/feet.dmi'
 	icon_state = "dress-white"
 	item_color = "dress-white"
+
+/obj/item/clothing/shoes/clockwork/slow
+    name = "Ratvar's Boots of Deceleration"
+    desc = "A cruel joke forged by the machine god himself. Just looking at them makes you feel lethargic."
+    slowdown = SHOES_SLOWDOWN+3
+    resistance_flags = INDESTRUCTIBLE
