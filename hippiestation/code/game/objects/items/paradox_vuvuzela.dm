@@ -1,6 +1,11 @@
 /obj/item/paradoxical_vuvuzela
 	name = "paradoxical vuvuzela"
 	desc = "Only a clown of a mad scientist would think this is a good instrument!"
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon_state = "vuvuzaela"
+	item_state = "vuvuzela"
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	var/sound_to_play = 'hippiestation/sound/misc/paradox.ogg'
 	var/cooldown = 15 SECONDS
 	var/next_play = 0
