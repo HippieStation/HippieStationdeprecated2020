@@ -10988,7 +10988,7 @@
 	dir = 1
 	},
 /turf/closed/wall,
-/area/maintenance/starboard/fore)
+/area/chapel/office)
 "aFh" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Chapel Maintenance";
@@ -11855,7 +11855,7 @@
 	dir = 8
 	},
 /turf/closed/wall,
-/area/maintenance/starboard/fore)
+/area/chapel/office)
 "aHK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
@@ -11865,7 +11865,7 @@
 /obj/item/nullrod,
 /obj/item/soulstone/anybody/chaplain,
 /turf/open/floor/plasteel/dark,
-/area/maintenance/starboard/fore)
+/area/chapel/office)
 "aHL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -11879,7 +11879,7 @@
 /turf/open/floor/carpet{
 	icon_state = "carpetsymbol"
 	},
-/area/maintenance/starboard/fore)
+/area/chapel/office)
 "aHM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -52164,7 +52164,7 @@
 /obj/item/book/granter/spell/smoke/lesser,
 /obj/item/clothing/shoes/bronze/slow,
 /turf/open/floor/plasteel/dark,
-/area/maintenance/starboard/fore)
+/area/chapel/office)
 "ipu" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -53931,6 +53931,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+"lbd" = (
+/obj/structure/cable,
+/turf/closed/wall,
+/area/chapel/office)
 "lcC" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -107037,7 +107041,7 @@ aBf
 aBf
 aBf
 aBf
-aqk
+lbd
 aHJ
 aIR
 aIR
@@ -107550,7 +107554,7 @@ oFf
 alO
 auo
 auo
-ajz
+aIR
 ipm
 aHL
 vmn
