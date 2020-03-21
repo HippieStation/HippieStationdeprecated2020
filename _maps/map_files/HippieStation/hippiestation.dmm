@@ -9375,7 +9375,6 @@
 "azQ" = (
 /obj/structure/table/glass,
 /obj/item/pen,
-/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "azT" = (
@@ -10564,14 +10563,6 @@
 /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"aDQ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/spawner/structure/window,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "aDR" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -10997,7 +10988,7 @@
 	dir = 1
 	},
 /turf/closed/wall,
-/area/chapel/office)
+/area/maintenance/starboard/fore)
 "aFh" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Chapel Maintenance";
@@ -11864,32 +11855,17 @@
 	dir = 8
 	},
 /turf/closed/wall,
-/area/chapel/office)
+/area/maintenance/starboard/fore)
 "aHK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/table/wood/fancy,
-/obj/item/dnainjector/mindread{
-	desc = "A syringe that contains liquid magic. It can be injected to gain its properties.";
-	name = "Liquid telepathy"
-	},
-/obj/item/nullrod{
-	pixel_x = 7
-	},
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
-/obj/item/toy/eightball/haunted{
-	desc = "A magic eightball not produced by Nanotrasen.\n This one has strange connections to otherworldly spirits.";
-	name = "magical magic eightball";
-	pixel_x = -6
-	},
-/obj/item/soulstone/anybody/purified{
-	desc = "A piece of blue-stained glass, so it seems. Its true nature is unknown by anybody Nanotrasen has access to.";
-	name = "mysterious piece of glass";
-	pixel_y = 7
-	},
+/obj/item/nullrod,
+/obj/item/soulstone/anybody/chaplain,
 /turf/open/floor/plasteel/dark,
-/area/chapel/main)
+/area/maintenance/starboard/fore)
 "aHL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -11897,10 +11873,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
+/obj/structure/chair/stool{
+	pixel_y = 8
+	},
 /turf/open/floor/carpet{
 	icon_state = "carpetsymbol"
 	},
-/area/chapel/main)
+/area/maintenance/starboard/fore)
 "aHM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -27580,8 +27559,6 @@
 /area/medical/medbay/central)
 "bBt" = (
 /obj/machinery/light,
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid/o2,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bBv" = (
@@ -32638,7 +32615,6 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bPK" = (
@@ -48916,7 +48892,6 @@
 /obj/machinery/requests_console{
 	department = "Chapel";
 	departmentType = 2;
-	dir = 2;
 	pixel_y = -30
 	},
 /turf/open/floor/plasteel/grimy,
@@ -52182,18 +52157,14 @@
 /turf/open/floor/plating,
 /area/maintenance/strangeroom)
 "ipm" = (
-/obj/structure/table/wood/fancy/black,
 /obj/item/flashlight/lamp{
-	pixel_x = -2;
 	pixel_y = 10
 	},
-/obj/item/book/granter/spell/smoke/lesser{
-	name = "mysterious old book of cloud-chasing";
-	pixel_x = 5
-	},
+/obj/structure/table/wood/fancy/black,
+/obj/item/book/granter/spell/smoke/lesser,
 /obj/item/clothing/shoes/bronze/slow,
 /turf/open/floor/plasteel/dark,
-/area/chapel/main)
+/area/maintenance/starboard/fore)
 "ipu" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -53922,11 +53893,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"kXC" = (
-/obj/machinery/defibrillator_mount/loaded,
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "kYE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
@@ -56715,11 +56681,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
-"pnU" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid/regular,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "ppc" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -59141,10 +59102,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"tFl" = (
-/obj/structure/cable,
-/turf/closed/wall,
-/area/chapel/office)
 "tFq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/green{
@@ -60111,9 +60068,10 @@
 /area/hallway/primary/starboard)
 "vmn" = (
 /obj/machinery/door/morgue{
-	name = "Magical Item Storage"
+	name = "Magic Item Storage";
+	req_access_txt = "22"
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "vmZ" = (
 /obj/structure/rack,
@@ -98630,7 +98588,7 @@ bnJ
 bwO
 bnJ
 oaV
-bnK
+bnJ
 bCE
 bEe
 bFq
@@ -98887,7 +98845,7 @@ bvt
 bvo
 bnJ
 oaV
-pnU
+bnJ
 bCD
 bEf
 bFr
@@ -99144,7 +99102,7 @@ bmf
 bvo
 sKz
 oaV
-kXC
+bnJ
 bCE
 bEf
 bFs
@@ -107079,7 +107037,7 @@ aBf
 aBf
 aBf
 aBf
-tFl
+aqk
 aHJ
 aIR
 aIR
@@ -107334,9 +107292,9 @@ ajz
 szb
 aBh
 aBh
-aDQ
+aBh
 aFg
-aQV
+aFg
 aHK
 aIR
 aKz
@@ -107591,8 +107549,8 @@ alO
 oFf
 alO
 auo
-tVk
-aIR
+auo
+ajz
 ipm
 aHL
 vmn
