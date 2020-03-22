@@ -11854,9 +11854,15 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/table/wood/fancy,
-/obj/item/nullrod,
-/obj/item/reagent_containers/food/drinks/bottle/holywater,
-/obj/item/soulstone/anybody/chaplain,
+/obj/item/nullrod{
+	pixel_x = 8
+	},
+/obj/item/reagent_containers/food/drinks/bottle/holywater{
+	pixel_y = 7
+	},
+/obj/item/soulstone/anybody/chaplain{
+	pixel_x = -6
+	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "aHL" = (
