@@ -51,18 +51,21 @@
 /obj/machinery/computer/update_icon()
 	cut_overlays()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+	luminosity = 0
 	if(stat & NOPOWER)
 		add_overlay("[icon_keyboard]_off")
+		luminosity = 0
 		return
 	add_overlay(icon_keyboard)
 
 	// This whole block lets screens ignore lighting and be visible even in the darkest room
-	// We can't do this for many things that emit light unfortunately because it layers over things that would be on top of it
 	var/overlay_state = icon_screen
 	if(stat & BROKEN)
 		overlay_state = "[icon_state]_broken"
+		luminosity = 0
 	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, plane, dir)
-	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir, alpha=128)
+	SSvis_overlays.add_vis_overlay(src, icon, overlay_state, layer, EMISSIVE_PLANE, dir)
+	luminosity = 1
 
 /obj/machinery/computer/power_change()
 	. = ..()
