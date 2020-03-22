@@ -387,3 +387,8 @@
 
 /obj/machinery/door/GetExplosionBlock()
 	return density ? real_explosion_block : 0
+
+/obj/machinery/door/power_change()
+	. = ..()
+	if(. && !(stat & NOPOWER))
+		autoclose_in(rand(0.5 SECONDS, 3 SECONDS))
