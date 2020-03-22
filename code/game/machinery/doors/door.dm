@@ -390,5 +390,5 @@
 
 /obj/machinery/door/power_change()
 	. = ..()
-	if(. && !(machine_stat & NOPOWER))
+	if(. && !(stat & NOPOWER))
 		autoclose_in(rand(0.5 SECONDS, 3 SECONDS))
