@@ -5,6 +5,25 @@
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
+	//HIPPIE CHANGES
+	if(findtext("nigger" || "nigga" || "n'wah" || "nations", message)) //N WORD COUNTER!
+		log_admin("[src] (Key: [src.key]) has said the n-word!")
+		for(var/datum/controller/subsystem/ncounter/N in subtypesof(/datum/controller/subsystem))
+			N.nwordmessages += message
+			var/list/nlist = dd_text2list(message," ")
+			var/nword1 = "nigger"
+			var/nword2 = "nigga"
+			var/nword3 = "n'wah"
+			var/nword4 = "nations"
+			for(nword1 in nlist)
+				N.ntimessaid++
+			for(nword2 in nlist)
+				N.ntimessaid++
+			for(nword3 in nlist)
+				N.ntimessaid += 2
+			for(nword4 in nlist)
+				N.ntimessaid += 10
+	//END CHANGES
 	if(message)
 		say(message)
 

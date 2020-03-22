@@ -261,6 +261,9 @@
 	parts += medal_report()
 	//Station Goals
 	parts += goal_report()
+	//HIPPIE CHANGES - N word report
+	parts += nword_report()
+	//END CHANGES
 
 	listclearnulls(parts)
 
@@ -420,7 +423,7 @@
 		if(!A.members)
 			continue
 		all_teams |= A
-	
+
 	for(var/datum/antagonist/A in GLOB.antagonists)
 		if(!A.owner)
 			continue
@@ -463,6 +466,13 @@
 
 /proc/cmp_antag_category(datum/antagonist/A,datum/antagonist/B)
 	return sorttext(B.roundend_category,A.roundend_category)
+
+//HIPPIE CHANGES
+/datum/controller/subsystem/ticker/proc/nword_report()
+	for(var/datum/controller/subsystem/ncounter/N in subtypesof(/datum/controller/subsystem))
+		var/list/messages = N.nwordmessages
+		return "<span class='header'>Total N word count: [N.ntimessaid]</span><br><span class='header'>N word messages said:</span><br><div class='panel stationborder'>[messages.Join("<br>")]</div>"
+//END CHANGES
 
 
 /datum/controller/subsystem/ticker/proc/give_show_report_button(client/C)

@@ -2944,6 +2944,7 @@
 #include "hippiestation\code\controllers\subsystem\demo.dm"
 #include "hippiestation\code\controllers\subsystem\ipstack.dm"
 #include "hippiestation\code\controllers\subsystem\job.dm"
+#include "hippiestation\code\controllers\subsystem\nwordcounter.dm"
 #include "hippiestation\code\controllers\subsystem\reagent_states.dm"
 #include "hippiestation\code\controllers\subsystem\shuttle.dm"
 #include "hippiestation\code\controllers\subsystem\throwing.dm"
