@@ -11,7 +11,7 @@
 	var/nword3 = "n'wah"
 	var/nword4 = "nations"
 	if(findtext(nword1 || nword2 || nword3 || nword4, message)) //N WORD COUNTER!
-		log_admin("[src] (Key: [src.key]) has said the n-word!")
+		/*log_admin("[src] (Key: [src.key]) has said the n-word!")*/ //Commented out so admins are not spammed
 		for(var/datum/controller/subsystem/ncounter/N in subtypesof(/datum/controller/subsystem))
 			N.nwordmessages += message
 			var/list/nlist = dd_text2list(message," ")
