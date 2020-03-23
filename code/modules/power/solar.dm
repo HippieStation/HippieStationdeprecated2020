@@ -108,7 +108,7 @@
 			new /obj/item/shard(src.loc)
 	qdel(src)
 
-/obj/machinery/power/solar/update_overlays()
+/obj/machinery/power/solar/update_icon()
 	. = ..()
 	var/matrix/turner = matrix()
 	turner.Turn(azimuth_current)
@@ -152,7 +152,7 @@
 		y_hit += target_y
 		hit = locate(round(x_hit, 1), round(y_hit, 1), z)
 		if(hit.opacity)
-		return
+			return
 		if(hit.x == 1 || hit.x == world.maxx || hit.y == 1 || hit.y == world.maxy) //edge of the map
 			break
 	obscured = FALSE
@@ -186,9 +186,9 @@
 		return
 
 	var/sgen = SOLAR_GEN_RATE * sunfrac
-			add_avail(sgen)
+	add_avail(sgen)
 	if(control)
-			control.gen += sgen
+		control.gen += sgen
 
 //Bit of a hack but this whole type is a hack
 /obj/machinery/power/solar/fake/Initialize(turf/loc, obj/item/solar_assembly/S)
@@ -343,16 +343,16 @@
 					if(!T.control) //i.e unconnected
 						T.set_control(src)
 
-/obj/machinery/power/solar_control/update_overlays()
+/obj/machinery/power/solar_control/update_icon()
 	. = ..()
 	if(stat & NOPOWER)
-		. += mutable_appearance(icon, "[icon_keyboard]_off")
+		add_overlay(mutable_appearance(icon, "[icon_keyboard]_off"))
 		return
-	. += mutable_appearance(icon, icon_keyboard)
+	add_overlay(mutable_appearance(icon, icon_keyboard))
 	if(stat & BROKEN)
-		. += mutable_appearance(icon, "[icon_state]_broken")
+		add_overlay(mutable_appearance(icon, "[icon_state]_broken"))
 	else
-		. += mutable_appearance(icon, icon_screen)
+		add_overlay(mutable_appearance(icon, icon_screen))
 
 /obj/machinery/power/solar_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 												datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
@@ -460,7 +460,7 @@
 	gen = 0
 
 	if(connected_tracker && (!powernet || connected_tracker.powernet != powernet))
-			connected_tracker.unset_control()
+		connected_tracker.unset_control()
 
 ///Ran every time the sun updates.
 /obj/machinery/power/solar_control/proc/timed_track()

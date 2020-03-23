@@ -168,20 +168,20 @@
 	var/mob/living/carbon/C = owner.current
 	if(!C)
 		return
+	var/target_x = round(sin(SSsun.azimuth), 0.01)
+	var/target_y = round(cos(SSsun.azimuth), 0.01)
 	var/ax = C.x
 	var/ay = C.y
+	var/turf/hit
 
 	for(var/i = 1 to 20)
-		ax += SSsun.dx
-		ay += SSsun.dy
-
-		var/turf/T = locate(round(ax, 0.5), round(ay, 0.5), C.z)
-
-		if(T.x == 1 || T.x == world.maxx || T.y == 1 || T.y == world.maxy)
-			break
-
-		if(T.density)
+		ax += target_x
+		ay += target_y
+		hit = locate(round(ax, 0.5), round(ay, 0.5), C.z)
+		if(hit.opacity)
 			return
+		if(hit.x == 1 || hit.x == world.maxx || hit.y == 1 || hit.y == world.maxy)
+			break
 	vamp_burn(TRUE)
 
 /datum/antagonist/vampire/proc/vampire_life()
