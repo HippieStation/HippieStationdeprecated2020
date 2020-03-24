@@ -262,7 +262,7 @@ GLOBAL_LIST_EMPTY(explosions)
 					var/turf/UnexplodeT = Unexplode
 					UnexplodeT.explosion_level = 0
 				exploded_this_tick.Cut()
-		if(max_range < 100) //otherwise game lags
+		if(max_range < 100 && max_range >= 4) //otherwise game lags
 			Master.processing = FALSE
 	//unfuck the shit
 	for(var/Unexplode in exploded_this_tick)

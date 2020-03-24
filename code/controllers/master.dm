@@ -455,11 +455,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			if (queue_node_flags & SS_NO_TICK_CHECK)
 				if (queue_node.tick_usage > TICK_LIMIT_RUNNING - TICK_USAGE && ran_non_ticker)
 					if (!(queue_node_flags & SS_BACKGROUND))
-					queue_node.queued_priority += queue_priority_count * 0.1
-					queue_priority_count -= queue_node_priority
-					queue_priority_count += queue_node.queued_priority
-					current_tick_budget -= queue_node_priority
-					queue_node = queue_node.queue_next
+						queue_node.queued_priority += queue_priority_count * 0.1
+						queue_priority_count -= queue_node_priority
+						queue_priority_count += queue_node.queued_priority
+						current_tick_budget -= queue_node_priority
+						queue_node = queue_node.queue_next
 					continue
 
 			if (!bg_calc && (queue_node_flags & SS_BACKGROUND))
