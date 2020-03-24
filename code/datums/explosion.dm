@@ -18,6 +18,7 @@ GLOBAL_LIST_EMPTY(explosions)
 	var/atom/explosion_source
 	var/started_at
 	var/running = TRUE
+	var/lag_fixing = FALSE
 	var/stopped = 0		//This is the number of threads stopped !DOESN'T COUNT THREAD 2!
 	var/static/id_counter = 0
 
@@ -262,8 +263,10 @@ GLOBAL_LIST_EMPTY(explosions)
 					var/turf/UnexplodeT = Unexplode
 					UnexplodeT.explosion_level = 0
 				exploded_this_tick.Cut()
-		if(max_range < 100 && max_range >= 4) //otherwise game lags
+		if((max_range > 5 && max_range < 100) || max_range < 4) //otherwise game lags
+			lag_fixing = TRUE
 			Master.processing = FALSE
+			//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes to explosion code using this please so we can compare
 	//unfuck the shit
 	for(var/Unexplode in exploded_this_tick)
 		var/turf/UnexplodeT = Unexplode
@@ -321,7 +324,9 @@ GLOBAL_LIST_EMPTY(explosions)
 		return QDEL_HINT_IWILLGC
 	GLOB.explosions -= src
 	explosion_source = null
-	Master.processing = TRUE
+	if(lag_fixing)
+		Master.processing = TRUE
+		lag_fixing = FALSE
 	return ..()
 
 /client/proc/check_bomb_impacts()
