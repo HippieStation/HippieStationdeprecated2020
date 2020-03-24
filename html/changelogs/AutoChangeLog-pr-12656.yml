@@ -1,0 +1,4 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - bugfix: "Tesloose shouldn't completely freeze the server anymore"
