@@ -160,7 +160,7 @@
 ///calculates the fraction of the sunlight that the panel receives
 /obj/machinery/power/solar/proc/update_solar_exposure()
 	needs_to_update_solar_exposure = FALSE
-		sunfrac = 0
+	sunfrac = 0
 	if(obscured)
 		return 0
 
