@@ -1,6 +1,5 @@
 version: '{build}'
 skip_branch_with_pr: true
-shallow_clone: true
 branches:
   except:
     - ___TGS3TempBranch
