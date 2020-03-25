@@ -95,4 +95,3 @@
 
 /obj/item/storage/box/syndie_kit/synth/PopulateContents()
 	new /obj/item/synthmorpher(src)
-	new /obj/item/autosurgeon/armlaser(src)
