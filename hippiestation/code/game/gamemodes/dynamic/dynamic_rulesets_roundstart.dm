@@ -3,7 +3,7 @@
 	antag_flag = ROLE_TRAITOR
 	minimum_required_age = 0
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Vice Officer")
-	restricted_roles = list("Cyborg", "Chaplain")
+	restricted_roles = list("Cyborg")
 	required_candidates = 1
 	weight = 5
 	cost = 10
@@ -26,8 +26,10 @@
 
 /datum/dynamic_ruleset/roundstart/choose/proc/let_choice(datum/mind/M)
 	var/choice
+	var/list/standard_list = list("Traitor", "Vampire", "Devil", "Hivemind")
+	var/list/chaplain_list = list("Traitor", "Hivemind")
 	while(!choice)
-		choice = input(M.current, "Which antagonist would you like to be?", "Your lucky day!") as null|anything in list("Traitor", "Vampire", "Devil", "Hivemind")
+		choice = input(M.current, "Which antagonist would you like to be?", "Your lucky day!") as null|anything in (M.assigned_role == "Chaplain" ? chaplain_list : standard_list)
 		if(!choice)
 			continue
 		switch(choice)
