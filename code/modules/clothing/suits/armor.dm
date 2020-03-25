@@ -133,6 +133,62 @@
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 
+//idea stolen from goonstation, sprites are too. https://github.com/goonstation/goonstation-2020/blob/master/LICENSE link to license
+/obj/item/clothing/suit/armor/suicide
+	name = "Suicide vest"
+	desc = "سُبْحَانَ اللّٰہِ ۔ اَلْحَمْدُ لِلّٰہِ ۔ اَللّٰہُ اَکْبَرْ"
+	icon_state = "bombvest0"
+	item_state = "bombvest0"
+	blood_overlay_type = "armor"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	body_parts_covered = CHEST|GROIN
+
+	var/obj/item/grenade/attached_grenade
+	var/pre_attached_grenade_type
+
+	/obj/item/clothing/suit/armor/suicide/proc/attach_grenade(var/obj/item/grenade/G)
+		attached_grenade = G
+		G.forceMove(src)
+		desc += " \An [attached_grenade] is attached to it!"
+
+	/obj/item/clothing/suit/armor/suicide/proc/detach_grenade()
+		if(!attached_grenade)
+			return
+		attached_grenade.forceMove(drop_location())
+		attached_grenade = null
+		desc = initial(desc)
+
+	/obj/item/clothing/suit/armor/suicide/Initialize()
+		. = ..()
+		if(pre_attached_grenade_type)
+			var/grenade = new pre_attached_grenade_type(src)
+			attach_grenade(grenade)
+
+
+	/obj/item/clothing/suit/armor/suicide/attackby(var/obj/item/grenade/G, var/mob/user)
+		if(istype(G))
+			if(attached_grenade)
+				to_chat(user, "<span class='warning'>There is already a grenade attached!</span>")
+			else if(user.transferItemToLoc(G,src))
+				user.visible_message("<span class='warning'>\The [user] attaches \a [G] to \the [src]!</span>", "<span class='notice'>You attach \the [G] to \the [src].</span>")
+				attach_grenade(G)
+				G.forceMove(src)
+		else
+			return ..()
+
+	/obj/item/clothing/suit/armor/suicide/attack_self(var/mob/user)
+		if(attached_grenade)
+			user.visible_message("<span class='warning'>\The [user] removes \an [attached_grenade] from \the [src]!</span>", "<span class='notice'>You remove \the [attached_grenade] from \the [src].</span>")
+			user.put_in_hands(attached_grenade)
+			detach_grenade()
+		else
+			return ..()
+
+	/obj/item/clothing/suit/armor/suicide/AltClick(mob/living/user)
+		if(attached_grenade)
+			addtimer(CALLBACK(attached_grenade, /obj/item/grenade.proc/prime), 1)
+			sleep(5)
+			qdel(src)
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof armor"
 	desc = "A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
