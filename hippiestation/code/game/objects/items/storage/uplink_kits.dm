@@ -41,15 +41,6 @@
 /obj/item/storage/box/syndie_kit/imp_gmindslave/PopulateContents()
 	new /obj/item/implanter/mindslave/greater(src)
 
-/obj/item/storage/box/syndie_kit/glock17
-	name = "Glock Seventeen with spare ammo"
-
-/obj/item/storage/box/syndie_kit/glock17/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/pistol/g17(src)
-	new /obj/item/ammo_box/magazine/g17(src)
-	new /obj/item/ammo_box/magazine/g17(src)
-	new /obj/item/ammo_box/magazine/g17(src)
-
 /obj/item/storage/box/syndie_kit/wrestling
 	name = "\improper Squared-Circle smackdown set"
 	desc = "For millenia, man has dreamed of wrestling. In 1980, it was invented by the great Macho\
@@ -95,3 +86,4 @@
 
 /obj/item/storage/box/syndie_kit/synth/PopulateContents()
 	new /obj/item/synthmorpher(src)
+	new /obj/item/autosurgeon/armlaser(src)
