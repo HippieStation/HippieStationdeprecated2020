@@ -27571,6 +27571,13 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/structure/table,
+/obj/item/storage/firstaid/regular{
+	pixel_w = 0;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/o2,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bBs" = (
@@ -56218,6 +56225,10 @@
 /obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"oLh" = (
+/obj/machinery/defibrillator_mount/loaded,
+/turf/closed/wall,
+/area/medical/medbay/central)
 "oLw" = (
 /obj/item/bikehorn/airhorn{
 	dir = 8
@@ -57068,6 +57079,17 @@
 	},
 /turf/open/floor/carpet,
 /area/hallway/secondary/entry)
+"qgk" = (
+/obj/structure/table,
+/obj/item/reagent_containers/pill/patch/styptic{
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/pill/patch/silver_sulf{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "qgm" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Laser Room";
@@ -98568,7 +98590,7 @@ bnJ
 bwO
 bnJ
 oaV
-bnJ
+qgk
 bCE
 bEe
 bFq
@@ -98825,7 +98847,7 @@ bvt
 bvo
 bnJ
 oaV
-bnJ
+oLh
 bCD
 bEf
 bFr
