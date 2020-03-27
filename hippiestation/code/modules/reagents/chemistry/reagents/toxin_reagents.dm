@@ -281,7 +281,7 @@
 		data = list("misc" = 1)
 	if(holder)
 		data["misc"]++
-		if(prob(2) && data > 40) //randomly creates small explosions or fireballs but has a delay so it doesn't just kill people while they're still mixing
+		if(prob(2) && data["misc"] > 40) //randomly creates small explosions or fireballs but has a delay so it doesn't just kill people while they're still mixing
 			var/location = get_turf(holder.my_atom)
 			holder.remove_reagent(src.type,5,safety = 1)
 			switch(prob(50))

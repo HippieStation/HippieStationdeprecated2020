@@ -55,7 +55,7 @@
 	..()
 	. = 1
 
-/datum/reagent/holywater/on_mob_life(mob/living/M)
+/datum/reagent/water/holywater/on_mob_life(mob/living/M)
 	. = ..()
 	if(ishuman(M) && is_vampire(M) && prob(80))
 		var/datum/antagonist/vampire/V = M.mind.has_antag_datum(/datum/antagonist/vampire)
