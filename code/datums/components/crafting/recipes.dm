@@ -326,6 +326,18 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_AMMO
 
+/datum/crafting_recipe/suicide
+	name = "Suicide Vest"
+	result = /obj/item/clothing/suit/armor/suicide
+	reqs = list(/obj/item/assembly/health = 1,
+				/obj/item/assembly/igniter = 1,
+				/obj/item/clothing/suit/armor/vest = 1,
+				/obj/item/stack/cable_coil = 10)
+	tools = list(TOOL_WRENCH, TOOL_MULTITOOL)
+	time = 20
+	category = CAT_CLOTHING
+	subcategory
+
 /datum/crafting_recipe/ishotgun
 	name = "Improvised Shotgun"
 	result = /obj/item/gun/ballistic/shotgun/doublebarrel/improvised

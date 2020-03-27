@@ -161,7 +161,7 @@
 	/obj/item/clothing/suit/armor/suicide/attackby(var/obj/item/grenade/G, var/mob/user)
 		if(istype(G))
 			if(attached_grenade.len >= 4)
-				to_chat(user, "<span class='warning'>There is already a grenade attached!</span>")
+				to_chat(user, "<span class='warning'>All the grenade slots are filled, تؤخر!</span>")
 			else if(user.transferItemToLoc(G,src))
 				user.visible_message("<span class='warning'>\The [user] attaches \a [G] to \the [src]!</span>", "<span class='notice'>You attach \the [G] to \the [src].</span>")
 				attached_grenade.Add(G)
@@ -171,7 +171,7 @@
 
 	/obj/item/clothing/suit/armor/suicide/attack_self(var/mob/user)
 		if(length(attached_grenade) != 0)
-			user.visible_message("<span class='warning'>\The [user] removes \an [attached_grenade] from \the [src]!</span>", "<span class='notice'>You remove \the [attached_grenade] from \the [src].</span>")
+			user.visible_message("<span class='warning'>\The [user] empties out \the [src]!</span>", "<span class='notice'>You empty out \the [src].</span>")
 			for(var/obj/item/grenade/G in attached_grenade)
 				G.forceMove(drop_location())
 			desc = initial(desc)
@@ -181,6 +181,7 @@
 
 	/obj/item/clothing/suit/armor/suicide/AltClick(mob/living/user)
 		if(attached_grenade.len != 0)
+			playsound(src, "allah", 100, 0)
 			for(var/obj/item/grenade/G in attached_grenade)
 				addtimer(CALLBACK(G, /obj/item/grenade.proc/prime), 1)
 			sleep(3)
