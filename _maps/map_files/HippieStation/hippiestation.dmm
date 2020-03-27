@@ -12482,9 +12482,6 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/obj/item/toy/gun{
-	name = "3.57 Rovolber !TM!"
-	},
 /turf/open/floor/plasteel,
 /area/hippie/clown)
 "aJw" = (
