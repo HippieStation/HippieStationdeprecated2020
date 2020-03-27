@@ -143,52 +143,49 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	body_parts_covered = CHEST|GROIN
 
-	var/obj/item/grenade/attached_grenade
+	var/list/attached_grenade
 	var/pre_attached_grenade_type
 
 	/obj/item/clothing/suit/armor/suicide/proc/attach_grenade(var/obj/item/grenade/G)
-		attached_grenade = G
+		attached_grenade.Add(G)
 		G.forceMove(src)
-		desc += " \An [attached_grenade] is attached to it!"
-
-	/obj/item/clothing/suit/armor/suicide/proc/detach_grenade()
-		if(!attached_grenade)
-			return
-		attached_grenade.forceMove(drop_location())
-		attached_grenade = null
-		desc = initial(desc)
 
 	/obj/item/clothing/suit/armor/suicide/Initialize()
 		. = ..()
 		if(pre_attached_grenade_type)
 			var/grenade = new pre_attached_grenade_type(src)
 			attach_grenade(grenade)
+		attached_grenade = list()
 
 
 	/obj/item/clothing/suit/armor/suicide/attackby(var/obj/item/grenade/G, var/mob/user)
 		if(istype(G))
-			if(attached_grenade)
+			if(attached_grenade.len >= 4)
 				to_chat(user, "<span class='warning'>There is already a grenade attached!</span>")
 			else if(user.transferItemToLoc(G,src))
 				user.visible_message("<span class='warning'>\The [user] attaches \a [G] to \the [src]!</span>", "<span class='notice'>You attach \the [G] to \the [src].</span>")
-				attach_grenade(G)
+				attached_grenade.Add(G)
 				G.forceMove(src)
 		else
 			return ..()
 
 	/obj/item/clothing/suit/armor/suicide/attack_self(var/mob/user)
-		if(attached_grenade)
+		if(length(attached_grenade) != 0)
 			user.visible_message("<span class='warning'>\The [user] removes \an [attached_grenade] from \the [src]!</span>", "<span class='notice'>You remove \the [attached_grenade] from \the [src].</span>")
-			user.put_in_hands(attached_grenade)
-			detach_grenade()
+			for(var/obj/item/grenade/G in attached_grenade)
+				G.forceMove(drop_location())
+			desc = initial(desc)
+			attached_grenade.Cut()
 		else
 			return ..()
 
 	/obj/item/clothing/suit/armor/suicide/AltClick(mob/living/user)
-		if(attached_grenade)
-			addtimer(CALLBACK(attached_grenade, /obj/item/grenade.proc/prime), 1)
-			sleep(5)
+		if(attached_grenade.len != 0)
+			for(var/obj/item/grenade/G in attached_grenade)
+				addtimer(CALLBACK(G, /obj/item/grenade.proc/prime), 1)
+			sleep(3)
 			qdel(src)
+
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof armor"
 	desc = "A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
