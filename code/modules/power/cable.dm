@@ -565,20 +565,21 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
 
-/obj/structure/cable_bridge/Initialize()
+/obj/structure/cable_bridge/Initialize(mapload)
 	. = ..()
-	var/turf/T = get_turf(src)			// hide if turf is not intact
-	if(level==1)
-		hide(T.intact)
-	var/first = TRUE
-	var/datum/powernet/PN
-	for(var/obj/structure/cable/C in get_turf(src))
-		C.update_icon()
-		if(first == TRUE)
-			first = FALSE
-			PN = C.powernet
-			continue
-		propagate_network(C, PN)
+	if (!mapload)
+		var/turf/T = get_turf(src)			// hide if turf is not intact
+		if(level==1)
+			hide(T.intact)
+		var/first = TRUE
+		var/datum/powernet/PN
+		for(var/obj/structure/cable/C in get_turf(src))
+			C.update_icon()
+			if(first == TRUE)
+				first = FALSE
+				PN = C.powernet
+				continue
+			propagate_network(C, PN)
 
 //If underfloor, hide the cable
 /obj/structure/cable_bridge/hide(i)
