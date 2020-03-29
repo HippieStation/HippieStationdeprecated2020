@@ -29841,6 +29841,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = 30
+	},
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bHO" = (
@@ -59605,10 +59608,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"usX" = (
-/obj/machinery/defibrillator_mount/loaded,
-/turf/closed/wall,
-/area/medical/sleeper)
 "uuo" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -98347,7 +98346,7 @@ bCD
 bEd
 bFp
 bFp
-usX
+bCD
 bCD
 bKj
 tuD
