@@ -21,7 +21,7 @@
 /obj/effect/decal/cleanable/blood/hitsplatter/proc/GoTo(turf/T, var/range)
 	for(var/i in 1 to range)
 		step_towards(src,T)
-		sleep(1)
+		sleep(8)
 		prev_loc = loc
 		for(var/atom/A in get_turf(src))
 			if(istype(A,/obj/item))
