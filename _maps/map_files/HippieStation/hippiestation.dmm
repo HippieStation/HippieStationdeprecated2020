@@ -28386,7 +28386,7 @@
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
 "bDZ" = (
-/obj/machinery/sleeper{
+/obj/machinery/computer/med_data{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
@@ -29323,9 +29323,6 @@
 /area/medical/sleeper)
 "bGA" = (
 /obj/effect/landmark/start/medical_doctor,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bGB" = (
@@ -29814,37 +29811,10 @@
 	dir = 4;
 	pixel_x = -24
 	},
-/obj/machinery/computer/med_data{
+/obj/machinery/sleeper{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/medical/sleeper)
-"bHN" = (
-/obj/machinery/camera{
-	c_tag = "Medbay Treatment Center";
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/storage/firstaid/regular{
-	pixel_w = 0;
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/firstaid/o2,
-/obj/item/reagent_containers/pill/patch/styptic{
-	pixel_x = -4
-	},
-/obj/item/reagent_containers/pill/patch/silver_sulf{
-	pixel_x = 3;
-	pixel_y = 6
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/obj/machinery/defibrillator_mount/loaded{
-	pixel_x = 30
-	},
-/turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bHO" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -51479,14 +51449,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
-"hgJ" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plasteel/white/side{
-	dir = 8
-	},
-/area/medical/sleeper)
 "hhb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -52361,12 +52323,6 @@
 /obj/structure/cable/layer1,
 /turf/open/floor/plating,
 /area/engine/port_engineering)
-"iBy" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "iBJ" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -53049,6 +53005,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"jzE" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
 "jzY" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable/layer1,
@@ -55580,6 +55549,40 @@
 	},
 /turf/open/floor/plasteel,
 /area/vacant_room/office)
+"nBU" = (
+/obj/machinery/camera{
+	c_tag = "Medbay Treatment Center";
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/storage/firstaid/regular{
+	pixel_w = 0;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/o2,
+/obj/item/reagent_containers/pill/patch/styptic{
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/pill/patch/silver_sulf{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = 30
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
 "nDT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -97574,7 +97577,7 @@ kmr
 bCF
 bEa
 bEa
-bEa
+bFo
 bEa
 bJh
 bEa
@@ -97829,10 +97832,10 @@ fKh
 bzP
 bBp
 bCF
-bEb
-bFo
+jzE
+jzE
 bGA
-hgJ
+bEb
 bCE
 bKh
 bLr
@@ -98086,10 +98089,10 @@ qkb
 oaV
 bBq
 bCE
-bEc
+nBU
+jzE
 bEa
-iBy
-bHN
+bEc
 bCD
 bKi
 bLs
@@ -98343,10 +98346,10 @@ bnJ
 oaV
 bnJ
 bCD
-bEd
-bFp
-bFp
 bCD
+bFp
+bFp
+bEd
 bCD
 bKj
 tuD
