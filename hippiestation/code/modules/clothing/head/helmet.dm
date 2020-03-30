@@ -45,3 +45,15 @@
 /obj/item/clothing/head/helmet/sec/hippie/custodian/hos/spare
 	name = "head of security's spare custodian helmet"
 	desc = "The 'badge' is just a sticker. It's a shame you're not even remotely as useful as a real custodian." 
+
+/obj/item/clothing/head/helmet/redtaghelm/afromaker
+	name = "Afro Maker"
+	desc = "To wear this helmet is to accept its creator."
+	color = "#FF0000"
+	resistance_flags = INDESTRUCTIBLE
+	
+/obj/item/clothing/head/helmet/redtaghelm/afromaker/equipped(mob/living/carbon/human/user, slot)
+	..()
+	if(slot == SLOT_HEAD)
+		user.hair_style = "Afro (Large)"
+		user.update_hair()
