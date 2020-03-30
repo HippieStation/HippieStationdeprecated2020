@@ -280,7 +280,7 @@
 	if (loc != user)
 		..()
 		return
-	if (!cover_open)
+	if (!cover_open && !SLOT_BACK) // hippie -- lets you wear the L6 on your back
 		to_chat(user, "<span class='warning'>[src]'s cover is closed! Open it before trying to remove the magazine!</span>")
 		return
 	..()

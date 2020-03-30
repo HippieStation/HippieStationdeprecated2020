@@ -199,7 +199,7 @@
 	irradiate targets. It can produce an infinite number of bolts \
 	but takes time to automatically recharge after each shot."
 	item = /obj/item/gun/energy/kinetic_accelerator/hippie_ebow
-	cost = 8
+	cost = 7
 	exclude_modes = list() // Has no reason to be excluded any more.
 
 /datum/uplink_item/stealthy_tools/syndigaloshes
@@ -552,3 +552,50 @@
 	desc = "Mark threats and check enemies for objective items, weapons and high level access. Guaranteed to greentext or your telecrystals back."
 	item = /obj/item/clothing/glasses/hud/threat
 	cost = 6
+
+/datum/uplink_item/badass/syndie_tophat
+	name = "Gentleman's Hat"
+	desc = "A basic hat, to show where your true allegience lies. Put telecrystals into it to make it cooler, and more gentlemanly.\
+	 Soon your crime times will be in style."
+	item = /obj/item/clothing/head/syndie_tophat
+	cost = 0
+	surplus = 0
+	limited_stock = 1
+	exclude_modes = list(/datum/game_mode/infiltration) // not excluded from ops because it'd be hilarious if some lad poured all of his TC into a hat, then actually armed the nuke.
+
+/datum/uplink_item/dangerous/ak922
+	name = "AK-922"
+	desc = "A standard issue New Russia assault rifle praised for being able to survive common issues in the field,\
+	 including but not limited to: explosions, laser beams, toolboxes, and clowns. Chambered in the 7.62x39mm cartridge."
+	item = /obj/item/gun/ballistic/automatic/ak922
+	cost = 13
+	surplus = 25
+	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/dangerous/ak922gold
+	name = "Golden AK-922"
+	desc = "An AK-922 with gold-plating. Now you can kill innocent workers of a hated company with efficiency AND style!"
+	item = /obj/item/gun/ballistic/automatic/ak922/gold
+	cost = 14
+	surplus = 25
+	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/ammo/ak922
+	name = "AK-922 Magazine"
+	desc = "A basic 7.62x39 magazine."
+	item = /obj/item/ammo_box/magazine/ak922
+	cost = 2
+	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/dangerous/machineshotgun
+	name = "Abzats Machineshotgun"
+	desc = "An old friend. It's a modified Aussec Armoury belt-fed machine gun kit, and comes with a massive 40-round box magazine of 12 gauge buckshot cartridges."
+	item = /obj/item/storage/box/syndie_kit/abzats
+	cost = 16
+	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/dangerous/machinegun
+	desc = "A fully-loaded Aussec Armoury belt-fed machine gun kit. \
+			Comes with a massive 50-round magazine of devastating 7.12x82mm ammunition."
+	item = /obj/item/storage/box/syndie_kit/l6saw
+

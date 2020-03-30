@@ -13,7 +13,7 @@
 	exp_requirements = 300
 	exp_type = EXP_TYPE_CREW
 
-	outfit = /datum/outfit/job/warden
+	outfit = /datum/outfit/job/warden/hippie // hippie -- our new warden!
 
 	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MECH_SECURITY, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_MECH_SECURITY, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM) // See /datum/job/warden/get_access()
@@ -29,7 +29,7 @@
 	return L
 
 /datum/outfit/job/warden
-	name = "Warden"
+	name = "Warden (Classic)" // hippie -- in case you want your old warden
 	jobtype = /datum/job/warden
 
 	belt = /obj/item/pda/warden
@@ -38,7 +38,7 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	suit = /obj/item/clothing/suit/armor/vest/warden/alt
 	gloves = /obj/item/clothing/gloves/color/black
-	head = /obj/item/clothing/head/warden
+	head = /obj/item/clothing/head/helmet/sec/hippie/custodian
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	r_pocket = /obj/item/assembly/flash/handheld
 	l_pocket = /obj/item/restraints/handcuffs

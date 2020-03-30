@@ -66,13 +66,51 @@
 	slowdown = 0
 	strip_delay = 130
 
-/obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
-	icon = 'hippiestation/icons/obj/clothing/hats.dmi'
-	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
+/obj/item/clothing/head/helmet/space/hardsuit/syndi
+	name = "blood-red spacesuit helmet"
+	icon = 'hippiestation/icons/obj/clothing/sechats.dmi'
+	alternate_worn_icon = 'hippiestation/icons/mob/sechead.dmi'
+	var/flushed_name = "old blood-red hardsuit helmet"
+
+/obj/item/clothing/suit/space/hardsuit/syndi
+	name = "blood-red spacesuit"
+	desc = "An advanced spacesuit with a built in helmet and energy shielding."
+	icon = 'hippiestation/icons/obj/clothing/secsuits.dmi'
+	alternate_worn_icon = 'hippiestation/icons/mob/secsuit.dmi'
+	var/flushed_name = "old blood-red hardsuit"
+	var/flushed = 0
+	var/can_be_flushed = 1
+
+/obj/item/clothing/head/helmet/space/hardsuit/syndi/toggle_hardsuit_mode(mob/user)
+	. = ..()
+	if(linkedsuit.flushed)
+		name = flushed_name
+		desc = "It seems both expensive and antique."
+		icon = 'icons/obj/clothing/hats.dmi'
+		alternate_worn_icon = null
+		linkedsuit.name = linkedsuit.flushed_name
+		linkedsuit.desc = "It's both a blast to the past, and strangely futuristic."
+		linkedsuit.alternate_worn_icon = null
 
 /obj/item/clothing/suit/space/hardsuit/syndi/elite
-	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
-	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
+	flushed_name = "old elite syndicate hardsuit"
+
+/obj/item/clothing/head/helmet/space/hardsuit/syndi
+	flushed_name = "old elite hardsuit helmet"
+
+/obj/item/clothing/suit/space/hardsuit/syndi/elite/blastco
+	can_be_flushed = 0
+
+/obj/structure/toilet/attackby(obj/item/I, mob/living/user, params) // SURPRISE TOILET CODE
+	if(!cistern && istype(I, /obj/item/clothing/suit/space/hardsuit/syndi))
+		var/obj/item/clothing/suit/space/hardsuit/syndi/S = I
+		if(S.can_be_flushed)
+			S.icon = 'icons/obj/clothing/suits.dmi'
+			S.name = "old blood-red hardsuit"
+			S.flushed = 1
+			S.alternate_worn_icon = null
+			to_chat(user, "<span class = 'notice'>You flush the spacesuit down the toilet, and it changes?</span>")
+	. = ..()
 
 /obj/item/clothing/suit/space/hardsuit/deathsquad
 	slowdown = 0

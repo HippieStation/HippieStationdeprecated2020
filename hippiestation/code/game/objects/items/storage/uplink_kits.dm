@@ -87,3 +87,19 @@
 /obj/item/storage/box/syndie_kit/synth/PopulateContents()
 	new /obj/item/synthmorpher(src)
 	new /obj/item/autosurgeon/armlaser(src)
+
+/obj/item/storage/box/syndie_kit/abzats
+	name = "\improper Abzats Machineshotgun Kit"
+	desc = "A kit containing what you'll need to blast some ass."
+
+/obj/item/storage/box/syndie_kit/abzats/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/l6_saw/abzats(src)
+	new /obj/item/ammo_box/magazine/mbox12g(src)
+
+/obj/item/storage/box/syndie_kit/l6saw
+	name = "\improper L6 SAW Kit"
+	desc = "A kit containing an L6 SAW and some ammunition."
+
+/obj/item/storage/box/syndie_kit/l6saw/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/l6_saw(src)
+	new /obj/item/ammo_box/magazine/mm712x82(src) 

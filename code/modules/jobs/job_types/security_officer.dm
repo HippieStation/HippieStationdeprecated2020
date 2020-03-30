@@ -13,7 +13,7 @@
 	exp_requirements = 300
 	exp_type = EXP_TYPE_CREW
 
-	outfit = /datum/outfit/job/security
+	outfit = /datum/outfit/job/security/hippie // hippie -- new security outfit
 
 	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MECH_SECURITY, ACCESS_MORGUE, ACCESS_WEAPONS, ACCESS_FORENSICS_LOCKERS, ACCESS_MINERAL_STOREROOM)
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY, ACCESS_MINERAL_STOREROOM) // See /datum/job/officer/get_access()
@@ -109,8 +109,8 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 
 
 
-/datum/outfit/job/security
-	name = "Security Officer"
+/datum/outfit/job/security/classic // hippie -- R.I.P redsuits
+	name = "Security Officer (Classic)" // hippie end
 	jobtype = /datum/job/officer
 
 	belt = /obj/item/pda/security
