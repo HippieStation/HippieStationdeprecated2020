@@ -1,0 +1,4 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - bugfix: "Quick equip swapping should no longer swap whatever it feels like"
