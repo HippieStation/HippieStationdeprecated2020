@@ -1,0 +1,4 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - rscadd: "You can quick equip to swap worn items if you have at least 1 empty hand"
