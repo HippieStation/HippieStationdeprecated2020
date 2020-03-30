@@ -123,6 +123,20 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/shitglock
+	name = "Glock 16"
+	result = /obj/item/gun/ballistic/automatic/pistol/g17/improvised
+	reqs = list(/obj/item/reagent_containers/food/drinks/soda_cans = 1,
+				/obj/item/stack/sheet/metal = 20,
+				/obj/item/stack/cable_coil = 20,
+				/obj/item/pipe = 5,
+				/obj/item/stack/ducttape = 5,
+				/obj/item/stack/packageWrap = 10)
+	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
+	time = 70
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/lockermechdrill
 	name = "Makeshift exosuit drill"
 	result = /obj/item/mecha_parts/mecha_equipment/drill/makeshift
