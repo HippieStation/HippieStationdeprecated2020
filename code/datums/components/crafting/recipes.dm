@@ -337,17 +337,6 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/1911
-	name = "M1911"
-	result = /obj/item/gun/ballistic/automatic/pistol/m1911
-	reqs = list(/obj/item/stack/sheet/plasteel = 5,
-				/obj/item/weaponcrafting/receiver = 1,
-				/obj/item/stack/packageWrap = 10,
-				/obj/item/stack/sheet/plastic = 10)
-	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
-	time = 200
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/chainsaw
 	name = "Chainsaw"
