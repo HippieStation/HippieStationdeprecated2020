@@ -13,7 +13,6 @@
 	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
 	alternate_screams = list('hippiestation/sound/voice/stop_right_there.ogg', 'hippiestation/sound/voice/stop_right_there2.ogg')
 
-
 /obj/item/clothing/head/helmet/sec
 	name = "old school helmet"
 
@@ -51,9 +50,10 @@
 	desc = "To wear this helmet is to accept its creator."
 	color = "#FF0000"
 	resistance_flags = INDESTRUCTIBLE
-	
+
 /obj/item/clothing/head/helmet/redtaghelm/afromaker/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if(slot == SLOT_HEAD)
 		user.hair_style = "Afro (Large)"
+		user.update_hair()
 		user.update_hair()

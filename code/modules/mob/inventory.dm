@@ -436,7 +436,6 @@
 		var/obj/item/I = i
 		if(SEND_SIGNAL(I, COMSIG_TRY_STORAGE_INSERT, src, M))
 			return TRUE
-
 	to_chat(M, "<span class='warning'>You are unable to equip that!</span>")
 	return FALSE
 

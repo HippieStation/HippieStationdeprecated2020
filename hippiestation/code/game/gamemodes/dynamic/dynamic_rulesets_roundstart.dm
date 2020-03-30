@@ -26,8 +26,10 @@
 
 /datum/dynamic_ruleset/roundstart/choose/proc/let_choice(datum/mind/M)
 	var/choice
+	var/list/standard_list = list("Traitor", "Vampire", "Devil", "Hivemind")
+	var/list/chaplain_list = list("Traitor", "Hivemind")
 	while(!choice)
-		choice = input(M.current, "Which antagonist would you like to be?", "Your lucky day!") as null|anything in list("Traitor", "Vampire", "Devil", "Hivemind")
+		choice = input(M.current, "Which antagonist would you like to be?", "Your lucky day!") as null|anything in (M.assigned_role == "Chaplain" ? chaplain_list : standard_list)
 		if(!choice)
 			continue
 		switch(choice)
@@ -65,7 +67,7 @@
 		M.mind.restricted_roles = restricted_roles
 		M.mind.special_role = ROLE_HIVE
 	return TRUE
-	
+
 /datum/dynamic_ruleset/roundstart/abductors
 	name = "Abductors"
 	antag_flag = ROLE_ABDUCTOR
@@ -114,14 +116,14 @@
 /datum/dynamic_ruleset/roundstart/traitor
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Vice Officer")
 	weight = 35
-	
+
 /datum/dynamic_ruleset/roundstart/monkey
 	weight = 2
 	cost = 50
 	requirements = list(101,101,70,40,30,20,10,10,10,10)
 	high_population_requirement = 10
 	flags = HIGHLANDER_RULESET
-	
+
 /datum/dynamic_ruleset/roundstart/nuclear
 	weight = 20
 	required_candidates = 1
@@ -130,16 +132,16 @@
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	high_population_requirement = 10
 	weight = 3
-	
+
 /datum/dynamic_ruleset/roundstart/clockcult
 	cost = 50
 	weight = 3
 	requirements = list(100,90,80,60,40,30,10,10,10,10)
 	high_population_requirement = 10
-	
+
 /datum/dynamic_ruleset/roundstart/wizard
 	weight = 20
-	
+
 /datum/dynamic_ruleset/roundstart/bloodcult
 	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Chaplain", "Head of Personnel", "Vice Officer")
 	weight = 30
