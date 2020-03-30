@@ -693,12 +693,12 @@
 	build_path = /obj/item/flamethrower/full
 	category = list("hacked", "Security")
 
-/datum/design/glockammo
-	name = "Glock 17 magazine"
-	id= "glockammo"
+/datum/design/m1911ammo
+	name = "M1911 Magazine"
+	id = "1911ammo"
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 30000, MAT_GLASS = 1000)
-	build_path = /obj/item/ammo_box/magazine/g17
+	build_path = /obj/item/ammo_box/magazine/m45
 	category = list("hacked", "Security")
 
 /datum/design/rcd
