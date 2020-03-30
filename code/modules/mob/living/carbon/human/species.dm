@@ -1501,7 +1501,7 @@ hippie end */
 					B.add_blood_DNA(H.return_blood_DNA())
 					B.blood_source = H
 					playsound(location, pick('hippiestation/sound/effects/splash.ogg'), 40, TRUE, -1)
-					var/dist = rand(1,3)
+					var/dist = rand(1,5)
 					var/turf/targ = get_ranged_target_turf(H, get_dir(user, H), dist)
 					B.GoTo(targ, dist)
 				else
