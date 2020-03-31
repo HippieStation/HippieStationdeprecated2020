@@ -28439,15 +28439,7 @@
 /turf/closed/wall,
 /area/medical/sleeper)
 "bEe" = (
-/obj/structure/table/glass,
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 7;
-	pixel_y = 1
-	},
+/obj/structure/closet/secure_closet/medical1,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bEf" = (
@@ -28461,6 +28453,10 @@
 	},
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 7;
+	pixel_y = 1
+	},
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bEh" = (
@@ -32629,7 +32625,6 @@
 /area/medical/sleeper)
 "bPG" = (
 /obj/machinery/light,
-/obj/structure/closet/secure_closet/medical1,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bPH" = (
