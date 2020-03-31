@@ -1,4 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - bugfix: "Quick swapping now compensates for storage items and priority slots"
