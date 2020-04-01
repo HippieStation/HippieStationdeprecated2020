@@ -1,4 +1,0 @@
-author: "ProtozoaPrime"
-delete-after: True
-changes: 
-  - bugfix: "Fixed whitescreen for contraband-less vending machines when hacked"
