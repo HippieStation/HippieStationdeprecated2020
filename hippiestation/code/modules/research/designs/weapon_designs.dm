@@ -16,7 +16,7 @@
 	category = list("Ammo")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 	build_path = /obj/item/ammo_box/magazine/xcomammo
-	materials = list(MAT_METAL = 8000, MAT_PLASMA = 1500)
+	materials = list(MAT_METAL = 18000, MAT_PLASMA = 1200)
 	name = "6.7mm magazine"
 	desc = "Perfect for mass rushes of squaddies and rookies."
 
@@ -26,6 +26,6 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 	build_path = /obj/item/gun/ballistic/automatic/xcomrifle
-	materials = list(MAT_METAL = 20000, MAT_TITANIUM = 1000, MAT_PLASMA = 4000, MAT_PLASTIC = 500)
+	materials = list(MAT_METAL = 10000, MAT_TITANIUM = 500, MAT_PLASMA = 1800, MAT_PLASTIC = 500)
 	name = "6.7mm rifle"
 	desc = "An old Earth classic, used by X-COM Operatives during the First Alien War. It's usefullness died with the development of the laser rifle."
