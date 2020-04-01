@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 	// hippie -- adds in the surplus only items and kills anyone hoping for no text walls
 	var/list/surplus_items = list(/obj/item/toy/plush/goatplushie, /obj/item/clothing/shoes/crowbar, /obj/item/grown/bananapeel/lube, /obj/item/mop/advanced/energy,
-	/mob/living/simple_animal/pet/gondola, /obj/item/blood_debt_granter)
+	/mob/living/simple_animal/pet/gondola, /obj/item/blood_debt_granter, /obj/item/book/granter/crafting_recipe/USSR3)
 	var/item_count = rand(0,5)
 	while(item_count)
 		var/surplus_item = pick(surplus_items)

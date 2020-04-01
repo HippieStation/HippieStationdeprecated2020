@@ -151,6 +151,7 @@
 	var/remove_clumsy = FALSE
 	var/give_flash = FALSE
 	var/give_hud = TRUE
+	var/give_book = TRUE
 
 /datum/antagonist/rev/head/antag_listing_name()
 	return ..() + "(Leader)"
@@ -259,6 +260,19 @@
 		var/obj/item/organ/cyberimp/eyes/hud/security/syndicate/S = new(H)
 		S.Insert(H, special = FALSE, drop_if_replaced = FALSE)
 		to_chat(H, "Your eyes have been implanted with a cybernetic security HUD which will help you keep track of who is mindshield-implanted, and therefore unable to be recruited.")
+	
+	if(give_book)
+		var/obj/item/book/granter/crafting_recipe/USSR3/L = new(H)
+		var/list/slots = list (
+			"backpack" = SLOT_IN_BACKPACK,
+			"left pocket" = SLOT_L_STORE,
+			"right pocket" = SLOT_R_STORE
+		)
+		var/where = H.equip_in_one_of_slots(L, slots)
+		if (!where)
+			to_chat(H, "The Syndicate were unfortunately unable to get you an indoctrination manual.")
+		else
+			to_chat(H, "The indoctrination manual in your [where] will help you to acquire tools vital to your struggle.")
 
 /datum/team/revolution
 	name = "Revolution"

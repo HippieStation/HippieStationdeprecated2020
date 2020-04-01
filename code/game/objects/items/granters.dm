@@ -417,6 +417,7 @@
 		to_chat(user, "Perhaps Lenin wasn't so bad, after all...")
 		sleep(1)
 		to_chat(user, "Wait a minute...")
+		sleep(1)
 		user.playsound_local(user, 'hippiestation/sound/effects/liberty.ogg', 50, FALSE)
 		user.mind.make_Rev()
 	else
