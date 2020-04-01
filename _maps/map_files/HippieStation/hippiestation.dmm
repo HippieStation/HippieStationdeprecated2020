@@ -55573,6 +55573,10 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/mob/living/simple_animal/bot/honkbot{
+	auto_patrol = 1;
+	name = "xxXSyndicateSpyXxx"
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "nxP" = (
