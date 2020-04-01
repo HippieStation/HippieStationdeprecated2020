@@ -19,3 +19,12 @@
 
 			if (lumcount >= 0.4) // Don't wait to spook people in maint when you pull out your shooter
 				..()
+
+/obj/item/gun/ballistic/revolver/CtrlShiftClick(mob/user)
+	..()
+	var/mob/M = usr
+	if (M.is_holding(src))
+		src.SpinAnimation(5,1)
+		M.visible_message("[M] swings the [src] in their hand! Radical!", "<span class='notice'>You swing the [src] in your hand. Radical!")
+	else
+		to_chat(M, "<span class='notice'>The [src] needs to be in your hand before you can swing it!")
