@@ -162,7 +162,7 @@
 		else
 			return ..()
 	/obj/item/clothing/suit/armor/suicide/attack_self(var/mob/user)
-		if(length(attached_grenade) != 0)
+		if(attached_grenade.len)
 			user.visible_message("<span class='warning'>\The [user] empties out \the [src]!</span>", "<span class='notice'>You empty out \the [src].</span>")
 			for(var/obj/item/grenade/G in attached_grenade)
 				G.forceMove(drop_location())
@@ -170,16 +170,16 @@
 			attached_grenade.Cut()
 		else
 			return ..()
-
 	/obj/item/clothing/suit/armor/suicide/AltClick(mob/living/user)
 		if(istype(user.get_item_by_slot(SLOT_WEAR_SUIT), /obj/item/clothing/suit/armor/suicide))
-			if(attached_grenade.len != 0)
+			if(attached_grenade.len)
 				playsound(src, "allah", 100, 0)
 				for(var/obj/item/grenade/G in attached_grenade)
 					addtimer(CALLBACK(G, /obj/item/grenade.proc/prime), 1)
 				QDEL_IN(src, 3)
 		else
 			to_chat(user, "You need to be wearing the suit to trigger it.")
+			return
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof armor"
 	desc = "A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
