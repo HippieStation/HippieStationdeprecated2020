@@ -296,7 +296,7 @@
 /datum/crafting_recipe/moistclip
 	name = "stripper clip (7.62mm)"
 	result = /obj/item/ammo_box/a762
-	reqs = list(/datum/reagent/blackpowder = 5,
+	reqs = list(/datum/reagent/blackpowder = 15,
 				/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/tile/bronze = 1)
 	time = 20
@@ -314,3 +314,31 @@
 	tools = list(TOOL_WELDER, TOOL_WIRECUTTER)
 	category = CAT_FOOD
 	always_availible = FALSE
+
+/datum/crafting_recipe/c4
+	name = "C4 Brick"
+	result = /obj/item/grenade/plastic/c4
+	reqs = list(/obj/item/stack/sheet/plastic = 20,
+				/obj/item/stack/rods = 3,
+				/datum/reagent/copper = 50,
+				/obj/item/stack/sheet/mineral/gold = 5)
+	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
+	always_availible = FALSE
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/grenade
+	name = "Frag Grenade"
+	result = /obj/item/grenade/syndieminibomb/concussion/frag
+	reqs = list(/datum/reagent/blackpowder = 50,
+				/obj/item/grenade/chem_grenade/large = 1,
+				/obj/item/stack/rods = 10,
+				/obj/item/stack/sheet/metal = 5)
+	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
+	always_availible = FALSE
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+				
+/datum/crafting_recipe/holyhandgrenade
+/datum/crafting_recipe/warcrimegrenade
+/datum/crafting_recipe/empbomb
