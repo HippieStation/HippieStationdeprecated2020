@@ -3,6 +3,8 @@
 	desc = "Made from a rare Gondola hide. Is said to be cursed by the spirits of Space Finland, which speak through the mask when you scream."
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	flags_1 = MASKINTERNALS
+	flags_cover = MASKCOVERSMOUTH
+	clothing_flags = MASKINTERNALS
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "spurdo"
 	item_state = "spurdo"

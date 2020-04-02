@@ -336,7 +336,6 @@
 	tools = list(TOOL_WRENCH, TOOL_MULTITOOL)
 	time = 20
 	category = CAT_CLOTHING
-	subcategory
 
 /datum/crafting_recipe/ishotgun
 	name = "Improvised Shotgun"
