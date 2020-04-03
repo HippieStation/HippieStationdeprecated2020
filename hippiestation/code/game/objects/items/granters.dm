@@ -17,10 +17,10 @@
 	name = "Anarchist's Compendium"
 	desc = "A collection of different anarchist works from authors such as Ted Kaczynski, Peter Kropotkin, Mikhail Bakunin and James Mason? Wait, this isn't right, who compiled this? There's a page taped on in the middle detailing different pyrotechnics blueprints."
 	crafting_recipe_types = list(
-		/datum/crafting_recipe/c4
-		/datum/crafting_recipe/grenade
-		/datum/crafting_recipe/holyhandgrenade
-		/datum/crafting_recipe/warcrimegrenade
+		/datum/crafting_recipe/c4,
+		/datum/crafting_recipe/grenade,
+		/datum/crafting_recipe/holyhandgrenade,
+		/datum/crafting_recipe/warcrimegrenade,
 		/datum/crafting_recipe/empbomb
 	)
 	icon_state = "anarchist_cb"

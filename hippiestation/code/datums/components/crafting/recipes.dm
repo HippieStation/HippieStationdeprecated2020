@@ -340,5 +340,45 @@
 	subcategory = CAT_WEAPON
 				
 /datum/crafting_recipe/holyhandgrenade
+	name = "Holy Hand Grenade"
+	result = /obj/item/grenade/chem_grenade/holy
+	reqs = list(/datum/reagent/potassium = 200,
+				/datum/reagent/water/holywater = 50,
+				/obj/item/grenade/chem_grenade/large = 1,
+				/obj/item/stack/rods = 10,
+				/obj/item/stack/sheet/metal = 5)
+	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
+	always_availible = FALSE
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/warcrimegrenade
+	name = "Biological Warfare Grenade"
+	result = /obj/item/grenade/chem_grenade/tuberculosis
+	reqs = list(/obj/item/reagent_containers/glass/beaker/bluespace/ = 2,
+				/datum/reagent/blood = 200,
+				/datum/reagent/phosphorus = 100,
+				/datum/reagent/consumable/sugar = 100,
+				/datum/reagent/potassium = 100,
+				/datum/reagent/uranium = 60,
+				/datum/reagent/plantnutriment/eznutriment = 50,
+				/obj/item/grenade/chem_grenade/large = 1,
+				/obj/item/stack/rods = 10,
+				/obj/item/stack/sheet/metal = 5)
+	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
+	always_availible = FALSE
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/empbomb
+	name = "EMP Grenade"
+	result = /obj/item/grenade/empgrenade
+	reqs = list(/datum/reagent/uranium = 100,
+				/datum/reagent/iron = 100,
+				/obj/item/grenade/chem_grenade/large = 1,
+				/obj/item/stack/rods = 10,
+				/obj/item/stack/sheet/metal = 5)
+	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
+	always_availible = FALSE
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
