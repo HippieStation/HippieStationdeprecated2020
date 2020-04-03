@@ -38,7 +38,7 @@
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/bluespace_miner
 	layer = BELOW_OBJ_LAYER
-	var/list/ores = list(MAT_METAL = 600, MAT_GLASS = 600, MAT_PLASMA = 400,  MAT_SILVER = 400, MAT_GOLD = 250, MAT_TITANIUM = 250, MAT_URANIUM = 250, MAT_BANANIUM = 150, MAT_DIAMOND = 90, MAT_BLUESPACE = 90)
+	var/list/ores = list(MAT_METAL = 600, MAT_GLASS = 600, MAT_PLASMA = 400,  MAT_SILVER = 400, MAT_GOLD = 250, MAT_TITANIUM = 250, MAT_URANIUM = 250, MAT_BANANIUM = 90, MAT_DIAMOND = 90, MAT_BLUESPACE = 90)
 	var/datum/component/remote_materials/materials
 	var/debugging = 0
 
