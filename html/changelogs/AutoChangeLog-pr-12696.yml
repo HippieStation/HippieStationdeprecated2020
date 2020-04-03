@@ -1,0 +1,4 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - bugfix: "Defib mounts no longer get stuck and don't retract"
