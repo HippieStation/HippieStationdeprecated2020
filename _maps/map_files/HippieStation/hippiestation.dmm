@@ -55187,7 +55187,8 @@
 /area/maintenance/port/aft)
 "mOQ" = (
 /obj/machinery/door/airlock/external{
-	name = "Port Docking Bay 1"
+	name = "Port Docking Bay 1";
+	safety_mode = 1
 	},
 /obj/effect/turf_decal/delivery,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -55438,7 +55439,8 @@
 /area/engine/port_engineering)
 "nkD" = (
 /obj/machinery/door/airlock/external{
-	name = "Port Docking Bay 1"
+	name = "Port Docking Bay 1";
+	safety_mode = 1
 	},
 /obj/effect/turf_decal/delivery,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -57208,7 +57210,8 @@
 /area/medical/medbay/central)
 "qlb" = (
 /obj/machinery/door/airlock/external{
-	name = "Port Docking Bay 1"
+	name = "Port Docking Bay 1";
+	safety_mode = 1
 	},
 /obj/effect/turf_decal/delivery,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -58305,7 +58308,8 @@
 	})
 "skg" = (
 /obj/machinery/door/airlock/external{
-	name = "Port Docking Bay 1"
+	name = "Port Docking Bay 1";
+	safety_mode = 1
 	},
 /obj/effect/turf_decal/delivery,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
