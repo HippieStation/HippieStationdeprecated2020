@@ -206,8 +206,8 @@
 		var/M = get(paddles, /mob)
 		remove_paddles(M)
 	QDEL_NULL(paddles)
-	. = ..()
-	update_icon()
+	QDEL_NULL(cell)
+	return ..()
 
 /obj/item/defibrillator/proc/deductcharge(chrgdeductamt)
 	if(cell)
@@ -317,10 +317,9 @@
 		var/mob/living/L = loc
 		if(istype(L))
 			to_chat(L, "<span class='warning'>[defib]'s paddles overextend and come out of your hands!</span>")
-			L.temporarilyRemoveItemFromInventory(src,TRUE)
 		else
 			visible_message("<span class='notice'>[src] snap back into [defib].</span>")
-			snap_back()
+		snap_back()
 
 /obj/item/twohanded/shockpaddles/proc/recharge(var/time)
 	if(req_defib || !time)
@@ -334,13 +333,15 @@
 	cooldown = FALSE
 	update_icon()
 
-/obj/item/twohanded/shockpaddles/New(mainunit)
-	..()
-	if(check_defib_exists(mainunit, src) && req_defib)
-		defib = mainunit
-		forceMove(defib)
-		busy = FALSE
-		update_icon()
+/obj/item/twohanded/shockpaddles/Initialize(mainunit)
+	. = ..()
+	if(!req_defib)
+		return
+	if (!loc || !istype(loc, /obj/item/defibrillator)) //To avoid weird issues from admin spawns
+		return INITIALIZE_HINT_QDEL
+	defib = loc
+	busy = FALSE
+	update_icon()
 
 /obj/item/twohanded/shockpaddles/update_icon()
 	icon_state = "defibpaddles[wielded]"
@@ -364,11 +365,12 @@
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 	if(user)
-		var/obj/item/twohanded/offhand/O = user.get_inactive_held_item()
-		if(istype(O))
-			O.unwield()
-		to_chat(user, "<span class='notice'>The paddles snap back into the main unit.</span>")
-		snap_back()
+		if(user != loc)
+			var/obj/item/twohanded/offhand/O = user.get_inactive_held_item()
+			if(istype(O))
+				O.unwield()
+			to_chat(user, "<span class='notice'>The paddles snap back into the main unit.</span>")
+			snap_back()
 	return unwield(user)
 
 /obj/item/twohanded/shockpaddles/proc/snap_back()
@@ -376,7 +378,7 @@
 		return
 	defib.on = FALSE
 	forceMove(defib)
-	defib.update_icon()
+	defib.update_power()
 
 /obj/item/twohanded/shockpaddles/proc/check_defib_exists(mainunit, mob/living/carbon/M, obj/O)
 	if(!req_defib)
