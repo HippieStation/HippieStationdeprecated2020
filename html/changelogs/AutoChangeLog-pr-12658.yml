@@ -1,0 +1,10 @@
+author: "karmaisblackandbluepilled"
+delete-after: True
+changes: 
+  - rscadd: "The M1911 to the crafting menu."
+  - rscadd: "M1911 ammo to the hacked autolathe."
+  - rscadd: "ShitGlock™ with a sprite by punkinguy."
+  - rscadd: "USSR-3 Indoctrination Manual has now been made standard across all of the revolutionary leader's kits."
+  - rscadd: "The Syndicate has decided to include guides with pretty pictures to help in making pyrotechnics in the special operations crate."
+  - balance: "Made the iShotgun cheaper for greytide power."
+  - balance: "Makes the traitor glock start with 3 ammo mags because it was useless"
