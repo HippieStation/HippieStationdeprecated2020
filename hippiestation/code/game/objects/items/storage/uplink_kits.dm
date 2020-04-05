@@ -35,6 +35,15 @@
 /obj/item/storage/box/syndie_kit/imp_mindslave/PopulateContents()
 	new /obj/item/implanter/mindslave(src)
 
+/obj/item/storage/box/syndie_kit/glock17
+	name = "Glock Seventeen with spare ammo"
+
+/obj/item/storage/box/syndie_kit/glock17/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/pistol/g17(src)
+	new /obj/item/ammo_box/magazine/g17(src)
+	new /obj/item/ammo_box/magazine/g17(src)
+	new /obj/item/ammo_box/magazine/g17(src)
+
 /obj/item/storage/box/syndie_kit/imp_gmindslave
 	name = "Greater Mindslave Implant (with injector)"
 
