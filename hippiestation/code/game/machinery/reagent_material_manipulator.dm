@@ -58,9 +58,6 @@
 		R = I
 		analyse_only = TRUE
 
-	else if(istype(I, /obj/item/stack/tile/mineral/reagent))
-		R = I
-
 	else if(istype(I, /obj/item/forged))
 		R = I
 
@@ -198,13 +195,7 @@
 					if(!F.BB)//this has no bullet
 						return FALSE
 					R = F.BB
-
-				//else if(istype(loaded, /obj/item/stack/tile/mineral/reagent))
-				//	R = loaded
-
-				var/obj/item/stack/tile/mineral/reagent/M
-				if(istype(loaded, /obj/item/stack/tile/mineral/reagent))
-					M = loaded
+					
 				for(var/I in synthesis.special_traits)
 					var/datum/special_trait/D = new I
 					if(D.name == params["name"])
@@ -219,13 +210,4 @@
 								reagents.remove_any(SPECIAL_TRAIT_ADD_COST)
 								to_chat(usr, "<span class='notice'>You add the trait [D] to [R]</span>")
 								return TRUE
-						if(M)
-							if(locate(D) in M.special_traits)
-								to_chat(usr, "<span class='warning'>[M] already has that trait!</span>")
-								return FALSE
-							else
-								M.reagent_type.special_traits += D
-								to_chat(usr, "<span class='notice'>You add the trait [D] to [M]</span>")
-								return TRUE
-
 	return FALSE
