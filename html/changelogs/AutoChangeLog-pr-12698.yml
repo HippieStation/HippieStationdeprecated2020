@@ -1,4 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - rscadd: "Firelocks and arrivals shuttle airlocks now have a safety mechanism to open them in a power outage, simply use your hand."
