@@ -1,5 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - rscadd: "A chem tank now spawns in lower chemistry"
-  - bugfix: "Fixed some areas on the station missing an APC"
