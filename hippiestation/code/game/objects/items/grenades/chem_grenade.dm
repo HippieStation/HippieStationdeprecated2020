@@ -1,8 +1,5 @@
-#define READY 3
-
 /obj/item/grenade/chem_grenade
 	banned_containers = list() // reverts bluespace beaker's nerf
-
 
 /obj/item/grenade/chem_grenade/Crossed(atom/movable/AM, oldloc)
 	for(var/A in wires.assemblies)
@@ -20,7 +17,7 @@
 /obj/item/grenade/chem_grenade/saringas
 	name = "Sarin gas grenade"
 	desc = "Tiger Cooperative military grade nerve gas. WARNING: Ensure internals are active before use, nerve agents are exceptionally lethal regardless of dosage"
-	stage = READY
+	stage = GRENADE_READY
 
 /obj/item/grenade/chem_grenade/saringas/Initialize()
 	. = ..()
@@ -33,5 +30,3 @@
 	B2.reagents.chem_temp = 1000
 	beakers += B1
 	beakers += B2
-
-#undef READY
