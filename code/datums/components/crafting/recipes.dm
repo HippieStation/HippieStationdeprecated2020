@@ -340,14 +340,14 @@
 /datum/crafting_recipe/ishotgun
 	name = "Improvised Shotgun"
 	result = /obj/item/gun/ballistic/shotgun/doublebarrel/improvised
-	reqs = list(/obj/item/weaponcrafting/receiver = 1,
+	reqs = list(/obj/item/stack/sheet/plasteel = 2,
 				/obj/item/pipe = 1,
-				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/stack/packageWrap = 5)
-	tools = list(TOOL_SCREWDRIVER)
+	tools = list(TOOL_SCREWDRIVER, TOOL_WELDER)
 	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
 
 /datum/crafting_recipe/chainsaw
 	name = "Chainsaw"

@@ -111,6 +111,32 @@
 	time = 200
 	category = CAT_ROBOT
 
+/datum/crafting_recipe/m1911
+	name = "M1911"
+	result = /obj/item/gun/ballistic/automatic/pistol/m1911
+	reqs = list(/obj/item/stack/sheet/plasteel = 5,
+				/obj/item/weaponcrafting/receiver = 1,
+				/obj/item/stack/packageWrap = 10,
+				/obj/item/stack/sheet/plastic = 10)
+	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
+	time = 200
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/shitglock
+	name = "Glock 16"
+	result = /obj/item/gun/ballistic/automatic/pistol/g17/improvised
+	reqs = list(/obj/item/reagent_containers/food/drinks/soda_cans = 1,
+				/obj/item/stack/sheet/metal = 20,
+				/obj/item/stack/cable_coil = 20,
+				/obj/item/pipe = 5,
+				/obj/item/stack/ducttape = 5,
+				/obj/item/stack/packageWrap = 10)
+	tools = list(TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_WELDER)
+	time = 70
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
 /datum/crafting_recipe/lockermechdrill
 	name = "Makeshift exosuit drill"
 	result = /obj/item/mecha_parts/mecha_equipment/drill/makeshift
@@ -219,5 +245,140 @@
 				/obj/item/stack/wrapping_paper = 5)
 	time = 50
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_CROWBAR)
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/ushanka
+	name = "Ushanka"
+	result = /obj/item/clothing/head/ushanka
+	reqs = list(/obj/item/stack/sheet/mineral/silver = 1,
+				/obj/item/stack/sheet/leather = 3,
+				/obj/item/stack/cable_coil = 10)
+	time = 30
+	tools = list(TOOL_WIRECUTTER)
+	category = CAT_CLOTHING
+	always_availible = FALSE
+
+/datum/crafting_recipe/moistnugget
+	name = "Mosin Nagant"
+	result = /obj/item/gun/ballistic/rifle/boltaction
+	reqs = list(/obj/item/stack/rods = 1,
+				/obj/item/stack/sheet/mineral/wood = 5,
+				/obj/item/stack/sheet/metal = 10,
+				/obj/item/weaponcrafting/receiver = 1)
+	time = 60
+	tools = list(TOOL_WIRECUTTER, TOOL_WELDER, TOOL_SCREWDRIVER)
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+	always_availible = FALSE
+
+/datum/crafting_recipe/bodka
+	name = "Vodka"
+	result = /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/potato = 4,
+				/obj/item/stack/sheet/glass = 1,
+				/obj/item/pipe = 1)
+	time = 30
+	tools = list(TOOL_WELDER, TOOL_WRENCH)
+	category = CAT_FOOD
+	always_availible = FALSE
+
+/datum/crafting_recipe/russiansuit
+	name = "Soviet Suit"
+	result = /obj/item/clothing/under/soviet
+	reqs = list(/obj/item/stack/sheet/cloth = 4,
+				/obj/item/stack/sheet/metal = 1)
+	time = 30
+	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
+	category = CAT_CLOTHING
+	always_availible = FALSE
+
+/datum/crafting_recipe/moistclip
+	name = "stripper clip (7.62mm)"
+	result = /obj/item/ammo_box/a762
+	reqs = list(/datum/reagent/blackpowder = 15,
+				/obj/item/stack/sheet/metal = 5,
+				/obj/item/stack/tile/bronze = 1)
+	time = 20
+	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER, TOOL_WELDER)
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+	always_availible = FALSE
+
+/datum/crafting_recipe/beans
+	name = "Tin of Beans"
+	result = /obj/item/reagent_containers/food/snacks/beans
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/soybeans = 10,
+				/obj/item/stack/sheet/metal = 1)
+	time = 40
+	tools = list(TOOL_WELDER, TOOL_WIRECUTTER)
+	category = CAT_FOOD
+	always_availible = FALSE
+
+/datum/crafting_recipe/c4
+	name = "C4 Brick"
+	result = /obj/item/grenade/plastic/c4
+	reqs = list(/obj/item/stack/sheet/plastic = 20,
+				/obj/item/stack/rods = 3,
+				/datum/reagent/copper = 50,
+				/obj/item/stack/sheet/mineral/gold = 5)
+	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
+	always_availible = FALSE
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/grenade
+	name = "Frag Grenade"
+	result = /obj/item/grenade/syndieminibomb/concussion/frag
+	reqs = list(/datum/reagent/blackpowder = 50,
+				/obj/item/grenade/chem_grenade/large = 1,
+				/obj/item/stack/rods = 10,
+				/obj/item/stack/sheet/metal = 5)
+	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
+	always_availible = FALSE
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+				
+/datum/crafting_recipe/holyhandgrenade
+	name = "Holy Hand Grenade"
+	result = /obj/item/grenade/chem_grenade/holy
+	reqs = list(/datum/reagent/potassium = 200,
+				/datum/reagent/water/holywater = 50,
+				/obj/item/grenade/chem_grenade/large = 1,
+				/obj/item/stack/rods = 10,
+				/obj/item/stack/sheet/metal = 5)
+	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
+	always_availible = FALSE
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/warcrimegrenade
+	name = "Biological Warfare Grenade"
+	result = /obj/item/grenade/chem_grenade/tuberculosis
+	reqs = list(/obj/item/reagent_containers/glass/beaker/bluespace/ = 2,
+				/datum/reagent/blood = 200,
+				/datum/reagent/phosphorus = 100,
+				/datum/reagent/consumable/sugar = 100,
+				/datum/reagent/potassium = 100,
+				/datum/reagent/uranium = 60,
+				/datum/reagent/plantnutriment/eznutriment = 50,
+				/obj/item/grenade/chem_grenade/large = 1,
+				/obj/item/stack/rods = 10,
+				/obj/item/stack/sheet/metal = 5)
+	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
+	always_availible = FALSE
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/empbomb
+	name = "EMP Grenade"
+	result = /obj/item/grenade/empgrenade
+	reqs = list(/datum/reagent/uranium = 100,
+				/datum/reagent/iron = 100,
+				/obj/item/grenade/chem_grenade/large = 1,
+				/obj/item/stack/rods = 10,
+				/obj/item/stack/sheet/metal = 5)
+	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
+	always_availible = FALSE
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON

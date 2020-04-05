@@ -373,6 +373,7 @@
 			new_head.give_flash = TRUE
 			new_head.give_hud = TRUE
 			new_head.remove_clumsy = TRUE
+			new_head.give_book = TRUE
 			M.add_antag_datum(new_head,revolution)
 		else
 			assigned -= M
