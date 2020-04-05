@@ -1,5 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - bugfix: "Explosions no longer leave gas overlays in space"
-  - admin: "Clean air verb properly cleans up gases"
