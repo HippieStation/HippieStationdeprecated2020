@@ -22,6 +22,7 @@
 	name = "Nano Guy (Nanosuit)"
 	implants = list(/obj/item/implant/explosive/disintegrate, /obj/item/implant/adrenalin/nanoguy)
 	internals_slot = SLOT_S_STORE
+	ears = /obj/item/radio/headset/headset_cent/commander
 
 /obj/item/clothing/suit/space/hardsuit/nano/nanoguy
 	name = "Nanotrasen Nanotech Suit"
