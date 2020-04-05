@@ -17582,6 +17582,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -22
+	},
 /turf/open/floor/plasteel,
 /area/storage/art)
 "aYO" = (
@@ -20266,7 +20270,7 @@
 /area/vacant_room/office)
 "bgD" = (
 /obj/machinery/door/airlock/engineering{
-	name = "Vacant Office A";
+	name = "Vacant Office";
 	req_access_txt = "0";
 	req_one_access_txt = "32;50"
 	},
@@ -22557,14 +22561,15 @@
 	pixel_x = -24
 	},
 /obj/machinery/vending/wardrobe/chem_wardrobe,
+/obj/machinery/camera{
+	c_tag = "Chemistry - Lab 1";
+	dir = 4;
+	network = list("SS13")
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bnC" = (
 /obj/structure/cable,
-/obj/machinery/camera{
-	c_tag = "Chemistry - Lab 1";
-	network = list("SS13")
-	},
 /mob/living/simple_animal/bot/cleanbot{
 	name = "C.L.E.A.N."
 	},
@@ -25548,6 +25553,7 @@
 /area/crew_quarters/heads/captain)
 "bvj" = (
 /obj/structure/cable,
+/obj/machinery/power/apc/auto_name/west,
 /turf/open/floor/plating,
 /area/maintenance/central/secondary)
 "bvl" = (
@@ -27073,11 +27079,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"bzT" = (
-/obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/medical/genetics)
 "bzW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
@@ -29817,6 +29818,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
+/obj/structure/reagent_dispensers/chemical,
 /turf/open/floor/plasteel/dark,
 /area/medical/chemistry)
 "bHL" = (
@@ -50565,6 +50567,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "fAd" = (
@@ -53940,6 +53943,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/airless,
 /area/engine/port_engineering)
+"kVX" = (
+/obj/item/bikehorn/airhorn{
+	dir = 8
+	},
+/obj/machinery/power/apc/auto_name/east,
+/turf/open/floor/mineral/bananium,
+/area/maintenance/longface)
 "kWp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
@@ -55225,6 +55235,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/hor)
+"mSa" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/maintenance/department/science)
 "mSt" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden,
@@ -60813,6 +60827,8 @@
 /area/ai_monitored/turret_protected/aisat/atmos)
 "wtH" = (
 /obj/structure/table/glass,
+/obj/machinery/power/apc/auto_name/east,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/maintenance/department/science)
 "wtQ" = (
@@ -100737,7 +100753,7 @@ btT
 bvw
 bwU
 byt
-bzT
+bwX
 bwX
 bwX
 bwX
@@ -113028,7 +113044,7 @@ ybG
 ptn
 oLw
 ofC
-oLw
+kVX
 pUU
 pUU
 uTC
@@ -113087,7 +113103,7 @@ lQQ
 bOU
 bQt
 bOU
-bOU
+mSa
 bOU
 vTC
 bWr
