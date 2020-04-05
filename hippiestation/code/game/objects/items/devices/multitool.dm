@@ -77,6 +77,4 @@
 
 /obj/item/multitool/syndicate/update_icon() //this seems redundant but pretty sure it will stop it from becoming invisible when clicked
 	if(selected_io)
-		icon_state = "multitool_nuke"
-	else
-		icon_state = "multitool_nuke"
+		return
