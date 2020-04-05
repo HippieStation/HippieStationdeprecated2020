@@ -1,0 +1,4 @@
+author: "AnthonyJNgo"
+delete-after: True
+changes: 
+  - bugfix: "properly changes the nano guy headset from syndicate bowman to centcomm bowman headset"
