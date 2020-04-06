@@ -1,0 +1,4 @@
+author: "ProtozoaPrime"
+delete-after: True
+changes: 
+  - bugfix: "Fixed forged weapon equipping being broken"
