@@ -24,7 +24,8 @@
 		C.parallax_layers_cached += new /obj/screen/parallax_layer/planet(null, C.view)
 		if(SSparallax.random_layer)
 			C.parallax_layers_cached += new SSparallax.random_layer
-		C.parallax_layers_cached += new /obj/screen/parallax_layer/random/galaxy(null, C.view) // hippie edit -- more parallax
+		var/random_galaxy = pick(/obj/screen/parallax_layer/random/galaxy, /obj/screen/parallax_layer/random/galaxy/variant2, /obj/screen/parallax_layer/random/galaxy/variant3, /obj/screen/parallax_layer/random/galaxy/variant4)
+		C.parallax_layers_cached += new random_galaxy(null, C.view) // hippie edit -- more parallax
 		C.parallax_layers_cached += new /obj/screen/parallax_layer/layer_3(null, C.view)
 
 	C.parallax_layers = C.parallax_layers_cached.Copy()
@@ -173,7 +174,7 @@
 /datum/hud/proc/update_parallax()
 	var/client/C = mymob.client
 	var/turf/posobj = get_turf(C.eye)
-	if(!posobj) 
+	if(!posobj)
 		return
 	var/area/areaobj = posobj.loc
 
@@ -316,15 +317,24 @@
 
 /obj/screen/parallax_layer/random/asteroids
 	icon_state = "asteroids"
-	
+
 // hippie edit -- more parallax
 /obj/screen/parallax_layer/random/galaxy
 	absolute = TRUE
-	icon_state = "galaxy"
 	layer = 1
 	speed = 1
+	icon_state = "galaxy"
 	offset_x = 120
 	offset_y = 120
+
+/obj/screen/parallax_layer/random/galaxy/variant2
+	icon_state = "galaxy2"
+
+/obj/screen/parallax_layer/random/galaxy/variant3
+	icon_state = "galaxy3"
+
+/obj/screen/parallax_layer/random/galaxy/variant4
+	icon_state = "galaxy4"
 
 /obj/screen/parallax_layer/random/galaxy/update_o()
 	return //Shit wont move
