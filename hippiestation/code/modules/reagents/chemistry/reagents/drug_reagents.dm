@@ -324,7 +324,7 @@
 				H.blur_eyes(2)
 				H.derpspeech++
 		if(31 to INFINITY)
-			if(prob(20) && (H.mobility_flags & MOBILITY_MOVE) && !ismovableatom(H.loc))
+			if(prob(20) && (H.mobility_flags & MOBILITY_MOVE) && !ismovable(H.loc))
 				step(H, pick(GLOB.cardinals))
 			if(H.client)
 				sounds = H.client.SoundQuery()
@@ -343,7 +343,7 @@
 						animate(whole_screen, transform = turn(matrix(), rotation*rand(0.5,5)), time = 50, easing = QUAD_EASING)
 						animate(whole_screen, transform = matrix()*1.5, time = 40, easing = BOUNCE_EASING)
 					if(prob(15))
-						whole_screen.filters += filter(type="wave", x=20*rand() - 20, y=20*rand() - 20, size=rand()*0.1, offset=rand()*0.5, flags = "WAVE_BOUNDED")
+						whole_screen.filters += filter(type="wave", x=20*rand() - 20, y=20*rand() - 20, size=rand()*0.1, offset=rand()*0.5, flags = WAVE_BOUNDED)
 						animate(whole_screen.filters[whole_screen.filters.len], size = rand(1,3), time = 30, easing = QUAD_EASING, loop = -1)
 						to_chat(H, "<span class='notice'>You feel reality melt away...</span>")
 						addtimer(VARSET_CALLBACK(whole_screen, filters, list()), 1200)

@@ -5,7 +5,7 @@
 	due_date = 0 // Game time in deciseconds
 	unique = 1   // 0  Normal book, 1  Should not be treated as normal book, unable to be copied, unable to be modified
 	var/list/remarks = list() //things to read about while learning.
-	var/pages_to_mastery = 3 //Essentially controls how long a mob must keep the book in his hand to actually successfully learn
+	var/pages_to_mastery = 4 //Essentially controls how long a mob must keep the book in his hand to actually successfully learn
 	var/reading = FALSE //sanity
 	var/oneuse = TRUE //default this is true, but admins can var this to 0 if we wanna all have a pass around of the rod form book
 	var/used = FALSE //only really matters if oneuse but it might be nice to know if someone's used it for admin investigations perhaps
@@ -410,3 +410,15 @@
 		var/datum/crafting_recipe/R = crafting_recipe_type
 		user.mind.teach_crafting_recipe(crafting_recipe_type)
 		to_chat(user,"<span class='notice'>You learned how to make [initial(R.name)].</span>")
+	
+/obj/item/book/granter/crafting_recipe/USSR3/on_reading_finished(mob/user)
+	..()
+	if(prob(1))
+		to_chat(user, "Perhaps Lenin wasn't so bad, after all...")
+		sleep(1)
+		to_chat(user, "Wait a minute...")
+		sleep(1)
+		user.playsound_local(user, 'hippiestation/sound/effects/liberty.ogg', 50, FALSE)
+		user.mind.make_Rev()
+	else
+		return

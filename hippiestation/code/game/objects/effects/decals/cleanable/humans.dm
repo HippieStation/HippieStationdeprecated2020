@@ -18,10 +18,10 @@
 		blood_source = blood
 	prev_loc = loc //Just so we are sure prev_loc exists
 
-/obj/effect/decal/cleanable/blood/hitsplatter/proc/GoTo(turf/T, var/range)
+/obj/effect/decal/cleanable/blood/hitsplatter/proc/GoTo(turf/T, var/range, speed = 1)
 	for(var/i in 1 to range)
 		step_towards(src,T)
-		sleep(1)
+		sleep(speed) //higher = slower
 		prev_loc = loc
 		for(var/atom/A in get_turf(src))
 			if(istype(A,/obj/item))

@@ -8,7 +8,7 @@
 	var/last_parallax_shift //world.time of last update
 	var/parallax_throttle = 0 //ds between updates
 	var/parallax_movedir = 0
-	var/parallax_layers_max = 4
+	var/parallax_layers_max = 5 // hippie edit -- more parallax
 	var/parallax_animate_timer
 
 /datum/hud/proc/create_parallax(mob/viewmob)
@@ -24,6 +24,7 @@
 		C.parallax_layers_cached += new /obj/screen/parallax_layer/planet(null, C.view)
 		if(SSparallax.random_layer)
 			C.parallax_layers_cached += new SSparallax.random_layer
+		C.parallax_layers_cached += new /obj/screen/parallax_layer/random/galaxy(null, C.view) // hippie edit -- more parallax
 		C.parallax_layers_cached += new /obj/screen/parallax_layer/layer_3(null, C.view)
 
 	C.parallax_layers = C.parallax_layers_cached.Copy()
@@ -315,6 +316,19 @@
 
 /obj/screen/parallax_layer/random/asteroids
 	icon_state = "asteroids"
+	
+// hippie edit -- more parallax
+/obj/screen/parallax_layer/random/galaxy
+	absolute = TRUE
+	icon_state = "galaxy"
+	layer = 1
+	speed = 1
+	offset_x = 120
+	offset_y = 120
+
+/obj/screen/parallax_layer/random/galaxy/update_o()
+	return //Shit wont move
+// hippie end -- more parallax
 
 /obj/screen/parallax_layer/planet
 	icon_state = "planet"

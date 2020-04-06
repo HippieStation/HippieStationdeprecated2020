@@ -20,6 +20,10 @@
 
 /turf/open/floor/plasteel/logo
 	icon = 'hippiestation/icons/turf/floors.dmi'
+	
+/turf/open/floor/plasteel/logo/remove_tile(mob/user, silent = FALSE, make_tile = TRUE)
+	icon = 'hippiestation/icons/turf/floors.dmi'
+	..()
 
 /turf/open/floor/plasteel/logo/break_tile()
 	icon = 'icons/turf/floors.dmi'

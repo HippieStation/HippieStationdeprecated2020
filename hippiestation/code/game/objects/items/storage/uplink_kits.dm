@@ -35,6 +35,15 @@
 /obj/item/storage/box/syndie_kit/imp_mindslave/PopulateContents()
 	new /obj/item/implanter/mindslave(src)
 
+/obj/item/storage/box/syndie_kit/glock17
+	name = "Glock Seventeen with spare ammo"
+
+/obj/item/storage/box/syndie_kit/glock17/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/pistol/g17(src)
+	new /obj/item/ammo_box/magazine/g17(src)
+	new /obj/item/ammo_box/magazine/g17(src)
+	new /obj/item/ammo_box/magazine/g17(src)
+
 /obj/item/storage/box/syndie_kit/imp_gmindslave
 	name = "Greater Mindslave Implant (with injector)"
 
@@ -87,7 +96,7 @@
 /obj/item/storage/box/syndie_kit/synth/PopulateContents()
 	new /obj/item/synthmorpher(src)
 	new /obj/item/autosurgeon/armlaser(src)
-
+	
 /obj/item/storage/box/syndie_kit/abzats
 	name = "\improper Abzats Machineshotgun Kit"
 	desc = "A kit containing what you'll need to blast some ass."
@@ -103,3 +112,4 @@
 /obj/item/storage/box/syndie_kit/l6saw/PopulateContents()
 	new /obj/item/gun/ballistic/automatic/l6_saw(src)
 	new /obj/item/ammo_box/magazine/mm712x82(src) 
+

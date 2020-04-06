@@ -17,7 +17,7 @@
 		var/mob/living/carbon/C = target
 		C.fist_casted = TRUE
 		addtimer(CALLBACK(C, /mob/living/carbon.proc/reset_fist_casted), RESET_FISTED)
-	if(ismovableatom(target))
+	if(ismovable(target))
 		var/atom/movable/AM = target
 		AM.throw_at(get_edge_target_turf(AM,get_dir(src, AM)), 15, 10) //This sends you FLYING at high speed.
 

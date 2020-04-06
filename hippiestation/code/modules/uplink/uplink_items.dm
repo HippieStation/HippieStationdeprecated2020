@@ -74,9 +74,9 @@
 
 /* Glock */
 /datum/uplink_item/dangerous/g17
-	name = "Glock 17 Handgun"
-	desc = "A simple yet popular handgun chambered in 9mm. Made out of strong but lightweight polymer. The standard magazine can hold up to 14 9mm cartridges. Compatible with a universal suppressor."
-	item = /obj/item/gun/ballistic/automatic/pistol/g17
+	name = "Glock 17 Handgun with three magazines"
+	desc = "A simple yet popular handgun chambered in 9mm. Made out of strong but lightweight polymer. The standard magazine can hold up to 14 9mm cartridges. Compatible with a universal suppressor. This pack comes with three spare magazines."
+	item = /obj/item/storage/box/syndie_kit/glock17
 	cost = 10
 	surplus = 15
 

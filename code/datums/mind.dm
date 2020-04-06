@@ -623,6 +623,7 @@
 	var/datum/antagonist/rev/head/head = new()
 	head.give_flash = TRUE
 	head.give_hud = TRUE
+	head.give_book = TRUE
 	add_antag_datum(head)
 	special_role = ROLE_REV_HEAD
 
