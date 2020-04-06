@@ -1,5 +1,5 @@
 #define EXECUTE_INFIDEL 300
-#define EXECUTE_COOLDOWN 50
+#define EXECUTE_COOLDOWN 100
 
 /obj/item/melee/execution_sword
 	name = "Executioners sword"
@@ -31,7 +31,7 @@ obj/item/melee/execution_sword/attack_self(mob/living/user)
 			return
 
 		if(custom_faction == "Yes")
-			execution_faction = stripped_input(user, "Insert your new faction", "Faction")
+			execution_faction = stripped_input(user, "Insert your new faction", "Faction", max_length = MAX_NAME_LEN)
 			faction_chosen = TRUE
 	..()
 
