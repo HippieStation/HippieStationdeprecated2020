@@ -419,7 +419,7 @@
 
 	if(D.symptoms.len > 0)
 
-		var/new_name = stripped_input(user, "Name your new disease.", "New Name", max_length = MAX_NAME_LEN)
+		var/new_name = stripped_input(user, "Name your new disease.", "New Name", max_length = MAX_CHARTER_LEN)
 		if(!new_name)
 			return
 		D.AssignName(new_name)
