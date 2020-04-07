@@ -121,7 +121,7 @@
 	name = "Syndicate Firesuit"
 	desc = "A less heavy, armored version of the common firesuit developed by a now-defunct, \
 	Syndicate-affiliated collective with a penchant for arson. It offers complete fireproofing, \
-	the added bonus of not slowing the wearer while equipped and it fits into any backpack. \
+	the added bonus of not slowing the wearer while equipped, and it fits into any backpack. \
 	Comes in conspicuous red/orange colors. Helmet included."
 	cost = 4
 	item = /obj/item/storage/box/syndie_kit/firesuit/
