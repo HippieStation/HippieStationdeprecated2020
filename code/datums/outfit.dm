@@ -41,31 +41,31 @@
 
 	//Start with uniform,suit,backpack for additional slots
 	if(uniform)
-		H.equip_to_slot_or_del(new uniform(H),SLOT_W_UNIFORM)
+		H.equip_to_slot_or_del(new uniform(H),ITEM_SLOT_ICLOTHING)
 	if(suit)
-		H.equip_to_slot_or_del(new suit(H),SLOT_WEAR_SUIT)
+		H.equip_to_slot_or_del(new suit(H),ITEM_SLOT_OCLOTHING)
 	if(back)
-		H.equip_to_slot_or_del(new back(H),SLOT_BACK)
+		H.equip_to_slot_or_del(new back(H),ITEM_SLOT_BACK)
 	if(belt)
-		H.equip_to_slot_or_del(new belt(H),SLOT_BELT)
+		H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT)
 	if(gloves)
-		H.equip_to_slot_or_del(new gloves(H),SLOT_GLOVES)
+		H.equip_to_slot_or_del(new gloves(H),ITEM_SLOT_GLOVES)
 	if(shoes)
-		H.equip_to_slot_or_del(new shoes(H),SLOT_SHOES)
+		H.equip_to_slot_or_del(new shoes(H),ITEM_SLOT_FEET)
 	if(head)
-		H.equip_to_slot_or_del(new head(H),SLOT_HEAD)
+		H.equip_to_slot_or_del(new head(H),ITEM_SLOT_HEAD)
 	if(mask)
-		H.equip_to_slot_or_del(new mask(H),SLOT_WEAR_MASK)
+		H.equip_to_slot_or_del(new mask(H),ITEM_SLOT_MASK)
 	if(neck)
-		H.equip_to_slot_or_del(new neck(H),SLOT_NECK)
+		H.equip_to_slot_or_del(new neck(H),ITEM_SLOT_NECK)
 	if(ears)
-		H.equip_to_slot_or_del(new ears(H),SLOT_EARS)
+		H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
 	if(glasses)
-		H.equip_to_slot_or_del(new glasses(H),SLOT_GLASSES)
+		H.equip_to_slot_or_del(new glasses(H),ITEM_SLOT_EYES)
 	if(id)
-		H.equip_to_slot_or_del(new id(H),SLOT_WEAR_ID)
+		H.equip_to_slot_or_del(new id(H),ITEM_SLOT_ID)
 	if(suit_store)
-		H.equip_to_slot_or_del(new suit_store(H),SLOT_S_STORE)
+		H.equip_to_slot_or_del(new suit_store(H),ITEM_SLOT_SUITSTORE)
 
 	if(accessory)
 		var/obj/item/clothing/under/U = H.w_uniform
@@ -81,9 +81,9 @@
 
 	if(!visualsOnly) // Items in pockets or backpack don't show up on mob's icon.
 		if(l_pocket)
-			H.equip_to_slot_or_del(new l_pocket(H),SLOT_L_STORE)
+			H.equip_to_slot_or_del(new l_pocket(H),ITEM_SLOT_LPOCKET)
 		if(r_pocket)
-			H.equip_to_slot_or_del(new r_pocket(H),SLOT_R_STORE)
+			H.equip_to_slot_or_del(new r_pocket(H),ITEM_SLOT_RPOCKET)
 
 		if(box)
 			if(!backpack_contents)
@@ -97,7 +97,7 @@
 				if(!isnum(number))//Default to 1
 					number = 1
 				for(var/i in 1 to number)
-					H.equip_to_slot_or_del(new path(H),SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new path(H),ITEM_SLOT_BACKPACK)
 
 	if(!H.head && toggle_helmet && istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit))
 		var/obj/item/clothing/suit/space/hardsuit/HS = H.wear_suit

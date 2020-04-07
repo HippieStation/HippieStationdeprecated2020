@@ -171,7 +171,7 @@
 		else
 			return ..()
 	/obj/item/clothing/suit/armor/suicide/AltClick(mob/living/user)
-		if(istype(user.get_item_by_slot(SLOT_WEAR_SUIT), /obj/item/clothing/suit/armor/suicide))
+		if(istype(user.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/suicide))
 			if(attached_grenade.len)
 				playsound(src, "allah", 100, 0)
 				for(var/obj/item/grenade/G in attached_grenade)

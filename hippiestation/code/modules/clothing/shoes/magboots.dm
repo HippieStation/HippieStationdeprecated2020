@@ -37,7 +37,7 @@
 
 /obj/item/clothing/shoes/magboots/antigrav/equipped(mob/user, slot)
 	..()
-	if(slot == SLOT_SHOES && cell?.charge)
+	if(slot == ITEM_SLOT_FEET && cell?.charge)
 		can_toggle = TRUE
 
 /obj/item/clothing/shoes/magboots/antigrav/dropped(mob/user)

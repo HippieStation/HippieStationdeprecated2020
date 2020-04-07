@@ -136,7 +136,7 @@
 	. = ..()
 	if(!ishuman(user))
 		return
-	if(slot == SLOT_HEAD)
+	if(slot == ITEM_SLOT_HEAD)
 		user.grant_language(/datum/language/piratespeak/)
 		to_chat(user, "<span class='boldnotice'You suddenly know how to speak like a pirate!</span>")
 
@@ -145,7 +145,7 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(H.get_item_by_slot(SLOT_HEAD) == src)
+	if(H.get_item_by_slot(ITEM_SLOT_HEAD) == src)
 		user.remove_language(/datum/language/piratespeak/)
 		to_chat(user, "<span class='boldnotice'You can no longer speak like a pirate.</span>")
 
@@ -354,7 +354,7 @@
 
 /obj/item/clothing/head/frenchberet/equipped(mob/M, slot)
 	. = ..()
-	if (slot == SLOT_HEAD)
+	if (slot == ITEM_SLOT_HEAD)
 		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
