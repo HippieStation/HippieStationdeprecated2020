@@ -52,7 +52,7 @@
 		if(H.dna.features["ears"] == "Cat")
 			H.dna.features["ears"] -= "Cat"
 			H.dna.species.mutant_bodyparts -= "ears"
-		H.dna.species.no_equip += SLOT_HEAD
+		H.dna.species.no_equip += ITEM_SLOT_HEAD
 		monk_rest.Grant(H)
 		flurry_toggle.Grant(H)
 		flurry_toggle.martial = src

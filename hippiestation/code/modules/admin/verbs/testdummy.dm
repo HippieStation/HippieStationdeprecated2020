@@ -16,12 +16,12 @@
 	var/mob/living/carbon/human/dummy/D = new /mob/living/carbon/human/dummy(T)
 	D.unascend_animation()
 	usr.client.cmd_assume_direct_control(D)
-	D.equip_to_slot_or_del(new /obj/item/clothing/under/color/black(D), SLOT_W_UNIFORM)
-	D.equip_to_slot_or_del(new /obj/item/clothing/shoes/sneakers/black(D), SLOT_SHOES)
-	D.equip_to_slot_or_del(new /obj/item/card/id/admin(D), SLOT_WEAR_ID)
-	D.equip_to_slot_or_del(new /obj/item/radio/headset/heads/captain(D), SLOT_EARS)
-	D.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(D), SLOT_BACK)
-	D.equip_to_slot_or_del(new /obj/item/storage/box/engineer(D.back), SLOT_IN_BACKPACK)
+	D.equip_to_slot_or_del(new /obj/item/clothing/under/color/black(D), ITEM_SLOT_ICLOTHING)
+	D.equip_to_slot_or_del(new /obj/item/clothing/shoes/sneakers/black(D), ITEM_SLOT_FEET)
+	D.equip_to_slot_or_del(new /obj/item/card/id/admin(D), ITEM_SLOT_ID)
+	D.equip_to_slot_or_del(new /obj/item/radio/headset/heads/captain(D), ITEM_SLOT_EARS)
+	D.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(D), ITEM_SLOT_BACK)
+	D.equip_to_slot_or_del(new /obj/item/storage/box/engineer(D.back), ITEM_SLOT_BACKPACK)
 	D.name = "Admin"
 	D.real_name = "Admin"
 	var/newname = ""

@@ -1,5 +1,5 @@
 /datum/gear/spurdo
 	name = "Spurdo Mask"
-	category = SLOT_WEAR_MASK
+	category = ITEM_SLOT_MASK
 	description = "EBIN"
 	path = /obj/item/clothing/mask/spurdo

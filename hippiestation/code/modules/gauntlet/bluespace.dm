@@ -19,7 +19,7 @@
 		if(O && !istype(O, /obj/item/badmin_stone) && !istype(O, /obj/item/badmin_gauntlet) && L.dropItemToGround(O))
 			L.visible_message("<span class='danger'>[L]'s [O] disappears from their hands!</span>", "<span class='danger'>Our [O] disappears!</span>")
 			O.forceMove(get_turf(user))
-			user.equip_to_slot(O, SLOT_IN_BACKPACK)	
+			user.equip_to_slot(O, ITEM_SLOT_BACKPACK)	
 			user.changeNext_move(CLICK_CD_CLICK_ABILITY)
 
 /obj/item/badmin_stone/bluespace/HelpEvent(atom/target, mob/living/user, proximity_flag)

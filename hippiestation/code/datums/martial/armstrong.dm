@@ -435,7 +435,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 				if(!istype(owner.wear_mask, /obj/item/clothing/mask/fakemoustache/italian/cursed))
 					if(!owner.doUnEquip(owner.wear_mask))
 						qdel(owner.wear_mask)
-					owner.equip_to_slot_or_del(new /obj/item/clothing/mask/fakemoustache/italian/cursed(owner), SLOT_WEAR_MASK) //your snowflake race won't save you from hair now
+					owner.equip_to_slot_or_del(new /obj/item/clothing/mask/fakemoustache/italian/cursed(owner), ITEM_SLOT_MASK) //your snowflake race won't save you from hair now
 			owner.playsound_local(get_turf(owner), 'hippiestation/sound/weapons/armstrong_newcombo.ogg', 50, FALSE, pressure_affected = FALSE)
 		if(6)
 			to_chat(owner, "<span class = 'notice'>You remember how to Dropkick. To use: Disarm Help Help Harm</span>")
