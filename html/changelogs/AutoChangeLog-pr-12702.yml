@@ -1,0 +1,4 @@
+author: "Neotw"
+delete-after: True
+changes: 
+  - tweak: "Gravity will no longer be affected during the power failure event"
