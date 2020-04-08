@@ -24,7 +24,7 @@
 		C.parallax_layers_cached += new /obj/screen/parallax_layer/planet(null, C.view)
 		if(SSparallax.random_layer)
 			C.parallax_layers_cached += new SSparallax.random_layer
-		var/random_galaxy = pick(/obj/screen/parallax_layer/random/galaxy, /obj/screen/parallax_layer/random/galaxy/variant2, /obj/screen/parallax_layer/random/galaxy/variant3, /obj/screen/parallax_layer/random/galaxy/variant4)
+		var/random_galaxy = pick(/obj/screen/parallax_layer/galaxy, /obj/screen/parallax_layer/galaxy/variant2, /obj/screen/parallax_layer/galaxy/variant3, /obj/screen/parallax_layer/galaxy/variant4)
 		C.parallax_layers_cached += new random_galaxy(null, C.view) // hippie edit -- more parallax
 		C.parallax_layers_cached += new /obj/screen/parallax_layer/layer_3(null, C.view)
 
@@ -319,7 +319,8 @@
 	icon_state = "asteroids"
 
 // hippie edit -- more parallax
-/obj/screen/parallax_layer/random/galaxy
+/obj/screen/parallax_layer/galaxy
+	blend_mode = BLEND_OVERLAY
 	absolute = TRUE
 	layer = 1
 	speed = 1
@@ -327,17 +328,25 @@
 	offset_x = 120
 	offset_y = 120
 
-/obj/screen/parallax_layer/random/galaxy/variant2
+/obj/screen/parallax_layer/galaxy/variant2
 	icon_state = "galaxy2"
 
-/obj/screen/parallax_layer/random/galaxy/variant3
+/obj/screen/parallax_layer/galaxy/variant3
 	icon_state = "galaxy3"
 
-/obj/screen/parallax_layer/random/galaxy/variant4
+/obj/screen/parallax_layer/galaxy/variant4
 	icon_state = "galaxy4"
 
-/obj/screen/parallax_layer/random/galaxy/update_o()
+/obj/screen/parallax_layer/galaxy/update_o()
 	return //Shit wont move
+
+/obj/screen/parallax_layer/galaxy/update_status(mob/M)
+	var/turf/T = get_turf(M)
+	if(!is_reserved_level(T.z))
+		invisibility = 0
+	else
+		invisibility = INVISIBILITY_ABSTRACT
+
 // hippie end -- more parallax
 
 /obj/screen/parallax_layer/planet
@@ -349,7 +358,7 @@
 
 /obj/screen/parallax_layer/planet/update_status(mob/M)
 	var/turf/T = get_turf(M)
-	if(is_station_level(T.z))
+	if(is_reserved_level(T.z))
 		invisibility = 0
 	else
 		invisibility = INVISIBILITY_ABSTRACT
