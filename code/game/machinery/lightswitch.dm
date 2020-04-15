@@ -41,7 +41,7 @@
 
 	area.lightswitch = !area.lightswitch
 	area.update_icon()
-
+	playsound(src, 'hippiestation/sound/halflife/lightswitch.ogg', 100, 0)
 	for(var/obj/machinery/light_switch/L in area)
 		L.update_icon()
 

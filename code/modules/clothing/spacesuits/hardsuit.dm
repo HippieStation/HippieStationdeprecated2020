@@ -450,7 +450,7 @@
 	//Research Director hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/rd
 	name = "HEV Suit helmet"
-	desc = "A Hazardous Enbironment Helmet. It fits snug over the suit and has a heads-up display for researchers. The flashlight seems broken, fitting considering this was made before the start of the milennium."
+	desc = "A Hazardous Environment Helmet. It fits snug over the suit and has a heads-up display for researchers. The flashlight seems broken, fitting considering this was made before the start of the milennium."
 	icon_state = "hev"
 	item_color = "rd"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
@@ -488,7 +488,7 @@
 /obj/item/clothing/suit/space/hardsuit/rd
 	icon_state = "hev"
 	name = "HEV Suit"
-	desc = "A Hazardous Environments suit, often called the Hazard suit. It was designed to protect scientists from the blunt trauma, radiation, energy discharge that hazardous materials might produce or entail. Fits you like a glove. The automatic medical system seems broken."
+	desc = "A Hazardous Environment suit, often called the Hazard suit. It was designed to protect scientists from the blunt trauma, radiation, energy discharge that hazardous materials might produce or entail. Fits you like a glove. The automatic medical system seems broken."
 	item_state = "hev"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT //Same as an emergency firesuit. Not ideal for extended exposure.
