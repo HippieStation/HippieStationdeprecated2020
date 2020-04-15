@@ -449,16 +449,16 @@
 
 	//Research Director hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/rd
-	name = "prototype hardsuit helmet"
-	desc = "A prototype helmet designed for research in a hazardous, low pressure environment. Scientific data flashes across the visor."
-	icon_state = "hardsuit0-rd"
+	name = "HEV Suit helmet"
+	desc = "A Hazardous Enbironment Helmet. It fits snug over the suit and has a heads-up display for researchers. The flashlight seems broken, fitting considering this was made before the start of the milennium."
+	icon_state = "hev"
 	item_color = "rd"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
-	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
+	armor = list("melee" = 30, "bullet" = 10, "laser" = 10, "energy" = 5, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
 	var/explosion_detection_dist = 21
 	scan_reagents = TRUE
-	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_research_scanner)
+	actions_types = list(/datum/action/item_action/toggle_research_scanner)
 
 /obj/item/clothing/head/helmet/space/hardsuit/rd/Initialize()
 	. = ..()
@@ -486,18 +486,26 @@
 	display_visor_message("Explosion detected! Epicenter: [devastation_range], Outer: [heavy_impact_range], Shock: [light_impact_range]")
 
 /obj/item/clothing/suit/space/hardsuit/rd
-	icon_state = "hardsuit-rd"
-	name = "prototype hardsuit"
-	desc = "A prototype suit that protects against hazardous, low pressure environments. Fitted with extensive plating for handling explosives and dangerous research materials."
-	item_state = "hardsuit-rd"
+	icon_state = "hev"
+	name = "HEV Suit"
+	desc = "A Hazardous Environments suit, often called the Hazard suit. It was designed to protect scientists from the blunt trauma, radiation, energy discharge that hazardous materials might produce or entail. Fits you like a glove. The automatic medical system seems broken."
+	item_state = "hev"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT //Same as an emergency firesuit. Not ideal for extended exposure.
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/gun/energy/wormhole_projector,
 	/obj/item/hand_tele, /obj/item/aicard)
-	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
+	armor = list("melee" = 30, "bullet" = 10, "laser" = 10, "energy" = 5, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/rd
+	var/heal_threshold = 10 //yeah n-word, i'm stealing medbot code, what of it
+	var/injection_amount = 10
 
-
+/obj/item/clothing/suit/space/hardsuit/rd/equipped(mob/user, slot)
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(slot == SLOT_WEAR_SUIT)
+		SEND_SOUND(user, 'hippiestation/sound/halflife/hev_logon.ogg')
+	return
 
 	//Security hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/security
