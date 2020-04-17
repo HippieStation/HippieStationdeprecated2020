@@ -447,57 +447,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/medical
 	slowdown = 0.5
 
-	//Research Director hardsuit
-/obj/item/clothing/head/helmet/space/hardsuit/rd
-	name = "HEV Suit helmet"
-	desc = "A Hazardous Environment Helmet. It fits snug over the suit and has a heads-up display for researchers. The flashlight seems broken, fitting considering this was made before the start of the milennium."
-	icon_state = "hev"
-	item_color = "rd"
-	resistance_flags = ACID_PROOF | FIRE_PROOF
-	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
-	armor = list("melee" = 30, "bullet" = 10, "laser" = 10, "energy" = 5, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
-	var/explosion_detection_dist = 21
-	scan_reagents = TRUE
-	actions_types = list(/datum/action/item_action/toggle_research_scanner)
-
-/obj/item/clothing/head/helmet/space/hardsuit/rd/Initialize()
-	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, .proc/sense_explosion)
-
-/obj/item/clothing/head/helmet/space/hardsuit/rd/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if (slot == SLOT_HEAD)
-		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_DIAGNOSTIC_BASIC]
-		DHUD.add_hud_to(user)
-
-/obj/item/clothing/head/helmet/space/hardsuit/rd/dropped(mob/living/carbon/human/user)
-	..()
-	if (user.head == src)
-		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_DIAGNOSTIC_BASIC]
-		DHUD.remove_hud_from(user)
-
-/obj/item/clothing/head/helmet/space/hardsuit/rd/proc/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range,
-		light_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
-	var/turf/T = get_turf(src)
-	if(T.z != epicenter.z)
-		return
-	if(get_dist(epicenter, T) > explosion_detection_dist)
-		return
-	display_visor_message("Explosion detected! Epicenter: [devastation_range], Outer: [heavy_impact_range], Shock: [light_impact_range]")
-
-/obj/item/clothing/suit/space/hardsuit/rd
-	icon_state = "hev"
-	name = "HEV Suit"
-	desc = "A Hazardous Environment suit, often called the Hazard suit. It was designed to protect scientists from the blunt trauma, radiation, energy discharge that hazardous materials might produce or entail. Fits you like a glove. The automatic medical system seems broken."
-	item_state = "hev"
-	resistance_flags = ACID_PROOF | FIRE_PROOF
-	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT //Same as an emergency firesuit. Not ideal for extended exposure.
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/gun/energy/wormhole_projector,
-	/obj/item/hand_tele, /obj/item/aicard)
-	armor = list("melee" = 30, "bullet" = 10, "laser" = 10, "energy" = 5, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80)
-	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/rd
-	var/heal_threshold = 10 //yeah n-word, i'm stealing medbot code, what of it
-	var/injection_amount = 10
+	//RD suit moved to hippie folder
 
 /obj/item/clothing/suit/space/hardsuit/rd/equipped(mob/user, slot)
 	. = ..()
