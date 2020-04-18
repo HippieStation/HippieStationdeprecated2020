@@ -98,7 +98,7 @@
 		to_chat(user, "<span class='notice'>You start tape [H]'s mouth shut.</span>")
 		if(do_mob(user, H, 20))
 			// H.wear_mask = new/obj/item/clothing/mask/hippie/tape(H)
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/hippie/tape(H), SLOT_WEAR_MASK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/mask/hippie/tape(H), ITEM_SLOT_MASK)
 			to_chat(user, "<span class='notice'>You tape [H]'s mouth shut.</span>")
 			playsound(loc, 'hippiestation/sound/misc/ducttape1.ogg', 50, 1)
 			if(src.use(2) == 0)

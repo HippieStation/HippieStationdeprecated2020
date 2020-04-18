@@ -50,6 +50,5 @@
 
 /obj/item/clothing/equipped(mob/user, slot)
 	..()
-
-	if (slot_flags & slotdefine2slotbit(slot)) // Was equipped to a valid slot for this item?
+	if(slot_flags & slot) // Was equipped to a valid slot for this item?
 		checkbuttuniform(user)

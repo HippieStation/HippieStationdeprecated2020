@@ -1,4 +1,4 @@
 /datum/gear/laceup
 	name = "Laceup shoes"
-	category = SLOT_SHOES
+	category = ITEM_SLOT_FEET
 	path = /obj/item/clothing/shoes/laceup

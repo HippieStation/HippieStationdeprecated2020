@@ -176,7 +176,7 @@
 
 /obj/item/projectile/forcefire/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(ismovableatom(target))
+	if(ismovable(target))
 		var/atom/movable/AM = target
 		if(!AM.anchored)
 			if(isliving(AM))

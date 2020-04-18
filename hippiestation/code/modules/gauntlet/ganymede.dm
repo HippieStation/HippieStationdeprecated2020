@@ -38,7 +38,7 @@
 	armor = list("melee" = 50, "bullet" = 65, "laser" = 65, "energy" = 45, "bomb" = 100, "bio" = 30, "rad" = 30, "fire" = 70, "acid" = 30)
 
 /obj/item/clothing/head/hippie/ganymedian/equipped(mob/user, slot)
-	if(slot == SLOT_HEAD)
+	if(slot == ITEM_SLOT_HEAD)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		item_flags |= DROPDEL
 	return ..()
@@ -58,7 +58,7 @@
 	armor = list("melee" = 50, "bullet" = 65, "laser" = 65, "energy" = 45, "bomb" = 100, "bio" = 30, "rad" = 30, "fire" = 70, "acid" = 30)
 
 /obj/item/clothing/suit/hippie/ganymedian/equipped(mob/user, slot)
-	if(slot == SLOT_WEAR_SUIT)
+	if(slot == ITEM_SLOT_OCLOTHING)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		item_flags |= DROPDEL
 	return ..()
@@ -91,7 +91,7 @@
 	return
 
 /obj/item/tank/jetpack/ganypack/equipped(mob/user, slot)
-	if(slot == SLOT_BACK)
+	if(slot == ITEM_SLOT_BACK)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		item_flags |= DROPDEL
 	return ..()
@@ -108,7 +108,7 @@
 	can_adjust = 0
 
 /obj/item/clothing/under/hippie/ganymedian/equipped(mob/user, slot)
-	if(slot == SLOT_WEAR_SUIT)
+	if(slot == ITEM_SLOT_OCLOTHING)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		item_flags |= DROPDEL
 	return ..()
@@ -123,7 +123,7 @@
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
 
 /obj/item/clothing/shoes/ganymedian/equipped(mob/user, slot)
-	if(slot == SLOT_SHOES)
+	if(slot == ITEM_SLOT_FEET)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		item_flags |= DROPDEL
 	return ..()

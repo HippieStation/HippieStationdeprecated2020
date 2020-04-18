@@ -230,7 +230,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			SK.objectives += SKO
 			L.mind.announce_objectives()
 			L.put_in_hands(IS)
-			L.equip_to_slot(IS, SLOT_IN_BACKPACK)
+			L.equip_to_slot(IS, ITEM_SLOT_BACKPACK)
 
 
 /obj/item/badmin_gauntlet/proc/FullyAssembled()
@@ -514,7 +514,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 					H.equip_to_appropriate_slot(GS)
 					H.equip_to_appropriate_slot(Gs)
 					H.equip_to_appropriate_slot(TS)
-					H.equip_to_slot(GP, SLOT_BACK)
+					H.equip_to_slot(GP, ITEM_SLOT_BACK)
 				GLOB.gauntlet_equipped = TRUE
 				for(var/obj/item/spellbook/SB in world)
 					if(SB.owner == user)

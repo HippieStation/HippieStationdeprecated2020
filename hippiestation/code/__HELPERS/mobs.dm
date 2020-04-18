@@ -1,28 +1,28 @@
 /proc/slot_to_string(slot)
 	switch(slot)
-		if(SLOT_BACK)
+		if(ITEM_SLOT_BACK)
 			return "Backpack"
-		if(SLOT_WEAR_MASK)
+		if(ITEM_SLOT_MASK)
 			return "Mask"
-		if(SLOT_HANDS)
+		if(ITEM_SLOT_HANDS)
 			return "Hands"
-		if(SLOT_BELT)
+		if(ITEM_SLOT_BELT)
 			return "Belt"
-		if(SLOT_EARS)
+		if(ITEM_SLOT_EARS)
 			return "Ears"
-		if(SLOT_GLASSES)
+		if(ITEM_SLOT_EYES)
 			return "Glasses"
-		if(SLOT_GLOVES)
+		if(ITEM_SLOT_GLOVES)
 			return "Gloves"
-		if(SLOT_NECK)
+		if(ITEM_SLOT_NECK)
 			return "Neck"
-		if(SLOT_HEAD)
+		if(ITEM_SLOT_HEAD)
 			return "Head"
-		if(SLOT_SHOES)
+		if(ITEM_SLOT_FEET)
 			return "Shoes"
-		if(SLOT_WEAR_SUIT)
+		if(ITEM_SLOT_OCLOTHING)
 			return "Suit"
-		if(SLOT_W_UNIFORM)
+		if(ITEM_SLOT_ICLOTHING)
 			return "Jumpsuit"
-		if(SLOT_IN_BACKPACK)
+		if(ITEM_SLOT_BACKPACK)
 			return "In backpack"

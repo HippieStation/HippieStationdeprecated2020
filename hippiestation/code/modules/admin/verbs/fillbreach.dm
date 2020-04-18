@@ -25,4 +25,7 @@
 /client/proc/cleanair(var/wrange)
 	for(var/turf/open/T in range(wrange))
 		if(T.air)
-			T.air.parse_gas_string("o2=22;n2=82;TEMP=293.15")
+			var/datum/gas_mixture/G = T.air
+			G.parse_gas_string("o2=22;n2=82;TEMP=293.15")
+			G.garbage_collect()
+			T.air_update_turf()

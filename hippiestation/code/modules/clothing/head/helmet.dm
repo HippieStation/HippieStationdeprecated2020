@@ -20,6 +20,6 @@
 	resistance_flags = INDESTRUCTIBLE
 /obj/item/clothing/head/helmet/redtaghelm/afromaker/equipped(mob/living/carbon/human/user, slot)
 	..()
-	if(slot == SLOT_HEAD)
+	if(slot == ITEM_SLOT_HEAD)
 		user.hair_style = "Afro (Large)"
 		user.update_hair()

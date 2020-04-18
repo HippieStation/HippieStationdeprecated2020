@@ -27,7 +27,7 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/choice_beacon/music/B = new(get_turf(H))
 	H.put_in_hands(B)
-	H.equip_to_slot(B, SLOT_IN_BACKPACK)
+	H.equip_to_slot(B, ITEM_SLOT_BACKPACK)
 	H.regenerate_icons()
 
 /datum/quirk/photographer
@@ -42,7 +42,7 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/camera/camera = new(get_turf(H))
 	H.put_in_hands(camera)
-	H.equip_to_slot(camera, SLOT_NECK)
+	H.equip_to_slot(camera, ITEM_SLOT_NECK)
 	H.regenerate_icons()
 
 /datum/quirk/spiritual
@@ -55,8 +55,8 @@
 
 /datum/quirk/spiritual/on_spawn()	//We're not porting on_process cause it deals with moods and moods don't exist for us ;)
 	var/mob/living/carbon/human/H = quirk_holder
-	H.equip_to_slot_or_del(new /obj/item/storage/fancy/candle_box(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/matches(H), SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/fancy/candle_box(H), ITEM_SLOT_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/matches(H), ITEM_SLOT_BACKPACK)
 
 /datum/quirk/spiritual/on_process()
 	var/comforted = FALSE

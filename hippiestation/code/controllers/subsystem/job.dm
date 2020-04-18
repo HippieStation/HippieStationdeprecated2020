@@ -17,7 +17,7 @@
 				continue
 			var/obj/item/I = new G.path
 			if(!M.equip_to_slot_if_possible(I, G.category, disable_warning = TRUE, bypass_equip_delay_self = TRUE)) // Try to put it in its slot, first
-				if(!M.equip_to_slot_if_possible(I, SLOT_IN_BACKPACK, disable_warning = TRUE, bypass_equip_delay_self = TRUE)) // If it fails, try to put it in the backpack
+				if(!M.equip_to_slot_if_possible(I, ITEM_SLOT_BACKPACK, disable_warning = TRUE, bypass_equip_delay_self = TRUE)) // If it fails, try to put it in the backpack
 					I.forceMove(get_turf(M)) // If everything fails, just put it on the floor under the mob.
 
 /datum/controller/subsystem/job/proc/HippieFillBannedPosition()

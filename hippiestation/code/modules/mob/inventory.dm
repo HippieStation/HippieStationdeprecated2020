@@ -15,7 +15,7 @@
 				return
 		if(active_storage && active_storage.parent && SEND_SIGNAL(active_storage.parent, COMSIG_TRY_STORAGE_INSERT, I, src))
 			return
-		var/list/obj/item/possible = list(get_inactive_held_item(), get_item_by_slot(SLOT_BELT), get_item_by_slot(SLOT_GENERC_DEXTROUS_STORAGE), get_item_by_slot(SLOT_BACK))
+		var/list/obj/item/possible = list(get_inactive_held_item(), get_item_by_slot(ITEM_SLOT_BELT), get_item_by_slot(ITEM_SLOT_DEX_STORAGE), get_item_by_slot(ITEM_SLOT_BACK))
 		for(var/i in possible)
 			if(!i)
 				continue
