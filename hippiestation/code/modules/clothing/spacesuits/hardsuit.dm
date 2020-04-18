@@ -89,6 +89,14 @@
 	var/heal_threshold = 10 //yeah n-word, i'm stealing medbot code, what of it
 	var/injection_amount = 10
 
+/obj/item/clothing/suit/space/hardsuit/rd/equipped(mob/user, slot)
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(slot == SLOT_WEAR_SUIT)
+		SEND_SOUND(user, 'hippiestation/sound/halflife/hev_logon.ogg')
+	return
+
 /obj/item/clothing/head/helmet/space/hardsuit/spurdosuit
 	name = "emergency spurdo suit helmet"
 	desc = ":-DDD"

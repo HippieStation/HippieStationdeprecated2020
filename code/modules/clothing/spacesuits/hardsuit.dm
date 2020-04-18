@@ -449,10 +449,6 @@
 
 	//RD suit moved to hippie folder
 
-/obj/item/clothing/suit/space/hardsuit/rd/equipped(mob/user, slot)
-	. = ..()
-	if(!ishuman(user))
-
 	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, .proc/sense_explosion)
 
 /obj/item/clothing/head/helmet/space/hardsuit/rd/equipped(mob/living/carbon/human/user, slot)
