@@ -507,7 +507,7 @@
 	if(S.has_reagent(/datum/reagent/medicine/charcoal, 1))
 		adjustToxic(-round(S.get_reagent_amount(/datum/reagent/medicine/charcoal) * 2))
 
-	// NIGGA, YOU JUST WENT ON FULL RETARD.
+	// YOU DUN GOOFED SON
 	if(S.has_reagent(/datum/reagent/toxin, 1))
 		adjustToxic(round(S.get_reagent_amount(/datum/reagent/toxin) * 2))
 
