@@ -151,7 +151,7 @@
 	item_state = "gun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/toy/mag
 	fire_sound = 'hippiestation/sound/weapons/magpistol.ogg'
-	slot_flags = SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_box/foambox/mag

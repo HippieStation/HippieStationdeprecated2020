@@ -16,6 +16,7 @@
 	actions_types = list(/datum/action/item_action/toggle_paddles)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 
+	var/obj/item/twohanded/shockpaddles/paddle_type = /obj/item/twohanded/shockpaddles
 	var/on = FALSE //if the paddles are equipped (1) or on the defib (0)
 	var/safety = TRUE //if you can zap people with the defibs on harm mode
 	var/powered = FALSE //if there's a cell in the defib with enough power for a revive, blocks paddles from reviving otherwise
@@ -29,13 +30,12 @@
 
 /obj/item/defibrillator/Initialize() //starts without a cell for rnd
 	. = ..()
-	paddles = make_paddles()
+	paddles = new paddle_type(src)
 	update_icon()
 	return
 
 /obj/item/defibrillator/loaded/Initialize() //starts with hicap
 	. = ..()
-	paddles = make_paddles()
 	cell = new(src)
 	update_icon()
 	return
@@ -84,13 +84,13 @@
 /obj/item/defibrillator/attack_hand(mob/user)
 	if(loc == user)
 		if(slot_flags == ITEM_SLOT_BACK)
-			if(user.get_item_by_slot(SLOT_BACK) == src)
+			if(user.get_item_by_slot(ITEM_SLOT_BACK) == src)
 				ui_action_click()
 			else
 				to_chat(user, "<span class='warning'>Put the defibrillator on your back first!</span>")
 
 		else if(slot_flags == ITEM_SLOT_BELT)
-			if(user.get_item_by_slot(SLOT_BELT) == src)
+			if(user.get_item_by_slot(ITEM_SLOT_BELT) == src)
 				ui_action_click()
 			else
 				to_chat(user, "<span class='warning'>Strap the defibrillator's belt on first!</span>")
@@ -182,12 +182,9 @@
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
 
-/obj/item/defibrillator/proc/make_paddles()
-	return new /obj/item/twohanded/shockpaddles(src)
-
 /obj/item/defibrillator/equipped(mob/user, slot)
 	..()
-	if((slot_flags == ITEM_SLOT_BACK && slot != SLOT_BACK) || (slot_flags == ITEM_SLOT_BELT && slot != SLOT_BELT))
+	if((slot_flags == ITEM_SLOT_BACK && slot != ITEM_SLOT_BACK) || (slot_flags == ITEM_SLOT_BELT && slot != ITEM_SLOT_BELT))
 		remove_paddles(user)
 		update_icon()
 
@@ -248,7 +245,6 @@
 
 /obj/item/defibrillator/compact/loaded/Initialize()
 	. = ..()
-	paddles = make_paddles()
 	cell = new(src)
 	update_icon()
 
@@ -257,10 +253,10 @@
 	desc = "A belt-equipped blood-red defibrillator that can be rapidly deployed. Does not have the restrictions or safeties of conventional defibrillators and can revive through space suits."
 	combat = TRUE
 	safety = FALSE
+	paddle_type = /obj/item/twohanded/shockpaddles/syndicate
 
 /obj/item/defibrillator/compact/combat/loaded/Initialize()
 	. = ..()
-	paddles = make_paddles()
 	cell = new /obj/item/stock_parts/cell/infinite(src)
 	update_icon()
 
@@ -297,21 +293,22 @@
 
 	var/mob/listeningTo
 
+/obj/item/twohanded/shockpaddles/Destroy()
+	defib = null
+	return ..()
+
 /obj/item/twohanded/shockpaddles/equipped(mob/user, slot)
 	. = ..()
-	if(!req_defib || listeningTo == user)
+	if(!req_defib)
 		return
-	if(listeningTo)
-		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/check_range)
-	listeningTo = user
 
 /obj/item/twohanded/shockpaddles/Moved()
 	. = ..()
 	check_range()
 
 /obj/item/twohanded/shockpaddles/proc/check_range()
-	if(!req_defib)
+	if(!req_defib || !defib)
 		return
 	if(!in_range(src,defib))
 		var/mob/living/L = loc
@@ -362,13 +359,12 @@
 /obj/item/twohanded/shockpaddles/dropped(mob/user)
 	if(!req_defib)
 		return ..()
-	if(listeningTo)
-		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 	if(user)
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		var/obj/item/twohanded/offhand/O = user.get_inactive_held_item()
+		if(istype(O))
+			O.unwield()
 		if(user != loc)
-			var/obj/item/twohanded/offhand/O = user.get_inactive_held_item()
-			if(istype(O))
-				O.unwield()
 			to_chat(user, "<span class='notice'>The paddles snap back into the main unit.</span>")
 			snap_back()
 	return unwield(user)

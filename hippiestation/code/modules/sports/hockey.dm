@@ -18,7 +18,7 @@
 
 /obj/item/hockeypack/equipped(mob/user, slot)
 	. = ..()
-	if (slot != SLOT_BACK) //The Pack is cursed so this should not happen, but i'm going to play it safe.
+	if (slot != ITEM_SLOT_BACK) //The Pack is cursed so this should not happen, but i'm going to play it safe.
 		remove_stick()
 	if(slot == ITEM_SLOT_BACK)
 		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
@@ -94,7 +94,7 @@
 		return TRUE
 
 /mob/proc/getHockeypackSlot()
-	return SLOT_BACK
+	return ITEM_SLOT_BACK
 
 /obj/item/twohanded/hockeystick
 	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
@@ -196,7 +196,7 @@
 
 /obj/item/storage/belt/hippie/hockey/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_BELT)
+	if(slot == ITEM_SLOT_BELT)
 		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/storage/belt/hippie/hockey/item_action_slot_check(slot, mob/user)
@@ -233,7 +233,7 @@
 	return new /obj/item/holopuck(src)
 
 /mob/proc/getHockeybeltSlot()
-	return SLOT_BELT
+	return ITEM_SLOT_BELT
 
 /obj/item/storage/belt/hippie/hockey/proc/reset_puck()
 	charged = TRUE
@@ -276,7 +276,7 @@
 
 /obj/item/clothing/suit/hippie/hockey/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_WEAR_SUIT)
+	if(slot == ITEM_SLOT_OCLOTHING)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/shoes/hippie/hockey
@@ -289,7 +289,7 @@
 
 /obj/item/clothing/shoes/hippie/hockey/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_SHOES)
+	if(slot == ITEM_SLOT_FEET)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/mask/hippie/hockey
@@ -302,7 +302,7 @@
 
 /obj/item/clothing/mask/hippie/hockey/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_WEAR_MASK)
+	if(slot == ITEM_SLOT_MASK)
 		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/head/hippie/hockey
@@ -318,7 +318,7 @@
 
 /obj/item/clothing/mask/head/hockey/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_HEAD)
+	if(slot == ITEM_SLOT_HEAD)
 		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /datum/action/item_action/toggle_stick

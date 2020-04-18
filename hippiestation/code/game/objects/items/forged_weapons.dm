@@ -75,7 +75,7 @@
 	icon_state = "forged_sword"
 	item_state = "forged_sword"
 	alternate_worn_icon = 'hippiestation/icons/mob/belt.dmi'
-	slot_flags = SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	weapon_type = MELEE_TYPE_SWORD
 	stabby = TRANSFER_SHARPER
@@ -90,7 +90,7 @@
 	icon_state = "forged_mace"
 	item_state = "forged_mace"
 	alternate_worn_icon = 'hippiestation/icons/mob/belt.dmi'
-	slot_flags = SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT
 	hitsound = 'hippiestation/sound/misc/crunch.ogg'
 	weapon_type = MELEE_TYPE_MACE
 	stabby = TRANSFER_PARTIALLY_BLUNT

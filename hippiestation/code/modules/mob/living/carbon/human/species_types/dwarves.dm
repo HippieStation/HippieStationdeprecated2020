@@ -22,7 +22,7 @@
 	return FALSE
 
 /datum/species/dwarf/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
-	if((slot == SLOT_W_UNIFORM) && !is_type_in_list(src, I.species_exception))
+	if((slot == ITEM_SLOT_ICLOTHING) && !is_type_in_list(src, I.species_exception))
 		return FALSE
 	return ..()
 

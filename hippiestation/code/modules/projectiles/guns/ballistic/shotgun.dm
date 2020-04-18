@@ -72,7 +72,7 @@ obj/item/gun/ballistic/shotgun/triplebarrel/sawoff(mob/user)
 	var/mob/current_owner
 
 /obj/item/gun/ballistic/shotgun/canegun/equipped(mob/user, slot)
-	if(slot == SLOT_HANDS)
+	if(slot == ITEM_SLOT_HANDS)
 		var/mob/living/carbon/human/H = user
 		if(!current_owner && user)
 			current_owner = user
