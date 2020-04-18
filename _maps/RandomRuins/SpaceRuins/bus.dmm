@@ -66,7 +66,7 @@
 /obj/structure/fluff/bus/passable/seat{
 	icon_state = "backseat"
 	},
-/obj/item/reagent_containers/food/snacks/got,
+/obj/item/reagent_containers/food/snacks/meatball,
 /turf/open/floor/plasteel/airless/dark{
 	icon_state = "bus"
 	},
