@@ -1,4 +1,4 @@
-//hippie edit
+//despite all my rage, i'm still a baby in a cage of shit code
 /obj/item/clothing/under/hippie/scientisthalf
 	desc = "A standard pair of khaki pants and a blue shirt. A staple of any research station even from the early days of dimensional research."
 	name = "scientist's uniform"
