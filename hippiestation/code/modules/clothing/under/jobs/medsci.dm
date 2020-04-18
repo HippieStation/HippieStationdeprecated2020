@@ -1,4 +1,5 @@
-/obj/item/clothing/under/scientisthalf
+//hippie edit
+/obj/item/clothing/under/hippie/scientisthalf
 	desc = "A standard pair of khaki pants and a blue shirt. A staple of any research station even from the early days of dimensional research."
 	name = "scientist's uniform"
 	icon_state = "hl_scientist"

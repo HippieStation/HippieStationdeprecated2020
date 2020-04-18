@@ -119,3 +119,4 @@
 	icon_state = "scrubspurple"
 	item_color = "scrubspurple"
 	can_adjust = FALSE
+

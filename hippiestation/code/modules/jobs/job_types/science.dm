@@ -8,7 +8,7 @@
 
 	belt = /obj/item/pda/toxins
 	ears = /obj/item/radio/headset/headset_sci
-	uniform = /obj/item/clothing/under/scientisthalf
+	uniform = /obj/item/clothing/under/hippie/scientisthalf
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	suit = /obj/item/clothing/suit/toggle/labcoat/sciencehalf
 	neck = /obj/item/clothing/neck/tie/black
