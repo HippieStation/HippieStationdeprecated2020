@@ -13473,8 +13473,8 @@
 	pixel_x = -7;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/snacks/grown/apple{
-	pixel_x = 6
+/obj/item/reagent_containers/food/snacks/grown/apple/gold{
+	pixel_x = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
@@ -104515,7 +104515,7 @@ awx
 axy
 asg
 aBf
-ajz
+aLR
 aLR
 aDM
 tlW
