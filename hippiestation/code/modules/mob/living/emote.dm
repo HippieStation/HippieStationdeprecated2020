@@ -12,7 +12,7 @@
 /datum/emote/living/technobabble/get_sound(mob/living/user)
 	if(ishuman(user))
 		user.adjustOxyLoss(user.scream_oxyloss)
-		if(is_type_in_list(user.get_item_by_slot(SLOT_WEAR_SUIT), list(/obj/item/clothing/suit/toggle/labcoat/science, /obj/item/clothing/suit/toggle/labcoat/chemist, /obj/item/clothing/suit/space/hardsuit/rd, /obj/item/clothing/suit/toggle/labcoat/virologist, /obj/item/clothing/suit/toggle/labcoat/genetics, /obj/item/clothing/suit/toggle/labcoat/cmo)))
+		if(is_type_in_list(user.get_item_by_slot(ITEM_SLOT_OCLOTHING), list(/obj/item/clothing/suit/toggle/labcoat/science, /obj/item/clothing/suit/toggle/labcoat/chemist, /obj/item/clothing/suit/space/hardsuit/rd, /obj/item/clothing/suit/toggle/labcoat/virologist, /obj/item/clothing/suit/toggle/labcoat/genetics, /obj/item/clothing/suit/toggle/labcoat/cmo)))
 			var/num = rand(1, 11)
 			return pick("hippiestation/sound/halflife/technobabble" + num2text(num) + ".ogg")
 
