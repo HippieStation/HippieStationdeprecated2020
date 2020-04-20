@@ -41,3 +41,39 @@
 	new /obj/item/clothing/head/helmet/larp(src)
 	new /obj/item/clothing/suit/armor/larp(src)
 	new /obj/item/clothing/shoes/jackboots/larp(src)
+
+/obj/item/storage/box/cowcubes
+	name = "cow cube box"
+	desc = "Drymate brand cow cubes. Just add water!"
+	icon = 'hippiestation/icons/obj/storage.dmi'
+	icon_state = "cowcubebox"
+	illustration = null
+	var/cube_type = /obj/item/reagent_containers/food/snacks/monkeycube/cowcube
+
+/obj/item/storage/box/cowcubes/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 3
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/monkeycube/cowcube))
+
+/obj/item/storage/box/cowcubes/PopulateContents()
+	for(var/i in 1 to 3)
+		new cube_type(src)
+
+/obj/item/storage/box/chickencubes
+	name = "chicken cube box"
+	desc = "United Chicken Federation brand chicken cubes. Just add water!"
+	icon = 'hippiestation/icons/obj/storage.dmi'
+	icon_state = "chickencubebox"
+	illustration = null
+	var/cube_type = /obj/item/reagent_containers/food/snacks/monkeycube/chickencube
+
+/obj/item/storage/box/chickencubes/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 5
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/monkeycube/chickencube))
+
+/obj/item/storage/box/chickencubes/PopulateContents()
+	for(var/i in 1 to 4)
+		new cube_type(src)
