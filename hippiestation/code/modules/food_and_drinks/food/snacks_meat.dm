@@ -29,7 +29,7 @@
 	foodtype = MEAT
 
 /obj/item/reagent_containers/food/snacks/monkeycube/cowcube
-	name = "cow cube!"
+	name = "cow cube"
 	desc = "Just add water!"
 	icon_state = "cowcube"
 	icon = 'hippiestation/icons/obj/food/food.dmi'
@@ -40,7 +40,7 @@
 	spawned_mob = /mob/living/simple_animal/cow
 
 /obj/item/reagent_containers/food/snacks/monkeycube/chickencube
-	name = "chicken cube!"
+	name = "chicken cube"
 	desc = "UCF approved! Just add water!"
 	icon_state = "chickencube"
 	icon = 'hippiestation/icons/obj/food/food.dmi'
