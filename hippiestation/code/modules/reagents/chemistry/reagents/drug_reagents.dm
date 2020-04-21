@@ -319,7 +319,7 @@
 		if(1 to 20)
 			high_message = pick("Holy shit, I feel so fucking happy...", "What the fuck is going on?", "Where am I?")
 			if(prob(15))
-				H.dna.add_mutation(SMILE)
+				//H.dna.add_mutation(SMILE)
 			else if(prob(30)) //blurry eyes and talk like an idiot
 				H.blur_eyes(2)
 				H.derpspeech++
