@@ -257,7 +257,7 @@
 	name = "Chicken Cube"
 	id = "chicken_cube"
 	build_type = BIOGENERATOR
-	materials = list(MAT_BIOMASS = 2100)
+	materials = list(MAT_BIOMASS = 200)
 	build_path = /obj/item/reagent_containers/food/snacks/monkeycube/chickencube
 	category = list("initial", "Food")
 
@@ -265,6 +265,6 @@
 	name = "Cow Cube"
 	id = "cow_cube"
 	build_type = BIOGENERATOR
-	materials = list(MAT_BIOMASS = 3100)
+	materials = list(MAT_BIOMASS = 500)
 	build_path = /obj/item/reagent_containers/food/snacks/monkeycube/cowcube
 	category = list("initial", "Food")
