@@ -84,7 +84,7 @@ datum/controller/subsystem/vote
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
 		to_chat(world, "\n<font color='purple'><b>[text]</b>\n<div style='font-size: 18px'>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.\nYou have [DisplayTimeText(vp)] to vote.</font></div>")
-		SEND_SOUND(world, sound('sound/ai/attention.ogg'))
+		SEND_SOUND(world, sound(pick('hippiestation/sound/misc/choose1.ogg', 'hippiestation/sound/misc/choose2.ogg')))
 		time_remaining = round(vp/10)
 		for(var/c in GLOB.clients)
 			var/client/C = c

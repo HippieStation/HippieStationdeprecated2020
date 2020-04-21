@@ -215,11 +215,11 @@
 			return FALSE
 
 		if(prob(chance))
-			playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
+			playsound(src, 'hippiestation/sound/halflife/bustconcrete1.ogg', 100, 1)
 			W.dismantle_wall(TRUE)
 
 		else
-			playsound(src, 'sound/effects/bang.ogg', 50, 1)
+			playsound(src, 'hippiestation/sound/halflife/bustconcrete2.ogg', 50, 1)
 			W.add_dent(WALL_DENT_HIT)
 			visible_message("<span class='danger'>[user] has smashed [W] with [src]!</span>", null, COMBAT_MESSAGE_RANGE)
 	return TRUE

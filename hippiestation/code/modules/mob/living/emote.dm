@@ -1,6 +1,33 @@
 /mob
 	var/nextsoundemote = 1
 
+/datum/emote/living/technobabble
+	key = "technobabble"
+	key_third_person = "technobabbles"
+	message = "says something scientific."
+	message_mime = "pretends to be a researcher."
+	only_forced_audio = FALSE
+	vary = TRUE
+
+/datum/emote/living/technobabble/get_sound(mob/living/user)
+	if(ishuman(user))
+		user.adjustOxyLoss(user.scream_oxyloss)
+		if(is_type_in_list(user.get_item_by_slot(ITEM_SLOT_OCLOTHING), list(/obj/item/clothing/suit/toggle/labcoat/science, /obj/item/clothing/suit/toggle/labcoat/chemist, /obj/item/clothing/suit/space/hardsuit/rd, /obj/item/clothing/suit/toggle/labcoat/virologist, /obj/item/clothing/suit/toggle/labcoat/genetics, /obj/item/clothing/suit/toggle/labcoat/cmo)))
+			var/num = rand(1, 11)
+			return pick("hippiestation/sound/halflife/technobabble" + num2text(num) + ".ogg")
+
+/datum/emote/living/technobabble/run_emote(mob/living/user, params)
+	if(user.nextsoundemote >= world.time)
+		return FALSE
+	. = ..()
+	if (!.)
+		return FALSE
+	var/miming = user.mind ? user.mind.miming : 0
+	if(!user.is_muzzled() && !miming)
+		if(ishuman(user))
+			user.adjustOxyLoss(user.scream_oxyloss)
+		user.nextsoundemote = world.time + 7
+
 /datum/emote/living/scream
 	message = "screams!"
 	message_mime = "acts out a scream."

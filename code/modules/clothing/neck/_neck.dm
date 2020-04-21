@@ -39,6 +39,7 @@
 	name = "black tie"
 	icon_state = "blacktie"
 	item_color = "blacktie"
+	desc = "Why do we all have to wear these ridiculous ties?"
 
 /obj/item/clothing/neck/tie/horrible
 	name = "horrible tie"

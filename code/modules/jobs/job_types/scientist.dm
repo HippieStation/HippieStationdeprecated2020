@@ -21,16 +21,5 @@
 
 	display_order = JOB_DISPLAY_ORDER_SCIENTIST
 
-/datum/outfit/job/scientist
-	name = "Scientist"
-	jobtype = /datum/job/scientist
 
-	belt = /obj/item/pda/toxins
-	ears = /obj/item/radio/headset/headset_sci
-	uniform = /obj/item/clothing/under/rank/scientist
-	shoes = /obj/item/clothing/shoes/sneakers/white
-	suit = /obj/item/clothing/suit/toggle/labcoat/science
-
-	backpack = /obj/item/storage/backpack/science
-	satchel = /obj/item/storage/backpack/satchel/tox
 

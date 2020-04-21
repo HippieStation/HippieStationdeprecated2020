@@ -3317,6 +3317,7 @@
 #include "hippiestation\code\modules\clothing\suits\utility.dm"
 #include "hippiestation\code\modules\clothing\under\dwarf.dm"
 #include "hippiestation\code\modules\clothing\under\jobs\civilian.dm"
+#include "hippiestation\code\modules\clothing\under\jobs\medsci.dm"
 #include "hippiestation\code\modules\clothing\under\jobs\vice_officer.dm"
 #include "hippiestation\code\modules\crafts\mug.dm"
 #include "hippiestation\code\modules\crafts\shield.dm"

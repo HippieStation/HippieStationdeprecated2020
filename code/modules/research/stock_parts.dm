@@ -38,7 +38,7 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	if(alt_sound && prob(1))
 		playsound(src, alt_sound, 40, 1)
 	else
-		playsound(src, pshoom_or_beepboopblorpzingshadashwoosh, 40, 1)
+		playsound(src, pshoom_or_beepboopblorpzingshadashwoosh, 40, 0)
 
 /obj/item/storage/part_replacer/bluespace
 	name = "bluespace rapid part exchange device"
