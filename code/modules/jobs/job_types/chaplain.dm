@@ -72,7 +72,7 @@
 			B.name = "The Torah"
 		if("lampism")
 			B.name = "Fluorescent Incandescence"
-		if("lol", "wtf", "gay", "penis", "ass", "poo", "badmin", "shitmin", "deadmin", "cock", "cocks", "meme", "memes")
+		if("lol", "wtf", "penis", "ass", "poo", "badmin", "shitmin", "deadmin", "cock", "cocks", "meme", "memes")
 			B.name = pick("Woodys Got Wood: The Aftermath", "War of the Cocks", "Sweet Bro and Hella Jef: Expanded Edition","F.A.T.A.L. Rulebook")
 			H.adjustBrainLoss(100) // starts off dumb as fuck
 		if("monkeyism","apism","gorillism","primatism")

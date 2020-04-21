@@ -13354,7 +13354,6 @@
 /area/crew_quarters/theatre)
 "aLB" = (
 /obj/structure/closet,
-/obj/item/dnainjector/smilemut,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
