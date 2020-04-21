@@ -1,16 +1,16 @@
 #define HORN_BRAIN_DAMAGE 5
 
-/obj/item/bikehorn/golden/retardhorn/attack()
+/obj/item/bikehorn/golden/stupidhorn/attack()
 	flip_mobs()
-	retardify()
+	dumbify()
 	return ..()
 
-/obj/item/bikehorn/golden/retardhorn/attack_self(mob/user)
+/obj/item/bikehorn/golden/stupidhorn/attack_self(mob/user)
 	flip_mobs()
-	retardify()
+	dumbify()
 	..()
 
-/obj/item/bikehorn/golden/retardhorn/proc/retardify(mob/living/carbon/M, mob/user)
+/obj/item/bikehorn/golden/stupidhorn/proc/dumbify(mob/living/carbon/M, mob/user)
 	var/turf/T = get_turf(src)
 	for(M in ohearers(7, T))
 		if(ishuman(M) && M.can_hear())
