@@ -3448,6 +3448,7 @@
 #include "hippiestation\code\modules\integrated_electronics\subtypes\logic.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\manipulation.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\memory.dm"
+#include "hippiestation\code\modules\integrated_electronics\subtypes\mining.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\output.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\power.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\reagents.dm"
