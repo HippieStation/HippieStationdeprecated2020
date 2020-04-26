@@ -49593,13 +49593,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"dXk" = (
-/obj/effect/landmark/start/botanist,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "dXt" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
@@ -50211,6 +50204,17 @@
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
 /area/maintenance/longface)
+"eYx" = (
+/obj/machinery/hydroponics,
+/obj/item/seeds/wheat,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Hydroponics Storage"
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "eYA" = (
 /obj/machinery/vending/cart/old,
 /turf/open/floor/plating,
@@ -50414,12 +50418,12 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
 /obj/machinery/light_switch{
 	pixel_x = 28;
 	pixel_y = 0
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -52380,6 +52384,9 @@
 /area/hallway/secondary/entry)
 "ixp" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
@@ -54766,6 +54773,9 @@
 /area/ai_monitored/turret_protected/aisat/hallway)
 "mbi" = (
 /obj/structure/cable,
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
@@ -57711,6 +57721,9 @@
 /obj/item/storage/bag/plants/portaseeder,
 /obj/item/shovel/spade,
 /obj/item/reagent_containers/glass/bucket,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "qOO" = (
@@ -58440,6 +58453,11 @@
 /area/security/checkpoint/auxiliary{
 	name = "Security Checkpoint - Arrivals"
 	})
+"sjY" = (
+/obj/structure/cable,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "skg" = (
 /obj/machinery/door/airlock/external{
 	name = "Port Docking Bay 1";
@@ -58656,6 +58674,9 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "sGA" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
@@ -59575,6 +59596,9 @@
 /obj/item/plant_analyzer,
 /obj/item/cultivator,
 /obj/item/reagent_containers/glass/bottle/nutrient/ez,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "tWk" = (
@@ -61502,6 +61526,9 @@
 /obj/machinery/biogenerator,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -103745,11 +103772,11 @@ kyJ
 asg
 mbi
 aLR
-hjy
-aUI
-dXk
-aUI
-aUI
+eYx
+aWv
+bbb
+aWv
+aWv
 gJx
 aKp
 aWv
@@ -104003,7 +104030,7 @@ asg
 fex
 aLR
 hjy
-aUI
+aWv
 ixp
 rmA
 rmA
@@ -104257,7 +104284,7 @@ alO
 aps
 kyJ
 asg
-aBf
+sjY
 aLR
 tWf
 sGA
