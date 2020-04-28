@@ -24,7 +24,7 @@
 	item_state = "paper_sword"
 	lefthand_file = 'hippiestation/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 3
+	force = 4
 	throwforce = 1
 	throw_speed = 2
 	w_class = WEIGHT_CLASS_SMALL
