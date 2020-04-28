@@ -250,3 +250,21 @@
 	build_path = /obj/item/seeds/random
 	make_reagents = list()
 	category = list("initial","Special")
+
+/* Food*/
+
+/datum/design/chicken_cube
+	name = "Chicken Cube"
+	id = "chicken_cube"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 200)
+	build_path = /obj/item/reagent_containers/food/snacks/monkeycube/chickencube
+	category = list("initial", "Food")
+
+/datum/design/cow_cube
+	name = "Cow Cube"
+	id = "cow_cube"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 500)
+	build_path = /obj/item/reagent_containers/food/snacks/monkeycube/cowcube
+	category = list("initial", "Food")
