@@ -4,7 +4,7 @@
 /obj/item/storage/paperhouse
 	name = "paper house"
 	desc = "Fit for a tiny person or your favorite action figure. Watch out for paper cuts!"
-	icon = 'hippiestation/icons/obj/storage.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "paperhouse"
 	sharpness = IS_SHARP
 	resistance_flags = FLAMMABLE
@@ -28,7 +28,7 @@
 	throwforce = 1
 	throw_speed = 2
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("poked", "slightly cut", "given a papercut to",) //imagine attacking someone with paper
+	attack_verb = list("poked", "slightly cut", "given a paper cut to",) //imagine attacking someone with paper
 	siemens_coefficient = 0 //Means it's insulated
 	sharpness = IS_SHARP
 	resistance_flags = FLAMMABLE
@@ -75,7 +75,7 @@
 
 /obj/item/card/id/paper
 	name = "paper identification card"
-	desc = "An ID card made completely out of paper! It is so masterfully and carefully folded that it seems to have maintenance access!"
+	desc = "An ID card made entirely out of a single sheet of paper! It is so masterfully and carefully folded that it seems to have maintenance access!"
 	icon = 'hippiestation/icons/obj/card.dmi'
 	icon_state = "paperid"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
