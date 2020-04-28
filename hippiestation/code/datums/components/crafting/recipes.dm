@@ -256,7 +256,7 @@
 				/obj/item/stack/cable_coil = 10)
 	time = 30
 	tools = list(TOOL_WIRECUTTER)
-	category = CAT_CLOTHING
+	category = CAT_LEARNED
 	always_availible = FALSE
 
 /datum/crafting_recipe/moistnugget
@@ -268,8 +268,7 @@
 				/obj/item/weaponcrafting/receiver = 1)
 	time = 60
 	tools = list(TOOL_WIRECUTTER, TOOL_WELDER, TOOL_SCREWDRIVER)
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_LEARNED
 	always_availible = FALSE
 
 /datum/crafting_recipe/bodka
@@ -280,7 +279,7 @@
 				/obj/item/pipe = 1)
 	time = 30
 	tools = list(TOOL_WELDER, TOOL_WRENCH)
-	category = CAT_FOOD
+	category = CAT_LEARNED
 	always_availible = FALSE
 
 /datum/crafting_recipe/russiansuit
@@ -290,7 +289,7 @@
 				/obj/item/stack/sheet/metal = 1)
 	time = 30
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
-	category = CAT_CLOTHING
+	category = CAT_LEARNED
 	always_availible = FALSE
 
 /datum/crafting_recipe/moistclip
@@ -301,8 +300,7 @@
 				/obj/item/stack/tile/bronze = 1)
 	time = 20
 	tools = list(TOOL_SCREWDRIVER, TOOL_WIRECUTTER, TOOL_WELDER)
-	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_LEARNED
 	always_availible = FALSE
 
 /datum/crafting_recipe/beans
@@ -312,7 +310,7 @@
 				/obj/item/stack/sheet/metal = 1)
 	time = 40
 	tools = list(TOOL_WELDER, TOOL_WIRECUTTER)
-	category = CAT_FOOD
+	category = CAT_LEARNED
 	always_availible = FALSE
 
 /datum/crafting_recipe/c4
@@ -324,8 +322,7 @@
 				/obj/item/stack/sheet/mineral/gold = 5)
 	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
 	always_availible = FALSE
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_LEARNED
 
 /datum/crafting_recipe/grenade
 	name = "Frag Grenade"
@@ -336,9 +333,8 @@
 				/obj/item/stack/sheet/metal = 5)
 	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
 	always_availible = FALSE
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-				
+	category = CAT_LEARNED
+
 /datum/crafting_recipe/holyhandgrenade
 	name = "Holy Hand Grenade"
 	result = /obj/item/grenade/chem_grenade/holy
@@ -349,8 +345,7 @@
 				/obj/item/stack/sheet/metal = 5)
 	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
 	always_availible = FALSE
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_LEARNED
 
 /datum/crafting_recipe/warcrimegrenade
 	name = "Biological Warfare Grenade"
@@ -367,8 +362,7 @@
 				/obj/item/stack/sheet/metal = 5)
 	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
 	always_availible = FALSE
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_LEARNED
 
 /datum/crafting_recipe/empbomb
 	name = "EMP Grenade"
@@ -380,5 +374,58 @@
 				/obj/item/stack/sheet/metal = 5)
 	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WIRECUTTER)
 	always_availible = FALSE
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_LEARNED
+
+/datum/crafting_recipe/paperhouse
+	name = "paper house"
+	result = /obj/item/storage/paperhouse
+	reqs = list(/obj/item/paper = 5)
+	tools = list() //don't need tools in origami
+	always_availible = FALSE
+	category = CAT_LEARNED
+	time = 60
+
+/datum/crafting_recipe/fakespellbook
+	name = "fake spellbook"
+	result = /obj/item/storage/book/fake_spellbook
+	reqs = list(/obj/item/paper = 8)
+	tools = list()
+	always_availible = FALSE
+	category = CAT_LEARNED
+	time = 70
+
+/datum/crafting_recipe/papersword
+	name = "paper sword"
+	result = /obj/item/melee/paper_sword
+	reqs = list(/obj/item/paper = 3)
+	tools = list()
+	always_availible = FALSE
+	category = CAT_LEARNED
+	time = 40
+
+/datum/crafting_recipe/paperstar
+	name = "paper throwing star"
+	result = /obj/item/throwing_star/paper
+	reqs = list(/obj/item/paper = 1)
+	tools = list()
+	always_availible = FALSE
+	category = CAT_LEARNED
+	time = 10
+
+/datum/crafting_recipe/papercuffs
+	name = "paper handcuffs"
+	result = /obj/item/restraints/handcuffs/paper
+	reqs = list(/obj/item/paper = 2)
+	tools = list()
+	always_availible = FALSE
+	category = CAT_LEARNED
+	time = 15
+
+/datum/crafting_recipe/paperid
+	name = "paper identification card"
+	result = /obj/item/card/id/paper
+	reqs = list(/obj/item/paper = 3)
+	tools = list()
+	always_availible = FALSE
+	category = CAT_LEARNED
+	time = 100
