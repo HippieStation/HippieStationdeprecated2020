@@ -2,12 +2,12 @@
 	name = "USSR-3 Public Disturbance Manual"
 	desc = "A subversive manual dispersed by the remnants of USSR-3, filled to the brim with ideological slogans and easy to use blueprints to arm the proletariat against the mega-corporations. Owning one of these is equal to a death penalty in most orbital stations"
 	crafting_recipe_types = list(
-		/datum/crafting_recipe/ushanka,
-		/datum/crafting_recipe/moistnugget,
-		/datum/crafting_recipe/bodka,
-		/datum/crafting_recipe/russiansuit,
-		/datum/crafting_recipe/moistclip,
-		/datum/crafting_recipe/beans
+		/datum/crafting_recipe/learned/ushanka,
+		/datum/crafting_recipe/learned/moistnugget,
+		/datum/crafting_recipe/learned/bodka,
+		/datum/crafting_recipe/learned/russiansuit,
+		/datum/crafting_recipe/learned/moistclip,
+		/datum/crafting_recipe/learned/beans
 	)
 	icon_state = "USSR3"
 	oneuse = FALSE
@@ -17,11 +17,11 @@
 	name = "Anarchist's Compendium"
 	desc = "A collection of different anarchist works from authors such as Ted Kaczynski, Peter Kropotkin, Mikhail Bakunin and James Mason? Wait, this isn't right, who compiled this? There's a page taped on in the middle detailing different pyrotechnics blueprints."
 	crafting_recipe_types = list(
-		/datum/crafting_recipe/c4,
-		/datum/crafting_recipe/grenade,
-		/datum/crafting_recipe/holyhandgrenade,
-		/datum/crafting_recipe/warcrimegrenade,
-		/datum/crafting_recipe/empbomb
+		/datum/crafting_recipe/learned/c4,
+		/datum/crafting_recipe/learned/grenade,
+		/datum/crafting_recipe/learned/holyhandgrenade,
+		/datum/crafting_recipe/learned/warcrimegrenade,
+		/datum/crafting_recipe/learned/empbomb
 	)
 	icon_state = "anarchist_cb"
 	oneuse = FALSE
@@ -31,12 +31,12 @@
 	name = "Robert Lang's Origami Unveiled Vol. 1"
 	desc = "The first book in a series that aims to thoroughly explain and teach origami to almost any individual who isn't braindead. Created by a genius from old Earth, it has been documented by Nanotrasen, who sometimes lends copies of the books to the crews of their space stations. "
 	crafting_recipe_types = list(
-		/datum/crafting_recipe/paperhouse,
-		/datum/crafting_recipe/fakespellbook,
-		/datum/crafting_recipe/papersword,
-		/datum/crafting_recipe/paperstar,
-		/datum/crafting_recipe/papercuffs,
-		/datum/crafting_recipe/paperid
+		/datum/crafting_recipe/learned/paperhouse,
+		/datum/crafting_recipe/learned/fakespellbook,
+		/datum/crafting_recipe/learned/papersword,
+		/datum/crafting_recipe/learned/paperstar,
+		/datum/crafting_recipe/learned/papercuffs,
+		/datum/crafting_recipe/learned/paperid
 		)
 	icon = 'hippiestation/icons/obj/library.dmi'
 	icon_state = "origamiv1"

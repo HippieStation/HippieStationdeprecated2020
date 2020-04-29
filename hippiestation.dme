@@ -2980,6 +2980,7 @@
 #include "hippiestation\code\datums\components\spell_catalyst.dm"
 #include "hippiestation\code\datums\components\waddling.dm"
 #include "hippiestation\code\datums\components\wet_floor.dm"
+#include "hippiestation\code\datums\components\crafting\learnedrecipes.dm"
 #include "hippiestation\code\datums\components\crafting\recipes.dm"
 #include "hippiestation\code\datums\components\storage\concrete\autodoc.dm"
 #include "hippiestation\code\datums\components\storage\concrete\butt.dm"
