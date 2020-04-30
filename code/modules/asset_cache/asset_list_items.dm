@@ -16,6 +16,11 @@
 		"shim-css-om.js" = 'tgui-next/packages/tgui/public/shim-css-om.js',
 	)
 
+/datum/asset/simple/font
+	assets = list(
+		"runes.ttf"	= 'hippiestation/interface/runes.ttf'
+	)
+
 /datum/asset/group/tgui
 	children = list(
 		/datum/asset/simple/tgui,
