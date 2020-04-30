@@ -39,17 +39,17 @@ http://www.byond.com/docs/ref/skinparams.html#Fonts
 
 	var/image/I = image(loc = target, layer=FLY_LAYER)
 	I.alpha = 0
-	I.maptext_width = 128
-	I.maptext_height = 64
-	I.pixel_x = -48
+	I.maptext_width = 192
+	I.maptext_height = 96
+	I.pixel_x = -80
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	I.maptext = "<center><span class='chatOverhead' style='[css]'>[message]</span></center>"
 
 	var/image/O = image(loc = target, layer=FLY_LAYER)
 	O.alpha = 0
-	O.maptext_width = 128
-	O.maptext_height = 64
-	O.pixel_x = -48
+	O.maptext_width = 192
+	O.maptext_height = 96
+	O.pixel_x = -80
 	O.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	O.maptext = "<center><span class='chatOverhead' style='[css]'>[D.scramble(message)]</span></center>"
 
@@ -64,7 +64,7 @@ http://www.byond.com/docs/ref/skinparams.html#Fonts
 				C = player
 				break
 		if(C)
-			var/moveup = text2num(splittext(C.MeasureText(I.maptext, width = 128), "x")[2])
+			var/moveup = text2num(splittext(C.MeasureText(I.maptext, width = 192), "x")[2])
 			for(var/image/old in target.stored_chat_text)
 				if(old != I && old != O)
 					var/pixel_y_new = old.pixel_y + moveup
