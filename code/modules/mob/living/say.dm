@@ -286,7 +286,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, speech_bubble_recipients, 30)
-
+	INVOKE_ASYNC(GLOBAL_PROC, /.proc/animate_chat, src, message, message_language, message_mode, speech_bubble_recipients, 50) // see chatheader.dm
+	
 /mob/proc/binarycheck()
 	return FALSE
 
