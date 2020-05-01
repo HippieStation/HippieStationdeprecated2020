@@ -7,8 +7,8 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-	if(fexists("byond-extools.dll"))
-		call("byond-extools.dll", "maptick_initialize")()
+	if(fexists("byond-extools"))
+		call("byond-extools", "maptick_initialize")()
 	enable_debugger()
 
 	//Early profile for auto-profiler - will be stopped on profiler init if necessary.
