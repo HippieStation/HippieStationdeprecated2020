@@ -37,7 +37,7 @@
 	. = ..()
 	color = pick("white","green","yellow","purple")
 
-/obj/item/bowling/throw_at(atom/target, range, speed, mob/thrower, spin=FALSE, diagonals_first = FALSE, datum/callback/callback)
+/obj/item/bowling/throw_at(atom/target, range, speed, mob/thrower, spin=FALSE, diagonals_first = FALSE, datum/callback/callback, force, gentle = FALSE, quickstart = TRUE)
 	if(istype(thrower, /mob/living/carbon/human))
 		var/mob/living/carbon/human/user = thrower
 		if(user.w_uniform && istype(user.w_uniform, /obj/item/clothing/under/hippie/bowling))
