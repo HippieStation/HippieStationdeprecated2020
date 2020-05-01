@@ -1,4 +1,5 @@
 #define RESTART_COUNTER_PATH "data/round_counter.txt"
+#define EXTOOLS (world.system_type == UNIX ? "byond-extools" : "byond-extools.dll")
 
 GLOBAL_VAR(restart_counter)
 //TODO: Replace INFINITY with the version that fixes http://www.byond.com/forum/?post=2407430
@@ -7,8 +8,9 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-	if(fexists("byond-extools.dll"))
-		call("byond-extools.dll", "maptick_initialize")()
+	if(fexists(EXTOOLS))
+		call(EXTOOLS, "cleanup")()
+		call(EXTOOLS, "maptick_initialize")()
 	enable_debugger()
 
 	//Early profile for auto-profiler - will be stopped on profiler init if necessary.
