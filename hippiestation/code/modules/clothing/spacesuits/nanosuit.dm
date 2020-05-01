@@ -1111,7 +1111,7 @@
 		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
 			if(NS.mode == NANO_STRENGTH)
-				. = ..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
+				. = ..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback, force, gentle, quickstart = quickstart)
 				return
 	. = ..()
 

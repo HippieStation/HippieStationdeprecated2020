@@ -48,7 +48,7 @@
 				icon_state = "bowling_ball_spin"
 				playsound(src,'hippiestation/sound/effects/bowl.ogg',40,0)
 				bowling.next_bowl = world.time + 10
-	. = ..(target, range, speed, thrower, FALSE, diagonals_first, callback)
+	. = ..(target, range, speed, thrower, FALSE, diagonals_first, callback, force, gentle, quickstart = quickstart)
 
 /obj/item/bowling/throw_impact(atom/hit_atom)
 	if(!ishuman(hit_atom))//if the ball hits a nonhuman
