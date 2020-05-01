@@ -37,7 +37,7 @@
 	. = ..()
 	color = pick("white","green","yellow","purple")
 
-/obj/item/bowling/throw_at(atom/target, range, speed, mob/thrower, spin=FALSE, diagonals_first = FALSE, datum/callback/callback)
+/obj/item/bowling/throw_at(atom/target, range, speed, mob/thrower, spin=FALSE, diagonals_first = FALSE, datum/callback/callback, force, gentle = FALSE, quickstart = TRUE)
 	if(istype(thrower, /mob/living/carbon/human))
 		var/mob/living/carbon/human/user = thrower
 		if(user.w_uniform && istype(user.w_uniform, /obj/item/clothing/under/hippie/bowling))
@@ -48,7 +48,7 @@
 				icon_state = "bowling_ball_spin"
 				playsound(src,'hippiestation/sound/effects/bowl.ogg',40,0)
 				bowling.next_bowl = world.time + 10
-	. = ..(target, range, speed, thrower, FALSE, diagonals_first, callback)
+	. = ..(target, range, speed, thrower, FALSE, diagonals_first, callback, force, gentle, quickstart = quickstart)
 
 /obj/item/bowling/throw_impact(atom/hit_atom)
 	if(!ishuman(hit_atom))//if the ball hits a nonhuman

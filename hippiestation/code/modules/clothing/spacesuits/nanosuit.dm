@@ -1105,13 +1105,13 @@
 		return
 	return ..()
 
-/obj/item/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback)
+/obj/item/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback, force, gentle = FALSE, quickstart = TRUE)
 	if(thrower && ishuman(thrower))
 		var/mob/living/carbon/human/H = thrower
 		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
 			if(NS.mode == NANO_STRENGTH)
-				. = ..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
+				. = ..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback, force, gentle, quickstart = quickstart)
 				return
 	. = ..()
 
