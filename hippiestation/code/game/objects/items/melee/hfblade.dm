@@ -37,20 +37,22 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/melee/hfblade/hit_reaction(mob/living/carbon/human/owner, mob/living/carbon/human/attacker, datum/martial_art/attacker_style, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/melee/hfblade/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
 		final_block_chance = 0
 	if(attack_type == MELEE_ATTACK) // It really is not a good idea to get close to this thing.
 		final_block_chance = 100
 		var/hideandseeklogic = rand(1,5) // YES, ADD MORE RNG TO COMBAT.
-		if(hideandseeklogic == 1 || HAS_TRAIT(attacker, TRAIT_CLUMSY))
-			attacker.visible_message("<span class = 'warning'>[attacker] attempts to attack [owner] and accidentally slices their arm off! What an idiot!</span>")
-			var/which_hand = BODY_ZONE_L_ARM
-			if(!(attacker.active_hand_index % 2))
-				which_hand = BODY_ZONE_R_ARM
-			var/obj/item/bodypart/disarm_arm = attacker.get_bodypart(which_hand)
-			disarm_arm.dismember()
-			playsound(attacker,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
+		if(ishuman(hitby.loc))
+			var/mob/living/carbon/human/attacker = hitby.loc
+			if(hideandseeklogic == 1 || HAS_TRAIT(attacker, TRAIT_CLUMSY))
+				attacker.visible_message("<span class = 'warning'>[attacker] attempts to attack [owner] and accidentally slices their arm off! What an idiot!</span>")
+				var/which_hand = BODY_ZONE_L_ARM
+				if(!(attacker.active_hand_index % 2))
+					which_hand = BODY_ZONE_R_ARM
+				var/obj/item/bodypart/disarm_arm = attacker.get_bodypart(which_hand)
+				disarm_arm.dismember()
+				playsound(attacker,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
 	return ..()
 
 /obj/item/melee/hfblade/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
