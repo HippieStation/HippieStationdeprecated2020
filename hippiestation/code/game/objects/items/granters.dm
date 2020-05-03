@@ -1,3 +1,29 @@
+//Crafting Recipe books
+
+/obj/item/book/granter/crafting_recipe/
+	name = "Anarchist's Compendium"
+	desc = "A collection of different anarchist works from authors such as Ted Kaczynski, Peter Kropotkin, Mikhail Bakunin and James Mason? Wait, this isn't right, who compiled this? There's a page taped on in the middle detailing different pyrotechnics blueprints."
+	var/crafting_recipe_types = list(
+		/datum/crafting_recipe/learned/c4,
+		/datum/crafting_recipe/learned/grenade,
+		/datum/crafting_recipe/learned/holyhandgrenade,
+		/datum/crafting_recipe/learned/warcrimegrenade,
+		/datum/crafting_recipe/learned/empbomb
+	)
+	icon_state = "anarchist_cb"
+	oneuse = FALSE
+	remarks = list("..were a disaster for mankind? Explains a lot of what happens on here, actually.", "Where am I supposed to get holy water?", "Napalm's surprisingly easy to make.", "I can't actually read, I just realized", "Wait, why a republic if we're talking about anarchism?", "This pleases my ego.", "Now that I think about it, I'm not sure I ever saw a tree!", "Oh, so that wasn't real anarchism, but this will be? Sounds fishy...", "Wait a minute, I know Paris, ain't that the city from old Earth?")
+
+
+/obj/item/book/granter/crafting_recipe/on_reading_finished(mob/user)
+	. = ..()
+	if(!user.mind)
+		return
+	for(var/crafting_recipe_type in crafting_recipe_types)
+		var/datum/crafting_recipe/R = crafting_recipe_type
+		user.mind.teach_crafting_recipe(crafting_recipe_type)
+		to_chat(user,"<span class='notice'>You learned how to make [initial(R.name)].</span>")
+
 /obj/item/book/granter/crafting_recipe/USSR3
 	name = "USSR-3 Public Disturbance Manual"
 	desc = "A subversive manual dispersed by the remnants of USSR-3, filled to the brim with ideological slogans and easy to use blueprints to arm the proletariat against the mega-corporations. Owning one of these is equal to a death penalty in most orbital stations"
@@ -13,19 +39,17 @@
 	oneuse = FALSE
 	remarks = list("What even IS ethical consumption...?", "Nuclear war equals revolutionary war? Sounds...interesting.", "Where would I even get real leather on a space station?", "If it worked in Stalingrad, it should work here too...", "Potatoes sure are versatile.", "So that's why they're so cheap...", "Who the hell is Deng?", "The War of the Sickle is what made Earth unlivable?")
 
-/obj/item/book/granter/crafting_recipe/anarch
-	name = "Anarchist's Compendium"
-	desc = "A collection of different anarchist works from authors such as Ted Kaczynski, Peter Kropotkin, Mikhail Bakunin and James Mason? Wait, this isn't right, who compiled this? There's a page taped on in the middle detailing different pyrotechnics blueprints."
-	crafting_recipe_types = list(
-		/datum/crafting_recipe/learned/c4,
-		/datum/crafting_recipe/learned/grenade,
-		/datum/crafting_recipe/learned/holyhandgrenade,
-		/datum/crafting_recipe/learned/warcrimegrenade,
-		/datum/crafting_recipe/learned/empbomb
-	)
-	icon_state = "anarchist_cb"
-	oneuse = FALSE
-	remarks = list("..were a disaster for mankind? Explains a lot of what happens on here, actually.", "Where am I supposed to get holy water?", "Napalm's surprisingly easy to make.", "I can't actually read, I just realized", "Wait, why a republic if we're talking about anarchism?", "This pleases my ego.", "Now that I think about it, I'm not sure I ever saw a tree!", "Oh, so that wasn't real anarchism, but this will be? Sounds fishy...", "Wait a minute, I know Paris, ain't that the city from old Earth?")
+/obj/item/book/granter/crafting_recipe/USSR3/on_reading_finished(mob/user)
+	..()
+	if(prob(1))
+		to_chat(user, "Perhaps Lenin wasn't so bad, after all...")
+		sleep(1)
+		to_chat(user, "Wait a minute...")
+		sleep(1)
+		user.playsound_local(user, 'hippiestation/sound/effects/liberty.ogg', 50, FALSE)
+		user.mind.make_Rev()
+	else
+		return
 
 /obj/item/book/granter/crafting_recipe/origami1
 	name = "Robert Lang's Origami Unveiled Vol. 1"
@@ -41,7 +65,7 @@
 	icon = 'hippiestation/icons/obj/library.dmi'
 	icon_state = "origamiv1"
 	oneuse = FALSE
-	remarks = list("Orogami? Orgami? Oragami? Who spellchecked this book?","...and then what? Paper wizards?","Origami came from old Earth? Well I guess a lot of things did...","How did he get that from step 6?","...include paper cults? Am I reading the right book?","Inside reverse folds and outside reverse folds sure are complicated.","...Chinese culture...")
+	remarks = list("Orogami? Orgami? Oragami? Who spell-checked this book?","...and then what? Paper wizards?","Origami came from old Earth? Well I guess a lot of things did...","How did he get that from step 6?","...include paper cults? Am I reading the right book?","Inside reverse folds and outside reverse folds sure are complicated.","...Chinese culture...")
 
 /obj/item/choice_beacon/crafting
 	name = "Nanotrasen Brand Crafting Book Summoning Device"
@@ -51,7 +75,7 @@
 	var/static/list/crafting_book_list
 	if(!crafting_book_list)
 		crafting_book_list = list()
-		var/list/templist = typesof(/obj/item/book/granter/crafting_recipe) //we have to convert type = name to name = type, how lovely!
+		var/list/templist = typesof(/obj/item/book/granter/crafting_recipe/) //we have to convert type = name to name = type, how lovely!
 		for(var/V in templist)
 			var/atom/A = V
 			crafting_book_list[initial(A.name)] = A
