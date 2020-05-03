@@ -22,16 +22,16 @@ Ask ninjanomnom if they're around
 #define RAD_BURN_LOG_GRADIENT 10000
 #define RAD_BURN_CURVE(X) log(1+((X-RAD_BURN_THRESHOLD)/RAD_BURN_LOG_GRADIENT))/log(RAD_BURN_LOG_BASE)
 
-#define RAD_MOB_SAFE 500							// How much stored radiation in a mob with no ill effects
+#define RAD_MOB_SAFE 5000							// How much stored radiation in a mob with no ill effects
 
-#define RAD_MOB_HAIRLOSS 800						// How much stored radiation to check for hair loss
+#define RAD_MOB_HAIRLOSS 8000						// How much stored radiation to check for hair loss
 
-#define RAD_MOB_MUTATE 1250							// How much stored radiation to check for mutation
+#define RAD_MOB_MUTATE 12500							// How much stored radiation to check for mutation
 
-#define RAD_MOB_VOMIT 2000							// The amount of radiation to check for vomitting
+#define RAD_MOB_VOMIT 20000							// The amount of radiation to check for vomitting
 #define RAD_MOB_VOMIT_PROB 1						// Chance per tick of vomitting
 
-#define RAD_MOB_KNOCKDOWN 2000						// How much stored radiation to check for stunning
+#define RAD_MOB_KNOCKDOWN 20000						// How much stored radiation to check for stunning
 #define RAD_MOB_KNOCKDOWN_PROB 1					// Chance of knockdown per tick when over threshold
 #define RAD_MOB_KNOCKDOWN_AMOUNT 3					// Amount of knockdown when it occurs
 
