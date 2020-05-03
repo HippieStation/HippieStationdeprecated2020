@@ -16003,7 +16003,6 @@
 	color = "#FF3333";
 	name = "Forbidden Knowledge"
 	},
-/obj/item/book/granter/crafting_recipe/random,
 /turf/open/floor/engine/cult,
 /area/library)
 "aTz" = (
@@ -16013,6 +16012,7 @@
 /obj/item/radio/intercom{
 	pixel_y = 25
 	},
+/obj/item/choice_beacon/crafting,
 /turf/open/floor/engine/cult,
 /area/library)
 "aTA" = (

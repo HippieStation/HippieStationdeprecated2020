@@ -42,12 +42,17 @@
 	icon_state = "origamiv1"
 	oneuse = FALSE
 	remarks = list("Orogami? Orgami? Oragami? Who spellchecked this book?","...and then what? Paper wizards?","Origami came from old Earth? Well I guess a lot of things did...","How did he get that from step 6?","...include paper cults? Am I reading the right book?","Inside reverse folds and outside reverse folds sure are complicated.","...Chinese culture...")
-/obj/item/book/granter/crafting_recipe/random
-	icon_state = "random_book"
 
-/obj/item/book/granter/crafting_recipe/random/Initialize()
-	. = ..()
-	var/static/banned_books = list()
-	var/real_type = pick(subtypesof(/obj/item/book/granter/crafting_recipe) - banned_books)
-	new real_type(loc)
-	return INITIALIZE_HINT_QDEL
+/obj/item/choice_beacon/crafting
+	name = "Nanotrasen Brand Crafting Book Summoning Device"
+	desc = "The NBCBSD. Summon a crafting book of your choice with the simple press of a button! Fit for curators everywhere."
+
+/obj/item/choice_beacon/crafting/generate_display_names()
+	var/static/list/crafting_book_list
+	if(!crafting_book_list)
+		crafting_book_list = list()
+		var/list/templist = typesof(/obj/item/book/granter/crafting_recipe) //we have to convert type = name to name = type, how lovely!
+		for(var/V in templist)
+			var/atom/A = V
+			crafting_book_list[initial(A.name)] = A
+	return crafting_book_list
