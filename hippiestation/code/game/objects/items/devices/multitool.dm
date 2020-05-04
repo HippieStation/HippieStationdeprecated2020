@@ -74,3 +74,7 @@
 	icon = 'hippiestation/icons/obj/tools.dmi'
 	icon_state = "multitool_nuke"
 	toolspeed = 0.5
+
+/obj/item/multitool/syndicate/update_icon() //this seems redundant but pretty sure it will stop it from becoming invisible when clicked
+	if(selected_io)
+		return
