@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(chempiles)
 		qdel(src)
 
 /obj/effect/decal/cleanable/chempile/Crossed(mob/mover)
+	. = ..()
 	if(isliving(mover))
 		var/mob/living/M = mover
 		var/protection = 1
@@ -56,6 +57,8 @@ GLOBAL_LIST_EMPTY(chempiles)
 			for(var/datum/reagent/R in reagents)
 				if(R.volume < 0.2)
 					reagents.remove_reagent(R)	//Should remove most stray cases of microdosages that may get through without compromising chempiles with lots of mixes in them
+		else 
+			qdel(src)
 
 /obj/effect/decal/cleanable/chempile/fire_act(exposed_temperature, exposed_volume)
 	if(reagents && reagents.chem_temp)

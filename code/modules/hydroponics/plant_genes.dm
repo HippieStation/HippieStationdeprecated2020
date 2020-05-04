@@ -381,7 +381,6 @@
 	S.attach(splat_location)
 	S.set_up(G.reagents, smoke_amount, splat_location, 0)
 	S.start()
-	G.reagents.clear_reagents()
 
 /datum/plant_gene/trait/fire_resistance // Lavaland
 	name = "Fire Resistance"
