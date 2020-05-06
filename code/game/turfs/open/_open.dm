@@ -279,6 +279,10 @@
 			if(C.force_moving) //If we're already slipping extend it
 				qdel(C.force_moving)
 			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
+		else if(lube&SLIDE_CONTINOUS)
+			if(C.force_moving)
+				qdel(C.force_moving)
+			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 4), 1, FALSE) //I hate dreammaker. This is copypaste of above but it checks for the """new""" lube define and slips you more
 		return 1
 
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)
