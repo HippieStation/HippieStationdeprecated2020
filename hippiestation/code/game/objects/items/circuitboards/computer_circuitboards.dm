@@ -5,3 +5,8 @@
 /obj/item/circuitboard/computer/arcade/minesweeper
 	name = "Minesweeper (Computer Board)"
 	build_path = /obj/machinery/computer/arcade/minesweeper
+
+/obj/item/circuitboard/computer/craftingbookcatalog
+	name = "Spacestar Ordering Book Catalog (Computer board)"
+	build_path = /obj/machinery/computer/craftingbookcatalog
+

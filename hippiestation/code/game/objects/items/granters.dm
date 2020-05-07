@@ -80,3 +80,39 @@
 			var/atom/A = V
 			crafting_book_list[initial(A.name)] = A
 	return crafting_book_list
+
+/obj/item/book/granter/crafting_recipe/obelisk
+	name = "M'`nt a'd B,`'e"
+	desc = "Obsession with madness. Magic...impossible."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/tier1/obelisk,
+		)
+	icon_state = "book1"
+	remarks = list("A wizard wrote this? Who and why?","... magic...","What are the magic words?","Hammerman...what?","The accursed knowledge, I can feel it flowing.","How did Nanotrasen get ahold of this book?","Where do I find a wendigo?","Magic is divided into...","Most powerful force in the universe...")
+	oneuse = TRUE
+
+/obj/item/book/granter/crafting_recipe/attack_self(mob/user)
+	if(reading)
+		to_chat(user, "<span class='warning'>You're already reading this!</span>")
+		return FALSE
+	if(!user.can_read(src))
+		return FALSE
+	if(already_known(user))
+		return FALSE
+	if(used && oneuse)
+		recoil(user)
+	else
+		on_reading_start(user)
+		reading = TRUE
+		for(var/i=1, i<=pages_to_mastery, i++)
+			if(!turn_page(user))
+				on_reading_stopped()
+				reading = FALSE
+				return
+		if(do_after(user,50, user))
+			on_reading_finished(user)
+			to_chat(user, "<span class ='warning'>[src] vanishes into thin air.")
+			qdel(src)
+		reading = FALSE
+	return TRUE
+
