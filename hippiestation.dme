@@ -3615,6 +3615,7 @@
 #include "hippiestation\code\modules\projectiles\guns\energy\stun.dm"
 #include "hippiestation\code\modules\projectiles\guns\magic\staffofnothing.dm"
 #include "hippiestation\code\modules\projectiles\guns\magic\staffofrevenant.dm"
+#include "hippiestation\code\modules\projectiles\guns\magic\wand.dm"
 #include "hippiestation\code\modules\projectiles\projectile\beams.dm"
 #include "hippiestation\code\modules\projectiles\projectile\bullets.dm"
 #include "hippiestation\code\modules\projectiles\projectile\energy.dm"

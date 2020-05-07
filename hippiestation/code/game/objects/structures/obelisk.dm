@@ -4,7 +4,7 @@
     density = TRUE
     max_integrity = 400
     anchored = 1
-    icon = 'hippiestation/icons/obj/structure/obelisk.dmi'
+    icon = 'hippiestation/icons/obj/structures/obelisk.dmi'
     icon_state = "tier1"
     layer = BELOW_OBJ_LAYER + 0.1
     var/obj/item/screwdriver/obelisk/tool
@@ -56,7 +56,7 @@
 	density = TRUE
 	max_integrity = 700
 	anchored = 1
-	icon = 'hippiestation/icons/obj/structure/obelisk.dmi'
+	icon = 'hippiestation/icons/obj/structures/obelisk.dmi'
 	icon_state = "tier2"
 	layer = BELOW_OBJ_LAYER + 0.1
 	var/obj/item/screwdriver/obelisk/tier2/tool1
