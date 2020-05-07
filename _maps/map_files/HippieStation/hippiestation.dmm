@@ -11810,16 +11810,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"aHJ" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/chapel/office)
 "aHK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
@@ -15979,6 +15969,7 @@
 /area/library)
 "aTy" = (
 /obj/structure/bookcase{
+	color = "#FF3333";
 	name = "Forbidden Knowledge"
 	},
 /turf/open/floor/engine/cult,
@@ -15990,6 +15981,7 @@
 /obj/item/radio/intercom{
 	pixel_y = 25
 	},
+/obj/item/choice_beacon/crafting,
 /turf/open/floor/engine/cult,
 /area/library)
 "aTA" = (
@@ -16368,8 +16360,8 @@
 /turf/open/floor/wood,
 /area/library)
 "aUN" = (
-/obj/machinery/light/small,
 /obj/machinery/vending/wardrobe/curator_wardrobe,
+/obj/machinery/light/small,
 /turf/open/floor/engine/cult,
 /area/library)
 "aUO" = (
@@ -50301,10 +50293,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"fcR" = (
-/obj/structure/cable,
-/turf/closed/wall,
-/area/chapel/office)
 "fdf" = (
 /obj/item/radio/intercom{
 	name = "Station Intercom (General)";
@@ -107114,8 +107102,8 @@ azQ
 alO
 arm
 tVk
-alO
-alO
+aBf
+aBf
 aHI
 aIT
 aKy
@@ -107372,8 +107360,8 @@ aBf
 aBf
 aBf
 aBf
-fcR
-aHJ
+aIR
+jOl
 aIR
 aIR
 aIR

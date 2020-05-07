@@ -395,30 +395,3 @@
 		icon_state = "blankscroll"
 
 // I did not include mushpunch's grant, it is not a book and the item does it just fine.
-
-
-//Crafting Recipe books
-
-/obj/item/book/granter/crafting_recipe
-	var/list/crafting_recipe_types = list()
-
-/obj/item/book/granter/crafting_recipe/on_reading_finished(mob/user)
-	. = ..()
-	if(!user.mind)
-		return
-	for(var/crafting_recipe_type in crafting_recipe_types)
-		var/datum/crafting_recipe/R = crafting_recipe_type
-		user.mind.teach_crafting_recipe(crafting_recipe_type)
-		to_chat(user,"<span class='notice'>You learned how to make [initial(R.name)].</span>")
-	
-/obj/item/book/granter/crafting_recipe/USSR3/on_reading_finished(mob/user)
-	..()
-	if(prob(1))
-		to_chat(user, "Perhaps Lenin wasn't so bad, after all...")
-		sleep(1)
-		to_chat(user, "Wait a minute...")
-		sleep(1)
-		user.playsound_local(user, 'hippiestation/sound/effects/liberty.ogg', 50, FALSE)
-		user.mind.make_Rev()
-	else
-		return

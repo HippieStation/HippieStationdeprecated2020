@@ -254,7 +254,7 @@
 					/obj/item/grenade/smokebomb,
 					/obj/item/pen/sleepy,
 					/obj/item/grenade/chem_grenade/incendiary,
-					/obj/item/book/granter/crafting_recipe/anarch)
+					/obj/item/book/granter/crafting_recipe)
 	crate_name = "emergency crate"
 	crate_type = /obj/structure/closet/crate/internals
 
