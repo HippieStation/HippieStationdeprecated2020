@@ -7,6 +7,7 @@
 	icon_state = "circuit_printer"
 	w_class = WEIGHT_CLASS_BULKY
 	var/upgraded = FALSE		// When hit with an upgrade disk, will turn true, allowing it to print the higher tier circuits.
+	var/emagged = FALSE		 //When hit with an emag, will turn true, allowing it to print awful circuits like the shocker
 	var/can_clone = TRUE		// Allows the printer to clone circuits, either instantly or over time depending on upgrade. Set to FALSE to disable entirely.
 	var/fast_clone = FALSE		// If this is false, then cloning will take an amount of deciseconds equal to the metal cost divided by 100.
 	var/debug = FALSE			// If it's upgraded and can clone, even without config settings.
@@ -31,6 +32,7 @@
 	can_clone = TRUE
 	fast_clone = TRUE
 	w_class = WEIGHT_CLASS_TINY
+	emagged = TRUE
 
 /obj/item/integrated_circuit_printer/Initialize()
 	. = ..()
@@ -56,6 +58,13 @@
 			return TRUE
 		to_chat(user, "<span class='notice'>You install [O] into [src]. </span>")
 		upgraded = TRUE
+		return TRUE
+	if(istype(O, /obj/item/card/emag))
+		if(emagged)
+			to_chat(user, "<span class='warning'>[src] is already emagged. </span>")
+			return TRUE
+		to_chat(user, "<span class='notice'>You short out the circuits in [src], allowing you to print illegal circuits. </span>")
+		emagged = TRUE
 		return TRUE
 
 	if(istype(O, /obj/item/disk/integrated_circuit/upgrade/clone))
@@ -157,6 +166,8 @@
 	HTML += "Circuits available: [upgraded || debug ? "Advanced":"Regular"]."
 	if(!upgraded)
 		HTML += "<br>Crossed out circuits mean that the printer is not sufficiently upgraded to create that circuit."
+	if(emagged)
+		HTML +="<br>Security overridden, illegal designs unlocked."
 
 	HTML += "<hr>"
 	if((can_clone && CONFIG_GET(flag/ic_printing)) || debug)
@@ -189,6 +200,8 @@
 		if(ispath(path, /obj/item/integrated_circuit))
 			var/obj/item/integrated_circuit/IC = path
 			if((initial(IC.spawn_flags) & IC_SPAWN_RESEARCH) && (!(initial(IC.spawn_flags) & IC_SPAWN_DEFAULT)) && !upgraded)
+				can_build = FALSE
+			if((initial(IC.spawn_flags) & IC_SPAWN_EMAG) && !emagged)
 				can_build = FALSE
 		if(can_build)
 			HTML += "<a href='?src=[REF(src)];build=[path]'>[initial(O.name)]</a>: [initial(O.desc)]<br>"
@@ -282,6 +295,11 @@
 							to_chat(usr, "<span class='notice'>It uses advanced component designs.</span>")
 						else
 							to_chat(usr, "<span class='warning'>It uses unknown component designs. Printer upgrade is required to proceed.</span>")
+					if(program["requires_emag"])
+						if(emagged)
+							to_chat(usr, "<span class='notice'>It uses illegal component designs.</span>")
+						else
+							to_chat(usr, "<span class='notice'>It uses illegal component designs. Printing is blocked.</span>")
 					if(program["unsupported_circuit"])
 						to_chat(usr, "<span class='warning'>This program uses components not supported by the specified assembly. Please change the assembly type in the save file to a supported one.</span>")
 					to_chat(usr, "<span class='notice'>Used space: [program["used_space"]]/[program["max_space"]].</span>")
@@ -294,6 +312,9 @@
 
 				if(program["requires_upgrades"] && !upgraded && !debug)
 					to_chat(usr, "<span class='warning'>This program uses unknown component designs. Printer upgrade is required to proceed.</span>")
+					return
+				if(program["requires_emag"] && !debug)
+					to_chat(usr, "<span class='warning'>This program uses illegal component designs. This printing attempt has been blocked and logged.</span>")
 					return
 				if(program["unsupported_circuit"] && !debug)
 					to_chat(usr, "<span class='warning'>This program uses components not supported by the specified assembly. Please change the assembly type in the save file to a supported one.</span>")
