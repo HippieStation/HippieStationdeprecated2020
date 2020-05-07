@@ -180,7 +180,7 @@
 
 				else if(book == "2u - Anarchist's Compendium")
 					if(spawnbookproc(user, 2) == 1)
-						new /obj/item/book/granter/crafting_recipe/anarch(get_turf(src))
+						new /obj/item/book/granter/crafting_recipe/(get_turf(src))
 					else
 						return
 			if(6)
