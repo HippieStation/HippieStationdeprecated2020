@@ -82,7 +82,7 @@
 			lube_flags = NO_SLIP_WHEN_WALKING
 		if(TURF_WET_LUBE)
 			intensity = 80
-			lube_flags = SLIDE | NO_SLIP_WHEN_WALKING //hippie edit - GALOSHES_DONT_HELP -> NO_SLIP_WHEN_WALKING
+			lube_flags = SLIDE | SLIP_WHEN_CRAWLING | GALOSHES_DONT_HELP //hippie edit - GET FUCKED
 		if(TURF_WET_ICE)
 			intensity = 120
 			lube_flags = SLIDE | GALOSHES_DONT_HELP
