@@ -310,8 +310,6 @@
 	if(S)
 		S.set_up(holder, smoke_radius, location, 0)
 		S.start()
-	if(holder && holder.my_atom)
-		holder.clear_reagents()
 
 /datum/chemical_reaction/sonic_powder
 	name = /datum/reagent/sonic_powder
