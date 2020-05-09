@@ -39,6 +39,7 @@ SUBSYSTEM_DEF(discord)
 
 /datum/controller/subsystem/discord/Initialize(start_timeofday)
 	// Check for if we are using TGS, otherwise return and disabless firing
+	UNTIL(GLOB.tgs_initialized)
 	if(world.TgsAvailable())
 		enabled = 1 // Allows other procs to use this (Account linking, etc)
 	else
