@@ -1522,6 +1522,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					tgui_fancy = !tgui_fancy
 				if("overheadchat")
 					overhead_chat = !overhead_chat
+				if("mouseaim")
+					mouseaim = !mouseaim
 				if("tgui_lock")
 					tgui_lock = !tgui_lock
 				if("winflash")

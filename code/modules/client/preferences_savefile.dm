@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	25
+#define SAVEFILE_VERSION_MAX	26
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -54,6 +54,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 						If you had custom hotkeys, you will need to re-configure them!</span>")
 	if(current_version < 25)
 		overhead_chat = TRUE
+	
+	if(current_version < 26)
+		mouseaim = TRUE
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
 	if(current_version < 19)
@@ -142,6 +145,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["lastchangelog"]		>> lastchangelog
 	S["UI_style"]			>> UI_style
 	S["overhead_chat"]		>> overhead_chat
+	S["mouseaim"]			>> mouseaim
 	S["hotkeys"]			>> hotkeys
 	S["tgui_fancy"]			>> tgui_fancy
 	S["tgui_lock"]			>> tgui_lock
@@ -226,6 +230,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["asaycolor"], asaycolor)
 	WRITE_FILE(S["ooccolor"], ooccolor)
 	WRITE_FILE(S["overhead_chat"], overhead_chat)
+	WRITE_FILE(S["mouseaim"], mouseaim)
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
 	WRITE_FILE(S["UI_style"], UI_style)
 	WRITE_FILE(S["hotkeys"], hotkeys)
