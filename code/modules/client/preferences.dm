@@ -464,7 +464,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<h2>General Settings</h2>"
 			dat += "<b>UI Style:</b> <a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
 			dat += "<b>Overhead Chat:</b> <a href='?_src_=prefs;preference=overheadchat'>[overhead_chat ? "Enabled" : "Disabled"]</a><br>"
-			dat += "<b>Automatic Mouse Aiming:</b> <a href='?_src_=prefs;preference=mouseaim'>[mouseaim ? "Enabled" : "Disabled"]</a><br."
+			dat += "<b>Automatic Mouse Aiming:</b> <a href='?_src_=prefs;preference=mouseaim'>[mouseaim ? "Enabled" : "Disabled"]</a><br>."
 			dat += "<b>tgui Monitors:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary" : "All"]</a><br>"
 			dat += "<b>tgui Style:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy" : "No Frills"]</a><br>"
 			dat += "<br>"
