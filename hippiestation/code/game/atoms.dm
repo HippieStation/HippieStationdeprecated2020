@@ -14,3 +14,11 @@
 /atom/Initialize()
 	. = ..()
 	check_hippie_icon()
+
+
+/atom/MouseMove(location, control, params)
+	..()
+	if(get_dist(usr,src) <= 10 && usr.client.prefs.mouseaim) 
+		return usr.face_atom(src)
+	if(!(usr.client.prefs.mouseaim))
+		return 0
