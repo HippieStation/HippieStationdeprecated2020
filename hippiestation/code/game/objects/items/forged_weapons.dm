@@ -288,7 +288,7 @@
 
 /obj/item/ammo_casing/forged
 	name = "forged bullet casing"
-	desc = "A custom bullet casing designed to be quickly changeable to any caliber. Utilizes, what else, bluespace technology and quantum entanglement to make every casing under you turn into the same caliber at once!"
+	desc = "A custom bullet casing designed to be quickly changeable to any caliber."
 	projectile_type = /obj/item/projectile/bullet/forged
 	var/datum/reagent/reagent_type
 	var/static/list/calibers = list("357" = 4.5, "a762" = 5, "n762" = 5, ".50" = 6, "38" = 1.5, "10mm" = 3, "9mm" = 2, "4.6x30mm" = 2, ".45" = 2.5, "a556" = 3.5, "mm195129" = 4.5, "shotgun" = 3.5)
@@ -309,9 +309,3 @@
 			FF.reagent_type = reagent_type
 			FF.assign_properties(reagent_type, calibers[caliber])
 			desc = "A custom [caliber] bullet casing"
-			var/turf/T = get_turf(user)
-			for(var/obj/item/ammo_casing/forged/F in T)
-				if(F == src)
-					continue
-				F.BB = FF
-				F.desc = "A custom [caliber] bullet casing"
