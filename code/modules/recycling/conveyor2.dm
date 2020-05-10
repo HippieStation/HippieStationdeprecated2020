@@ -135,18 +135,20 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	//get the first 30 items in contents
 	affecting = list()
 	var/i = 0
-	for(var/item in loc.contents)
+	for(var/atom/movable/item in loc.contents)
 		if(item == src)
+			continue
+		if(item.anchored || item.move_resist == INFINITY || !item.has_gravity())
 			continue
 		i++ // we're sure it's a real target to move at this point
 		if(i >= MAX_CONVEYOR_ITEMS_MOVE)
 			break
 		affecting.Add(item)
 	conveying = TRUE
-	addtimer(CALLBACK(src, .proc/convey, affecting), 1)
+	addtimer(CALLBACK(src, .proc/convey, affecting), 1, TIMER_UNIQUE)
 
-/obj/machinery/conveyor/proc/convey(list/affecting)
-	for(var/atom/movable/A in affecting)
+/obj/machinery/conveyor/proc/convey(list/belt_list)
+	for(var/atom/movable/A in belt_list)
 		if(!QDELETED(A) && (A.loc == loc))
 			A.ConveyorMove(movedir)
 			//Give this a chance to yield if the server is busy
