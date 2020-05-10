@@ -640,7 +640,7 @@
 
 		var/they_breathe = !HAS_TRAIT(C, TRAIT_NOBREATH)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
-		
+
 		if(C.health > C.crit_threshold)
 			return
 
@@ -847,7 +847,7 @@
 	if(href_list[VV_HK_MOD_MUTATIONS])
 		if(!check_rights(R_SPAWN))
 			return
-		
+
 		var/list/options = list("Clear"="Clear")
 		for(var/x in subtypesof(/datum/mutation/human))
 			var/datum/mutation/human/mut = x
@@ -1012,7 +1012,7 @@
 			target.visible_message("<span class='warning'>[target] can't get a grip on [src] because their hands are full!</span>",
 				"<span class='warning'>You can't get a grip on [src] because your hands are full!</span>")
 			return
-	
+
 	stop_pulling()
 	riding_datum.handle_vehicle_layer()
 	. = ..(target, force, check_loc)

@@ -1264,6 +1264,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	surplus = 30
 
+/datum/uplink_item/stealthy_tools/thiefgloves
+	name = "Thieving Gloves"
+	desc = "A pair of gloves that are insulated and frictionless, allowing you to steal easily from anyone you see."
+	item = /obj/item/clothing/gloves/thief
+	cost = 4
+
 //Space Suits and Hardsuits
 /datum/uplink_item/suits
 	category = "Space Suits"
@@ -1916,4 +1922,4 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/fancy/cigarettes/cigpack_syndicate
 	cost = 2
 	illegal_tech = FALSE
-	
+

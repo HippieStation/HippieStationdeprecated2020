@@ -801,18 +801,34 @@ hippie end */
 	if(!what.canStrip(who))
 		to_chat(src, "<span class='warning'>You can't remove \the [what.name], it appears to be stuck!</span>")
 		return
-	who.visible_message("<span class='danger'>[src] tries to remove [who]'s [what.name].</span>", \
+	var/strip_mod = 1
+	var/strip_silence = FALSE
+	if (ishuman(src)) //carbon doesn't actually wear gloves
+		var/mob/living/carbon/C = src
+		var/obj/item/clothing/gloves/g = C.gloves
+		if (istype(g))
+			strip_mod = g.strip_mod
+			strip_silence = g.strip_silence
+	if (!strip_silence)
+		who.visible_message("<span class='danger'>[src] tries to remove [who]'s [what.name].</span>", \
 					"<span class='userdanger'>[src] tries to remove [who]'s [what.name].</span>")
-	what.add_fingerprint(src)
-	if(do_mob(src, who, what.strip_delay))
+		what.add_fingerprint(src)
+	else
+		to_chat(src,"<span class='notice'>You try to remove [who]'s [what.name].</span>")
+		what.add_fingerprint(src)
+	if(do_mob(src, who, round(what.strip_delay / strip_mod), ignorehelditem = TRUE))
 		if(what && Adjacent(who))
 			if(islist(where))
 				var/list/L = where
 				if(what == who.get_item_for_held_index(L[2]))
-					if(what.doStrip(src, who))
+					if(who.dropItemToGround(what))
+						if(!put_in_hands(what))
+							what.forceMove(drop_location())
 						log_combat(src, who, "stripped [what] off")
 			if(what == who.get_item_by_slot(where))
-				if(what.doStrip(src, who))
+				if(who.dropItemToGround(what))
+					if(!can_hold_items() || !put_in_hands(what))
+						what.forceMove(drop_location())
 					log_combat(src, who, "stripped [what] off")
 
 	if(Adjacent(who)) //update inventory window
