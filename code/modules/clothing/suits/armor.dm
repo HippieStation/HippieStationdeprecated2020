@@ -142,15 +142,17 @@
 	blood_overlay_type = "armor"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	body_parts_covered = CHEST|GROIN
-
 	var/list/attached_grenade
 	var/pre_attached_grenade_type
+
 /obj/item/clothing/suit/armor/suicide/proc/attach_grenade(var/obj/item/grenade/G)
 	attached_grenade.Add(G)
 	G.forceMove(src)
+
 /obj/item/clothing/suit/armor/suicide/Initialize()
 	. = ..()
 	attached_grenade = list()
+
 /obj/item/clothing/suit/armor/suicide/attackby(var/obj/item/grenade/G, var/mob/user)
 	if(istype(G))
 		if(attached_grenade.len >= 4)
@@ -161,6 +163,7 @@
 			G.forceMove(src)
 	else
 		return ..()
+    
 /obj/item/clothing/suit/armor/suicide/attack_self(var/mob/user)
 	if(attached_grenade.len)
 		user.visible_message("<span class='warning'>\The [user] empties out \the [src]!</span>", "<span class='notice'>You empty out \the [src].</span>")
@@ -170,6 +173,7 @@
 		attached_grenade.Cut()
 	else
 		return ..()
+
 /obj/item/clothing/suit/armor/suicide/AltClick(mob/living/user)
 	if(istype(user.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/suicide))
 		if(attached_grenade.len)
@@ -180,6 +184,7 @@
 	else
 		to_chat(user, "You need to be wearing the suit to trigger it.")
 		return
+
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof armor"
 	desc = "A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
