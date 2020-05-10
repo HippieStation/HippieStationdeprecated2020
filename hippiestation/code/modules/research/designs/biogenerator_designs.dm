@@ -188,7 +188,7 @@
 /datum/design/medbelt
 	category = list("intial","Leather and Cloth")
 
- /datum/design/janibelt
+/datum/design/janibelt
 	category = list("initial","Leather and Cloth")
 
 

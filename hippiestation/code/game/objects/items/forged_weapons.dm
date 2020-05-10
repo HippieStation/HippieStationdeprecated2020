@@ -309,9 +309,14 @@
 			FF.reagent_type = reagent_type
 			FF.assign_properties(reagent_type, calibers[caliber])
 			desc = "A custom [caliber] bullet casing"
+			assign_properties()
 			var/turf/T = get_turf(user)
 			for(var/obj/item/ammo_casing/forged/F in T)
 				if(F == src)
 					continue
-				F.BB = FF
-				F.desc = "A custom [caliber] bullet casing"
+				var/obj/item/projectile/bullet/forged/FK = F.BB
+				FK.reagent_type = reagent_type
+				FK.assign_properties(reagent_type, calibers[caliber])
+				F.caliber = caliber
+				F.desc = desc
+				F.assign_properties()
