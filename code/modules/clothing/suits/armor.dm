@@ -163,7 +163,7 @@
 			G.forceMove(src)
 	else
 		return ..()
-
+    
 /obj/item/clothing/suit/armor/suicide/attack_self(var/mob/user)
 	if(attached_grenade.len)
 		user.visible_message("<span class='warning'>\The [user] empties out \the [src]!</span>", "<span class='notice'>You empty out \the [src].</span>")
