@@ -21,7 +21,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyyaml bs4
       - name: Compile CL
-        run: python tools/changelog/ss13_genchangelog.py html/changelog.html html/changelogs
+        run: python tools/ss13_genchangelog.py html/changelog.html html/changelogs
       - name: Commit
         run: |
           git config --local user.email "action@github.com"
