@@ -30,7 +30,7 @@
 		stack_trace("/datum/progressbar created with [isnull(User) ? "null" : "invalid"] goal_number")
 		qdel(src)
 		return
-		goal = goal_number
+	goal = goal_number
 	bar_loc = target
 	bar = image('icons/effects/progessbar.dmi', bar_loc, "prog_bar_0", HUD_LAYER)
 	bar.plane = ABOVE_HUD_PLANE
