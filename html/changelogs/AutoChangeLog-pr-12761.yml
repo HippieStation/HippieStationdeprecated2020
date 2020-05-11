@@ -1,0 +1,6 @@
+author: QuarianCommando
+delete-after: true
+changes:
+  - rscadd: Thief gloves may now be purchased from the traitor uplink under stealthy
+      tools.
+  - tweak: The equipment stripping system now works like it did on old hippie.
