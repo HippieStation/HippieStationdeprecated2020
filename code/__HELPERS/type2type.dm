@@ -547,13 +547,13 @@
 	var/l = length(str)
 	while(i <= l) // this is a while loop because BYOND is stupid and the compiler is also stupid
 		c= text2ascii(str,i)
-		r += num2hex(c)
-		i++	
+		r += num2hex(c, i)
+		i++
 	return r
 
 // Decodes hex to raw byte string.
 // If safe=TRUE, returns null on incorrect input strings instead of CRASHing
-/proc/hextostr(str, safe=FALSE)
+/proc/hextostr(str)
 	if(!istext(str)||!str)
 		return
 	var/r
@@ -561,7 +561,7 @@
 	var/l = length(str)/2
 	var/i = 1
 	while(i <= l) // this is a while loop because BYOND is stupid and the compiler is also stupid
-		c = hex2num(copytext(str,i*2-1,i*2+1), safe)
+		c = hex2num(copytext(str,i*2-1,i*2+1))
 		if(isnull(c))
 			return null
 		r += ascii2text(c)
