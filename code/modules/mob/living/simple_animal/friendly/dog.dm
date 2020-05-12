@@ -240,9 +240,7 @@
 						item_to_add.forceMove(drop_location())
 						if(prob(25))
 							step_rand(item_to_add)
-						for(var/i in list(1,2,4,8,4,8,4,dir))
-							setDir(i)
-							sleep(1)
+						dance_rotate(src, set_original_dir=TRUE)
 						return
 
 					item_to_add.forceMove(src)
@@ -311,9 +309,7 @@
 		item_to_add.forceMove(drop_location())
 		if(prob(25))
 			step_rand(item_to_add)
-		for(var/i in list(1,2,4,8,4,8,4,dir))
-			setDir(i)
-			sleep(1)
+		dance_rotate(src, set_original_dir=TRUE)
 
 	return valid
 
