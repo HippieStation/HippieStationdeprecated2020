@@ -1,6 +1,5 @@
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	light_color = LIGHT_COLOR_RED
-	icon = 'hippiestation/icons/obj/vending.dmi'
 	hippie_products = list(/obj/item/storage/box/seclarp = 4, /obj/item/clothing/under/rank/security/skirt = -100)
 
 /obj/machinery/vending/wardrobe/engi_wardrobe
