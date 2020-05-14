@@ -318,6 +318,7 @@
 
 /obj/machinery/light/update_icon()
 	cut_overlays()
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
 			var/area/A = get_area(src)
@@ -326,16 +327,17 @@
 			else
 				icon_state = "[base_state]"
 				if(on)
-					var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
-					glowybit.alpha = CLAMP(light_power*250, 30, 200)
-					add_overlay(glowybit)
+					//var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, layer, EMISSIVE_PLANE)
+					var/glowalpha = clamp(light_power*250, 30, 200)
+					SSvis_overlays.add_vis_overlay(src, overlayicon, base_state, layer, plane, dir, glowalpha)
+					SSvis_overlays.add_vis_overlay(src, overlayicon, base_state, layer, EMISSIVE_PLANE, dir, glowalpha)
+					//add_overlay(glowybit)
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 		if(LIGHT_BURNED)
 			icon_state = "[base_state]-burned"
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
-	return
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE)

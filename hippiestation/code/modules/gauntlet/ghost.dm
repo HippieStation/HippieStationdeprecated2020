@@ -49,7 +49,7 @@
 
 
 /obj/item/badmin_stone/ghost/DisarmEvent(atom/target, mob/living/user, proximity_flag)
-	FireProjectile(/obj/item/projectile/spirit_fist, target, CLAMP(ghost_check() * 5, 3, 35))
+	FireProjectile(/obj/item/projectile/spirit_fist, target, clamp(ghost_check() * 5, 3, 35))
 	user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/badmin_stone/ghost/GiveAbilities(mob/living/L, gauntlet = FALSE)

@@ -26,7 +26,7 @@
 				to_chat(src, "<span class='warning'>Walking straight feels very hard...</span>")
 			
 			// minimum of 1, max of 4
-			var/waddle_multi = CLAMP(drunkenness / 25, 1, 4)
+			var/waddle_multi = clamp(drunkenness / 25, 1, 4)
 
 			W.waddle_min = -12 * waddle_multi
 			W.waddle_max = 12 * waddle_multi

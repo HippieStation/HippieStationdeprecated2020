@@ -42,7 +42,7 @@
 	if(prob(num_players()) && num_players() > 2*required_players)
 		gangs_to_create++
 	gangs_to_create = min(gangs_to_create, GLOB.possible_gangs.len)
-	bosses_per_gang = CLAMP(FLOOR(antag_candidates.len / 3, 1), 1, 3)
+	bosses_per_gang = clamp(FLOOR(antag_candidates.len / 3, 1), 1, 3)
 
 	for(var/i in 1 to gangs_to_create)
 		if(!antag_candidates.len)
