@@ -84,8 +84,7 @@
 	stunforce = 100
 
 /obj/item/melee/baton/cattleprod/hippie_cattleprod
-	stunforce = 7
-	var/stamforce = 100
+	stunforce = 100
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/melee/baton/cattleprod/hippie_cattleprod/baton_stun(mob/living/L, mob/user)
