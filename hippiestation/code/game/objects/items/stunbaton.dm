@@ -105,7 +105,6 @@
 		if(!deductcharge(hitcost))
 			return 0
 
-	L.adjustStaminaLoss(stamforce)
 	L.apply_effect(EFFECT_STUTTER, stunforce)
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
 	if(user)
