@@ -1,5 +1,5 @@
 /datum/crafting_recipe/stunprod
-	result = /obj/item/melee/baton/cattleprod/cattleprod
+	result = /obj/item/melee/baton/cattleprod
 
 /datum/crafting_recipe/butterfly
 	name = "Butterfly Knife"
