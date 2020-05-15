@@ -1,4 +1,0 @@
-author: yoyobatty
-delete-after: true
-changes:
-  - code_imp: Math defines have been replaced with their built in procs
