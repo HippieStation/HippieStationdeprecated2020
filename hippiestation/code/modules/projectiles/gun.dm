@@ -17,7 +17,6 @@
 	force = 5
 	item_flags = NEEDS_PERMIT
 	attack_verb = list("struck", "hit", "bashed")
-	obj_flags = UNIQUE_RENAME
 
 	var/fire_sound = "gunshot"
 	var/vary_fire_sound = TRUE
