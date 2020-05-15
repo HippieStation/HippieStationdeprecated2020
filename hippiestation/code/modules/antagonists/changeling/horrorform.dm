@@ -139,7 +139,7 @@
 					if(dist <= 7) //source of sound very close
 						M.playsound_local(src, scream_sound_near, 80, 1, frequency, falloff = 2)
 					else
-						var/vol = CLAMP(100-((dist-7)*5), 10, 100) //Every tile decreases sound volume by 5
+						var/vol = clamp(100-((dist-7)*5), 10, 100) //Every tile decreases sound volume by 5
 						M.playsound_local(src, scream_sound_far, vol, 1, frequency, falloff = 5)
 				if(M.stat == DEAD && (M.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(M in viewers(get_turf(src),null)))
 					M.show_message(message)

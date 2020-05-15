@@ -115,9 +115,6 @@
 		panel.icon_state = "solar_panel-b"
 	else
 		panel.icon_state = "solar_panel"
-#if DM_VERSION <= 512
-	. += new /mutable_appearance(panel)
-#endif
 
 /obj/machinery/power/solar/proc/queue_turn(azimuth)
 	needs_to_turn = TRUE
@@ -168,7 +165,7 @@
 	else
 		//dot product of sun and panel -- Lambert's Cosine Law
 		. = cos(azimuth_current - sun_azimuth)
-		. = CLAMP(round(., 0.01), 0, 1)
+		. = clamp(round(., 0.01), 0, 1)
 	sunfrac = .
 
 /obj/machinery/power/solar/process()
@@ -389,7 +386,7 @@
 		if(adjust)
 			value = azimuth_rate + adjust
 		if(value != null)
-			azimuth_rate = round(CLAMP(value, -2 * SSsun.base_rotation, 2 * SSsun.base_rotation), 0.01)
+			azimuth_rate = round(clamp(value, -2 * SSsun.base_rotation, 2 * SSsun.base_rotation), 0.01)
 			return TRUE
 		return FALSE
 	if(action == "tracking")
@@ -468,7 +465,7 @@
 
 ///Rotates the panel to the passed angles
 /obj/machinery/power/solar_control/proc/set_panels(azimuth)
-	azimuth = CLAMP(round(azimuth, 0.01), -360, 719.99)
+	azimuth = clamp(round(azimuth, 0.01), -360, 719.99)
 	if(azimuth >= 360)
 		azimuth -= 360
 	if(azimuth < 0)
