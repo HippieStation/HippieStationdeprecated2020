@@ -5,7 +5,7 @@
 //Leaving His Grace alone for some time will reset His thirst and put Him to sleep.
 //Using His Grace effectively requires extreme speed and care.
 /obj/item/his_grace
-	name = "artistic toolbox"
+	name = "autistic toolbox"
 	desc = "A toolbox painted bright green. Looking at it makes you feel uneasy."
 	icon_state = "his_grace"
 	item_state = "artistic_toolbox"
