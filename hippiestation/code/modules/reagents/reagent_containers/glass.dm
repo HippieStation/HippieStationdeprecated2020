@@ -49,3 +49,20 @@
 								"<span class='notice'>You splash the contents of [src] onto [target].</span>")
 			reagents.reaction(target, TOUCH)
 			reagents.clear_reagents()
+
+/obj/item/reagent_containers/glass/beaker/random
+	name = "Random Beaker"
+
+/obj/item/reagent_containers/glass/beaker/random/Initialize(mapload, vol)
+	. = ..()
+	var/datum/reagents/R = reagents
+	R.add_reagent(get_random_all_reagent_id(), volume, reagtemp = rand(1, 1000))
+
+/proc/get_random_all_reagent_id()	// Returns a random reagent ID including blacklisted ones
+	var/static/list/random_reagents = list()
+	if(!random_reagents.len)
+		for(var/thing in subtypesof(/datum/reagent))
+			var/datum/reagent/R = thing
+			random_reagents += R
+	var/picked_reagent = pick(random_reagents)
+	return picked_reagent
