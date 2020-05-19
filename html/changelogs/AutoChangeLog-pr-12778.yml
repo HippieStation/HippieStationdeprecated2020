@@ -1,0 +1,9 @@
+author: yoyobatty
+delete-after: true
+changes:
+  - rscadd: Huge beakers now spawn in chemical closet lockers
+  - rscadd: Huge beakers (500u) are now in the game as a minor chemistry buff
+  - tweak: Vapor now looks MORE like vapor
+  - code_imp: Cleaned up some old code related to how chemical reagent dispensers
+      worked
+  - bugfix: Fixed sec wardrobe going invisible when powered off
