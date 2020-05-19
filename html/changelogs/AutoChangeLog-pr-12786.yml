@@ -1,6 +1,0 @@
-author: yoyobatty
-delete-after: true
-changes:
-  - admin: Added the shocker and throwing turret for adminbus fun!
-  - bugfix: Acid processing no longer adds 100's of overlays by accident
-  - rscadd: Added a random reagent beaker, self explanitory, for badmins only
