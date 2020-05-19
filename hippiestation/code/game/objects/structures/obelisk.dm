@@ -7,7 +7,7 @@
     icon = 'hippiestation/icons/obj/structures/obelisk.dmi'
     icon_state = "tier1"
     layer = BELOW_OBJ_LAYER + 0.1
-    var/obj/item/screwdriver/obelisk/tool
+    var/obj/item/tier1/tool
     var/cooldowntime = 0
 
 /obj/structure/destructible/obelisk/Initialize()
@@ -32,12 +32,12 @@
 		cooldowntime = world.time + 1200
 		for(var/N in pickedtype)
 			new N(get_turf(src))
-			to_chat(user, "<span class='cultitalic'>You create the [choice] from the obelisk!</span>")
+			to_chat(user, "<span class='cultitalic'>You create the [choice] from the [src]!</span>")
 		if("Nevermind")
 			return
 
 
-/obj/item/screwdriver/obelisk //This is what is actually used to craft obelisk magic items for the curator.
+/obj/item/tier1 //This is what is actually used to craft obelisk magic items for the curator.
     name = "mysterious obelisk"
     desc = "A broken part of the obelisk"
     icon = null
@@ -59,7 +59,7 @@
 	icon = 'hippiestation/icons/obj/structures/obelisk.dmi'
 	icon_state = "tier2"
 	layer = BELOW_OBJ_LAYER + 0.1
-	var/obj/item/screwdriver/obelisk/tier2/tool1
+	var/obj/item/tier2/tool1
 
 /obj/structure/destructible/obelisktier2/Initialize()
     . = ..()
@@ -69,8 +69,45 @@
     . = ..()
     qdel(tool1)
 
-/obj/item/screwdriver/obelisk/tier2
-	name = "greater obelisk"
+/obj/item/tier2
+    name = "greater obelisk"
+    desc = "A broken part of the obelisk"
+    icon = null
+    icon_state = null
+    item_state = null
+    mouse_opacity = 0
+    anchored = TRUE
+
+
+//***Tier 3***
+
+/obj/structure/destructible/obelisktier3
+	name = "Obelisk of Unlimited Wisdom"
+	desc = "Feel it.... feel the magic..."
+	density = TRUE
+	max_integrity = 900
+	anchored = 1
+	icon = 'hippiestation/icons/obj/structures/obelisk.dmi'
+	icon_state = "tier4"
+	layer = BELOW_OBJ_LAYER + 0.1
+	var/obj/item/tier3/tool2
+
+/obj/structure/destructible/obelisktier3/Initialize()
+    . = ..()
+    tool2 = new(get_turf(src))
+
+/obj/structure/destructible/obelisktier3/Destroy()
+    . = ..()
+    qdel(tool2)
+
+/obj/item/tier3
+    name = "Obelisk of Unlimited Wisdom"
+    desc = "A broken part of the obelisk"
+    icon = null
+    icon_state = null
+    item_state = null
+    mouse_opacity = 0
+    anchored = TRUE
 
 /obj/item/inscripture
 	name = "magical inscripture"
@@ -80,7 +117,7 @@
 	throw_range = 1
 
 /obj/item/inscripture/attack_self(mob/user)
-	var/choice = alert(user,"You begin to fold the magical inscripture... (WARNING: Clicking 'Yes' is very dangerous)",,"Yes, finish folding it.",,"On second thought...")
+	var/choice = alert(user,"You begin to fold the magical inscripture... (WARNING: This could be a bad idea...)",,"Yes, finish folding it.",,"On second thought...")
 	switch(choice)
 		if("Yes, finish folding it.")
 			user.visible_message("<span class='warning'>[user] folds the [src] and is sucked into nothingness!")
@@ -93,6 +130,3 @@
 			qdel(src)
 		if("On second thought...")
 			return
-
-
-//***Tier 3***

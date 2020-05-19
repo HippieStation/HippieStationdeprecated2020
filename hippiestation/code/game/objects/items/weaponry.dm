@@ -231,3 +231,43 @@
 /obj/item/switchblade/civilian/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	..()
 	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
+
+/obj/item/switchblade/middleground
+	desc = "A spring-loaded retractable knife. This one seems to be <b>almost</b> as good as the original design."
+
+/obj/item/switchblade/middleground/attack_self(mob/user)
+	extended = !extended
+	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
+	if(extended)
+		force = 15
+		w_class = WEIGHT_CLASS_NORMAL
+		throwforce = 20
+		icon_state = "switchblade_ext"
+		attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+		hitsound = 'sound/weapons/bladeslice.ogg'
+		sharpness = IS_SHARP
+	else
+		force = 3
+		w_class = WEIGHT_CLASS_SMALL
+		throwforce = 5
+		icon_state = "switchblade"
+		attack_verb = list("stubbed", "poked")
+		hitsound = 'sound/weapons/genhit.ogg'
+		sharpness = IS_BLUNT
+
+/obj/item/switchblade/middleground/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	..()
+	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
+
+/obj/item/melee/stake
+	name = "wooden stake"
+	desc = "A sharpened piece of word that is a staple in vampire hunting for some reason."
+	icon = 'hippiestation/icons/obj/weapons.dmi'
+	icon_state = "stake"
+	force = 13
+	throwforce = 17 //17 + 2 (WEIGHT_CLASS_SMALL) * 5 (EMBEDDED_IMPACT_PAIN_MULTIPLIER) = 27 damage if it hits
+	throw_speed = 4
+	embedding = list("embedded_pain_multiplier" = 5, "embed_chance" = 25, "embedded_fall_chance" = 25)
+	w_class = WEIGHT_CLASS_SMALL
+	sharpness = IS_SHARP
+	resistance_flags = FLAMMABLE

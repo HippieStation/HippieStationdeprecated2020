@@ -4,7 +4,7 @@
 //**************************************************
 
 /datum/crafting_recipe/tier1
-	tools = list(/obj/item/screwdriver/obelisk)
+	tools = list(/obj/item/tier1)
 	always_availible = FALSE
 	category = CAT_MAGIC
 	subcategory = CAT_TIER1
@@ -72,13 +72,14 @@
 				/datum/reagent/blood = 100,
 				/obj/item/stock_parts/manipulator = 3
 				)
+	time = 70
 
 //**************************************************
 //*********************TIER 2***********************
 //**************************************************
 
 /datum/crafting_recipe/tier2
-	tools = list(/obj/item/screwdriver/obelisk/tier2)
+	tools = list(/obj/item/tier2)
 	always_availible = FALSE
 	category = CAT_MAGIC
 	subcategory = CAT_TIER2
@@ -87,7 +88,7 @@
 	name = "greater obelisk"
 	result = /obj/structure/destructible/obelisktier2
 	reqs = list(/obj/item/paper = 1)
-	tools = list(/obj/item/screwdriver/obelisk)
+	tools = list(/obj/item/tier1)
 	time = 200
 
 /datum/crafting_recipe/tier2/telecrystal
@@ -161,3 +162,44 @@
 				/obj/item/flashlight = 1,
 				)
 	time = 100
+
+//**************************************************
+//*********************TIER 3***********************
+//**************************************************
+
+/datum/crafting_recipe/tier3
+	tools = list(/obj/item/tier3)
+	always_availible = FALSE
+	category = CAT_MAGIC
+	subcategory = CAT_TIER3
+
+/datum/crafting_recipe/tier3/obelisk
+	name = "Obelisk of Unlimited Wisdom"
+	result = /obj/structure/destructible/obelisktier3
+	tools = list()
+
+/datum/crafting_recipe/tier3/oneusedieoffate
+	name = "one use Die of Fate"
+	result = /obj/item/dice/d20/fate/one_use
+	reqs = list(/obj/item/inscripture = 1,
+				/obj/item/dice/d100 = 2,
+				)
+	time = 40
+
+/datum/crafting_recipe/tier3/nullrod
+	name = "null rod"
+	result = /obj/item/nullrod
+	reqs = list(/obj/item/melee/ghost_sword = 1,
+				/obj/item/upgradescroll = 1,
+				/datum/reagent/water/holywater = 100,
+				)
+	time = 60
+
+/datum/crafting_recipe/tier3/doorwand
+	name = "crude wand of door creation"
+	result = /obj/item/gun/magic/wand/door/shitty
+	reqs = list(/obj/item/inscripture = 1,
+				/obj/item/electronics/airlock = 3,
+				/obj/item/stack/rods = 1,
+				)
+	time = 70

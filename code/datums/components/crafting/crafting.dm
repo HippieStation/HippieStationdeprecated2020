@@ -41,6 +41,12 @@
 				),
 				CAT_DRINK = CAT_NONE,
 				CAT_CLOTHING = CAT_NONE,
+				CAT_MAGIC = list(
+					CAT_TIER1,
+					CAT_TIER2,
+					CAT_TIER3,
+					CAT_TIER4,
+					),
 				CAT_LEARNED = CAT_NONE,
 			)
 

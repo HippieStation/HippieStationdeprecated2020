@@ -9,12 +9,12 @@
 	desc = "Compatible with Spacestar Ordering Book Catalogs, like the one in the library!"
 	icon = 'hippiestation/icons/obj/library.dmi'
 	icon_state = "inkcartridge"
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/inkcartridge/Initialize()
-	. = ..()
-	pixel_y = rand(-8, 8)
-	pixel_x = rand(-9, 9)
+//*************
+//How to add books: Add the book to the appropriate booklist below and then
+//scroll down to the proc "spawnbook()" and copy what every other book does. Make sure "Exit" is always the first item in the list.
+//*************
 
 /obj/machinery/computer/craftingbookcatalog
 	name = "Spacestar Ordering Book Catalog"
@@ -23,6 +23,8 @@
 	icon_state = "hell"
 	icon_screen = "satan"
 	icon_keyboard = null
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 2
 	pixel_x = 3
 	pixel_y = 10
 	anchored = TRUE
@@ -35,33 +37,23 @@
 	var/thankyou = 0
 	var/isprinting = FALSE
 	var/state = 1
-	var/ink = 1
+	var/ink = 0
 	var/corpchoice
-	var/bookrank
 	var/book
 	var/inkcost = 0
-	var/corporations = list("Nanotrasen Approved Books", "Syndicate nonsense books", "Wizard Federation drivel", "Exit")
-	var/ranklist = list("Primary","Standard","Mini","Exit")
+	var/corporations = list("Exit", "Nanotrasen Approved Books", "Syndicate nonsense books", "Wizard Federation drivel",)
 	//
-	var/booklistNTprimary = list()
-	var/booklistNTstandard = list()
-	var/booklistNTmini = list()
+	var/booklistNT = list("Exit", "0.5u - Grabar: A Slow Mindkill", "1u - UAW Environment", "0.75u - Squod Word's Astrological Journal", "2u - Exoplanet Exploration Vol. 13: Trapping", "1.5u - The Sound of Clown", "2u - Robert Lang's Origami Unveiled Vol. 1", "0.25u - The Mark of Cain")
 	//
-	var/booklistSynprimary = list()
-	var/booklistSynstandard = list("2u - USSR-3 Public Disturbance Manual","2u - Anarchist's Compendium",)
-	var/booklistSynmini = list()
+	var/booklistSyndicate = list("Exit", "2u - USSR-3 Public Disturbance Manual", "1.75u - Straight Outa' Compton", "2u - Anarchist's Compendium")
 	//
-	var/booklistWizprimary = list("3.5u - M'`nt a'd B,`'e", "Exit")
-	var/booklistWizstandard = list()
-	var/booklistWizmini = list()
+	var/booklistWizFed = list("Exit", "3.5u - M'`nt a'd B,`'e")
 
 /obj/machinery/computer/craftingbookcatalog/attack_hand(mob/living/user)
 	. = ..()
-	if(obj_integrity < max_integrity/2)
-		icon_screen = "satan_broken"
+	if(stat & NOPOWER || stat & BROKEN)
+		update_icon()
 		return
-	else
-		icon_screen = "satan"
 
 	if(icon_screen == null)
 		return
@@ -71,110 +63,98 @@
 		return
 	var/cartridgedisplay = "Spacestar-brand Ink level: [ink]" + "u"
 	if(ishuman(user))
-		playsound(src, 'sound/machines/terminal_on.ogg', 40, 1)
+		playsound(src, 'sound/machines/terminal_on.ogg', 50, 1)
 		corpchoice = input(user, "Order a book from Spacestar! Select a mega-corporation. " + cartridgedisplay) in corporations
 	switch(corpchoice)
 		if("Exit")
-			playsound(src, 'sound/machines/terminal_off.ogg', 40, 1)
+			playsound(src, 'sound/machines/terminal_off.ogg', 50, 1)
 			return
 
 		if("Nanotrasen Approved Books")
 			playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
-			bookrank = input(user, "Select a book type. " + cartridgedisplay) in ranklist
+			book = input(user, "Select a book. " + cartridgedisplay) in booklistNT
+			spawnbook(user, 1)
 
 		if("Syndicate nonsense books")
 			playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
 			visible_message("<span class='robot'><b>[src]</b> beeps, 'We remind you that books belonging to this mega-corporation are contraband in Nanotrasen controlled space.'")
-			bookrank = input(user, "Select a book type. WARNING: Syndicate books are contraband in all Nanotrasen controlled space. [cartridgedisplay]") in ranklist
+			book = input(user, "Select a book. WARNING: Syndicate books are contraband in all Nanotrasen controlled space. [cartridgedisplay]") in booklistSyndicate
+			spawnbook(user, 2)
 
 		if("Wizard Federation drivel")
 			playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
 			visible_message("<span class='robot'><b>[src]</b> beeps, 'We remind you that books belonging to this mega-corporation are contraband in Nanotrasen controlled space.'")
-			bookrank = input(user, "Select a book type. WARNING: Space Wizard Federation books are contraband in all Nanotrasen controlled space. [cartridgedisplay]") in ranklist
-
-	if(bookrank == "Exit")
-		playsound(src, 'sound/machines/terminal_off.ogg', 40, 1)
-		return
-
-//Nanotrasen books (not contraband)
-	else if(bookrank == "Primary" && corpchoice == "Nanotrasen Approved Books")
-		playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
-		book = input(user, "Select a book to order. [cartridgedisplay]") in booklistNTprimary
-		spawnbook(user, 1)
-
-	else if(bookrank == "Standard" && corpchoice == "Nanotrasen Approved Books")
-		playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
-		book = input(user, "Select a book to order. [cartridgedisplay]") in booklistNTstandard
-		spawnbook(user, 2)
-
-	else if(bookrank == "Mini" && corpchoice == "Nanotrasen Approved Books")
-		playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
-		book = input(user, "Select a book to order. [cartridgedisplay]") in booklistNTmini
-		spawnbook(user, 3)
-
-
-//Syndicate books
-	else if(bookrank == "Primary" && corpchoice == "Syndicate nonsense books")
-		playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
-		book = input(user, "Select a book to order. [cartridgedisplay]") in booklistSynprimary
-		spawnbook(user, 4)
-
-	else if(bookrank == "Standard" && corpchoice == "Syndicate nonsense books")
-		playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
-		book = input(user, "Select a book to order. [cartridgedisplay]") in booklistSynstandard
-		spawnbook(user, 5)
-
-	else if(bookrank == "Mini" && corpchoice == "Syndicate nonsense books")
-		playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
-		book = input(user, "Select a book to order. [cartridgedisplay]") in booklistSynmini
-		spawnbook(user, 6)
-
-
-//Wizard Federation books
-	else if(bookrank == "Primary" && corpchoice == "Wizard Federation drivel")
-		playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
-		book = input(user, "Select a book to order. [cartridgedisplay]") in booklistWizprimary
-		spawnbook(user, 7)
-
-	else if(bookrank == "Standard" && corpchoice == "Wizard Federation drivel")
-		playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
-		book = input(user, "Select a book to order. [cartridgedisplay]") in booklistWizstandard
-		spawnbook(user, 8)
-
-	else if(bookrank == "Mini" && corpchoice == "Wizard Federation drivel")
-		playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
-		book = input(user, "Select a book to order. [cartridgedisplay]") in booklistWizmini
-		spawnbook(user, 9)
+			book = input(user, "Select a book. WARNING: Space Wizard Federation books are contraband in all Nanotrasen controlled space. [cartridgedisplay]") in booklistWizFed
+			spawnbook(user, 3)
 
 	if(thankyou == 1)
 		visible_message("<span class='robot'><b>[src]</b> beeps, 'Thank you for using Spacestar Ordering.'")
 		thankyou = 0
 
-/obj/machinery/computer/craftingbookcatalog/proc/spawnbook(mob/user, listtype)
+/obj/machinery/computer/craftingbookcatalog/proc/spawnbook(mob/user, listtype) //listtype is which megacorporation was picked
+
 	if(book == "Exit")
+		playsound(src, 'sound/machines/terminal_off.ogg', 50, 1)
 		return
 
 	else
 		switch(listtype)
-			//Nanotrasen
-			//Order from top to bottom: Primary, Standard, Mini
 
-			if(1) //1 is Nanotrasen's primary, etc.
-				if(book == "")
-					return
+			if(1) //1 is Nanotrasen
 
-			if(2)
-				return
-			if(3)
-				return
+				if(book == "2u - Exoplanet Exploration Vol. 13: Trapping")
+					if(spawnbookproc(user, 2) == 1)
+						new /obj/item/book/granter/crafting_recipe/trapping(get_turf(src))
+					else
+						return
+
+				else if(book == "1.5u - The Sound of Clown")
+					if(spawnbookproc(user, 1.5) == 1)
+						new /obj/item/book/granter/crafting_recipe/clowninstruments(get_turf(src))
+					else
+						return
+
+				else if(book == "2u - Robert Lang's Origami Unveiled Vol. 1")
+					if(spawnbookproc(user, 2) == 1)
+						new /obj/item/book/granter/crafting_recipe/origami1(get_turf(src))
+					else
+						return
+
+				else if(book == "0.25u - The Mark of Cain")
+					if(spawnbookproc(user, 0.25) == 1)
+						new /obj/item/book/granter/crafting_recipe/vampire(get_turf(src))
+					else
+						return
+
+				else if(book == "1u - UAW Environment")
+					if(spawnbookproc(user, 1) == 1)
+						new /obj/item/book/granter/crafting_recipe/workenvironment(get_turf(src))
+					else
+						return
+
+				else if(book == "0.75u - Squod Word's Astrological Journal")
+					if(spawnbookproc(user, 0.75) == 1)
+						new /obj/item/book/granter/crafting_recipe/stargazing(get_turf(src))
+					else
+						return
+
+				else if(book == "0.5u - Grabar: A Slow Mindkill")
+					if(spawnbookproc(user, 0.5) == 1)
+						new /obj/item/book/granter/crafting_recipe/audio(get_turf(src))
+					else
+						return
 
 			//Syndicate
-			if(4)
-				return
-			if(5)
+			if(2)
 				if(book == "2u - USSR-3 Public Disturbance Manual")
 					if(spawnbookproc(user, 2) == 1)
 						new /obj/item/book/granter/crafting_recipe/USSR3(get_turf(src))
+					else
+						return
+
+				else if(book == "1.75u - Straight Outa' Compton")
+					if(spawnbookproc(user, 1.75) == 1)
+						new /obj/item/book/granter/crafting_recipe/gang(get_turf(src))
 					else
 						return
 
@@ -183,21 +163,14 @@
 						new /obj/item/book/granter/crafting_recipe/(get_turf(src))
 					else
 						return
-			if(6)
-				return
 
 			//Space Wizard Federation
-			if(7)
+			if(3)
 				if(book == "3.5u - M'`nt a'd B,`'e")
 					if(spawnbookproc(user, 3.5) == 1)
 						new /obj/item/book/granter/crafting_recipe/obelisk(get_turf(src))
 					else
 						return
-
-			if(8)
-				return
-			if(9)
-				return
 
 	thankyou = 1
 
@@ -211,7 +184,7 @@
 		audible_message("[src] begins to hum as it warms up its printing drums.")
 		playsound(src, 'sound/machines/copier.ogg', 50, 1)
 		isprinting = TRUE
-		sleep(120)
+		sleep(110)
 		isprinting = FALSE
 		return 1
 

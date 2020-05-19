@@ -1,3 +1,17 @@
+/obj/item/choice_beacon/crafting
+	name = "Nanotrasen Brand Crafting Book Summoning Device"
+	desc = "The NBCBSD. Summon a crafting book of your choice with the simple press of a button! Fit for curators everywhere."
+
+/obj/item/choice_beacon/crafting/generate_display_names()
+	var/static/list/crafting_book_list
+	if(!crafting_book_list)
+		crafting_book_list = list()
+		var/list/templist = typesof(/obj/item/book/granter/crafting_recipe/)
+		for(var/V in templist)
+			var/atom/A = V
+			crafting_book_list[initial(A.name)] = A
+	return crafting_book_list
+
 //Crafting Recipe books
 
 /obj/item/book/granter/crafting_recipe/
@@ -67,31 +81,17 @@
 	oneuse = FALSE
 	remarks = list("Orogami? Orgami? Oragami? Who spell-checked this book?","...and then what? Paper wizards?","Origami came from old Earth? Well I guess a lot of things did...","How did he get that from step 6?","...include paper cults? Am I reading the right book?","Inside reverse folds and outside reverse folds sure are complicated.","...Chinese culture...")
 
-/obj/item/choice_beacon/crafting
-	name = "Nanotrasen Brand Crafting Book Summoning Device"
-	desc = "The NBCBSD. Summon a crafting book of your choice with the simple press of a button! Fit for curators everywhere."
-
-/obj/item/choice_beacon/crafting/generate_display_names()
-	var/static/list/crafting_book_list
-	if(!crafting_book_list)
-		crafting_book_list = list()
-		var/list/templist = typesof(/obj/item/book/granter/crafting_recipe/) //we have to convert type = name to name = type, how lovely!
-		for(var/V in templist)
-			var/atom/A = V
-			crafting_book_list[initial(A.name)] = A
-	return crafting_book_list
-
 /obj/item/book/granter/crafting_recipe/obelisk
 	name = "M'`nt a'd B,`'e"
-	desc = "Obsession with madness. Magic...impossible."
+	desc = "Obsession with madness or a maddening obsession?"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/tier1/obelisk,
 		)
 	icon_state = "book1"
-	remarks = list("A wizard wrote this? Who and why?","... magic...","What are the magic words?","Hammerman...what?","The accursed knowledge, I can feel it flowing.","How did Nanotrasen get ahold of this book?","Where do I find a wendigo?","Magic is divided into...","Most powerful force in the universe...")
+	remarks = list("A wizard really wrote this? Huh.","... magic...","What are the magic words?","Hammerman...what?","The accursed knowledge, I can feel it flowing.","How did Nanotrasen get ahold of this book?","Where do I find a wendigo?","Magic is divided into...","Most powerful force in the universe...")
 	oneuse = TRUE
 
-/obj/item/book/granter/crafting_recipe/attack_self(mob/user)
+/obj/item/book/granter/crafting_recipe/obelisk/attack_self(mob/user)
 	if(reading)
 		to_chat(user, "<span class='warning'>You're already reading this!</span>")
 		return FALSE
@@ -116,3 +116,97 @@
 		reading = FALSE
 	return TRUE
 
+/obj/item/book/granter/crafting_recipe/trapping
+	name = "Exoplanet Exploration Vol. 13: Trapping"
+	desc = "An extensive manual for exoplanet explorers that delves into various trap improvisations."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/learned/beartrap,
+		/datum/crafting_recipe/mousetrap,
+		/datum/crafting_recipe/learned/dummymine,
+		/datum/crafting_recipe/learned/explosivemine,
+		/datum/crafting_recipe/learned/plasmamine,
+		/datum/crafting_recipe/learned/honkmine,
+		/datum/crafting_recipe/learned/bwoinkmine,
+	)
+	icon_state = "trappers"
+	remarks = list("I never knew that thrumbos could get drunk!","I don't think plasma is very effective on Lavaland creatures...","Why don't we have traps for space carps?","Humans have hunted 310 species to extinction... wow.","Nuclear landmines aren't that bad of an idea!","...so hunting IS still necessary!","According to this law passed in 1918, it is still illegal to hunt swans.","Santa got caught in the box-and-bait trap at Fort Knox?")
+	oneuse = FALSE
+
+/obj/item/book/granter/crafting_recipe/clowninstruments
+	name = "The Sound of Clown"
+	desc = "This book somehow understands and explains the musical culture of the clowns. The original copy was discovered by a Nanotrasen deep-space probe on board a clown shuttle that had crashed into an asteroid. This work of literature is now revered in clown society."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/learned/musicalbikehorn,
+		/datum/crafting_recipe/learned/toysaxophone,
+		/datum/crafting_recipe/learned/toyguitar,
+		/datum/crafting_recipe/learned/vuvuzela,
+	)
+	icon_state = "c_minor_manual"
+	remarks = list("HONK!","Where is Clown Planet anyway?","Why do I hear laughter?","So many honks...","Haha!","Clowns are exposed to HONKING at a very young age.","This book is written in crayon!","There is a rotten banana peel stuck on the page...","Since when can clowns do that?")
+	oneuse = FALSE
+
+/obj/item/book/granter/crafting_recipe/workenvironment
+	name = "UAW Environment"
+	desc = "Back when worker unions were still around, aesthetically pleasing working environments were demanded by workers abroad. This novel goes into detail about the pyschological well-being that those exposed to an aesthetically pleasing working environment will endure."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/learned/poster,
+		/datum/crafting_recipe/learned/pottedplant,
+		/datum/crafting_recipe/learned/statuebust,
+		)
+	icon_state = "workplace"
+	remarks = list("Janitors were reprimanded for not cleaning?","I've never seen a floor mat before.","UAW seems to have loved their workers a little too much...","You had to pay to be in a worker union? Who made up that balarky?","So the Great Scandal of 2358 is how unions got phased out...","Is Nanotrasen totalitarian? Kind of hard to tell given how great it is.","It seems unions rose to popularity during the industrial revolution.","I feel old reading this.")
+	oneuse = FALSE
+
+/obj/item/book/granter/crafting_recipe/stargazing
+	name = "Squod Word's Astrological Journal"
+	desc = "Stargazing is a not-so-simple art. First you must understand the various stars and their meanings."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/learned/binoculars,
+		/datum/crafting_recipe/learned/superbinoculars,
+		)
+	icon_state = "stargazing"
+	remarks = list("How do you find the North Star in space?","My zodiac sign is... Cancer.","Is astrology even relevant anymore?","...the Draco star, 'tail of the dolphin'.","The Orion star! From Orion Trail.")
+	oneuse = FALSE
+
+/obj/item/book/granter/crafting_recipe/audio
+	name = "Grabar: A Slow Mindkill"
+	desc = "Paris is where it all began."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/learned/taperecorder,
+		/datum/crafting_recipe/learned/recordtape,
+		)
+	icon_state = "a_slow_mindkill"
+	remarks = list("Yeah I know sound waves can't travel through a vacuum.","The top of a wave is called a crest and the bottom is called the trough.","zzzzzzzz...","Says here that the first sound recording device was invented in Paris on old Earth.","Louder = higher wave yada yada yada...","Why isn't Graham spelled Gram?","Who leaves cassette tapes in a forest?")
+	oneuse = FALSE
+
+/obj/item/book/granter/crafting_recipe/gang
+	name = "Straight Outa' Compton"
+	desc = "YOU wanna form a gang? YOU wanna become as legendary as the Italian Mafia, Crips, Bloods, and the Irish mob? Follow these simple instructions to lead a path of prosperity and crookedness and make your own gang today."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/learned/blingshoes,
+		/datum/crafting_recipe/learned/switchblade,
+		/datum/crafting_recipe/learned/spraycan,
+		/datum/crafting_recipe/learned/contrabandposter,
+		/datum/crafting_recipe/learned/implantbreaker,
+		/datum/crafting_recipe/learned/redjumpsuit,
+		/datum/crafting_recipe/learned/bluejumpsuit,
+		/datum/crafting_recipe/learned/godfathersuit,
+		/datum/crafting_recipe/learned/mafiososuit,
+		)
+	icon_state = "gang"
+	remarks = list("How do I hold my gun sideways if dynamic hand controls aren't a thing?","Turns out the Italian Mafia hated 'The Godfather'...","What if security restricts access to chemistry?","Step 27: Raid the vault...","People actually thought of Al Capone as a 'modern day' robinhood? Wow.","Step 30: Assassinate the captain.","Step 14: Gain all access.","Step 50: Remove Central Command as the leading power of Nanotrasen.", "How am I prospering if I'm living in constant fear?")
+	oneuse = FALSE
+
+/obj/item/book/granter/crafting_recipe/vampire
+	name = "Understanding the Mark of Cain"
+	desc = "This book, a relic of the past, thoroughly explains the mythological creature know as a 'vampire'."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/learned/witchhunterhat,
+		/datum/crafting_recipe/learned/woodenstake,
+		)
+	icon_state = "vampire"
+	remarks = list("Now I will know why I fear the night... in space.","The Syndicate employs vampires? Figures.","Vampire clowns are a scary thought.","If vampires grow stronger with more blood they have and we have technology to synthesize unlimited amounts of blood then why haven't vampires become dominant?","I wonder how the Blood Cult and vampires would get along.", "Vlad The Impaler?", "Vampires are totally invisible to cameras and mirrors...")
+	oneuse = FALSE
+
+/obj/item/book/granter/crafting_recipe/illegalweapons
+	name = ""
