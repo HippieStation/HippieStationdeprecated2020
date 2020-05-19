@@ -30,6 +30,7 @@
 	minbodytemp = 0
 
 	faction = list("statue")
+	gold_core_spawnable = HOSTILE_SPAWN
 	move_to_delay = 0 // Very fast
 
 	animate_movement = NO_STEPS // Do not animate movement, you jump around as you're a scary statue.

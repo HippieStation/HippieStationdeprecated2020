@@ -99,8 +99,8 @@
 			yo.data = round(yo.data, 1)
 
 		var/turf/T = get_turf(assembly)
-		var/target_x = CLAMP(T.x + xo.data, 0, world.maxx)
-		var/target_y = CLAMP(T.y + yo.data, 0, world.maxy)
+		var/target_x = clamp(T.x + xo.data, 0, world.maxx)
+		var/target_y = clamp(T.y + yo.data, 0, world.maxy)
 
 		assembly.visible_message("<span class='danger'>[assembly] fires [installed_gun]!</span>")
 		shootAt(locate(target_x, target_y, T.z))
@@ -225,7 +225,7 @@
 		var/datum/integrated_io/detonation_time = inputs[1]
 		var/dt
 		if(isnum(detonation_time.data) && detonation_time.data > 0)
-			dt = CLAMP(detonation_time.data, 1, 12)*10
+			dt = clamp(detonation_time.data, 1, 12)*10
 		else
 			dt = 15
 		addtimer(CALLBACK(attached_grenade, /obj/item/grenade.proc/prime), dt)
@@ -448,7 +448,7 @@
 	var/mode = get_pin_data(IC_INPUT, 2)
 	switch(ord)
 		if(1)
-			mode = CLAMP(mode, GRAB_PASSIVE, max_grab)
+			mode = clamp(mode, GRAB_PASSIVE, max_grab)
 			if(AM)
 				if(check_target(AM, exclude_contents = TRUE))
 					acting_object.investigate_log("grabbed ([AM]) using [src].", INVESTIGATE_CIRCUIT)
@@ -567,7 +567,7 @@
 			if(!S)
 				activate_pin(4)
 				return
-			if(materials.insert_stack(S, CLAMP(get_pin_data(IC_INPUT, 2),0,100), multiplier = 1) )
+			if(materials.insert_stack(S, clamp(get_pin_data(IC_INPUT, 2),0,100), multiplier = 1) )
 				AfterMaterialInsert()
 				activate_pin(3)
 			else
@@ -578,7 +578,7 @@
 			for(var/I in 1 to mtypes.len)
 				var/datum/material/M = materials.materials[mtypes[I]]
 				if(M)
-					var/U = CLAMP(get_pin_data(IC_INPUT, I+2),-100000,100000)
+					var/U = clamp(get_pin_data(IC_INPUT, I+2),-100000,100000)
 					if(!U)
 						continue
 					if(!mt) //Invalid input

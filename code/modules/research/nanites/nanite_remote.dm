@@ -107,7 +107,7 @@
 				return
 			var/new_code = text2num(params["code"])
 			if(!isnull(new_code))
-				new_code = CLAMP(round(new_code, 1),0,9999)
+				new_code = clamp(round(new_code, 1),0,9999)
 				code = new_code
 			. = TRUE
 		if("set_relay_code")
@@ -115,7 +115,7 @@
 				return
 			var/new_code = text2num(params["code"])
 			if(!isnull(new_code))
-				new_code = CLAMP(round(new_code, 1),0,9999)
+				new_code = clamp(round(new_code, 1),0,9999)
 				relay_code = new_code
 			. = TRUE
 		if("update_name")

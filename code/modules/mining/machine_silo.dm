@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	var/list/logs = GLOB.silo_access_logs[REF(src)]
 	var/len = LAZYLEN(logs)
 	var/num_pages = 1 + round((len - 1) / 30)
-	var/page = CLAMP(log_page, 1, num_pages)
+	var/page = clamp(log_page, 1, num_pages)
 	if(num_pages > 1)
 		for(var/i in 1 to num_pages)
 			if(i == page)
@@ -228,9 +228,8 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	var/list/msg = list("([timestamp]) <b>[machine_name]</b> in [area_name]<br>[action] [abs(amount)]x [noun]<br>")
 	var/sep = ""
 	for(var/key in materials)
-		var/datum/material/M = key
 		var/val = round(materials[key]) / MINERAL_MATERIAL_AMOUNT
 		msg += sep
 		sep = ", "
-		msg += "[amount < 0 ? "-" : "+"][val] [M.name]"
+		msg += "[amount < 0 ? "-" : "+"][val] [copytext(key, length(key[1]) + 1)]"
 	formatted = msg.Join()

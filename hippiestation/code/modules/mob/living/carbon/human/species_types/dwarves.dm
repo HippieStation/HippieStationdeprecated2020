@@ -45,7 +45,7 @@
 		if(istype(chem, /datum/reagent/consumable/ethanol))
 			var/datum/reagent/consumable/ethanol/theGoodStuff = chem
 			var/boozePower = sqrt(theGoodStuff.volume) * theGoodStuff.boozepwr * DWARF_ALCOHOL_RATE
-			dwarfDrunkness = CLAMP(dwarfDrunkness + boozePower, 0, 100)
+			dwarfDrunkness = clamp(dwarfDrunkness + boozePower, 0, 100)
 			return TRUE // Don't metabolize alcohol like normal humans do.
 
 /datum/species/dwarf/spec_life(mob/living/carbon/human/H)

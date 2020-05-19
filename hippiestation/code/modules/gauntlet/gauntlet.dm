@@ -133,9 +133,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		'hippiestation/sound/effects/snap/snap5.wav',
 		'hippiestation/sound/effects/snap/snap6.wav')
 	playsound(victim, dust_sound, 100, TRUE)
-#if DM_VERSION < 513
-	victim.dust(TRUE)
-#else
 	var/obj/effect/snap_rt/snap_effect = new(victim.loc, REF(victim))
 	UNLINT(victim.filters += filter(type="displace", size=256, render_source="*snap[REF(victim)]"))
 	animate(victim, alpha=0, time=20, easing=(EASE_IN | SINE_EASING))
@@ -147,7 +144,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		victim.buckled.unbuckle_mob(victim, force = TRUE)
 	qdel(snap_effect)
 	QDEL_IN(victim, 5)
-#endif
 
 /obj/item/badmin_gauntlet/proc/DoTheSnap(mob/living/snapper = usr)
 	GLOB.gauntlet_snapped = TRUE
