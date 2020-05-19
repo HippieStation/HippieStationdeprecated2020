@@ -40,7 +40,7 @@
 
 /obj/structure/reagent_dispensers/chemical/Initialize()
 	. = ..()
-	create_reagents(tank_volume, DRAWABLE | AMOUNT_VISIBLE)
+	create_reagents(tank_volume, DRAINABLE | AMOUNT_VISIBLE)
 
 /obj/structure/reagent_dispensers/proc/generate_reagent_icon()
 	if(!use_reagent_icon)
@@ -54,13 +54,13 @@
 
 /obj/structure/reagent_dispensers/chemical/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/screwdriver))
-		if(reagents.flags & DRAWABLE)
+		if(reagents.flags & DRAINABLE)
 			ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
-			DISABLE_BITFIELD(reagents.flags, DRAWABLE)
+			DISABLE_BITFIELD(reagents.flags, DRAINABLE)
 			to_chat(user, "<span class='notice'>You unfasten the tank's cap.</span>")
 		else if(reagents.flags & OPENCONTAINER)
 			DISABLE_BITFIELD(reagents.flags, OPENCONTAINER)
-			ENABLE_BITFIELD(reagents.flags, DRAWABLE)
+			ENABLE_BITFIELD(reagents.flags, DRAINABLE)
 			to_chat(user, "<span class='notice'>You fasten the tank's cap.</span>")
 		update_icon()
 		playsound(src.loc, 'sound/machines/click.ogg', 20, 1)
@@ -79,14 +79,14 @@
 
 /obj/structure/reagent_dispensers/chemical/examine(mob/user)
 	. = ..()
-	if(reagents.flags & DRAWABLE)
+	if(reagents.flags & DRAINABLE)
 		. += "It's lid is closed."
 	else if(reagents.flags & OPENCONTAINER)
 		. += "It's lid is open."
 
 /obj/structure/reagent_dispensers/chemical/update_icon()
 	..()
-	if(reagents?.flags & DRAWABLE)
+	if(reagents?.flags & DRAINABLE)
 		add_overlay("chemlid")
 
 /obj/structure/reagent_dispensers/watertank
