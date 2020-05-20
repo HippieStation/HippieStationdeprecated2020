@@ -264,10 +264,10 @@
 	desc = "A sharpened piece of word that is a staple in vampire hunting for some reason."
 	icon = 'hippiestation/icons/obj/weapons.dmi'
 	icon_state = "stake"
-	force = 13
-	throwforce = 17 //17 + 2 (WEIGHT_CLASS_SMALL) * 5 (EMBEDDED_IMPACT_PAIN_MULTIPLIER) = 27 damage if it hits
+	force = 10
+	throwforce = 15 //15 + 2 (WEIGHT_CLASS_SMALL) * 3 (EMBEDDED_IMPACT_PAIN_MULTIPLIER) = 21 damage if it embeds
 	throw_speed = 4
-	embedding = list("embedded_pain_multiplier" = 5, "embed_chance" = 25, "embedded_fall_chance" = 25)
+	embedding = list("embedded_pain_multiplier" = 3, "embed_chance" = 25, "embedded_fall_chance" = 25)
 	w_class = WEIGHT_CLASS_SMALL
 	sharpness = IS_SHARP
 	resistance_flags = FLAMMABLE

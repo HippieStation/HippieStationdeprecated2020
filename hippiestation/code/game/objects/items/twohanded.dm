@@ -126,7 +126,7 @@
 /obj/item/twohanded/binoculars/super
 	name = "super binoculars"
 	desc = "Enhanced binoculars. Design developed by Stargazer Instruments TM."
-	zoom_amt = 20
+	zoom_amt = 28
 	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "super_binoculars"
 

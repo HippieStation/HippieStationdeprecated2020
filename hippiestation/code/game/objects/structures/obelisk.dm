@@ -60,6 +60,7 @@
 	icon_state = "tier2"
 	layer = BELOW_OBJ_LAYER + 0.1
 	var/obj/item/tier2/tool1
+	var/cooldowntime = 0
 
 /obj/structure/destructible/obelisktier2/Initialize()
     . = ..()
@@ -68,6 +69,24 @@
 /obj/structure/destructible/obelisktier2/Destroy()
     . = ..()
     qdel(tool1)
+
+/obj/structure/destructible/obelisktier2/attack_hand(mob/living/user)
+	. = ..()
+	if(cooldowntime > world.time)
+		to_chat(user, "<span class='cult italic'>The magic in [src] is weak, it will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>")
+		return
+	var/choice = alert(user,"You stare deep into the [src] and see a glimpse of the true power...",,"Magical inscripture",,"Nevermind")
+	var/list/pickedtype = list()
+	switch(choice)
+		if("Magical inscripture")
+			pickedtype += /obj/item/inscripture
+	if(src && !QDELETED(src) && anchored && pickedtype.len && Adjacent(user) && !user.incapacitated() && cooldowntime <= world.time)
+		cooldowntime = world.time + 1000
+		for(var/N in pickedtype)
+			new N(get_turf(src))
+			to_chat(user, "<span class='cultitalic'>You create the [choice] from the [src]!</span>")
+		if("Nevermind")
+			return
 
 /obj/item/tier2
     name = "greater obelisk"
@@ -82,7 +101,7 @@
 //***Tier 3***
 
 /obj/structure/destructible/obelisktier3
-	name = "Obelisk of Unlimited Wisdom"
+	name = "Obelisk of Limitless Wisdom"
 	desc = "Feel it.... feel the magic..."
 	density = TRUE
 	max_integrity = 900
@@ -91,6 +110,7 @@
 	icon_state = "tier4"
 	layer = BELOW_OBJ_LAYER + 0.1
 	var/obj/item/tier3/tool2
+	var/cooldowntime = 0
 
 /obj/structure/destructible/obelisktier3/Initialize()
     . = ..()
@@ -100,8 +120,26 @@
     . = ..()
     qdel(tool2)
 
+/obj/structure/destructible/obelisktier3/attack_hand(mob/living/user)
+	. = ..()
+	if(cooldowntime > world.time)
+		to_chat(user, "<span class='cult italic'>The magic in [src] is weak, it will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>")
+		return
+	var/choice = alert(user,"You stare deep into the [src] and see a glimpse of the true power...",,"Magical inscripture",,"Nevermind")
+	var/list/pickedtype = list()
+	switch(choice)
+		if("Magical inscripture")
+			pickedtype += /obj/item/inscripture
+	if(src && !QDELETED(src) && anchored && pickedtype.len && Adjacent(user) && !user.incapacitated() && cooldowntime <= world.time)
+		cooldowntime = world.time + 800
+		for(var/N in pickedtype)
+			new N(get_turf(src))
+			to_chat(user, "<span class='cultitalic'>You create the [choice] from the [src]!</span>")
+		if("Nevermind")
+			return
+
 /obj/item/tier3
-    name = "Obelisk of Unlimited Wisdom"
+    name = "Obelisk of Limitless Wisdom"
     desc = "A broken part of the obelisk"
     icon = null
     icon_state = null
@@ -117,7 +155,7 @@
 	throw_range = 1
 
 /obj/item/inscripture/attack_self(mob/user)
-	var/choice = alert(user,"You begin to fold the magical inscripture... (WARNING: This could be a bad idea...)",,"Yes, finish folding it.",,"On second thought...")
+	var/choice = alert(user,"You begin to fold the magical inscripture... (WARNING: This is a bad idea)",,"Yes, finish folding it.",,"On second thought...")
 	switch(choice)
 		if("Yes, finish folding it.")
 			user.visible_message("<span class='warning'>[user] folds the [src] and is sucked into nothingness!")

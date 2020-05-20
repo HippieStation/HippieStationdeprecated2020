@@ -5,7 +5,7 @@
 	icon_hippie = 'hippiestation/icons/obj/library.dmi'
 
 /obj/item/inkcartridge
-	name = "Spacestar-brand Ink cartridge"
+	name = "Spacestar-brand ink cartridge"
 	desc = "Compatible with Spacestar Ordering Book Catalogs, like the one in the library!"
 	icon = 'hippiestation/icons/obj/library.dmi'
 	icon_state = "inkcartridge"
@@ -45,7 +45,7 @@
 	//
 	var/booklistNT = list("Exit", "0.5u - Grabar: A Slow Mindkill", "1u - UAW Environment", "0.75u - Squod Word's Astrological Journal", "2u - Exoplanet Exploration Vol. 13: Trapping", "1.5u - The Sound of Clown", "2u - Robert Lang's Origami Unveiled Vol. 1", "0.25u - The Mark of Cain")
 	//
-	var/booklistSyndicate = list("Exit", "2u - USSR-3 Public Disturbance Manual", "1.75u - Straight Outa' Compton", "2u - Anarchist's Compendium")
+	var/booklistSyndicate = list("Exit", "2u - USSR-3 Public Disturbance Manual", "1.5u - Straight Outa' Compton", "2u - Anarchist's Compendium", "2.25u - CODEWORD Arabian")
 	//
 	var/booklistWizFed = list("Exit", "3.5u - M'`nt a'd B,`'e")
 
@@ -61,10 +61,10 @@
 	if(isprinting)
 		to_chat(user, "<span class='warning'>You must wait for the [src] to finish printing!")
 		return
-	var/cartridgedisplay = "Spacestar-brand Ink level: [ink]" + "u"
+	var/cartridgedisplay = "Spacestar-brand ink level: [ink]" + "u"
 	if(ishuman(user))
 		playsound(src, 'sound/machines/terminal_on.ogg', 50, 1)
-		corpchoice = input(user, "Order a book from Spacestar! Select a mega-corporation. " + cartridgedisplay) in corporations
+		corpchoice = input(user, "Print a book from Spacestar! Select a mega-corporation. " + cartridgedisplay) in corporations
 	switch(corpchoice)
 		if("Exit")
 			playsound(src, 'sound/machines/terminal_off.ogg', 50, 1)
@@ -152,15 +152,21 @@
 					else
 						return
 
-				else if(book == "1.75u - Straight Outa' Compton")
-					if(spawnbookproc(user, 1.75) == 1)
+				else if(book == "1.5u - Straight Outa' Compton")
+					if(spawnbookproc(user, 1.5) == 1)
 						new /obj/item/book/granter/crafting_recipe/gang(get_turf(src))
 					else
 						return
 
 				else if(book == "2u - Anarchist's Compendium")
 					if(spawnbookproc(user, 2) == 1)
-						new /obj/item/book/granter/crafting_recipe/(get_turf(src))
+						new /obj/item/book/granter/crafting_recipe(get_turf(src))
+					else
+						return
+
+				else if(book == "2.25u - CODEWORD Arabian")
+					if(spawnbookproc(user, 2.25) == 1)
+						new /obj/item/book/granter/crafting_recipe/illegalweapons(get_turf(src))
 					else
 						return
 

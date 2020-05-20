@@ -12,9 +12,22 @@
 /datum/crafting_recipe/tier1/obelisk
 	name = "mysterious obelisk"
 	result = /obj/structure/destructible/obelisk
-	reqs = list(/obj/item/paper = 1)
+	reqs = list(/obj/item/organ/brain = 1,
+				/obj/item/stack/sheet/plasteel = 5,
+				/obj/item/stack/sheet/metal = 100,
+				/datum/reagent/blood = 200,
+				)
 	tools = list()
 	time = 150
+
+/datum/crafting_recipe/tier1/doorwand
+	name = "crude wand of door creation"
+	result = /obj/item/gun/magic/wand/door/shitty
+	reqs = list(/obj/item/inscripture = 1,
+				/obj/item/electronics/airlock = 3,
+				/obj/item/stack/rods = 1,
+				)
+	time = 70
 
 /datum/crafting_recipe/tier1/upgradescroll
 	name = "upgrade scroll"
@@ -87,7 +100,17 @@
 /datum/crafting_recipe/tier2/obelisk
 	name = "greater obelisk"
 	result = /obj/structure/destructible/obelisktier2
-	reqs = list(/obj/item/paper = 1)
+	reqs = list(/obj/item/organ/brain = 1,
+				/obj/item/organ/heart = 1,
+				/obj/item/organ/butt = 1,
+				/obj/item/stack/sheet/plasteel = 10,
+				/obj/item/stack/sheet/metal = 75,
+				/obj/item/stack/sheet/mineral/silver = 10,
+				/obj/item/multitool = 1,
+				/obj/item/stock_parts/manipulator = 3,
+				/obj/item/stock_parts/cell/high = 1,
+				/obj/item/geiger_counter = 1
+				)
 	tools = list(/obj/item/tier1)
 	time = 200
 
@@ -174,15 +197,31 @@
 	subcategory = CAT_TIER3
 
 /datum/crafting_recipe/tier3/obelisk
-	name = "Obelisk of Unlimited Wisdom"
+	name = "Obelisk of Limitless Wisdom"
 	result = /obj/structure/destructible/obelisktier3
-	tools = list()
+	reqs = list(/obj/item/organ/brain = 1,
+				/obj/item/organ/heart = 1,
+				/obj/item/organ/lungs = 1,
+				/obj/item/bodypart/l_arm = 1,
+				/obj/item/bodypart/r_arm = 1,
+				/obj/item/bodypart/l_leg = 1,
+				/obj/item/bodypart/r_leg = 1,
+				/obj/item/organ/butt = 1,
+				/obj/item/stack/sheet/plasteel = 15,
+				/obj/item/stack/sheet/bluespace_crystal = 3,
+				/obj/item/stock_parts/manipulator/pico = 5,
+				/obj/item/stock_parts/cell/high = 4,
+				/obj/item/stock_parts/subspace/amplifier = 1,
+				/obj/item/stock_parts/subspace/transmitter = 1,
+				)
+	tools = list(/obj/item/tier2)
+	time = 250
 
 /datum/crafting_recipe/tier3/oneusedieoffate
 	name = "one use Die of Fate"
 	result = /obj/item/dice/d20/fate/one_use
 	reqs = list(/obj/item/inscripture = 1,
-				/obj/item/dice/d100 = 2,
+				/obj/item/dice/d100 = 1,
 				)
 	time = 40
 
@@ -194,12 +233,3 @@
 				/datum/reagent/water/holywater = 100,
 				)
 	time = 60
-
-/datum/crafting_recipe/tier3/doorwand
-	name = "crude wand of door creation"
-	result = /obj/item/gun/magic/wand/door/shitty
-	reqs = list(/obj/item/inscripture = 1,
-				/obj/item/electronics/airlock = 3,
-				/obj/item/stack/rods = 1,
-				)
-	time = 70

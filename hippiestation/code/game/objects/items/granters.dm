@@ -167,6 +167,25 @@
 	icon_state = "stargazing"
 	remarks = list("How do you find the North Star in space?","My zodiac sign is... Cancer.","Is astrology even relevant anymore?","...the Draco star, 'tail of the dolphin'.","The Orion star! From Orion Trail.")
 	oneuse = FALSE
+	var/list/users = list()
+
+/obj/item/book/granter/crafting_recipe/stargazing/on_reading_finished(mob/user)
+	..()
+	//for(var/i = 0; i < users.length; i++)
+	//	if(user == users(i))
+	//		return
+
+	if(prob(5))
+		to_chat(user, "Wow, star gazing is actually really interesting...")
+		sleep(1)
+		to_chat(user, "Wait a minute...")
+		sleep(1)
+		user.playsound_local(user, 'sound/ambience/seag1.ogg', 50, FALSE)
+		user.set_species(/datum/species/jelly/stargazer)
+	else
+		return
+
+	users.Add(user)
 
 /obj/item/book/granter/crafting_recipe/audio
 	name = "Grabar: A Slow Mindkill"
@@ -198,7 +217,7 @@
 	oneuse = FALSE
 
 /obj/item/book/granter/crafting_recipe/vampire
-	name = "Understanding the Mark of Cain"
+	name = "The Mark of Cain"
 	desc = "This book, a relic of the past, thoroughly explains the mythological creature know as a 'vampire'."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/learned/witchhunterhat,
@@ -209,4 +228,21 @@
 	oneuse = FALSE
 
 /obj/item/book/granter/crafting_recipe/illegalweapons
-	name = ""
+	name = "CODEWORD Arabian"
+	desc = "A biography about a Syndicate weapons manufacturer by the name of Adnan Khashoggi, who is of Arabian heritage. His weapons are known to be extra illegal in Nanotrasen space."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/learned/ballisticcrossbow,
+		/datum/crafting_recipe/learned/hookspear,
+		/datum/crafting_recipe/learned/edagger,
+		)
+	icon_state = "illegalweapons"
+	remarks = list("Adnan Khashoggi eh? What a mouthful.","So he makes weapons from thousands of years ago and modern day technology?","I wish I could go to Victoria College and get off this dump of a station.","...weapons deals with Nanotrasen at one point?","This guy knows how to grow a good stache!","I wonder what it's like being in the one percent...","There was a plot by the Space Wizard Federation to assassinate him? Typical.")
+	oneuse = FALSE
+	var/spawnglock = TRUE
+
+/obj/item/book/granter/crafting_recipe/illegalweapons/on_reading_finished(mob/user)
+	..()
+	if(spawnglock)
+		new /obj/item/gun/ballistic/automatic/pistol/g17/improvised(get_turf(src))
+		to_chat(user, "<span class ='warning'>An improvised glock 17 that was hidden between the pages of [name] has fallen out!")
+		spawnglock = FALSE

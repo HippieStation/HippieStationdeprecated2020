@@ -464,7 +464,7 @@
 //Vampire hunting book
 
 /datum/crafting_recipe/learned/witchhunterhat
-	name = "Vampire hunting hat"
+	name = "vampire hunting hat"
 	result = /obj/item/clothing/head/helmet/chaplain/witchunter_hat
 	reqs = list(/obj/item/stack/sheet/cloth = 5,
 				/obj/item/stack/pipe_cleaner_coil = 4,
