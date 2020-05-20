@@ -28,14 +28,14 @@
 	switch(choice)
 		if("Magical inscripture")
 			pickedtype += /obj/item/inscripture
+		if("Nevermind")
+			return
+
 	if(src && !QDELETED(src) && anchored && pickedtype.len && Adjacent(user) && !user.incapacitated() && cooldowntime <= world.time)
 		cooldowntime = world.time + 1200
 		for(var/N in pickedtype)
 			new N(get_turf(src))
 			to_chat(user, "<span class='cultitalic'>You create the [choice] from the [src]!</span>")
-		if("Nevermind")
-			return
-
 
 /obj/item/tier1 //This is what is actually used to craft obelisk magic items for the curator.
     name = "mysterious obelisk"
@@ -80,13 +80,14 @@
 	switch(choice)
 		if("Magical inscripture")
 			pickedtype += /obj/item/inscripture
+		if("Nevermind")
+			return
+
 	if(src && !QDELETED(src) && anchored && pickedtype.len && Adjacent(user) && !user.incapacitated() && cooldowntime <= world.time)
 		cooldowntime = world.time + 1000
 		for(var/N in pickedtype)
 			new N(get_turf(src))
 			to_chat(user, "<span class='cultitalic'>You create the [choice] from the [src]!</span>")
-		if("Nevermind")
-			return
 
 /obj/item/tier2
     name = "greater obelisk"
@@ -130,13 +131,14 @@
 	switch(choice)
 		if("Magical inscripture")
 			pickedtype += /obj/item/inscripture
+		if("Nevermind")
+			return
+
 	if(src && !QDELETED(src) && anchored && pickedtype.len && Adjacent(user) && !user.incapacitated() && cooldowntime <= world.time)
 		cooldowntime = world.time + 800
 		for(var/N in pickedtype)
 			new N(get_turf(src))
 			to_chat(user, "<span class='cultitalic'>You create the [choice] from the [src]!</span>")
-		if("Nevermind")
-			return
 
 /obj/item/tier3
     name = "Obelisk of Limitless Wisdom"
