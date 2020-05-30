@@ -13,7 +13,7 @@
 
 //*************
 //How to add books: Add the book to the appropriate booklist below and then
-//scroll down to the proc "spawnbook()" and copy what every other book does. Make sure "Exit" is always the first item in the list.
+//scroll down to the proc "spawnbook()" and copy what every other book does. Make sure "Exit" is always the first item in the book lists.
 //*************
 
 /obj/machinery/computer/craftingbookcatalog
@@ -35,13 +35,12 @@
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 20)
 	circuit = /obj/item/circuitboard/computer/craftingbookcatalog
 	var/thankyou = 0
-	var/isprinting = FALSE
-	var/state = 1
+	var/printing = FALSE
 	var/ink = 0
 	var/corpchoice
 	var/book
 	var/inkcost = 0
-	var/corporations = list("Exit", "Nanotrasen Approved Books", "Syndicate nonsense books", "Wizard Federation drivel",)
+	var/corporations = list("Exit", "Nanotrasen Approved Books", "Syndicate nonsense books", "Wizard Federation drivel")
 	//
 	var/booklistNT = list("Exit", "0.5u - Grabar: A Slow Mindkill", "1u - UAW Environment", "0.75u - Squod Word's Astrological Journal", "2u - Exoplanet Exploration Vol. 13: Trapping", "1.5u - The Sound of Clown", "2u - Robert Lang's Origami Unveiled Vol. 1", "0.25u - The Mark of Cain")
 	//
@@ -58,7 +57,7 @@
 	if(icon_screen == null)
 		return
 
-	if(isprinting)
+	if(printing)
 		to_chat(user, "<span class='warning'>You must wait for the [src] to finish printing!")
 		return
 	var/cartridgedisplay = "Spacestar-brand ink level: [ink]" + "u"
@@ -103,84 +102,84 @@
 			if(1) //1 is Nanotrasen
 
 				if(book == "2u - Exoplanet Exploration Vol. 13: Trapping")
-					if(spawnbookproc(user, 2) == 1)
-						new /obj/item/book/granter/crafting_recipe/trapping(get_turf(src))
+					if(checkprice(user, 2) == 1)
+						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe/trapping), 110)
 					else
 						return
 
 				else if(book == "1.5u - The Sound of Clown")
-					if(spawnbookproc(user, 1.5) == 1)
-						new /obj/item/book/granter/crafting_recipe/clowninstruments(get_turf(src))
+					if(checkprice(user, 1.5) == 1)
+						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe/clowninstruments), 110)
 					else
 						return
 
 				else if(book == "2u - Robert Lang's Origami Unveiled Vol. 1")
-					if(spawnbookproc(user, 2) == 1)
-						new /obj/item/book/granter/crafting_recipe/origami1(get_turf(src))
+					if(checkprice(user, 2) == 1)
+						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe/origami1), 110)
 					else
 						return
 
 				else if(book == "0.25u - The Mark of Cain")
-					if(spawnbookproc(user, 0.25) == 1)
-						new /obj/item/book/granter/crafting_recipe/vampire(get_turf(src))
+					if(checkprice(user, 0.25) == 1)
+						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe/vampire), 110)
 					else
 						return
 
 				else if(book == "1u - UAW Environment")
-					if(spawnbookproc(user, 1) == 1)
-						new /obj/item/book/granter/crafting_recipe/workenvironment(get_turf(src))
+					if(checkprice(user, 1) == 1)
+						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe/workenvironment), 110)
 					else
 						return
 
 				else if(book == "0.75u - Squod Word's Astrological Journal")
-					if(spawnbookproc(user, 0.75) == 1)
-						new /obj/item/book/granter/crafting_recipe/stargazing(get_turf(src))
+					if(checkprice(user, 0.75) == 1)
+						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe/stargazing), 110)
 					else
 						return
 
 				else if(book == "0.5u - Grabar: A Slow Mindkill")
-					if(spawnbookproc(user, 0.5) == 1)
-						new /obj/item/book/granter/crafting_recipe/audio(get_turf(src))
+					if(checkprice(user, 0.5) == 1)
+						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe/audio), 110)
 					else
 						return
 
 			//Syndicate
 			if(2)
 				if(book == "2u - USSR-3 Public Disturbance Manual")
-					if(spawnbookproc(user, 2) == 1)
-						new /obj/item/book/granter/crafting_recipe/USSR3(get_turf(src))
+					if(checkprice(user, 2) == 1)
+						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe/USSR3), 110)
 					else
 						return
 
 				else if(book == "1.5u - Straight Outa' Compton")
-					if(spawnbookproc(user, 1.5) == 1)
-						new /obj/item/book/granter/crafting_recipe/gang(get_turf(src))
+					if(checkprice(user, 1.5) == 1)
+						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe/gang), 110)
 					else
 						return
 
 				else if(book == "2u - Anarchist's Compendium")
-					if(spawnbookproc(user, 2) == 1)
-						new /obj/item/book/granter/crafting_recipe(get_turf(src))
+					if(checkprice(user, 2) == 1)
+						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe), 110)
 					else
 						return
 
 				else if(book == "2.25u - CODEWORD Arabian")
-					if(spawnbookproc(user, 2.25) == 1)
-						new /obj/item/book/granter/crafting_recipe/illegalweapons(get_turf(src))
+					if(checkprice(user, 2.25) == 1)
+						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe/illegalweapons), 110)
 					else
 						return
 
 			//Space Wizard Federation
 			if(3)
 				if(book == "3.5u - M'`nt a'd B,`'e")
-					if(spawnbookproc(user, 3.5) == 1)
-						new /obj/item/book/granter/crafting_recipe/obelisk(get_turf(src))
+					if(checkprice(user, 3.5) == 1)
+						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe/obelisk), 110)
 					else
 						return
 
 	thankyou = 1
 
-/obj/machinery/computer/craftingbookcatalog/proc/spawnbookproc(mob/user, inkprice)
+/obj/machinery/computer/craftingbookcatalog/proc/checkprice(mob/user, inkprice)
 	if(ink < inkprice)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		to_chat(user, "<span class ='warning'>The [src] lacks enough Spacestar-brand ink to print this book!")
@@ -188,11 +187,13 @@
 	else
 		ink = ink - inkprice
 		audible_message("[src] begins to hum as it warms up its printing drums.")
+		printing = TRUE
 		playsound(src, 'sound/machines/copier.ogg', 50, 1)
-		isprinting = TRUE
-		sleep(110)
-		isprinting = FALSE
 		return 1
+
+/obj/machinery/computer/craftingbookcatalog/proc/print(book)
+	new book(get_turf(src))
+	printing = FALSE
 
 /obj/machinery/computer/craftingbookcatalog/examine(mob/user)
 	. = ..()
@@ -206,21 +207,12 @@
 		. += "<span class ='notice'>The [src] has <b>[ink]</b> Spacestar-brand ink cartridges loaded."
 
 /obj/machinery/computer/craftingbookcatalog/attackby(obj/item/I, mob/user, params)
-	switch(state)
-		if(0)
-			if(I.tool_behaviour == TOOL_WRENCH)
-				if(I.use_tool(src, user, 20, volume=50))
-					to_chat(user, "<span class='notice'>You wrench the [src] into place.</span>")
-					anchored = TRUE
-					state = 1
-		if(1)
-			if(istype(I, /obj/item/inkcartridge))
-				qdel(I)
-				visible_message("<span class ='notice'>[user] loads a Spacestar-brand ink cartridge into the [src]")
-				ink++
-				return
-			else if(I.tool_behaviour == TOOL_WRENCH)
-				if(I.use_tool(src, user, 20, volume=50))
-					to_chat(user, "<span class='notice'>You unwrench the [src].</span>")
-					anchored = FALSE
-					state = 0
+	if(istype(I, /obj/item/inkcartridge))
+		if(printing)
+			to_chat(user, "<span class='warning'>You must wait for the [src] to finish printing!")
+			return
+
+		qdel(I)
+		visible_message("<span class ='notice'>[user] loads a Spacestar-brand ink cartridge into the [src]")
+		ink++
+		return

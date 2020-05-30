@@ -457,7 +457,7 @@
 	var/sqlrowlist = ""
 	for (var/vote in numberedvotelist)
 		if (sqlrowlist != "")
-			sqlrowlist += ", " //a comma (,) at the start of the first row to insert will trigger a SQL error
+			sqlrowlist += ", " //a comma () at the start of the first row to insert will trigger a SQL error
 		sqlrowlist += "(Now(), [pollid], [vote], '[sanitizeSQL(ckey)]', INET_ATON('[sanitizeSQL(address)]'), '[sanitizeSQL(rank)]')"
 
 	//now lets delete their old votes (if any)

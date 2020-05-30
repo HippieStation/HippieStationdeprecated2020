@@ -16,7 +16,7 @@
 	name = "Garrote Handles"
 	result = /obj/item/garrotehandles
 	reqs = list(/obj/item/stack/cable_coil = 15,
-				/obj/item/stack/rods = 1,)
+				/obj/item/stack/rods = 1)
 	tools = list(/obj/item/weldingtool)
 	time = 120
 	category = CAT_WEAPONRY

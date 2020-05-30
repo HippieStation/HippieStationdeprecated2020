@@ -74,7 +74,7 @@
 	name = "one-hundred sided die"
 	result = /obj/item/dice/d00
 	reqs = list(/obj/item/inscripture = 1,
-				/obj/item/dice = 20,)
+				/obj/item/dice = 20)
 	time = 100
 
 /datum/crafting_recipe/tier1/lazarusinjector
@@ -118,7 +118,7 @@
 	name = "one telecrystal"
 	result = /obj/item/stack/telecrystal
 	reqs = list(/obj/item/inscripture = 1,
-				/obj/item/stack/ore/bluespace_crystal = 7,)
+				/obj/item/stack/ore/bluespace_crystal = 7)
 	time = 30
 
 /datum/crafting_recipe/tier2/shittyrevivewand
@@ -171,7 +171,7 @@
 				/obj/item/sord = 1,
 				/obj/item/upgradescroll = 1,
 				/obj/item/radio = 1,
-				/obj/item/stack/sheet/mineral/silver = 1,)
+				/obj/item/stack/sheet/mineral/silver = 1)
 
 	time = 50
 

@@ -28,7 +28,7 @@
 	throwforce = 1
 	throw_speed = 2
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("poked", "slightly cut", "given a paper cut to",) //imagine attacking someone with paper
+	attack_verb = list("poked", "slightly cut", "given a paper cut to") //imagine attacking someone with paper
 	siemens_coefficient = 0 //Means it's insulated
 	sharpness = IS_SHARP
 	resistance_flags = FLAMMABLE
