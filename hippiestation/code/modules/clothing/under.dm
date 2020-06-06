@@ -63,3 +63,19 @@
 /obj/item/clothing/under
 	random_sensor = FALSE
 	sensor_mode = SENSOR_COORDS
+
+/obj/item/clothing/under/color/red/gang
+	name = "Blood gang clothing"
+	desc = "Official clothing of the Bloods."
+
+/obj/item/clothing/under/color/blue/gang
+	name = "Crip gang clothing"
+	desc = "Official clothing of the Crips"
+
+/obj/item/clothing/under/suit_jacket/burgundy/gang
+	name = "Godfather suit"
+	desc = "A fancy suit worn by the leader of the Italian Mafia."
+
+/obj/item/clothing/under/suit_jacket/really_black/gang
+	name = "Mafioso suit"
+	desc = "A suit worn by members of the Italian Mafia."

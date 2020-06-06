@@ -103,6 +103,11 @@
 #define CAT_SANDWICH	"Sandwiches"
 #define CAT_SOUP	"Soups"
 #define CAT_SPAGHETTI	"Spaghettis"
+#define CAT_MAGIC	"Magic"
+#define CAT_TIER1	"Tier 1"
+#define CAT_TIER2	"Tier 2"
+#define CAT_TIER3	"Tier 3"
+#define CAT_TIER4	"Tier 4"
 
 #define RCD_FLOORWALL 1
 #define RCD_AIRLOCK 2

@@ -1431,6 +1431,15 @@
 					/obj/item/stack/packageWrap)
 	crate_name = "cargo supplies crate"
 
+/datum/supply_pack/service/inkcartridges
+	name = "Spacestar-brand Ink Crate"
+	desc = "Make your curator (and Spacestar) happy by ordering them some more ink for books!"
+	cost = 3000
+	contains = list(/obj/item/inkcartridge,
+					/obj/item/inkcartridge
+					)
+	crate_name = "Spacestar-brand ink crate"
+
 /datum/supply_pack/service/noslipfloor
 	name = "High-traction Floor Tiles"
 	desc = "Make slipping a thing of the past with thirty industrial-grade anti-slip floortiles!"

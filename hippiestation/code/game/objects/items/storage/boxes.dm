@@ -77,3 +77,15 @@
 /obj/item/storage/box/chickencubes/PopulateContents()
 	for(var/i in 1 to 4)
 		new cube_type(src)
+
+/obj/item/storage/box/ink
+	name = "Spacestar-brand ink box"
+	desc = "A patented storage for Spacestar-brand ink."
+	icon = 'hippiestation/icons/obj/storage.dmi'
+	icon_state = "inkbox"
+	illustration = null
+
+/obj/item/storage/box/ink/PopulateContents()
+	new /obj/item/inkcartridge(src)
+	new /obj/item/inkcartridge(src)
+	new /obj/item/inkcartridge(src)

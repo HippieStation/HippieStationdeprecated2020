@@ -629,5 +629,5 @@ GLOBAL_LIST_INIT(vox_sounds, list("," = 'hippiestation/sound/vox/_comma.ogg',
 "yourself" = 'hippiestation/sound/vox/yourself.ogg',
 "zero" = 'hippiestation/sound/vox/zero.ogg',
 "zone" = 'hippiestation/sound/vox/zone.ogg',
-"zulu" = 'hippiestation/sound/vox/zulu.ogg',))
+"zulu" = 'hippiestation/sound/vox/zulu.ogg'))
 #endif

@@ -122,3 +122,55 @@
 
 #undef FAXE_GOUT_TIME
 #undef FAXE_BURNWALL_TIME
+
+/obj/item/twohanded/binoculars/super
+	name = "super binoculars"
+	desc = "Enhanced binoculars. Design developed by Stargazer Instruments TM."
+	zoom_amt = 28
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon_state = "super_binoculars"
+
+/obj/item/twohanded/spear/hook
+	name = "hook spear"
+	desc = "An ancient spear variant that hooks on to its victims."
+	icon = 'hippiestation/icons/obj/weapons.dmi'
+	icon_state = "hookspear0"
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+
+/obj/item/twohanded/spear/hook/update_icon()
+	icon_state = "hookspear[wielded]"
+	return
+
+/obj/item/twohanded/spear/hook/attack(mob/living/M, mob/living/user)
+	if(wielded)
+		if(M != user)
+			user.pulling = M
+			user.grab_state = GRAB_AGGRESSIVE
+			to_chat(M, "<span class ='danger'>You have been hooked by the hook spear!")
+
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user)
+	if(item_flags & NOBLUDGEON)
+		return
+
+	if(force && HAS_TRAIT(user, TRAIT_PACIFISM))
+		to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
+		return
+	if(special_attack)// hippie start -- special attacks, handled by afterattack
+		add_fingerprint(user)
+		log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: SPECIAL ATTACK)")
+		return // hippie end
+	if(!force)
+		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), 1, -1)
+	else if(hitsound)
+		playsound(loc, hitsound, get_clamped_volume(), 1, -1)
+
+	M.lastattacker = user.real_name
+	M.lastattackerckey = user.ckey
+
+	user.do_attack_animation(M)
+	M.attacked_by(src, user)
+
+	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+	add_fingerprint(user)

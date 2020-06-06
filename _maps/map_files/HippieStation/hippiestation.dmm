@@ -15981,7 +15981,6 @@
 /obj/item/radio/intercom{
 	pixel_y = 25
 	},
-/obj/item/choice_beacon/crafting,
 /turf/open/floor/engine/cult,
 /area/library)
 "aTA" = (
@@ -18353,8 +18352,8 @@
 /area/library)
 "bbg" = (
 /obj/structure/table/wood,
-/obj/item/camera_film,
-/obj/item/camera_film,
+/obj/machinery/computer/craftingbookcatalog,
+/obj/item/inkcartridge,
 /turf/open/floor/wood,
 /area/library)
 "bbh" = (
@@ -18372,6 +18371,7 @@
 	pixel_x = 1;
 	pixel_y = 9
 	},
+/obj/item/camera_film,
 /turf/open/floor/wood,
 /area/library)
 "bbk" = (

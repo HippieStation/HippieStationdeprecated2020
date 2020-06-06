@@ -53,7 +53,7 @@
 	desc = "A primer on basic pantomime."
 	icon_state ="bookmime"
 
-/obj/item/book/mimery/attack_self(mob/user,)
+/obj/item/book/mimery/attack_self(mob/user)
 	user.set_machine(src)
 	var/dat = "<B>Guide to Dank Mimery</B><BR>"
 	dat += "Teaches one of three classic pantomime routines, allowing a practiced mime to conjure invisible objects into corporeal existence.<BR>"
