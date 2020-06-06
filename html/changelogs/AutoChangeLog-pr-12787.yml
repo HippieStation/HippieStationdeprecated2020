@@ -1,0 +1,17 @@
+author: carlopault
+delete-after: true
+changes:
+  - rscadd: 'The library now has a computer that can be used to print crafting books:
+      Spacestar Ordering Book Catalog. The computer operates on special ink cartridges
+      that the curator spawns with (1 cartridge spawns on the computer).'
+  - rscadd: Added many new crafting books (books that give you crafting recipes)
+  - rscadd: Added new items to the game that can be crafted via the crafting books
+      obtainable through the Spacestar Ordering Book Catalog.
+  - tweak: Removed the crafting book beacon from the library backroom as it no longer
+      has a purpose.
+  - tweak: Cargo can now order Spacestar-brand ink cartridges.
+  - balance: The curator has been given more things to do now (duh).
+  - soundadd: New sounds for one of the new items.
+  - imageadd: New sprites for the new stuff (Sprites by Mr. Epic Sax and Punkinguy).
+  - code_imp: Changed the obj pathing of crafting granter books. All of this was coded
+      with the help of Neo.
