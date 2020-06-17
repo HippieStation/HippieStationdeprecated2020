@@ -73,6 +73,18 @@
 	icon_state = "soapsyndie"
 	cleanspeed = 5 //faster than mop so it is useful for traitors who want to clean crime scenes
 
+/obj/item/soap/magic
+	name = "magic soap"
+	desc = "Magic! In soap!"
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon_state = "magicsoap"
+	uses = 500
+	cleanspeed = 5
+
+/obj/item/soap/magic/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/slippery, 90)
+
 /obj/item/soap/suicide_act(mob/user)
 	user.say(";FFFFFFFFFFFFFFFFUUUUUUUDGE!!", forced="soap suicide")
 	user.visible_message("<span class='suicide'>[user] lifts [src] to [user.p_their()] mouth and gnaws on it furiously, producing a thick froth! [user.p_they(TRUE)]'ll never get that BB gun now!</span>")

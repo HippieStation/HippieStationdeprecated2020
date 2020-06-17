@@ -52,7 +52,7 @@
 
 /datum/crafting_recipe/tier1/magicsoap
 	name = "magical soap"
-	result = /obj/item/soap
+	result = /obj/item/soap/magic
 	reqs = list(/obj/item/inscripture = 1,
 				/datum/reagent/water = 50,
 				/datum/reagent/space_cleaner = 25
