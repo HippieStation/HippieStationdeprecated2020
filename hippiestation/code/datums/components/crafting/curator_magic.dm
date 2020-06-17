@@ -15,7 +15,7 @@
 	reqs = list(/obj/item/organ/brain = 1,
 				/obj/item/stack/sheet/plasteel = 5,
 				/obj/item/stack/sheet/metal = 100,
-				/datum/reagent/blood = 200
+				/datum/reagent/blood = 200,
 				)
 	tools = list()
 	time = 150
@@ -25,7 +25,7 @@
 	result = /obj/item/gun/magic/wand/door/shitty
 	reqs = list(/obj/item/inscripture = 1,
 				/obj/item/electronics/airlock = 3,
-				/obj/item/stack/rods = 1
+				/obj/item/stack/rods = 1,
 				)
 	time = 70
 
@@ -36,7 +36,7 @@
 				/obj/item/stack/packageWrap = 1,
 				/obj/item/stamp = 1,
 				/obj/item/pen = 1,
-				/obj/item/stock_parts/manipulator = 1
+				/obj/item/stock_parts/manipulator = 1,
 				)
 	time = 40
 
@@ -46,7 +46,7 @@
 	reqs = list(/obj/item/inscripture = 1,
 				/obj/item/toy/crayon = 1,
 				/obj/item/stack/rods = 1,
-				/obj/item/stack/ducttape = 1
+				/obj/item/stack/ducttape = 1,
 				)
 	time = 60
 
@@ -55,8 +55,7 @@
 	result = /obj/item/soap
 	reqs = list(/obj/item/inscripture = 1,
 				/datum/reagent/water = 50,
-				/datum/reagent/space_cleaner = 25,
-				/obj/item/clothing/shoes = 1
+				/datum/reagent/space_cleaner = 25
 				)
 	time = 50
 
@@ -66,7 +65,7 @@
 	reqs = list(/obj/item/inscripture = 1,
 				/obj/item/upgradescroll = 1,
 				/obj/item/circuitboard/machine/clonepod = 1,
-				/obj/item/organ/heart = 1
+				/obj/item/organ/heart = 1,
 				)
 	time = 100
 
@@ -130,7 +129,7 @@
 				/obj/item/reagent_containers/pill/patch/silver_sulf = 1,
 				/obj/item/reagent_containers/pill/patch/styptic = 1,
 				/datum/reagent/medicine/charcoal = 30,
-				/datum/reagent/medicine/perfluorodecalin = 15
+				/datum/reagent/medicine/perfluorodecalin = 15,
 				)
 	time = 100
 
@@ -140,7 +139,7 @@
 	reqs = list(/obj/item/inscripture = 1,
 				/obj/item/immortality_talisman = 1,
 				/obj/item/stack/ore/bluespace_crystal = 1,
-				/obj/item/stack/rods = 1
+				/obj/item/stack/rods = 1,
 				)
 	time = 100
 
@@ -149,9 +148,9 @@
 	result = /obj/item/reagent_containers/food/snacks/monkeycube/monstercube
 	reqs = list(/obj/item/inscripture = 1,
 				/obj/item/reagent_containers/food/snacks/monkeycube = 1,
-				/obj/item/reagent_containers/food/snacks/meat/slab/corgi = 1,
-				/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard = 1,
-				/obj/item/reagent_containers/food/snacks/meat/slab/human = 1
+				/obj/item/reagent_containers/food/snacks/monkeycube/cowcube = 1,
+				/obj/item/reagent_containers/food/snacks/monkeycube/chickencube = 1,
+				/datum/reagent/toxin/mutagen = 1
 				)
 	time = 50
 
@@ -160,7 +159,7 @@
 	result = /obj/item/soulstone/anybody/chaplain
 	reqs = list(/obj/item/inscripture = 1,
 				/obj/item/shard = 1,
-				/datum/reagent/blood = 400
+				/datum/reagent/blood = 400,
 				)
 	time = 50
 
@@ -182,7 +181,7 @@
 				/obj/item/nullrod = 1,
 				/obj/machinery/light/small = 1,
 				/obj/machinery/light = 1,
-				/obj/item/flashlight = 1
+				/obj/item/flashlight = 1,
 				)
 	time = 100
 
@@ -212,7 +211,7 @@
 				/obj/item/stock_parts/manipulator/pico = 5,
 				/obj/item/stock_parts/cell/high = 4,
 				/obj/item/stock_parts/subspace/amplifier = 1,
-				/obj/item/stock_parts/subspace/transmitter = 1
+				/obj/item/stock_parts/subspace/transmitter = 1,
 				)
 	tools = list(/obj/item/tier2)
 	time = 250
@@ -221,7 +220,7 @@
 	name = "one use Die of Fate"
 	result = /obj/item/dice/d20/fate/one_use
 	reqs = list(/obj/item/inscripture = 1,
-				/obj/item/dice/d100 = 1
+				/obj/item/dice/d100 = 1,
 				)
 	time = 40
 
@@ -230,6 +229,6 @@
 	result = /obj/item/nullrod
 	reqs = list(/obj/item/melee/ghost_sword = 1,
 				/obj/item/upgradescroll = 1,
-				/datum/reagent/water/holywater = 100
+				/datum/reagent/water/holywater = 100,
 				)
 	time = 60
