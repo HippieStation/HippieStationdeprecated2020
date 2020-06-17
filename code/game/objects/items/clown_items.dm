@@ -78,7 +78,12 @@
 	desc = "Magic! In soap!"
 	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "magicsoap"
-	cleanspeed = 15
+	cleanspeed = 5
+	uses = 500
+
+/obj/item/soap/magic/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/slippery, 90)
 
 /obj/item/soap/suicide_act(mob/user)
 	user.say(";FFFFFFFFFFFFFFFFUUUUUUUDGE!!", forced="soap suicide")

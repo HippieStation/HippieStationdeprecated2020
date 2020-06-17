@@ -55,8 +55,7 @@
 	result = /obj/item/soap
 	reqs = list(/obj/item/inscripture = 1,
 				/datum/reagent/water = 50,
-				/datum/reagent/space_cleaner = 25,
-				/obj/item/clothing/shoes = 1,
+				/datum/reagent/space_cleaner = 25
 				)
 	time = 50
 
