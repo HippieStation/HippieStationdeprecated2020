@@ -154,19 +154,71 @@
 	desc = "Magic on a piece of paper."
 	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "inscripture"
+	w_class = WEIGHT_CLASS_TINY
 	throw_range = 1
+	layer = ABOVE_OBJ_LAYER + 0.1
+	var/used = 0
+	var/i
 
-/obj/item/inscripture/attack_self(mob/user)
-	var/choice = alert(user,"You begin to fold the magical inscripture... (WARNING: This is a bad idea)",,"Yes, finish folding it.",,"On second thought...")
-	switch(choice)
-		if("Yes, finish folding it.")
-			user.visible_message("<span class='warning'>[user] folds the [src] and is sucked into nothingness!")
-			var/turf/T = get_turf(user)
-			new /obj/effect/decal/cleanable/molten_object(T)
-			var/turf/dest = locate(rand(30, 160), rand(40, 160), rand(2, 9))
-			do_teleport(user, dest, 8, asoundin = 'sound/effects/phasein.ogg', channel = TELEPORT_CHANNEL_MAGIC)
-			new /obj/effect/particle_effect/sparks(loc)
-			playsound(loc, "sparks", 50, 1)
-			qdel(src)
-		if("On second thought...")
-			return
+/obj/item/inscripture/examine(mob/user)
+	. = ..()
+	if(used)
+		. += "<span class='notice'>This one seems to be used and drained of its magical power. It will likely dissipate soon.</span>"
+
+/obj/item/inscripture/attack_self(mob/living/user)
+	if(!used)
+		var/choice = alert(user,"You begin to fold the magical inscripture... (WARNING: This is a bad idea)",,"Yes, finish folding it.",,"On second thought...")
+		switch(choice)
+			if("Yes, finish folding it.")
+				used = 1
+				icon_state = "usedinscripture"
+				update_icon()
+				user.visible_message("<span class='warning'>[user] folds the [src] and is sucked into nothingness!")
+				new /obj/effect/decal/cleanable/molten_object(get_turf(user))
+				var R = rand(15, 250)
+				teleportation(user, R)
+			if("On second thought...")
+				return
+
+/obj/item/inscripture/proc/teleportation(mob/living/user, teleports)
+	for(i = 0, i <= teleports, i++)
+		addtimer(CALLBACK(src, .proc/teleportation2, user, teleports), 3 - (i/40))
+		if(i == 0)
+			sleep(13)
+		else if(i == 1) //These sleeps make it so that it slowly teleports at first and then speeds up. Timers couldnt help me here.
+			sleep(10)
+		else if(i == 2)
+			sleep(8)
+		else if(i == 3)
+			sleep(6)
+		else if(i == 4)
+			sleep(5)
+		else if(i == 5)
+			sleep(3)
+		else if(i == 6)
+			sleep(1.5)
+		else if(i == 7)
+			sleep(0.7)
+		else if(i == 8)
+			sleep(0.35)
+		else if(i == 9)
+			sleep(0.17)
+		else
+			sleep(0.08)
+		//addtimer(CALLBACK(src, .proc/teleportation2, user, teleports), 10 - (i/4))
+
+	addtimer(CALLBACK(src, .proc/delete), 2*teleports)
+
+/obj/item/inscripture/proc/teleportation2(mob/living/user, teleports)
+	var/turf/dest = locate(rand(1, 300), rand(1, 300), rand(2, 9))
+
+	//if (get_turf(dest) == /turf/open/lava/smooth/lava_land_surface)
+	//	return
+
+	do_teleport(user, dest, 8, asoundin = 'sound/effects/podwoosh.ogg', channel = TELEPORT_CHANNEL_MAGIC)
+	new /obj/effect/particle_effect/sparks(loc)
+	playsound(loc, "sparks", 50, 1)
+
+/obj/item/inscripture/proc/delete()
+	visible_message("<span class ='warning'>The [src] dissipates!")
+	qdel(src)

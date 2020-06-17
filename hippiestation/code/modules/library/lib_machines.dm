@@ -42,7 +42,7 @@
 	var/inkcost = 0
 	var/corporations = list("Exit", "Nanotrasen Approved Books", "Syndicate nonsense books", "Wizard Federation drivel")
 	//
-	var/booklistNT = list("Exit", "0.5u - Grabar: A Slow Mindkill", "1u - UAW Environment", "0.75u - Squod Word's Astrological Journal", "2u - Exoplanet Exploration Vol. 13: Trapping", "1.5u - The Sound of Clown", "2u - Robert Lang's Origami Unveiled Vol. 1", "0.25u - The Mark of Cain")
+	var/booklistNT = list("Exit", "0.25u - Grabar: A Slow Mindkill", "1u - UAW Environment", "0.75u - Squod Word's Astrological Journal", "2u - Exoplanet Exploration Vol. 13: Trapping", "1.5u - The Sound of Clown", "2u - Robert Lang's Origami Unveiled Vol. 1", "0.5u - The Mark of Cain")
 	//
 	var/booklistSyndicate = list("Exit", "2u - USSR-3 Public Disturbance Manual", "1.5u - Straight Outa' Compton", "2u - Anarchist's Compendium", "2.25u - CODEWORD Arabian")
 	//
@@ -119,8 +119,8 @@
 					else
 						return
 
-				else if(book == "0.25u - The Mark of Cain")
-					if(checkprice(user, 0.25) == 1)
+				else if(book == "0.5u - The Mark of Cain")
+					if(checkprice(user, 0.5) == 1)
 						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe/vampire), 110)
 					else
 						return
@@ -137,8 +137,8 @@
 					else
 						return
 
-				else if(book == "0.5u - Grabar: A Slow Mindkill")
-					if(checkprice(user, 0.5) == 1)
+				else if(book == "0.25u - Grabar: A Slow Mindkill")
+					if(checkprice(user, 0.25) == 1)
 						addtimer(CALLBACK(src, .proc/print, /obj/item/book/granter/crafting_recipe/audio), 110)
 					else
 						return

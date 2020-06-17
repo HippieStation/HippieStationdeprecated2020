@@ -149,9 +149,9 @@
 	result = /obj/item/reagent_containers/food/snacks/monkeycube/monstercube
 	reqs = list(/obj/item/inscripture = 1,
 				/obj/item/reagent_containers/food/snacks/monkeycube = 1,
-				/obj/item/reagent_containers/food/snacks/meat/slab/corgi = 1,
-				/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard = 1,
-				/obj/item/reagent_containers/food/snacks/meat/slab/human = 1,
+				/obj/item/reagent_containers/food/snacks/monkeycube/cowcube = 1,
+				/obj/item/reagent_containers/food/snacks/monkeycube/chickencube = 1,
+				/datum/reagent/toxin/mutagen = 1
 				)
 	time = 50
 

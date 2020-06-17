@@ -164,8 +164,8 @@
 	tools = list(TOOL_WELDER)
 	time = 40
 
-/datum/crafting_recipe/mousetrap
-	name = "mousetrap"
+/datum/crafting_recipe/learned/mousetrap
+	name = "mouse trap"
 	result = /obj/item/assembly/mousetrap
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 1,
 				/obj/item/stack/rods = 1,
@@ -187,8 +187,8 @@
 
 /datum/crafting_recipe/learned/explosivemine
 	name = "explosive mine"
-	result = /obj/item/mine
-	reqs = list(/obj/item/stack/sheet/metal = 10,
+	result = /obj/item/mine/explosive
+	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,
 				/obj/item/stack/rods = 5,
 				/obj/item/assembly/prox_sensor = 1,
@@ -202,7 +202,7 @@
 /datum/crafting_recipe/learned/plasmamine
 	name = "plasma-fire mine"
 	result = /obj/item/mine/gas/plasma
-	reqs = list(/obj/item/stack/sheet/metal = 10,
+	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,
 				/obj/item/stack/rods = 5,
 				/obj/item/assembly/prox_sensor = 1,
@@ -216,7 +216,7 @@
 /datum/crafting_recipe/learned/honkmine
 	name = "HONK mine"
 	result = /obj/item/mine/sound
-	reqs = list(/obj/item/stack/sheet/metal = 10,
+	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,
 				/obj/item/stack/rods = 5,
 				/obj/item/assembly/prox_sensor = 1,
@@ -229,7 +229,7 @@
 /datum/crafting_recipe/learned/bwoinkmine
 	name = "bwoink mine"
 	result = /obj/item/mine/sound/bwoink
-	reqs = list(/obj/item/stack/sheet/metal = 10,
+	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/cable_coil = 10,
 				/obj/item/stack/rods = 5,
 				/obj/item/assembly/prox_sensor = 1,
@@ -423,7 +423,7 @@
 /datum/crafting_recipe/learned/implantbreaker
 	name = "illegal improvised implant breaker"
 	result = /obj/item/implanter/breaker
-	reqs = list(/datum/reagent/uranium = 10,
+	reqs = list(/datum/reagent/toxin/acid = 19,
 				/datum/reagent/iron = 10,
 				/obj/item/reagent_containers/syringe = 1,
 				/obj/item/stack/cable_coil = 2,
