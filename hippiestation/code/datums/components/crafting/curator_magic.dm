@@ -15,7 +15,7 @@
 	reqs = list(/obj/item/organ/brain = 1,
 				/obj/item/stack/sheet/plasteel = 5,
 				/obj/item/stack/sheet/metal = 100,
-				/datum/reagent/blood = 200,
+				/datum/reagent/blood = 200
 				)
 	tools = list()
 	time = 150
