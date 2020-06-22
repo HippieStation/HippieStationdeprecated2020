@@ -181,7 +181,7 @@
 				return
 
 /obj/item/inscripture/proc/teleportation(mob/living/user, teleports)
-	for(i = 0, i <= teleports, i++)
+	for(i = 1, i <= teleports, i++)
 		addtimer(CALLBACK(src, .proc/teleportation2, user, teleports), 3 - (i/40))
 		if(i == 0)
 			sleep(13)
@@ -212,9 +212,15 @@
 /obj/item/inscripture/proc/teleportation2(mob/living/user, teleports)
 	var/turf/dest = locate(rand(1, 300), rand(1, 300), rand(2, 9))
 
-	//if (get_turf(dest) == /turf/open/lava/smooth/lava_land_surface)
-	//	return
+//	if(istype(get_turf(dest), /turf/open/lava/)) These commented out parts were used for debugging.
+//		to_chat(world, "RETURNED: [get_turf(dest)]")
+//		return .(user, teleports)
+	if(istype(get_turf(dest), /turf/open/lava/smooth/lava_land_surface) || istype(get_turf(dest), /turf/open/floor/plating/asteroid/basalt/lava_land_surface) || istype(get_turf(dest), /turf/closed/mineral/random))
+//		to_chat(world, "RETURNED: [get_turf(dest)]")
+		return .(user, teleports)
 
+//	var/turf/thing = get_turf(dest)
+//	to_chat(world, "WE'RE IN: [thing] [thing.type]")
 	do_teleport(user, dest, 8, asoundin = 'sound/effects/podwoosh.ogg', channel = TELEPORT_CHANNEL_MAGIC)
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, "sparks", 50, 1)
