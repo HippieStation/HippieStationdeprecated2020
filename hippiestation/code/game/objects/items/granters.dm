@@ -6,7 +6,7 @@
 	var/static/list/crafting_book_list
 	if(!crafting_book_list)
 		crafting_book_list = list()
-		var/list/templist = typesof(/obj/item/book/granter/crafting_recipe)
+		var/list/templist = typesof(/obj/item/book/granter/crafting_recipe/)
 		for(var/V in templist)
 			var/atom/A = V
 			crafting_book_list[initial(A.name)] = A
@@ -85,7 +85,7 @@
 	name = "M'`nt a'd B,`'e"
 	desc = "Obsession with madness or a maddening obsession?"
 	crafting_recipe_types = list(
-		/datum/crafting_recipe/tier1/obelisk
+		/datum/crafting_recipe/tier1/obelisk,
 		)
 	icon_state = "book1"
 	remarks = list("A wizard really wrote this? Huh.","... magic...","What are the magic words?","Hammerman...what?","The accursed knowledge, I can feel it flowing.","How did Nanotrasen get ahold of this book?","Where do I find a wendigo?","Magic is divided into...","Most powerful force in the universe...")
@@ -126,7 +126,7 @@
 		/datum/crafting_recipe/learned/explosivemine,
 		/datum/crafting_recipe/learned/plasmamine,
 		/datum/crafting_recipe/learned/honkmine,
-		/datum/crafting_recipe/learned/bwoinkmine
+		/datum/crafting_recipe/learned/bwoinkmine,
 	)
 	icon_state = "trappers"
 	remarks = list("I never knew that thrumbos could get drunk!","I don't think plasma is very effective on Lavaland creatures...","Why don't we have traps for space carps?","Humans have hunted 310 species to extinction... wow.","Nuclear landmines aren't that bad of an idea!","...so hunting IS still necessary!","According to this law passed in 1918, it is still illegal to hunt swans.","Santa got caught in the box-and-bait trap at Fort Knox?")
@@ -139,7 +139,7 @@
 		/datum/crafting_recipe/learned/musicalbikehorn,
 		/datum/crafting_recipe/learned/toysaxophone,
 		/datum/crafting_recipe/learned/toyguitar,
-		/datum/crafting_recipe/learned/vuvuzela
+		/datum/crafting_recipe/learned/vuvuzela,
 	)
 	icon_state = "c_minor_manual"
 	remarks = list("HONK!","Where is Clown Planet anyway?","Why do I hear laughter?","So many honks...","Haha!","Clowns are exposed to HONKING at a very young age.","This book is written in crayon!","There is a rotten banana peel stuck on the page...","Since when can clowns do that?")
@@ -151,7 +151,7 @@
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/learned/poster,
 		/datum/crafting_recipe/learned/pottedplant,
-		/datum/crafting_recipe/learned/statuebust
+		/datum/crafting_recipe/learned/statuebust,
 		)
 	icon_state = "workplace"
 	remarks = list("Janitors were reprimanded for not cleaning?","I've never seen a floor mat before.","UAW seems to have loved their workers a little too much...","You had to pay to be in a worker union? Who made up that balarky?","So the Great Scandal of 2358 is how unions got phased out...","Is Nanotrasen totalitarian? Kind of hard to tell given how great it is.","It seems unions rose to popularity during the industrial revolution.","I feel old reading this.")
@@ -162,7 +162,7 @@
 	desc = "Stargazing is a not-so-simple art. First you must understand the various stars and their meanings."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/learned/binoculars,
-		/datum/crafting_recipe/learned/superbinoculars
+		/datum/crafting_recipe/learned/superbinoculars,
 		)
 	icon_state = "stargazing"
 	remarks = list("How do you find the North Star in space?","My zodiac sign is... Cancer.","Is astrology even relevant anymore?","...the Draco star, 'tail of the dolphin'.","The Orion star! From Orion Trail.")
@@ -192,7 +192,7 @@
 	desc = "Paris is where it all began."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/learned/taperecorder,
-		/datum/crafting_recipe/learned/recordtape
+		/datum/crafting_recipe/learned/recordtape,
 		)
 	icon_state = "a_slow_mindkill"
 	remarks = list("Yeah I know sound waves can't travel through a vacuum.","The top of a wave is called a crest and the bottom is called the trough.","zzzzzzzz...","Says here that the first sound recording device was invented in Paris on old Earth.","Louder = higher wave yada yada yada...","Why isn't Graham spelled Gram?","Who leaves cassette tapes in a forest?")
@@ -210,7 +210,7 @@
 		/datum/crafting_recipe/learned/redjumpsuit,
 		/datum/crafting_recipe/learned/bluejumpsuit,
 		/datum/crafting_recipe/learned/godfathersuit,
-		/datum/crafting_recipe/learned/mafiososuit
+		/datum/crafting_recipe/learned/mafiososuit,
 		)
 	icon_state = "gang"
 	remarks = list("How do I hold my gun sideways if dynamic hand controls aren't a thing?","Turns out the Italian Mafia hated 'The Godfather'...","What if security restricts access to chemistry?","Step 27: Raid the vault...","People actually thought of Al Capone as a 'modern day' robinhood? Wow.","Step 30: Assassinate the captain.","Step 14: Gain all access.","Step 50: Remove Central Command as the leading power of Nanotrasen.", "How am I prospering if I'm living in constant fear?")
@@ -221,7 +221,7 @@
 	desc = "This book, a relic of the past, thoroughly explains the mythological creature know as a 'vampire'."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/learned/witchhunterhat,
-		/datum/crafting_recipe/learned/woodenstake
+		/datum/crafting_recipe/learned/woodenstake,
 		)
 	icon_state = "vampire"
 	remarks = list("Now I will know why I fear the night... in space.","The Syndicate employs vampires? Figures.","Vampire clowns are a scary thought.","If vampires grow stronger with more blood they have and we have technology to synthesize unlimited amounts of blood then why haven't vampires become dominant?","I wonder how the Blood Cult and vampires would get along.", "Vlad The Impaler?", "Vampires are totally invisible to cameras and mirrors...")
@@ -233,7 +233,7 @@
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/learned/ballisticcrossbow,
 		/datum/crafting_recipe/learned/hookspear,
-		/datum/crafting_recipe/learned/edagger
+		/datum/crafting_recipe/learned/edagger,
 		)
 	icon_state = "illegalweapons"
 	remarks = list("Adnan Khashoggi eh? What a mouthful.","So he makes weapons from thousands of years ago and modern day technology?","I wish I could go to Victoria College and get off this dump of a station.","...weapons deals with Nanotrasen at one point?","This guy knows how to grow a good stache!","I wonder what it's like being in the one percent...","There was a plot by the Space Wizard Federation to assassinate him? Typical.")

@@ -34,7 +34,6 @@
 	result = /obj/item/upgradescroll
 	reqs = list(/obj/item/inscripture = 1,
 				/obj/item/stack/packageWrap = 1,
-				/obj/item/stamp = 1,
 				/obj/item/pen = 1,
 				/obj/item/stock_parts/manipulator = 1
 				)
@@ -52,11 +51,10 @@
 
 /datum/crafting_recipe/tier1/magicsoap
 	name = "magical soap"
-	result = /obj/item/soap
+	result = /obj/item/soap/magic
 	reqs = list(/obj/item/inscripture = 1,
 				/datum/reagent/water = 50,
-				/datum/reagent/space_cleaner = 25,
-				/obj/item/clothing/shoes = 1
+				/datum/reagent/space_cleaner = 25
 				)
 	time = 50
 
@@ -149,9 +147,9 @@
 	result = /obj/item/reagent_containers/food/snacks/monkeycube/monstercube
 	reqs = list(/obj/item/inscripture = 1,
 				/obj/item/reagent_containers/food/snacks/monkeycube = 1,
-				/obj/item/reagent_containers/food/snacks/meat/slab/corgi = 1,
-				/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard = 1,
-				/obj/item/reagent_containers/food/snacks/meat/slab/human = 1
+				/obj/item/reagent_containers/food/snacks/monkeycube/cowcube = 1,
+				/obj/item/reagent_containers/food/snacks/monkeycube/chickencube = 1,
+				/datum/reagent/toxin/mutagen = 1
 				)
 	time = 50
 
