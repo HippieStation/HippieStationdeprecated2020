@@ -6,6 +6,20 @@
 	var/fart_fly = 12
 	var/smug_cd = 0
 
+/proc/spawnfartgas(mob/living/carbon/user, is_super_fart)
+	var/turf/fartturf = get_turf(user)
+	var/datum/gas_mixture/stank = new
+	var/amount
+	if(is_super_fart)
+		amount = pick(20, 21, 22, 23, 24, 25)
+	else
+		amount = pick(1, 2, 3, 4, 5)
+	ADD_GAS(/datum/gas/miasma, stank.gases)
+	stank.gases[/datum/gas/miasma][MOLES] = amount //amount of gas spawned
+	stank.temperature = BODYTEMP_NORMAL  //otherwise we have gas below 2.7K which will break our lag generator
+	fartturf.assume_air(stank)
+	fartturf.air_update_turf()
+
 /datum/emote/living/carbon/fart
 	key = "fart"
 	key_third_person = "farts"
@@ -21,6 +35,9 @@
 	if(!B)
 		to_chat(user, "<span class='warning'>You don't have a butt!</span>")
 		return
+
+	spawnfartgas(user, 0)
+
 	for(var/mob/living/M in get_turf(user))
 		if(M == user)
 			continue
@@ -165,8 +182,10 @@
 	else
 		for(var/i in 1 to 10)
 			playsound(user, 'hippiestation/sound/effects/fart.ogg', 100, 1, 5)
+			spawnfartgas(user, 0)
 			sleep(1)
 		playsound(user, 'hippiestation/sound/effects/fartmassive.ogg', 75, 1, 5)
+		spawnfartgas(user, 1)
 		var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
 
 		if(STR)
