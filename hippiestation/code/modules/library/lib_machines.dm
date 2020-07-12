@@ -197,10 +197,6 @@
 
 /obj/machinery/computer/craftingbookcatalog/examine(mob/user)
 	. = ..()
-	if(!anchored)
-		. += "<span class='notice'>The <i>bolts</i> on the bottom are unsecured.</span>"
-	else
-		. += "<span class='notice'>It's secured in place with <b>bolts</b>.</span>"
 	if(ink > 0 && ink < 2)
 		. += "<span class ='notice'>The [src] has <b>1</b> Spacestar-brand ink cartridge loaded."
 	else

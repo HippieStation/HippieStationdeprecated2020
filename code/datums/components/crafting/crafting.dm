@@ -445,6 +445,7 @@
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier2/shittysafetywand)
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier2/monstercube)
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier2/soulshard)
+					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier3/obelisk)
 					if(specialmessage2 == 1)
 						to_chat(usr, "<span class='warning'>The accursed knowledge of the greater obelisk has given you new magic crafting recipes!")
 						to_chat(usr, "<spance class ='notice'>This Obelisk is far more adept at conducting free flowing universal magical radicals. There appear to be odd magical frequencies at play here which manipulate our plain of existence. With more advanced parts you could probably tap directly into the source.")
