@@ -161,13 +161,6 @@
 					category_override += "H.O.N.K"
 				if(mech_types & EXOSUIT_MODULE_PHAZON)
 					category_override += "Phazon"
-/obj/machinery/mecha_part_fabricator/proc/output_part_cost(datum/design/D)
-	var/i = 0
-	var/output
-	for(var/c in D.materials)
-		output += "[i?" | ":null][get_resource_cost_w_coeff(D, c)] [material2name(c)]"
-		i++
-	return output
 
 
 	var/list/part = list(
@@ -199,17 +192,6 @@
 			var/datum/material/M = mat_id
 			var/list/material_info = list()
 			var/amount = materials.materials[mat_id]
-			var/datum/material/M = materials.materials[mat_id]
-			output += "<span class=\"res_name\">[M.name]: </span>[M.amount] cm&sup3;"
-			if(M.amount >= MINERAL_MATERIAL_AMOUNT)
-				output += "<span style='font-size:80%;'>- Remove \[<a href='?src=[REF(src)];remove_mat=1;material=[M.id]'>1</a>\]"
-				if(M.amount >= (MINERAL_MATERIAL_AMOUNT * 10))
-					output += " | \[<a href='?src=[REF(src)];remove_mat=10;material=[M.id]'>10</a>\]"
-				output += " | \[<a href='?src=[REF(src)];remove_mat=50;material=[M.id]'>50</a>\]</span>"
-			output += "<br>"
-	else
-		output += "<font color='red'>No material storage connected, please contact the quartermaster.</font><br>"
-	return output
 
 			material_info = list(
 				"name" = M.name,
