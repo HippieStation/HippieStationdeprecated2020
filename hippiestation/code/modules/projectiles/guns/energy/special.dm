@@ -350,6 +350,15 @@
 
 //////////////////HIPPIE CODE//////////////////////
 
+/obj/item/gun/energy/wormhole_projector/magic
+	name = "magic portal gun"
+	desc = "A magically powered gun that is capable of creating wormholes."
+
+/obj/item/gun/energy/gravity_gun/magic
+	name = "magic gravity gun"
+	desc = "This magical gun can shoot pure gravity! Who knows how it works?"
+	power = 6
+
 /obj/item/gun/energy/watcherprojector
 	name = "watcher projector"
 	desc = "A spiny, gruesome tool which reproduces the icy beam of a watcher, shattering rock and freezing individuals."

@@ -1,4 +1,4 @@
-/obj/item/choice_beacon/crafting
+/obj/item/choice_beacon/crafting //no longer used
 	name = "Nanotrasen Brand Crafting Book Summoning Device"
 	desc = "The NBCBSD. Summon a crafting book of your choice with the simple press of a button! Fit for curators everywhere."
 
@@ -12,7 +12,9 @@
 			crafting_book_list[initial(A.name)] = A
 	return crafting_book_list
 
-//Crafting Recipe books
+//***********************
+//*Crafting Recipe books*
+//***********************
 
 /obj/item/book/granter/crafting_recipe/
 	name = "Anarchist's Compendium"
@@ -91,30 +93,11 @@
 	remarks = list("A wizard really wrote this? Huh.","... magic...","What are the magic words?","Hammerman...what?","The accursed knowledge, I can feel it flowing.","How did Nanotrasen get ahold of this book?","Where do I find a wendigo?","Magic is divided into...","Most powerful force in the universe...")
 	oneuse = TRUE
 
-/obj/item/book/granter/crafting_recipe/obelisk/attack_self(mob/user)
-	if(reading)
-		to_chat(user, "<span class='warning'>You're already reading this!</span>")
-		return FALSE
-	if(!user.can_read(src))
-		return FALSE
-	if(already_known(user))
-		return FALSE
-	if(used && oneuse)
-		recoil(user)
-	else
-		on_reading_start(user)
-		reading = TRUE
-		for(var/i=1, i<=pages_to_mastery, i++)
-			if(!turn_page(user))
-				on_reading_stopped()
-				reading = FALSE
-				return
-		if(do_after(user,50, user))
-			on_reading_finished(user)
-			to_chat(user, "<span class ='warning'>[src] vanishes into thin air.")
-			qdel(src)
-		reading = FALSE
-	return TRUE
+/obj/item/book/granter/crafting_recipe/obelisk/on_reading_finished(mob/user)
+	..()
+	to_chat(user, "<span class ='warning'>[src] vanishes into thin air.")
+	qdel(src)
+
 
 /obj/item/book/granter/crafting_recipe/trapping
 	name = "Exoplanet Exploration Vol. 13: Trapping"
@@ -236,13 +219,80 @@
 		/datum/crafting_recipe/learned/edagger,
 		)
 	icon_state = "illegalweapons"
-	remarks = list("Adnan Khashoggi eh? What a mouthful.","So he makes weapons from thousands of years ago and modern day technology?","I wish I could go to Victoria College and get off this dump of a station.","...weapons deals with Nanotrasen at one point?","This guy knows how to grow a good stache!","I wonder what it's like being in the one percent...","There was a plot by the Space Wizard Federation to assassinate him? Typical.")
+	remarks = list("Adnan Khashoggi eh? What a mouthful.","So he makes weapons from thousands of years ago and weapons with modern day technology?","I wish I could go to Victoria College and get off this dump of a station.","...weapons deals with Nanotrasen at one point?","This guy knows how to grow a good stache!","I wonder what it's like being in the one percent...","There was a plot by the Space Wizard Federation to assassinate him? Typical.")
 	oneuse = FALSE
-	var/spawnglock = TRUE
+	var/chance = TRUE
 
 /obj/item/book/granter/crafting_recipe/illegalweapons/on_reading_finished(mob/user)
 	..()
-	if(spawnglock)
-		new /obj/item/gun/ballistic/automatic/pistol/g17/improvised(get_turf(src))
-		to_chat(user, "<span class ='warning'>An improvised glock 17 that was hidden between the pages of [name] has fallen out!")
-		spawnglock = FALSE
+	if(chance)
+		chance = FALSE
+		if(prob(50))
+			new /obj/item/gun/ballistic/automatic/pistol/g17/improvised(get_turf(src))
+			to_chat(user, "<span class ='warning'>An improvised glock 17 that was hidden between the pages of [name] has fallen out!")
+
+/obj/item/book/granter/crafting_recipe/obelisk/obelisktier1 //Make sure these books stay consistent with the curator magic recipes that
+	name = "'p^ce"                                  //can be found in crafting.dm starting on line 422.
+	desc = "Others may learn the knowledge."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/tier1/obelisk,
+		/datum/crafting_recipe/tier1/upgradescroll,
+		/datum/crafting_recipe/tier1/sord,
+		/datum/crafting_recipe/tier1/magicsoap,
+		/datum/crafting_recipe/tier1/immortalitytalisman,
+		/datum/crafting_recipe/tier1/d100,
+		/datum/crafting_recipe/tier1/doorwand,
+		/datum/crafting_recipe/tier1/lazarusinjector
+		)
+	icon_state = "tier1"
+	remarks = list("This magic book is very interesting.","I can feel the knowledge flowing.")
+	layer = ABOVE_OBJ_LAYER + 0.1 //so it is above the obelisks and not below them
+
+/obj/item/book/granter/crafting_recipe/obelisk/obelisktier1/on_reading_finished(mob/living/user)
+	..()
+	user.Paralyze(20)
+	user.adjustBrainLoss(20)
+	to_chat(user, "<span class='userdanger'>Knowledge flows into your brain! It hurts!")
+
+/obj/item/book/granter/crafting_recipe/obelisk/obelisktier2
+	name = "W^'ar-"
+	desc = "Others may learn the knowledge."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/tier2/obelisk,
+		/datum/crafting_recipe/tier2/telecrystal,
+		/datum/crafting_recipe/tier2/shittyrevivewand,
+		/datum/crafting_recipe/tier2/shittysafetywand,
+		/datum/crafting_recipe/tier2/monstercube,
+		/datum/crafting_recipe/tier2/soulshard,
+		/datum/crafting_recipe/tier2/spectralblade,
+		/datum/crafting_recipe/tier2/lighteater
+		)
+	icon_state = "tier2"
+	remarks = list("Reading this is probably illegal...","The symbols on the pages are moving.")
+	layer = ABOVE_OBJ_LAYER + 0.1 //so it is above the obelisks and not below them
+
+/obj/item/book/granter/crafting_recipe/obelisk/obelisktier2/on_reading_finished(mob/living/user)
+	..()
+	user.Paralyze(50)
+	user.adjustBrainLoss(35)
+	to_chat(user, "<span class='userdanger'>Knowledge flows into your brain! Your head is pounding!")
+
+/obj/item/book/granter/crafting_recipe/obelisk/obelisktier3
+	name = "`e`er,t'~n"
+	desc = "Others may learn the knowledge."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/tier3/obelisk,
+		/datum/crafting_recipe/tier3/nullrod,
+		/datum/crafting_recipe/tier3/oneusedieoffate,
+		/datum/crafting_recipe/tier3/portalgun,
+		/datum/crafting_recipe/tier3/gravitygun
+		)
+	icon_state = "tier3"
+	remarks = list("Powerful knowledge is at hand.","I can feel the energy emanating from the book.")
+	layer = ABOVE_OBJ_LAYER + 0.1 //so it is above the obelisks and not below them
+
+/obj/item/book/granter/crafting_recipe/obelisk/obelisktier3/on_reading_finished(mob/living/user)
+	..()
+	user.Paralyze(80)
+	user.adjustBrainLoss(50)
+	to_chat(user, "<span class='userdanger'>Knowledge flows into your brain! Your brain feels like it is melting!")

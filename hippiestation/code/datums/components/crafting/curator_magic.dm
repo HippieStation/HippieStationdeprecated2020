@@ -70,7 +70,7 @@
 
 /datum/crafting_recipe/tier1/d100
 	name = "one-hundred sided die"
-	result = /obj/item/dice/d00
+	result = /obj/item/dice/d100
 	reqs = list(/obj/item/inscripture = 1,
 				/obj/item/dice = 20)
 	time = 100
@@ -226,8 +226,21 @@
 /datum/crafting_recipe/tier3/nullrod
 	name = "null rod"
 	result = /obj/item/nullrod
-	reqs = list(/obj/item/melee/ghost_sword = 1,
+	reqs = list(/obj/item/inscripture = 1,
+				/obj/item/melee/ghost_sword = 1,
 				/obj/item/upgradescroll = 1,
 				/datum/reagent/water/holywater = 100
 				)
 	time = 60
+
+/datum/crafting_recipe/tier3/portalgun
+	name = "magic portal gun"
+	result = /obj/item/gun/energy/wormhole_projector/magic
+	reqs = list(/obj/item/inscripture = 6)
+	time = 150
+
+/datum/crafting_recipe/tier3/gravitygun
+	name = "magic gravity gun"
+	result = /obj/item/gun/energy/gravity_gun/magic
+	reqs = list(/obj/item/inscripture = 6)
+	time = 150
