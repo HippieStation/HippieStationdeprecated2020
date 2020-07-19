@@ -2,7 +2,7 @@
     name = "mysterious obelisk"
     desc = "Feel it.... feel the magic..."
     density = TRUE
-    max_integrity = 400
+    max_integrity = 250
     anchored = 1
     icon = 'hippiestation/icons/obj/structures/obelisk.dmi'
     icon_state = "tier1"
@@ -13,10 +13,12 @@
 
 /obj/structure/destructible/obelisk/Initialize()
     . = ..()
+   	playsound(src, 'sound/magic/wandodeath.ogg', 50, 1)
     tool = new(get_turf(src))
 
 /obj/structure/destructible/obelisk/Destroy()
     . = ..()
+    playsound(src, 'sound/machines/clockcult/ark_deathrattle.ogg', 50, 1)
     qdel(tool)
 
 /obj/structure/destructible/obelisk/attack_hand(mob/living/user)
@@ -42,6 +44,7 @@
 	if(src && !QDELETED(src) && anchored && pickedtype.len && Adjacent(user) && !user.incapacitated() && cooldowntime <= world.time)
 		cooldowntime = world.time + 1200
 		for(var/N in pickedtype)
+			playsound(src, 'sound/magic/castsummon.ogg', 50, 1)
 			new N(get_turf(src))
 			to_chat(user, "<span class='cultitalic'>You create a [choice] from the [src]!</span>")
 
@@ -62,7 +65,7 @@
 	name = "greater obelisk"
 	desc = "Feel it.... feel the magic..."
 	density = TRUE
-	max_integrity = 700
+	max_integrity = 350
 	anchored = 1
 	icon = 'hippiestation/icons/obj/structures/obelisk.dmi'
 	icon_state = "tier2"
@@ -73,10 +76,12 @@
 
 /obj/structure/destructible/obelisktier2/Initialize()
     . = ..()
+    playsound(src, 'sound/magic/wandodeath.ogg', 50, 1)
     tool1 = new(get_turf(src))
 
 /obj/structure/destructible/obelisktier2/Destroy()
     . = ..()
+    playsound(src, 'sound/machines/clockcult/ark_deathrattle.ogg', 50, 1)
     qdel(tool1)
 
 /obj/structure/destructible/obelisktier2/attack_hand(mob/living/user)
@@ -101,6 +106,7 @@
 	if(src && !QDELETED(src) && anchored && pickedtype.len && Adjacent(user) && !user.incapacitated() && cooldowntime <= world.time)
 		cooldowntime = world.time + 1000
 		for(var/N in pickedtype)
+			playsound(src, 'sound/magic/castsummon.ogg', 50, 1)
 			new N(get_turf(src))
 			to_chat(user, "<span class='cultitalic'>You create a [choice] from the [src]!</span>")
 
@@ -120,7 +126,7 @@
 	name = "Obelisk of Limitless Wisdom"
 	desc = "Feel it.... feel the magic..."
 	density = TRUE
-	max_integrity = 900
+	max_integrity = 500
 	anchored = 1
 	icon = 'hippiestation/icons/obj/structures/obelisk.dmi'
 	icon_state = "tier4"
@@ -131,10 +137,12 @@
 
 /obj/structure/destructible/obelisktier3/Initialize()
     . = ..()
+    playsound(src, 'sound/magic/wandodeath.ogg', 50, 1)
     tool2 = new(get_turf(src))
 
 /obj/structure/destructible/obelisktier3/Destroy()
     . = ..()
+    playsound(src, 'sound/machines/clockcult/ark_deathrattle.ogg', 50, 1)
     qdel(tool2)
 
 /obj/structure/destructible/obelisktier3/attack_hand(mob/living/user)
@@ -160,6 +168,7 @@
 	if(src && !QDELETED(src) && anchored && pickedtype.len && Adjacent(user) && !user.incapacitated() && cooldowntime <= world.time)
 		cooldowntime = world.time + 800
 		for(var/N in pickedtype)
+			playsound(src, 'sound/magic/blind.ogg', 50, 1)
 			new N(get_turf(src))
 			to_chat(user, "<span class='cultitalic'>You create a [choice] from the [src]!</span>")
 
