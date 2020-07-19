@@ -242,7 +242,8 @@
 		/datum/crafting_recipe/tier1/immortalitytalisman,
 		/datum/crafting_recipe/tier1/d100,
 		/datum/crafting_recipe/tier1/doorwand,
-		/datum/crafting_recipe/tier1/lazarusinjector
+		/datum/crafting_recipe/tier1/lazarusinjector,
+		/datum/crafting_recipe/tier2/obelisk
 		)
 	icon_state = "tier1"
 	remarks = list("This magic book is very interesting.","I can feel the knowledge flowing.")
@@ -265,7 +266,8 @@
 		/datum/crafting_recipe/tier2/monstercube,
 		/datum/crafting_recipe/tier2/soulshard,
 		/datum/crafting_recipe/tier2/spectralblade,
-		/datum/crafting_recipe/tier2/lighteater
+		/datum/crafting_recipe/tier2/lighteater,
+		/datum/crafting_recipe/tier3/obelisk
 		)
 	icon_state = "tier2"
 	remarks = list("Reading this is probably illegal...","The symbols on the pages are moving.")
