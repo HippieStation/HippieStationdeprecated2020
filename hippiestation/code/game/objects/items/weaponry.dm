@@ -261,7 +261,7 @@
 
 /obj/item/melee/stake
 	name = "wooden stake"
-	desc = "A sharpened piece of word that is a staple in vampire hunting for some reason."
+	desc = "A sharpened piece of wood that is a staple in vampire hunting for some reason."
 	icon = 'hippiestation/icons/obj/weapons.dmi'
 	icon_state = "stake"
 	force = 10
