@@ -30,7 +30,7 @@
 
 /obj/item/clothing/suit/armor/samurai
 	name = "haramaki armor"
-	desc = "Ancient, powerful armor worn by the samurai of feudal Japan."
+	desc = "Ancient, powerful armor worn by the samurai of feudal Japan that allows its user to ignore slowdown caused by damage."
 	icon = 'hippiestation/icons/obj/samurai_gear.dmi'
 	icon_state = "haramaki"
 	item_state = "haramaki"
