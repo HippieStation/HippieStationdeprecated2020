@@ -65,6 +65,8 @@
 /obj/item/clothing/suit/armor/samurai/doStrip(mob/stripper, mob/owner)
 	..()
 	equipped = FALSE
+	REMOVE_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, CLOTHING_TRAIT)
+	to_chat(user, "<span class='userdanger'>Your body can no longer ignore damage!")
 
 /obj/item/clothing/shoes/samurai
 	name = "suneate shoes"
