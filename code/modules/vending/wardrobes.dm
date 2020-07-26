@@ -306,7 +306,7 @@
 	icon_state = "chapdrobe"
 	product_ads = "Are you being bothered by cultists or pesky revenants? Then come and dress like the holy man!;Clothes for men of the cloth!"
 	vend_reply = "Thank you for using the ChapDrobe!"
-	var/emagged = 0
+	var/emagged = FALSE
 	products = list(/obj/item/choice_beacon/holy = 1,
 					/obj/item/storage/backpack/cultpack = 1,
 					/obj/item/clothing/accessory/pocketprotector/cosmetology = 1,
@@ -331,13 +331,14 @@
 	refill_canister = /obj/item/vending_refill/wardrobe/chap_wardrobe
 	payment_department = ACCOUNT_CIV
 
-/obj/machinery/vending/wardrobe/chap_wardrobe/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/card/emag))
-		if(!emagged)
-			emagged = 1
-			var/S = /obj/item/samuraibeacon
-			new S(get_turf(src))
-			visible_message("<span class='warning'>The [src] spits out a samurai armaments beacon from a secret compartment!")
+/obj/machinery/vending/wardrobe/chap_wardrobe/emag_act()
+	..()
+	if(emagged)
+		return
+	emagged = TRUE
+	var/S = /obj/item/samuraibeacon
+	new S(get_turf(src))
+	visible_message("<span class='warning'>The [src] spits out a samurai armaments beacon from a secret compartment!")
 
 /obj/item/vending_refill/wardrobe/chap_wardrobe
 	machine_name = "ChapDrobe"
