@@ -39,7 +39,7 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 	SSdbcore.SetRoundID()
 	SetupLogs()
 
-#ifndef USE_CUSTOM_ERROR_HANDLER
+UNLINT(#ifndef USE_CUSTOM_ERROR_HANDLER)
 	world.log = file("[GLOB.log_directory]/dd.log")
 #else
 	if (TgsAvailable())
