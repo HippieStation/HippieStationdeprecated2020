@@ -324,11 +324,21 @@
 					/obj/item/toy/plush/narplush = 1,
 					/obj/item/clothing/head/medievaltophat = 3,
 					/obj/item/clothing/suit/chaplainsuit/clownpriest = 1,
-					/obj/item/clothing/head/clownmitre = 1)		
+					/obj/item/clothing/head/clownmitre = 1)
 	premium = list(/obj/item/clothing/suit/chaplainsuit/bishoprobe = 1,
 					/obj/item/clothing/head/bishopmitre = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/chap_wardrobe
 	payment_department = ACCOUNT_CIV
+
+/obj/machinery/vending/wardrobe/chap_wardrobe/emag_act(mob/user)
+	if(obj_flags & EMAGGED)
+		return
+	obj_flags |= EMAGGED
+	var/S = /obj/item/samuraibeacon
+	new S(get_turf(src))
+	to_chat(user, "<span class='notice'>You short out the product lock on [src].</span>")
+	visible_message("<span class='warning'>The [src] spits out a samurai armaments beacon from a secret compartment!")
+
 /obj/item/vending_refill/wardrobe/chap_wardrobe
 	machine_name = "ChapDrobe"
 

@@ -18,6 +18,7 @@
 	desc = "To wear this helmet is to accept its creator."
 	color = "#FF0000"
 	resistance_flags = INDESTRUCTIBLE
+
 /obj/item/clothing/head/helmet/redtaghelm/afromaker/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if(slot == ITEM_SLOT_HEAD)

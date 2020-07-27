@@ -3133,6 +3133,7 @@
 #include "hippiestation\code\game\objects\items\meat.dm"
 #include "hippiestation\code\game\objects\items\paradox_vuvuzela.dm"
 #include "hippiestation\code\game\objects\items\plushes.dm"
+#include "hippiestation\code\game\objects\items\samurai_gear.dm"
 #include "hippiestation\code\game\objects\items\scrolls.dm"
 #include "hippiestation\code\game\objects\items\shields.dm"
 #include "hippiestation\code\game\objects\items\singularityhammer.dm"
