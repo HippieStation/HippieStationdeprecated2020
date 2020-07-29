@@ -18,6 +18,7 @@
 	icon_state = "yakama"
 	item_state = "yakama"
 	alternate_worn_icon = 'hippiestation/icons/mob/uniform.dmi'
+	alternate_screams = list('hippiestation/sound/voice/yo.ogg')
 
 /obj/item/clothing/mask/samurai
 	name = "menpo mask"
@@ -41,7 +42,6 @@
 	force = 3
 	body_parts_covered = CHEST|GROIN|ARMS
 	var/equipped = FALSE
-	alternate_screams = list('hippiestation/sound/voice/yo.ogg')
 
 /obj/item/clothing/suit/armor/samurai/equipped(mob/living/carbon/human/user, slot)
 	..()
