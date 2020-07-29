@@ -423,9 +423,6 @@
 				//***Curator magic stuff***
 				//*************************
 
-				var specialmessage1 = 1
-				var specialmessage2 = 1
-				var specialmessage3 = 1
 				if(istype(TR, /datum/crafting_recipe/tier1/obelisk))
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier1/upgradescroll) //Gives the curator a few recipes upon building the first obelisk. Like unlocks.
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier1/sord)
@@ -433,11 +430,8 @@
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier1/immortalitytalisman)
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier1/d100)
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier1/doorwand)
+					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier1/lazarusinjector)
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier2/obelisk)
-					if(specialmessage1 == 1)
-						to_chat(usr, "<span class='warning'>The accursed knowledge of the obelisk has given you new magic crafting recipes!")
-						to_chat(usr, "<span class='notice'>You are sure there is a greater well of power out there. Perhaps if you had a more advanced catalyst...")
-						specialmessage1 = 0
 
 				else if(istype(TR, /datum/crafting_recipe/tier2/obelisk))
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier2/telecrystal)
@@ -445,19 +439,17 @@
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier2/shittysafetywand)
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier2/monstercube)
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier2/soulshard)
+					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier2/spectralblade)
+					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier2/lighteater)
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier3/obelisk)
-					if(specialmessage2 == 1)
-						to_chat(usr, "<span class='warning'>The accursed knowledge of the greater obelisk has given you new magic crafting recipes!")
-						to_chat(usr, "<spance class ='notice'>This Obelisk is far more adept at conducting free flowing universal magical radicals. There appear to be odd magical frequencies at play here which manipulate our plain of existence. With more advanced parts you could probably tap directly into the source.")
-						specialmessage2 = 0
+
 
 				else if(istype(TR, /datum/crafting_recipe/tier3/obelisk))
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier3/oneusedieoffate)
 					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier3/nullrod)
-					if(specialmessage3 == 1)
-						to_chat(usr, "<span class='warning'>The accursed knowledge of the Obelisk of Limitless Wisdom has given you new magic crafting recipes!")
-						to_chat(usr, "<span class ='notice'>You have managed to incorporate an ingenious device which grants the obelisk a backdoor directly into the universal network of magic. Just being in the presence of this thing is giving you head spins. But hey, to hell with the side effects! There’s magic to be done!")
-						specialmessage3 = 0
+					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier3/portalgun)
+					usr.mind.teach_crafting_recipe(/datum/crafting_recipe/tier3/gravitygun)
+
 
 				//*************************
 				//*************************

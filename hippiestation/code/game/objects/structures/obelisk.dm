@@ -2,20 +2,23 @@
     name = "mysterious obelisk"
     desc = "Feel it.... feel the magic..."
     density = TRUE
-    max_integrity = 400
+    max_integrity = 250
     anchored = 1
     icon = 'hippiestation/icons/obj/structures/obelisk.dmi'
     icon_state = "tier1"
     layer = BELOW_OBJ_LAYER + 0.1
     var/obj/item/tier1/tool
     var/cooldowntime = 0
+    var/book = TRUE
 
 /obj/structure/destructible/obelisk/Initialize()
     . = ..()
+   	playsound(src, 'sound/magic/wandodeath.ogg', 50, 1)
     tool = new(get_turf(src))
 
 /obj/structure/destructible/obelisk/Destroy()
     . = ..()
+    playsound(src, 'sound/machines/clockcult/ark_deathrattle.ogg', 50, 1)
     qdel(tool)
 
 /obj/structure/destructible/obelisk/attack_hand(mob/living/user)
@@ -23,19 +26,27 @@
 	if(cooldowntime > world.time)
 		to_chat(user, "<span class='cult italic'>The magic in [src] is weak, it will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
-	var/choice = alert(user,"You stare deep into the obelisk and see a glimpse of the true power...",,"Magical inscripture",,"Nevermind")
+	var/choice
+	if(book)
+		choice = alert(user,"You stare deep into the obelisk and see a glimpse of the true power...",,"Magical inscripture","'p^ce","Nevermind")
+	else
+		choice = alert(user,"You stare deep into the obelisk and see a glimpse of the true power...",,"Magical inscripture","Nevermind")
 	var/list/pickedtype = list()
 	switch(choice)
 		if("Magical inscripture")
 			pickedtype += /obj/item/inscripture
+		if("'p^ce")
+			pickedtype += /obj/item/book/granter/crafting_recipe/obelisk/obelisktier1
+			book = FALSE
 		if("Nevermind")
 			return
 
 	if(src && !QDELETED(src) && anchored && pickedtype.len && Adjacent(user) && !user.incapacitated() && cooldowntime <= world.time)
 		cooldowntime = world.time + 1200
 		for(var/N in pickedtype)
+			playsound(src, 'sound/magic/castsummon.ogg', 50, 1)
 			new N(get_turf(src))
-			to_chat(user, "<span class='cultitalic'>You create the [choice] from the [src]!</span>")
+			to_chat(user, "<span class='cultitalic'>You create a [choice] from the [src]!</span>")
 
 /obj/item/tier1 //This is what is actually used to craft obelisk magic items for the curator.
     name = "mysterious obelisk"
@@ -54,20 +65,23 @@
 	name = "greater obelisk"
 	desc = "Feel it.... feel the magic..."
 	density = TRUE
-	max_integrity = 700
+	max_integrity = 350
 	anchored = 1
 	icon = 'hippiestation/icons/obj/structures/obelisk.dmi'
 	icon_state = "tier2"
 	layer = BELOW_OBJ_LAYER + 0.1
 	var/obj/item/tier2/tool1
 	var/cooldowntime = 0
+	var/book = TRUE
 
 /obj/structure/destructible/obelisktier2/Initialize()
     . = ..()
+    playsound(src, 'sound/magic/wandodeath.ogg', 50, 1)
     tool1 = new(get_turf(src))
 
 /obj/structure/destructible/obelisktier2/Destroy()
     . = ..()
+    playsound(src, 'sound/machines/clockcult/ark_deathrattle.ogg', 50, 1)
     qdel(tool1)
 
 /obj/structure/destructible/obelisktier2/attack_hand(mob/living/user)
@@ -75,19 +89,26 @@
 	if(cooldowntime > world.time)
 		to_chat(user, "<span class='cult italic'>The magic in [src] is weak, it will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
-	var/choice = alert(user,"You stare deep into the [src] and see a glimpse of the true power...",,"Magical inscripture",,"Nevermind")
+	var/choice
+	if(book)
+		choice = alert(user,"You stare deep into the obelisk and see a glimpse of the true power...",,"Magical inscripture","W^'ar-","Nevermind")
+	else
+		choice = alert(user,"You stare deep into the obelisk and see a glimpse of the true power...",,"Magical inscripture","Nevermind")
 	var/list/pickedtype = list()
 	switch(choice)
 		if("Magical inscripture")
 			pickedtype += /obj/item/inscripture
+		if("W^'ar-")
+			pickedtype += /obj/item/book/granter/crafting_recipe/obelisk/obelisktier2
+			book = FALSE
 		if("Nevermind")
 			return
-
 	if(src && !QDELETED(src) && anchored && pickedtype.len && Adjacent(user) && !user.incapacitated() && cooldowntime <= world.time)
 		cooldowntime = world.time + 1000
 		for(var/N in pickedtype)
+			playsound(src, 'sound/magic/castsummon.ogg', 50, 1)
 			new N(get_turf(src))
-			to_chat(user, "<span class='cultitalic'>You create the [choice] from the [src]!</span>")
+			to_chat(user, "<span class='cultitalic'>You create a [choice] from the [src]!</span>")
 
 /obj/item/tier2
     name = "greater obelisk"
@@ -105,20 +126,23 @@
 	name = "Obelisk of Limitless Wisdom"
 	desc = "Feel it.... feel the magic..."
 	density = TRUE
-	max_integrity = 900
+	max_integrity = 500
 	anchored = 1
 	icon = 'hippiestation/icons/obj/structures/obelisk.dmi'
 	icon_state = "tier4"
 	layer = BELOW_OBJ_LAYER + 0.1
 	var/obj/item/tier3/tool2
 	var/cooldowntime = 0
+	var/book = TRUE
 
 /obj/structure/destructible/obelisktier3/Initialize()
     . = ..()
+    playsound(src, 'sound/magic/wandodeath.ogg', 50, 1)
     tool2 = new(get_turf(src))
 
 /obj/structure/destructible/obelisktier3/Destroy()
     . = ..()
+    playsound(src, 'sound/machines/clockcult/ark_deathrattle.ogg', 50, 1)
     qdel(tool2)
 
 /obj/structure/destructible/obelisktier3/attack_hand(mob/living/user)
@@ -126,19 +150,27 @@
 	if(cooldowntime > world.time)
 		to_chat(user, "<span class='cult italic'>The magic in [src] is weak, it will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
-	var/choice = alert(user,"You stare deep into the [src] and see a glimpse of the true power...",,"Magical inscripture",,"Nevermind")
+	var/choice
+	if(book)
+		choice = alert(user,"You stare deep into the obelisk and see a glimpse of the true power...",,"Magical inscripture","`e`er,t'~n","Nevermind")
+	else
+		choice = alert(user,"You stare deep into the obelisk and see a glimpse of the true power...",,"Magical inscripture","Nevermind")
 	var/list/pickedtype = list()
 	switch(choice)
 		if("Magical inscripture")
 			pickedtype += /obj/item/inscripture
+		if("`e`er,t'~n")
+			pickedtype += /obj/item/book/granter/crafting_recipe/obelisk/obelisktier3
+			book = FALSE
 		if("Nevermind")
 			return
 
 	if(src && !QDELETED(src) && anchored && pickedtype.len && Adjacent(user) && !user.incapacitated() && cooldowntime <= world.time)
 		cooldowntime = world.time + 800
 		for(var/N in pickedtype)
+			playsound(src, 'sound/magic/blind.ogg', 50, 1)
 			new N(get_turf(src))
-			to_chat(user, "<span class='cultitalic'>You create the [choice] from the [src]!</span>")
+			to_chat(user, "<span class='cultitalic'>You create a [choice] from the [src]!</span>")
 
 /obj/item/tier3
     name = "Obelisk of Limitless Wisdom"
@@ -156,7 +188,7 @@
 	icon_state = "inscripture"
 	w_class = WEIGHT_CLASS_TINY
 	throw_range = 1
-	layer = ABOVE_OBJ_LAYER + 0.1
+	layer = ABOVE_OBJ_LAYER + 0.1 //so it is above the obelisks and not below them
 	var/used = 0
 	var/i
 
