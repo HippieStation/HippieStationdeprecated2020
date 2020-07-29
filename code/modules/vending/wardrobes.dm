@@ -339,6 +339,11 @@
 	to_chat(user, "<span class='notice'>You short out the product lock on [src].</span>")
 	visible_message("<span class='warning'>The [src] spits out a samurai armaments beacon from a secret compartment!")
 
+/obj/machinery/vending/wardrobe/chap_wardrobe/examine()
+	. = ..()
+	if(obj_flags & EMAGGED)
+		. += "<span class='warning'>A secret compartment is exposed."
+
 /obj/item/vending_refill/wardrobe/chap_wardrobe
 	machine_name = "ChapDrobe"
 
