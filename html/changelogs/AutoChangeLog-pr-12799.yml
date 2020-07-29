@@ -1,0 +1,5 @@
+author: carlopault
+delete-after: true
+changes:
+  - rscadd: chapdrobe displays an emag message if you examine it after it is emagged.
+  - tweak: yakama now gives you the special scream instead of the haramaki armor
