@@ -44,6 +44,7 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 #else
 	if (TgsAvailable())
 		world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
+#endif
 
 	hippie_initialize() // hippie -- loads mentor and other stuff. Due to mentors, it has to be after load_admins().
 	LoadVerbs(/datum/verbs/menu)
