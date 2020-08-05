@@ -33,7 +33,7 @@ FROM dm_base as build
 
 COPY . .
 
-RUN DreamMaker -max_errors 0 tgstation.dme \
+RUN DreamMaker -max_errors 0 hippiestation.dme \
     && tools/deploy.sh /deploy \
 	&& rm /deploy/*.dll
 
