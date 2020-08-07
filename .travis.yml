@@ -1,6 +1,6 @@
 language: generic
-dist: xenial
-sudo: false
+os: linux
+dist: bionic
 
 branches:
   except:
