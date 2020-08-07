@@ -1,6 +1,5 @@
 language: generic
-os: linux
-dist: bionic
+dist: xenial
 sudo: false
 
 branches:
