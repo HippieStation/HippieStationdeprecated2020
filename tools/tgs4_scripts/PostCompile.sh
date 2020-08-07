@@ -1,13 +1,14 @@
 #!/bin/bash
 
 set -e
+set -x
 
 #load dep exports
 #need to switch to game dir for Dockerfile weirdness
 original_dir=$PWD
-cd $1
+cd "$1"
 . dependencies.sh
-cd $original_dir
+cd "$original_dir"
 
 #find out what we have (+e is important for this)
 set +e
@@ -19,26 +20,26 @@ has_gpp="$(command -v g++-6)"
 has_grep="$(command -v grep)"
 set -e
 
-#install cargo if needful
+# install cargo if needful
 if ! [ -x "$has_cargo" ]; then
-	echo "Installing rust..."
-	curl https://sh.rustup.rs -sSf | sh -s -- -y --default-host i686-unknown-linux-gnu
+    echo "Installing rust..."
+    curl https://sh.rustup.rs -sSf | sh -s -- -y --default-host i686-unknown-linux-gnu
     . ~/.profile
 fi
 
-#apt packages
-if ! { [ -x "$has_git" ] && [ -x "$has_cmake" ] && [ -x "$has_gpp" ] && [ -f "/usr/lib/i386-linux-gnu/libmariadb.so.2" ] && [ -f "/usr/lib/i386-linux-gnu/libssl.so" ] && [ -d "/usr/share/doc/g++-6-multilib" ] && [ -d "/usr/include/mysql" ]; }; then
+# apt packages
+if ! { [ -x "$has_git" ] && [ -x "$has_cmake" ] && [ -x "$has_gpp" ] && [ -x "$has_grep" ] && [ -f "/usr/lib/i386-linux-gnu/libmariadb.so.3" ] && [ -f "/usr/lib/i386-linux-gnu/libssl.so" ] && [ -d "/usr/share/doc/g++-6-multilib" ] && [ -f "/usr/bin/mysql" ] && [ -d "/usr/include/mysql" ]; }; then
 	echo "Installing apt dependencies..."
 	if ! [ -x "$has_sudo" ]; then
 		dpkg --add-architecture i386
 		apt-get update
-		apt-get install -y git cmake libmariadb-dev:i386 libssl-dev:i386 grep g++-6 g++-6-multilib
-		ln -s /usr/include/mariadb /usr/include/mysql
+		apt-get install -y git cmake libmariadb-dev:i386 libssl-dev:i386 grep g++-6 g++-6-multilib mysql-client
+		ln -sv /usr/include/mariadb /usr/include/mysql
 		rm -rf /var/lib/apt/lists/*
 	else
 		sudo dpkg --add-architecture i386
 		sudo apt-get update
-		sudo apt-get install -y git cmake libmariadb-dev:i386 libssl-dev:i386 grep g++-6 g++-6-multilib
+		sudo apt-get install -y git cmake libmariadb-dev:i386 libssl-dev:i386 grep g++-6 g++-6-multilib mysql-client
 		sudo ln -s /usr/include/mariadb /usr/include/mysql
 		sudo rm -rf /var/lib/apt/lists/*
 	fi
@@ -46,13 +47,13 @@ fi
 
 #update rust-g
 if [ ! -d "rust-g" ]; then
-	echo "Cloning rust-g..."
-	git clone https://github.com/tgstation/rust-g
+    echo "Cloning rust-g..."
+    git clone https://github.com/tgstation/rust-g
 else
-	echo "Fetching rust-g..."
-	cd rust-g
-	git fetch
-	cd ..
+    echo "Fetching rust-g..."
+    cd rust-g
+    git fetch
+    cd ..
 fi
 
 #update BSQL
@@ -66,21 +67,11 @@ else
 	cd ..
 fi
 
-if [ ! -d "quickwrite" ]; then
-	echo "Cloning quickwrite..."
-	git clone https://github.com/MCHSL/byond-quickwrite
-else
-	echo "Fetching quickwrite..."
-	cd quickwrite
-	git fetch
-	cd ..
-fi
-
 echo "Deploying rust-g..."
 cd rust-g
-git checkout $RUST_G_VERSION
+git checkout "$RUST_G_VERSION"
 ~/.cargo/bin/cargo build --release
-mv target/release/librust_g.so $1/rust_g
+mv target/release/librust_g.so "$1/rust_g"
 cd ..
 
 echo "Deploying BSQL..."
@@ -89,29 +80,10 @@ git checkout $BSQL_VERSION
 mkdir -p mysql
 mkdir -p artifacts
 cd artifacts
-cmake .. -DCMAKE_CXX_COMPILER=g++-6 -DMARIA_LIBRARY=/usr/lib/i386-linux-gnu/libmariadb.so.2
+cmake .. -DCMAKE_CXX_COMPILER=g++-6 -DMARIA_LIBRARY=/usr/lib/i386-linux-gnu/libmariadb.so.3
 make
 mv src/BSQL/libBSQL.so $1/
 cd ..
 
-echo "Deploying quickwrite..."
-cd quickwrite
-git checkout $QUICKWRITE_TAG
-g++ -m32 -shared -o libquickwrite.so -fPIC dllmain.cpp
-mv libquickwrite.so $1/
-
-#run deploy.sh
-echo 'Deploying tgstation compilation...'
-
-cd $1
-
-mkdir build
-
-shopt -s extglob dotglob
-mv !(build) build
-shopt -u dotglob
-
-chmod +x build/tools/deploy.sh
-build/tools/deploy.sh $1 $1/build
-
-rm -rf build
+#just trust me, i nearly lost my shit
+rm -rf "$1/byond-extools.dll"
