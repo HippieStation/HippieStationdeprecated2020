@@ -47467,6 +47467,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
+"cIP" = (
+/obj/effect/landmark/start/botanist,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "cIQ" = (
 /obj/structure/cable,
 /obj/machinery/ai_slipper{
@@ -48754,14 +48761,6 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"cNg" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/mob/living/simple_animal/cow,
-/turf/open/floor/plasteel/sepia,
-/area/hydroponics)
 "cNn" = (
 /obj/structure/table/reinforced,
 /obj/item/assembly/mousetrap,
@@ -49491,6 +49490,7 @@
 /obj/structure/bed/dogbed{
 	name = "chicken bed"
 	},
+/mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
 /area/hydroponics)
 "dNP" = (
@@ -50196,15 +50196,11 @@
 /turf/open/floor/plating,
 /area/maintenance/longface)
 "eYx" = (
-/obj/machinery/hydroponics,
-/obj/item/seeds/wheat,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
 /obj/machinery/camera{
 	c_tag = "Hydroponics Storage"
 	},
-/turf/open/floor/plasteel,
+/mob/living/simple_animal/cow,
+/turf/open/floor/plasteel/sepia,
 /area/hydroponics)
 "eYA" = (
 /obj/machinery/vending/cart/old,
@@ -50715,6 +50711,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+"fLd" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/sepia,
+/area/hydroponics)
 "fLr" = (
 /obj/effect/turf_decal/stripes/end,
 /obj/structure/cable,
@@ -51165,13 +51168,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
-"gtk" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "gtu" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/east,
@@ -51598,12 +51594,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "hjy" = (
-/obj/machinery/hydroponics,
-/obj/item/seeds/wheat,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/sepia,
 /area/hydroponics)
 "hka" = (
 /obj/machinery/power/rad_collector/anchored,
@@ -52371,10 +52362,7 @@
 /area/hallway/secondary/entry)
 "ixp" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
+/obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -54405,6 +54393,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"lEu" = (
+/obj/structure/window/reinforced,
+/mob/living/simple_animal/cow,
+/turf/open/floor/plasteel/sepia,
+/area/hydroponics)
 "lEH" = (
 /obj/structure/chair/office{
 	dir = 1
@@ -54551,12 +54544,6 @@
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
 /area/maintenance/department/security)
-"lNk" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/grass,
-/area/hydroponics)
 "lNs" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
@@ -57704,10 +57691,7 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
 "qNF" = (
-/obj/structure/table,
-/obj/item/storage/bag/plants/portaseeder,
-/obj/item/shovel/spade,
-/obj/item/reagent_containers/glass/bucket,
+/obj/machinery/biogenerator,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
@@ -57908,9 +57892,6 @@
 /area/science/mixing)
 "rmA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "rnp" = (
@@ -58547,12 +58528,8 @@
 /turf/open/floor/plating,
 /area/engine/port_engineering)
 "stP" = (
-/obj/item/seeds/wheat,
-/obj/machinery/hydroponics,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
+/mob/living/simple_animal/cow,
+/turf/open/floor/plasteel/sepia,
 /area/hydroponics)
 "stU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -58570,6 +58547,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"svk" = (
+/obj/structure/window/reinforced,
+/turf/open/floor/plasteel/sepia,
+/area/hydroponics)
 "svr" = (
 /obj/structure/chair/comfy{
 	dir = 1
@@ -59579,14 +59560,11 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "tWf" = (
-/obj/structure/table,
-/obj/item/plant_analyzer,
-/obj/item/cultivator,
-/obj/item/reagent_containers/glass/bottle/nutrient/ez,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
+/obj/machinery/door/window/northleft{
+	dir = 2;
+	name = "Animal pen"
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/sepia,
 /area/hydroponics)
 "tWk" = (
 /obj/machinery/door/airlock/external{
@@ -59629,17 +59607,6 @@
 	},
 /turf/closed/wall,
 /area/chapel/main)
-"tYm" = (
-/obj/machinery/door/window/northleft{
-	dir = 8;
-	name = "Animal pen"
-	},
-/obj/structure/window/reinforced{
-	dir = 1;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/sepia,
-/area/hydroponics)
 "tZB" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/computer/nanite_chamber_control{
@@ -59994,7 +59961,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/grown/wheat,
 /turf/open/floor/grass,
 /area/hydroponics)
 "uFF" = (
@@ -61510,13 +61476,17 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "xbt" = (
-/obj/machinery/biogenerator,
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "xcx" = (
@@ -103503,7 +103473,7 @@ asg
 aBf
 aLR
 stP
-aUI
+lEu
 aUI
 xbt
 qNF
@@ -103760,8 +103730,8 @@ asg
 mbi
 aLR
 eYx
-aWv
-bbb
+svk
+cIP
 aWv
 aWv
 gJx
@@ -104017,7 +103987,7 @@ asg
 fex
 aLR
 hjy
-aWv
+fLd
 ixp
 rmA
 rmA
@@ -104275,9 +104245,9 @@ sjY
 aLR
 tWf
 sGA
-tYm
-cNg
-gtk
+aUI
+aUI
+aUI
 aIM
 aKq
 aLR
@@ -104533,7 +104503,7 @@ aLR
 aLR
 aDM
 tlW
-lNk
+tlW
 aLR
 aIN
 aKr
