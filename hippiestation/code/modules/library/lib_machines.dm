@@ -17,7 +17,7 @@
 //*************
 
 /obj/machinery/computer/craftingbookcatalog
-	name = "Spacestar Ordering Book Catalog"
+	name = "Spacestar Book Catalog"
 	desc = "A console from the secretive Spacestar conglomerate. Allows users to print books from the Spacestar Knowledge Hub, which contains only the <i>most useful</i> information."
 	icon = 'hippiestation/icons/obj/computer.dmi'
 	icon_state = "hell"

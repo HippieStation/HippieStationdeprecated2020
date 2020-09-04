@@ -150,14 +150,9 @@
 	icon_state = "stargazing"
 	remarks = list("How do you find the North Star in space?","My zodiac sign is... Cancer.","Is astrology even relevant anymore?","...the Draco star, 'tail of the dolphin'.","The Orion star! From Orion Trail.")
 	oneuse = FALSE
-	var/list/users = list()
 
 /obj/item/book/granter/crafting_recipe/stargazing/on_reading_finished(mob/user)
 	..()
-	//for(var/i = 0; i < users.length; i++)
-	//	if(user == users(i))
-	//		return
-
 	if(prob(5))
 		to_chat(user, "Wow, star gazing is actually really interesting...")
 		sleep(1)
@@ -167,8 +162,6 @@
 		user.set_species(/datum/species/jelly/stargazer)
 	else
 		return
-
-	users.Add(user)
 
 /obj/item/book/granter/crafting_recipe/audio
 	name = "Grabar: A Slow Mindkill"
@@ -247,12 +240,12 @@
 		)
 	icon_state = "tier1"
 	remarks = list("This magic book is very interesting.","I can feel the knowledge flowing.")
-	layer = ABOVE_OBJ_LAYER + 0.1 //so it is above the obelisks and not below them
+	layer = ABOVE_OBJ_LAYER + 0.1 //so it is above the obelisks and not below them when it spawns
 
 /obj/item/book/granter/crafting_recipe/obelisk/obelisktier1/on_reading_finished(mob/living/user)
 	..()
 	user.Paralyze(20)
-	user.adjustBrainLoss(20)
+	user.adjustBrainLoss(18)
 	to_chat(user, "<span class='userdanger'>Knowledge flows into your brain! It hurts!")
 
 /obj/item/book/granter/crafting_recipe/obelisk/obelisktier2
@@ -271,12 +264,12 @@
 		)
 	icon_state = "tier2"
 	remarks = list("Reading this is probably illegal...","The symbols on the pages are moving.")
-	layer = ABOVE_OBJ_LAYER + 0.1 //so it is above the obelisks and not below them
+	layer = ABOVE_OBJ_LAYER + 0.1 //so it is above the obelisks and not below them when it spawns
 
 /obj/item/book/granter/crafting_recipe/obelisk/obelisktier2/on_reading_finished(mob/living/user)
 	..()
 	user.Paralyze(50)
-	user.adjustBrainLoss(35)
+	user.adjustBrainLoss(33)
 	to_chat(user, "<span class='userdanger'>Knowledge flows into your brain! Your head is pounding!")
 
 /obj/item/book/granter/crafting_recipe/obelisk/obelisktier3
@@ -291,10 +284,10 @@
 		)
 	icon_state = "tier3"
 	remarks = list("Powerful knowledge is at hand.","I can feel the energy emanating from the book.")
-	layer = ABOVE_OBJ_LAYER + 0.1 //so it is above the obelisks and not below them
+	layer = ABOVE_OBJ_LAYER + 0.1 //so it is above the obelisks and not below them when it spawns
 
 /obj/item/book/granter/crafting_recipe/obelisk/obelisktier3/on_reading_finished(mob/living/user)
 	..()
 	user.Paralyze(80)
 	user.adjustBrainLoss(50)
-	to_chat(user, "<span class='userdanger'>Knowledge flows into your brain! Your brain feels like it is melting!")
+	to_chat(user, "<span class='userdanger'>Knowledge flows into your brain! You feel like your brain is melting!")
