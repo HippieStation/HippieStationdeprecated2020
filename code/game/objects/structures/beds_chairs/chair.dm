@@ -428,6 +428,15 @@
 	item_chair = null
 	flags_1 = NODECONSTRUCT_1
 
+/obj/structure/chair/mime/Crossed(AM as mob)
+	if(isturf(loc))
+		if(ismob(AM))
+			var/mob/living/MM = AM
+			if(!(MM.movement_type & FLYING))
+				if(!MM.mind.miming)
+					MM.AdjustKnockdown(10)
+					visible_message("<span class='warning'>[MM] trips and falls over an invisible chair!")
+
 /obj/structure/chair/mime/post_buckle_mob(mob/living/M)
 	M.pixel_y += 5
 
