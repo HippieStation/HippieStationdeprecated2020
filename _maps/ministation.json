@@ -1,0 +1,11 @@
+{
+    "map_name": "MiniStation 2020",
+    "map_path": "map_files/MiniStation",
+    "map_file": "ministation.dmm",
+    "shuttles": {
+        "emergency": "emergency_box",
+        "ferry": "ferry_fancy",
+        "cargo": "cargo_box",
+        "whiteship": "whiteship_meta"
+    }
+}
