@@ -31,6 +31,8 @@
 		'hippiestation/sound/roundend/welcomehomejosh.ogg',
 		'hippiestation/sound/roundend/ssethdisappointed.ogg',
 		'hippiestation/sound/roundend/ssethenjoyedyourchaos.ogg',
+		'hippiestation/sound/roundend/MEHEARTIESTHERESA.ogg',
+		'hippiestation/sound/roundend/nomorecussing.ogg',
 		'hippiestation/sound/roundend/ssethyoumakemesick.ogg'\
 		)
 
