@@ -3,7 +3,7 @@
     "map_path": "map_files/MiniStation",
     "map_file": "ministation.dmm",
     "shuttles": {
-        "emergency": "emergency_box",
+        "emergency": "emergency_mini",
         "ferry": "ferry_fancy",
         "cargo": "cargo_box",
         "whiteship": "whiteship_meta"

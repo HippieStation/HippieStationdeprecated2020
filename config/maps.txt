@@ -24,6 +24,10 @@ map metalake
 	#voteweight 1.5
 endmap
 
+map ministation
+	votable
+endmap
+
 map boxstation
 endmap
 
