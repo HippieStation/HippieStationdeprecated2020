@@ -11,7 +11,7 @@ export BYOND_MINOR=${LIST[1]}
 unset LIST
 
 #rust_g git tag
-export RUST_G_VERSION=0.4.2
+export RUST_G_VERSION=0.4.5
 
 #bsql git tag
 export BSQL_VERSION=v1.4.0.0
@@ -20,9 +20,9 @@ export BSQL_VERSION=v1.4.0.0
 export NODE_VERSION=12
 
 # PHP version
-export PHP_VERSION=5.6
+export PHP_VERSION=7.2
 
 # SpacemanDMM git tag
-export SPACEMAN_DMM_VERSION=suite-1.4
+export SPACEMAN_DMM_VERSION=suite-1.6
 
 export QUICKWRITE_TAG=98b5183e3da5d14e59c38030a9b6824a615c8260
