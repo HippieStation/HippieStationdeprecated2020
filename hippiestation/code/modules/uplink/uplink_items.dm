@@ -560,4 +560,4 @@
 			Be careful not to glue an item you're already holding!"
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	item = /obj/item/syndie_glue
-	cost = 3
+	cost = 2
