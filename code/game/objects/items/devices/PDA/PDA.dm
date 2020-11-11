@@ -1029,7 +1029,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 /obj/item/pda/proc/pda_no_detonate()
 	return COMPONENT_PDA_NO_DETONATE
 
-/obj/item/pda/proc/DiscoFever() //Hippie. Shamelessly ripped from the disco ball for the DISCO FEVER cartridge.
+/obj/item/pda/proc/DiscoFever() //Hippie. Shamelessly ripped from the disco ball. For the DISCO FEVER cartridge.
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 	fcolor = random_color()
 	set_light(5, fpower, fcolor) //5 is the range of the light... I think.

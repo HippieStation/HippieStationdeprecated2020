@@ -1,4 +1,4 @@
-/datum/job/discjockey
+/datum/job/discjockey //Named discjockey instead of DJ because DJ in the obj path causes errors.
 	title = "DJ"
 	flag = DJ
 	department_head = list("Head of Personnel")
