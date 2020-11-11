@@ -55,6 +55,11 @@
 	if(istype(pda))
 		host_pda = pda
 
+/obj/item/cartridge/discjockey
+	name = "\improper DISCO FEVER Inc. cartridge"
+	desc = "An on-the-go flashlight-modification cartridge for anyone who wants a DANCE PARTY."
+	icon_state = "cart-dj"
+
 /obj/item/cartridge/engineering
 	name = "\improper Power-ON cartridge"
 	icon_state = "cart-e"

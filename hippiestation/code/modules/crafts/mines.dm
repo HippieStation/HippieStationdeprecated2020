@@ -1,11 +1,14 @@
-/obj/item/mine
+/obj/item/mine //Better than the /obj/effect mines
 	name = "dummy mine"
 	desc = "Better stay away from that thing."
 	density = FALSE
 	anchored = FALSE
 	icon = 'icons/obj/items_and_weapons.dmi'
-	icon_state = "uglymine"
+	icon_state = "uglymine_off"
+	var/off_icon_state = "uglymine_off"
+	var/on_icon_state = "uglymine"
 	var/triggered = 0
+	var/armed = FALSE
 
 /obj/item/mine/proc/mineEffect(mob/victim)
 	to_chat(victim, "<span class='danger'>*click*</span>")
@@ -22,6 +25,8 @@
 /obj/item/mine/proc/triggermine(mob/victim)
 	if(triggered)
 		return
+	if(!armed)
+		return
 	visible_message("<span class='danger'>[victim] sets off [icon2html(src, viewers(src))] [src]!</span>")
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
@@ -30,6 +35,23 @@
 	triggered = 1
 	qdel(src)
 
+/obj/item/mine/interact(mob/living/user)
+	armed = !armed
+	if(armed)
+		icon_state = on_icon_state
+		update_icon()
+		to_chat(user, "<span class ='notice'>You arm the mine. Once dropped it cannot be picked up!</span>")
+		playsound(src,'sound/items/timer.ogg', 50)
+	else
+		icon_state = off_icon_state
+		update_icon()
+		to_chat(user, "<span class ='notice'>You disarm the mine.</span>")
+		playsound(src, 'sound/items/screwdriver2.ogg', 50)
+
+/obj/item/mine/dropped()
+	if(armed)
+		anchored = 1
+	..()
 
 /obj/item/mine/explosive
 	name = "explosive mine"
@@ -89,3 +111,54 @@
 /obj/item/mine/sound/bwoink
 	name = "bwoink mine"
 	sound = 'sound/effects/adminhelp.ogg'
+
+/obj/item/mine/disco
+	name = "disco dance mine"
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon_state = "disco_mine_off"
+	on_icon_state = "disco_mine"
+	off_icon_state = "disco_mine_off"
+	var/list/dancefloor_turfs
+	var/list/dancefloor_turfs_types
+	var/dancefloor_exists = FALSE
+	var/direction
+
+/obj/item/mine/disco/mineEffect(mob/living/victim) //Shamelessly ripped from the devil's dance spell; this is too easy
+	LAZYINITLIST(dancefloor_turfs)
+	LAZYINITLIST(dancefloor_turfs_types)
+	var/list/funky_turfs = RANGE_TURFS(1, victim)
+
+	if(dancefloor_exists)
+		dancefloor_exists = FALSE
+		for(var/i in 1 to dancefloor_turfs.len)
+			var/turf/T = dancefloor_turfs[i]
+			T.ChangeTurf(dancefloor_turfs_types[i], flags = CHANGETURF_INHERIT_AIR)
+	else
+		dancefloor_exists = TRUE
+		var/i = 1
+		dancefloor_turfs.len = funky_turfs.len
+		dancefloor_turfs_types.len = funky_turfs.len
+		for(var/t in funky_turfs)
+			var/turf/T = t
+			if(!(istype(T, /turf/closed))) //Don't want walls turning into dance floors or this mine will be the next thermite.
+				dancefloor_turfs[i] = T
+				dancefloor_turfs_types[i] = T.type
+				T.ChangeTurf((i % 2 == 0) ? /turf/open/floor/light/colour_cycle/dancefloor_a : /turf/open/floor/light/colour_cycle/dancefloor_b, flags = CHANGETURF_INHERIT_AIR)
+				i++
+	playsound(src, 'sound/items/party_horn2.ogg', 50)
+	playsound(src, 'sound/items/ISayDisco.ogg', 100)
+	for(var/mob/living/M in range(1, get_turf(victim)))
+		victim = M
+		victim.AdjustImmobilized(100)
+		victim.emote("spin")
+		src.visible_message("<span class ='danger'>[victim] begins to uncontrollably DANCE!</span>")
+		discoDance(victim)
+
+/obj/item/mine/disco/proc/discoDance(mob/living/victim)
+	victim.emote("snap")
+	var/i = 0
+	while(i < 10)
+		victim.emote("flip")
+		victim.emote("spin")
+		sleep(10)
+		i++

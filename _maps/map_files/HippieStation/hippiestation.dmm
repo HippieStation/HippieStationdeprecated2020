@@ -6180,6 +6180,17 @@
 "apw" = (
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
+"apy" = (
+/obj/structure/table/glass,
+/obj/item/mine/disco,
+/obj/item/mine/disco{
+	pixel_y = 2
+	},
+/obj/item/mine/disco{
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "apz" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/engineering{
@@ -18572,7 +18583,7 @@
 /area/maintenance/port)
 "bbT" = (
 /turf/closed/wall,
-/area/vacant_room/office)
+/area/DJoffice)
 "bbU" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/line{
@@ -19257,36 +19268,52 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/rack,
-/obj/item/extinguisher,
-/turf/open/floor/plasteel,
-/area/vacant_room/office)
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "bdF" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plasteel,
-/area/vacant_room/office)
+/obj/item/kirbyplants_onehanded,
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "bdG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/vacant_room/office)
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/wood/fancy/black,
+/obj/structure/window/reinforced,
+/obj/item/clothing/head/helmet/deadmau5,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mineral/gold,
+/area/DJoffice)
 "bdH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/closed/wall,
-/area/vacant_room/office)
+/area/DJoffice)
 "bdJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/turf/open/floor/plating,
-/area/vacant_room/office)
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "bdK" = (
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
@@ -19786,17 +19813,37 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bfl" = (
-/turf/open/floor/plasteel,
-/area/vacant_room/office)
+/obj/item/reagent_containers/pill/happy{
+	pixel_x = 4;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/pill/happy{
+	pixel_x = -6;
+	pixel_y = 9
+	},
+/obj/structure/table/glass,
+/obj/item/reagent_containers/pill/lsd{
+	pixel_x = 7
+	},
+/obj/item/storage/fancy/cigarettes/random,
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "bfm" = (
 /turf/open/floor/carpet,
 /area/security/detectives_office)
 "bfn" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/turf/open/floor/plasteel{
-	icon_state = "floorscorched1"
+/obj/structure/chair/office/light,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
 	},
-/area/vacant_room/office)
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "bfp" = (
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
@@ -19805,8 +19852,8 @@
 	pixel_x = 27
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/vacant_room/office)
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "bfr" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/line{
@@ -20189,10 +20236,13 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
 "bgA" = (
+/obj/structure/table/wood,
+/obj/machinery/radio_station{
+	pixel_y = 8
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/chair/stool,
-/turf/open/floor/plating,
-/area/vacant_room/office)
+/turf/open/floor/carpet,
+/area/DJoffice)
 "bgB" = (
 /obj/structure/table/wood,
 /obj/item/camera/detective,
@@ -20200,16 +20250,15 @@
 /area/security/detectives_office)
 "bgC" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/vacant_room/office)
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "bgD" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Vacant Office";
-	req_access_txt = "0";
-	req_one_access_txt = "32;50"
+/obj/machinery/door/airlock{
+	name = "DJ Office";
+	req_access_txt = "70"
 	},
-/turf/open/floor/plating,
-/area/vacant_room/office)
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "bgE" = (
 /obj/machinery/photocopier,
 /turf/open/floor/wood,
@@ -20540,8 +20589,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/vacant_room/office)
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "bhD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -20551,19 +20608,25 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/turf/open/floor/plating,
-/area/vacant_room/office)
+/turf/open/floor/carpet,
+/area/DJoffice)
 "bhE" = (
+/obj/effect/landmark/start/discjockey,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/obj/item/stack/sheet/mineral/wood,
-/turf/open/floor/plasteel,
-/area/vacant_room/office)
+/obj/structure/chair/comfy/beige{
+	dir = 1
+	},
+/turf/open/floor/light/colour_cycle,
+/area/DJoffice)
 "bhF" = (
 /obj/structure/table/wood,
+/obj/item/taperecorder{
+	pixel_y = 3
+	},
 /turf/open/floor/carpet,
-/area/vacant_room/office)
+/area/DJoffice)
 "bhG" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westleft{
@@ -20572,7 +20635,7 @@
 	req_one_access_txt = "32;50"
 	},
 /turf/open/floor/plating,
-/area/vacant_room/office)
+/area/DJoffice)
 "bhH" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "heads_meeting";
@@ -20963,9 +21026,9 @@
 "biW" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
-	areastring = "/area/vacant_room/office";
+	areastring = "/area/DJoffice";
 	dir = 4;
-	name = "Vacant Office APC";
+	name = "DJ Office APC";
 	pixel_x = 24
 	},
 /turf/open/floor/plating,
@@ -20974,21 +21037,28 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/vacant_room/office)
-"bja" = (
-/obj/machinery/light/small,
-/turf/open/floor/plating,
-/area/vacant_room/office)
+/obj/machinery/light,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "bjb" = (
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24
 	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/closet/crate,
-/turf/open/floor/plasteel,
-/area/vacant_room/office)
+/obj/structure/disposalpipe/junction/flip{
+	dir = 1
+	},
+/obj/structure/closet,
+/obj/item/cartridge/discjockey{
+	pixel_x = 4
+	},
+/obj/item/clothing/shoes/funk,
+/obj/item/clothing/under/hippie/telvis,
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "bjd" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -21315,12 +21385,13 @@
 "bkb" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall,
-/area/vacant_room/office)
+/area/DJoffice)
 "bkc" = (
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = -24
 	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bkd" = (
@@ -29503,6 +29574,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science/research)
+"bHc" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "bHd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -40200,8 +40286,10 @@
 /turf/open/floor/engine/co2,
 /area/engine/atmos)
 "cnc" = (
-/turf/open/floor/plating,
-/area/vacant_room/office)
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "cne" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
@@ -49185,6 +49273,12 @@
 /obj/machinery/atmospherics/pipe/simple/general/hidden/layer1,
 /turf/open/floor/wood,
 /area/crew_quarters/bar/maint)
+"dvy" = (
+/obj/structure/table/wood,
+/obj/item/clothing/glasses/prism_glasses,
+/obj/item/clothing/glasses/sunglasses/gar,
+/turf/open/floor/carpet,
+/area/DJoffice)
 "dvN" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -49658,6 +49752,17 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+"egR" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "egT" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -50481,8 +50586,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating,
-/area/vacant_room/office)
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "fuh" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 10
@@ -51435,6 +51540,17 @@
 	icon_state = "panelscorched"
 	},
 /area/security/prison)
+"gVx" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "gVG" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -54592,12 +54708,9 @@
 /area/space/nearstation)
 "lOy" = (
 /obj/structure/table/wood,
-/obj/item/paper{
-	info = "Office space for lease! Please contact your nearest HOP for leasing inquiries.";
-	name = "Office for lease"
-	},
+/obj/machinery/unce,
 /turf/open/floor/carpet,
-/area/vacant_room/office)
+/area/DJoffice)
 "lOA" = (
 /obj/structure/cable,
 /obj/machinery/computer/secure_data,
@@ -55749,8 +55862,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/vacant_room/office)
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "nDT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -57523,8 +57639,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/turf/open/floor/plating,
-/area/vacant_room/office)
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "qvn" = (
 /obj/structure/closet/bombcloset,
 /obj/structure/sign/warning/explosives{
@@ -59290,6 +59410,10 @@
 /obj/structure/frame/machine,
 /turf/open/floor/plating,
 /area/construction)
+"tvW" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "twq" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/structure/cable,
@@ -60675,10 +60799,6 @@
 	},
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
-"vKp" = (
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel,
-/area/vacant_room/office)
 "vMH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/stripes/line,
@@ -61450,6 +61570,15 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"wUy" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vaporwave,
+/area/DJoffice)
 "wVX" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -61692,6 +61821,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/nanite)
+"xkA" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "xlu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -84796,7 +84932,7 @@ aUj
 bbT
 bdH
 bfl
-cnc
+apy
 frO
 qvb
 bbT
@@ -85053,7 +85189,7 @@ aUp
 bbT
 bdE
 cnc
-cnc
+egR
 bhC
 nBf
 bbT
@@ -85309,8 +85445,8 @@ aYT
 bas
 bbT
 bdF
-cnc
-bfl
+gVx
+dvy
 bhD
 nBf
 bbT
@@ -85822,11 +85958,11 @@ aXl
 aXl
 bau
 bbT
-bdH
-bfl
+bdF
+gVx
 lOy
 bhF
-bja
+bdE
 bbT
 blz
 bnd
@@ -86079,11 +86215,11 @@ aXm
 aYV
 aYV
 bbT
-bdG
-bfl
-cnc
-cnc
-cnc
+bdE
+wUy
+bHc
+bHc
+bdE
 bbT
 blA
 bne
@@ -86339,7 +86475,7 @@ bbT
 bdJ
 bfq
 bgC
-vKp
+bgC
 bjb
 bkb
 blB
@@ -86853,8 +86989,8 @@ aNa
 aNa
 hQl
 aNa
-aNa
-aVT
+tvW
+xkA
 bkc
 blC
 xtg

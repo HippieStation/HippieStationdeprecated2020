@@ -81,3 +81,8 @@
 	cost = 100
 	unit_name = "bomb suit"
 	export_types = list(/obj/item/clothing/suit/bomb_suit)
+
+/datum/export/gear/deadmau5helmet
+	cost = 5000 //It is valuable
+	unit_name = "Deadmau5's helmet"
+	export_types = list(/obj/item/clothing/head/helmet/deadmau5)

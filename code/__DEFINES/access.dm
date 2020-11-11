@@ -59,6 +59,7 @@
 #define ACCESS_NETWORK 67 //NTnet diagnostics/monitoring software
 #define ACCESS_CLONING 68 //Cloning room and clone pod ejection
 #define ACCESS_APOTHECARY 69 // haha funny sex number
+#define ACCESS_DJ 70 //Hippie
 
 	//BEGIN CENTCOM ACCESS
 	/*Should leave plenty of room if we need to add more access levels.

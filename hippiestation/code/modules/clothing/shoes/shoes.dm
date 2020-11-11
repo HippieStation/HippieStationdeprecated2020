@@ -50,3 +50,11 @@
 		alternate_worn_icon = 'hippiestation/icons/mob/feet.dmi'
 		body_parts_covered = FEET
 		user.update_inv_shoes()
+
+/obj/item/clothing/shoes/funk
+	name = "funky shoes"
+	desc = "Funky in a cool way."
+	icon = 'hippiestation/icons/obj/clothing/shoes.dmi'
+	icon_state = "funk"
+	item_state = "funk"
+	alternate_worn_icon = 'hippiestation/icons/mob/feet.dmi'

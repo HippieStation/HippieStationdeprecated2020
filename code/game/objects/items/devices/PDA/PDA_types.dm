@@ -170,6 +170,11 @@
 	icon_state = "pda-roboticist"
 	default_cartridge = /obj/item/cartridge/roboticist
 
+/obj/item/pda/discjockey
+	name = "\improper DJ PDA"
+	icon_state = "pda-dj"
+	default_cartridge = /obj/item/cartridge/discjockey
+
 /obj/item/pda/curator
 	name = "curator PDA"
 	icon_state = "pda-library"

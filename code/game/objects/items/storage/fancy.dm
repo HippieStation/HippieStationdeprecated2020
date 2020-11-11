@@ -330,6 +330,14 @@
 	icon_state = "cohibacase"
 	spawn_type = /obj/item/clothing/mask/cigarette/cigar/havana
 
+/obj/item/storage/fancy/cigarettes/random
+
+/obj/item/storage/fancy/cigarettes/random/Initialize()
+	. = ..()
+	var/static/banned_cigarettes = list(/obj/item/storage/fancy/cigarettes/cigars) //No cigarettes for you, DJ.
+	var/real_type = pick(subtypesof(/obj/item/storage/fancy/cigarettes) - banned_cigarettes)
+	new real_type(loc)
+
 /*
  * Heart Shaped Box w/ Chocolates
  */

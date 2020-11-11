@@ -46,6 +46,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 	#define MODE_VT 3
 
 	//Secondary variables
+	var/fcolor //Hippie. Flashlight color. For DJ pda cartridge.
+	var/fpower = 3 //Hippie. Flashlight's power. For DJ pda cartridge
+	var/TimerID //Hippie.
+
 	var/scanmode = PDA_SCANNER_NONE
 	var/fon = FALSE //Is the flashlight function on?
 	var/f_lum = 2.3 //Luminosity for the flashlight function
@@ -100,7 +104,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 /obj/item/pda/Initialize()
 	. = ..()
 	if(fon)
-		set_light(f_lum)
+		if(istype(cartridge, /obj/item/cartridge/discjockey))
+			DiscoFever()
+		else
+			set_light(f_lum)
 
 	GLOB.PDAs += src
 	if(default_cartridge)
@@ -742,9 +749,19 @@ GLOBAL_LIST_EMPTY(PDAs)
 	if(fon)
 		fon = FALSE
 		set_light(0)
+		//Hippie start
+		remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+		color = null
+		update_icon()
+		if(TimerID)
+			deltimer(TimerID)
+		//Hippie end
 	else if(f_lum)
 		fon = TRUE
-		set_light(f_lum)
+		if(istype(cartridge, /obj/item/cartridge/discjockey))
+			DiscoFever()
+		else
+			set_light(f_lum)
 	update_icon()
 
 /obj/item/pda/proc/remove_pen()
@@ -1011,6 +1028,15 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 /obj/item/pda/proc/pda_no_detonate()
 	return COMPONENT_PDA_NO_DETONATE
+
+/obj/item/pda/proc/DiscoFever() //Hippie. Shamelessly ripped from the disco ball for the DISCO FEVER cartridge.
+	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+	fcolor = random_color()
+	set_light(5, fpower, fcolor) //5 is the range of the light... I think.
+	add_atom_colour("#[fcolor]", FIXED_COLOUR_PRIORITY)
+	update_icon()
+	TimerID = addtimer(CALLBACK(src, .proc/DiscoFever), 5, TIMER_STOPPABLE)  //Call ourselves every 0.5 seconds to change colors
+
 
 #undef PDA_SCANNER_NONE
 #undef PDA_SCANNER_MEDICAL

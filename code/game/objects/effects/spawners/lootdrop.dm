@@ -269,7 +269,12 @@
 				/obj/item/circuitboard/machine/microwave,
 				/obj/item/circuitboard/machine/chem_dispenser/drinks,
 				/obj/item/circuitboard/machine/chem_dispenser/drinks/beer,
-				/obj/item/circuitboard/computer/slot_machine
+				/obj/item/circuitboard/computer/slot_machine,
+				//Hippie start
+				/obj/item/circuitboard/computer/craftingbookcatalog,
+				/obj/item/circuitboard/machine/radio_station,
+				/obj/item/circuitboard/machine/unce
+				//Hippie end
 				)
 
 /obj/effect/spawner/lootdrop/techstorage/rnd
