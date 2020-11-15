@@ -13,7 +13,6 @@
 	var/tubbs = FALSE
 	var/uniform_style = 0
 	var/suit_style = 0
-	var/attach_pendant = FALSE
 
 	outfit = /datum/outfit/job/vice_officer
 
@@ -29,7 +28,7 @@
 	name = "Vice Officer"
 	jobtype = /datum/job/viceofficer
 
-	glasses = /obj/item/clothing/glasses/sunglasses
+	glasses = /obj/item/clothing/glasses/hippie/miami
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/headset_sec
 	suit = /obj/item/clothing/suit/hippie/viceofficer
@@ -60,8 +59,7 @@
 		J.suit_style = pick(1,2)
 
 	if(!J.tubbs)//Crocket
-		J.attach_pendant = FALSE
-		glasses = /obj/item/clothing/glasses/sunglasses/miami
+		glasses = /obj/item/clothing/glasses/hippie/miami
 
 		switch (J.uniform_style)
 			if (1)
@@ -78,7 +76,8 @@
 				suit = /obj/item/clothing/suit/hippie/viceofficer/crocket2
 
 	else//Tubbs
-		J.attach_pendant = TRUE
+		l_pocket = /obj/item/clothing/accessory/pendant
+		glasses = /obj/item/clothing/glasses/sunglasses
 
 		switch (J.uniform_style)
 			if (1)
@@ -95,15 +94,3 @@
 				suit = /obj/item/clothing/suit/hippie/viceofficer/tubbs2
 
 	J.tubbs = !J.tubbs//switching for the next one=
-
-/datum/outfit/job/vice_officer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	..()
-
-	var/datum/job/viceofficer/J = SSjob.GetJobType(jobtype)
-
-	if(visualsOnly || !J.attach_pendant)
-		return
-
-	var/obj/item/clothing/under/U = H.w_uniform
-	var/obj/item/clothing/accessory/pendant/P = new(H.loc)
-	P.attach(U,H)

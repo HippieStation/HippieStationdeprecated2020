@@ -54,11 +54,12 @@
 	..()
 	SEND_SIGNAL(user, COMSIG_THREAT_SCAN_CLICK_CTRL_SHIFT, src)
 
-/obj/item/clothing/glasses/sunglasses/miami
+/obj/item/clothing/glasses/hippie/miami
 	name = "miami shades"
-	alternate_worn_icon = 'hippiestation/icons/mob/eyes.dmi'
-	icon = 'hippiestation/icons/obj/clothing/glasses.dmi'
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand-clothing.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand-clothing.dmi'
 	icon_state = "MiamiShades"
 	item_state = "MiamiShades"
+	darkness_view = 1
+	flash_protect = 1
+	tint = 1
