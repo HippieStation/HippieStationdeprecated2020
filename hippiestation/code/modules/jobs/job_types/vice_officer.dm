@@ -10,6 +10,10 @@
 	supervisors = "the head of security"
 	selection_color = "#ffeeee"
 	minimal_player_age = 7
+	var/tubbs = FALSE
+	var/uniform_style = 0
+	var/suit_style = 0
+	var/attach_pendant = FALSE
 
 	outfit = /datum/outfit/job/vice_officer
 
@@ -42,3 +46,64 @@
 	box = /obj/item/storage/box/security
 
 	implants = list(/obj/item/implant/mindshield)
+
+
+/datum/outfit/job/vice_officer/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+	if(visualsOnly)
+		return
+
+	var/datum/job/viceofficer/J = SSjob.GetJobType(jobtype)
+
+	if (!J.uniform_style)
+		J.uniform_style = pick(1,2,3)
+		J.suit_style = pick(1,2)
+
+	if(!J.tubbs)//Crocket
+		J.attach_pendant = FALSE
+		glasses = /obj/item/clothing/glasses/sunglasses/miami
+
+		switch (J.uniform_style)
+			if (1)
+				uniform = /obj/item/clothing/under/rank/viceofficer/crocket1
+			if (2)
+				uniform = /obj/item/clothing/under/rank/viceofficer/crocket2
+			if (3)
+				uniform = /obj/item/clothing/under/rank/viceofficer/crocket3
+
+		switch (J.suit_style)
+			if (1)
+				suit = /obj/item/clothing/suit/hippie/viceofficer/crocket1
+			if (2)
+				suit = /obj/item/clothing/suit/hippie/viceofficer/crocket2
+
+	else//Tubbs
+		J.attach_pendant = TRUE
+
+		switch (J.uniform_style)
+			if (1)
+				uniform = /obj/item/clothing/under/rank/viceofficer/tubbs1
+			if (2)
+				uniform = /obj/item/clothing/under/rank/viceofficer/tubbs2
+			if (3)
+				uniform = /obj/item/clothing/under/rank/viceofficer/tubbs3
+
+		switch (J.suit_style)
+			if (1)
+				suit = /obj/item/clothing/suit/toggle/hippie/viceofficer/tubbs1
+			if (2)
+				suit = /obj/item/clothing/suit/hippie/viceofficer/tubbs2
+
+	J.tubbs = !J.tubbs//switching for the next one=
+
+/datum/outfit/job/vice_officer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+
+	var/datum/job/viceofficer/J = SSjob.GetJobType(jobtype)
+
+	if(visualsOnly || !J.attach_pendant)
+		return
+
+	var/obj/item/clothing/under/U = H.w_uniform
+	var/obj/item/clothing/accessory/pendant/P = new(H.loc)
+	P.attach(U,H)
