@@ -175,6 +175,18 @@
 	icon_state = "pda-dj"
 	default_cartridge = /obj/item/cartridge/discjockey
 
+/obj/item/pda/discjockey/Initialize()
+	..()
+	bounce()
+
+/obj/item/pda/discjockey/proc/bounce()
+	pixel_y += 1
+	addtimer(CALLBACK(src, .proc/reset_pixel_y), 2)
+	addtimer(CALLBACK(src, .proc/bounce), 11)
+
+/obj/item/pda/discjockey/proc/reset_pixel_y()
+	pixel_y = 0
+
 /obj/item/pda/curator
 	name = "curator PDA"
 	icon_state = "pda-library"

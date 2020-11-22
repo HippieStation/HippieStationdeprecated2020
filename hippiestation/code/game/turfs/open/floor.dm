@@ -17,7 +17,7 @@
 		if(!F.use(1))
 			return
 	..()
-	
+
 /turf/open/floor/plasteel/logo/l1
 	icon_state = "L1"
 
@@ -59,3 +59,8 @@
 
 /turf/open/floor/plasteel/logo/l14
 	icon_state = "L14"
+
+/turf/open/floor/red_and_blue
+	name = "bled tile"
+	icon = 'hippiestation/icons/turf/floors.dmi'
+	icon_state = "red_blue_penis"

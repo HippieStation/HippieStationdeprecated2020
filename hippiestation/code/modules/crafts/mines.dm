@@ -2,7 +2,7 @@
 	name = "dummy mine"
 	desc = "Better stay away from that thing."
 	density = FALSE
-	anchored = FALSE
+	anchored = 0
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "uglymine_off"
 	var/off_icon_state = "uglymine_off"
@@ -48,10 +48,10 @@
 		to_chat(user, "<span class ='notice'>You disarm the mine.</span>")
 		playsound(src, 'sound/items/screwdriver2.ogg', 50)
 
-/obj/item/mine/dropped()
+/obj/item/mine/pickup(mob/user)
 	if(armed)
-		anchored = 1
-	..()
+		src.visible_message("<span class ='danger'>[user] picks up the [src], setting it off!</span>")
+		triggermine(user)
 
 /obj/item/mine/explosive
 	name = "explosive mine"
@@ -123,7 +123,7 @@
 	var/dancefloor_exists = FALSE
 	var/direction
 
-/obj/item/mine/disco/mineEffect(mob/living/victim) //Shamelessly ripped from the devil's dance spell; this is too easy
+/obj/item/mine/disco/mineEffect(mob/living/victim) //Shamelessly ripped from the devil's dance spell
 	LAZYINITLIST(dancefloor_turfs)
 	LAZYINITLIST(dancefloor_turfs_types)
 	var/list/funky_turfs = RANGE_TURFS(1, victim)
@@ -140,7 +140,7 @@
 		dancefloor_turfs_types.len = funky_turfs.len
 		for(var/t in funky_turfs)
 			var/turf/T = t
-			if(!(istype(T, /turf/closed))) //Don't want walls turning into dance floors or this mine will be the next thermite.
+			if(!(istype(T, /turf/closed))) //Don't want walls turning into dance floors or else this mine will be the next thermite.
 				dancefloor_turfs[i] = T
 				dancefloor_turfs_types[i] = T.type
 				T.ChangeTurf((i % 2 == 0) ? /turf/open/floor/light/colour_cycle/dancefloor_a : /turf/open/floor/light/colour_cycle/dancefloor_b, flags = CHANGETURF_INHERIT_AIR)
@@ -151,14 +151,34 @@
 		victim = M
 		victim.AdjustImmobilized(100)
 		victim.emote("spin")
-		src.visible_message("<span class ='danger'>[victim] begins to uncontrollably DANCE!</span>")
-		discoDance(victim)
+		victim.emote("snap")
+		victim.visible_message("<span class ='danger'>[victim] begins to uncontrollably DANCE!</span>")
+		addtimer(CALLBACK(src, .proc/discoDance, victim), 1)
 
 /obj/item/mine/disco/proc/discoDance(mob/living/victim)
-	victim.emote("snap")
-	var/i = 0
-	while(i < 10)
+	var/i
+	for(i = 1; i <= 10; i++)
 		victim.emote("flip")
 		victim.emote("spin")
 		sleep(10)
-		i++
+
+/obj/item/mine/disco/triggermine(mob/victim)
+	if(triggered)
+		return
+	if(!armed)
+		return
+	visible_message("<span class='danger'>[victim] sets off [icon2html(src, viewers(src))] [src]!</span>")
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(3, 1, src)
+	s.start()
+	mineEffect(victim)
+	triggered = 1
+
+	//This is the next best thing to deletion. If I do qdel(src) then discoDance() doesn't have enough time to activate
+	icon_state = null
+	update_icon()
+	mouse_opacity = 0
+	addtimer(CALLBACK(src, .proc/delete_self), 300) //30 seconds to account for mega lag
+
+/obj/item/mine/disco/proc/delete_self()
+	qdel(src)

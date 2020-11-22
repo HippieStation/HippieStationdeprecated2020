@@ -331,12 +331,18 @@
 	spawn_type = /obj/item/clothing/mask/cigarette/cigar/havana
 
 /obj/item/storage/fancy/cigarettes/random
+	name = "random cigarette pack"
+	desc = "If you can read this, please contact your local code monkey."
 
 /obj/item/storage/fancy/cigarettes/random/Initialize()
 	. = ..()
-	var/static/banned_cigarettes = list(/obj/item/storage/fancy/cigarettes/cigars) //No cigarettes for you, DJ.
+	var/static/banned_cigarettes = list(/obj/item/storage/fancy/cigarettes/cigars,
+										/obj/item/storage/fancy/cigarettes/cigars/cohiba,
+										/obj/item/storage/fancy/cigarettes/cigars/havana
+										) //No cigars for you, DJ.
 	var/real_type = pick(subtypesof(/obj/item/storage/fancy/cigarettes) - banned_cigarettes)
 	new real_type(loc)
+	qdel(src)
 
 /*
  * Heart Shaped Box w/ Chocolates

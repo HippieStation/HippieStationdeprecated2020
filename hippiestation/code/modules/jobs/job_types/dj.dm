@@ -21,7 +21,7 @@
 /datum/outfit/job/discjockey
 	name = "DJ"
 	jobtype = /datum/job/discjockey
-
+	head = /obj/item/clothing/head/helmet/daftpunk1
 	shoes = /obj/item/clothing/shoes/funk
 	belt = /obj/item/pda/discjockey
 	ears = /obj/item/radio/headset/headset_srv

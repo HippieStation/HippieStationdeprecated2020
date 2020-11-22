@@ -273,7 +273,8 @@
 				//Hippie start
 				/obj/item/circuitboard/computer/craftingbookcatalog,
 				/obj/item/circuitboard/machine/radio_station,
-				/obj/item/circuitboard/machine/unce
+				/obj/item/circuitboard/machine/unce_machine,
+				/obj/item/circuitboard/machine/recordburner
 				//Hippie end
 				)
 
