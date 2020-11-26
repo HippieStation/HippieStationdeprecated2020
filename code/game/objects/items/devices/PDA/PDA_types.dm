@@ -176,7 +176,7 @@
 	default_cartridge = /obj/item/cartridge/discjockey
 
 /obj/item/pda/discjockey/Initialize()
-	..()
+	. = ..()
 	bounce()
 
 /obj/item/pda/discjockey/proc/bounce()
