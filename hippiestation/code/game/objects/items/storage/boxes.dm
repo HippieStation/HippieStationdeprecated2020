@@ -89,3 +89,70 @@
 	new /obj/item/inkcartridge(src)
 	new /obj/item/inkcartridge(src)
 	new /obj/item/inkcartridge(src)
+
+/obj/item/storage/box/glowsticks
+	name = "glowstick box"
+	desc = "A box with glowsticks in it."
+	icon = 'hippiestation/icons/obj/storage.dmi'
+	icon_state = "glowstick_box"
+	illustration = null
+
+/obj/item/storage/box/glowsticks/PopulateContents()
+	var/type = pick(
+			/obj/item/flashlight/glowstick,
+			/obj/item/flashlight/glowstick/blue,
+			/obj/item/flashlight/glowstick/cyan,
+			/obj/item/flashlight/glowstick/orange,
+			/obj/item/flashlight/glowstick/pink,
+			/obj/item/flashlight/glowstick/red,
+			/obj/item/flashlight/glowstick/yellow )
+	new type(src)
+	type = pick(
+			/obj/item/flashlight/glowstick,
+			/obj/item/flashlight/glowstick/blue,
+			/obj/item/flashlight/glowstick/cyan,
+			/obj/item/flashlight/glowstick/orange,
+			/obj/item/flashlight/glowstick/pink,
+			/obj/item/flashlight/glowstick/red,
+			/obj/item/flashlight/glowstick/yellow )
+	new type(src)
+	type = pick(
+			/obj/item/flashlight/glowstick,
+			/obj/item/flashlight/glowstick/blue,
+			/obj/item/flashlight/glowstick/cyan,
+			/obj/item/flashlight/glowstick/orange,
+			/obj/item/flashlight/glowstick/pink,
+			/obj/item/flashlight/glowstick/red,
+			/obj/item/flashlight/glowstick/yellow )
+	new type(src)
+	type = pick(
+			/obj/item/flashlight/glowstick,
+			/obj/item/flashlight/glowstick/blue,
+			/obj/item/flashlight/glowstick/cyan,
+			/obj/item/flashlight/glowstick/orange,
+			/obj/item/flashlight/glowstick/pink,
+			/obj/item/flashlight/glowstick/red,
+			/obj/item/flashlight/glowstick/yellow )
+	new type(src)
+	type = pick(
+			/obj/item/flashlight/glowstick,
+			/obj/item/flashlight/glowstick/blue,
+			/obj/item/flashlight/glowstick/cyan,
+			/obj/item/flashlight/glowstick/orange,
+			/obj/item/flashlight/glowstick/pink,
+			/obj/item/flashlight/glowstick/red,
+			/obj/item/flashlight/glowstick/yellow )
+	new type(src)
+
+/obj/item/storage/box/laserpointers
+	name = "laser pointer box"
+	desc = "A box full of laser pointers. Every color!"
+	icon = 'hippiestation/icons/obj/storage.dmi'
+	icon_state = "laserpointer_box"
+	illustration = null
+
+/obj/item/storage/box/laserpointers/PopulateContents()
+	new /obj/item/laser_pointer/red(src)
+	new /obj/item/laser_pointer/green(src)
+	new /obj/item/laser_pointer/blue(src)
+	new /obj/item/laser_pointer/purple(src)

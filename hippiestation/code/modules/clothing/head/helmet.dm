@@ -24,3 +24,31 @@
 	if(slot == ITEM_SLOT_HEAD)
 		user.hair_style = "Afro (Large)"
 		user.update_hair()
+
+/obj/item/clothing/head/helmet/deadmau5
+	name = "Deadmau5's helmet"
+	desc = "The only surviving original helmet."
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	icon = 'hippiestation/icons/obj/clothing/hats.dmi'
+	icon_state = "deadmau5"
+	item_state = "deadmau5"
+	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
+	alternate_screams = list('hippiestation/sound/voice/deadmau5scream1.ogg','hippiestation/sound/voice/deadmau5scream2.ogg')
+
+/obj/item/clothing/head/helmet/daftpunk1
+	name = "daft punk helmet"
+	desc = "Is this the return of disco?"
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	icon = 'hippiestation/icons/obj/clothing/hats.dmi'
+	icon_state = "daftpunk1"
+	item_state = "daftpunk1"
+	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
+
+/obj/item/clothing/head/helmet/daftpunk2
+	name = "daft punk helmet"
+	desc = "Perhaps this really is the return of disco!"
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	icon = 'hippiestation/icons/obj/clothing/hats.dmi'
+	icon_state = "daftpunk2"
+	item_state = "daftpunk2"
+	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'

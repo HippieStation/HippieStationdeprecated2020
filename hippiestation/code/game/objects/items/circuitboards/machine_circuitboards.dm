@@ -57,3 +57,31 @@
 							/obj/item/stock_parts/micro_laser = 2,
 							/obj/item/stock_parts/matter_bin = 1,
 							/obj/item/stack/sheet/glass = 1)
+
+/obj/item/circuitboard/machine/radio_station
+	name = "circuit board (Bluespace radio station)"
+	build_path = /obj/machinery/radio_station
+	req_components = list(
+							/obj/item/stock_parts/subspace/amplifier = 1,
+							/obj/item/stock_parts/subspace/transmitter = 2,
+							/obj/item/stock_parts/cell = 1,
+							/obj/item/stock_parts/capacitor = 2,
+							/obj/item/stack/sheet/bluespace_crystal = 2,
+							/obj/item/instrument/piano_synth = 1
+							)
+
+/obj/item/circuitboard/machine/unce_machine
+	name = "circuit board (Unce machine)"
+	build_path = /obj/machinery/unce_machine
+	req_components = list(
+							/obj/item/taperecorder = 1
+							)
+
+/obj/item/circuitboard/machine/recordburner
+	name = "circuit board (Record disk burner)"
+	build_path = /obj/machinery/recordburner
+	req_components = list(
+							/obj/item/stock_parts/micro_laser = 2,
+							/obj/item/stock_parts/scanning_module = 1
+
+							)

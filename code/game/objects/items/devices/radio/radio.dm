@@ -41,6 +41,15 @@
 	var/const/FREQ_LISTENING = 1
 	//FREQ_BROADCASTING = 2
 
+	//Hippie
+	var/music_channel = null //The sound channel the music is playing on.
+	var/radio_music_file = "" //The file path to the music's audio file
+	var/music_toggle = 1 //Toggles whether music will play or not.
+	var/music_name = "" //Used to display the name of currently playing music.
+	var/music_playing = FALSE
+	var/obj/machinery/radio_station/linked_RS = null //The radio station that is broadcasting to this radio
+	var/radio_holder //stopmusic() will apply to this person
+
 /obj/item/radio/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] starts bouncing [src] off [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return BRUTELOSS
@@ -81,9 +90,22 @@
 	remove_radio_all(src) //Just to be sure
 	QDEL_NULL(wires)
 	QDEL_NULL(keyslot)
+	GLOB.radio_list -= src //Hippie. Removes from global radio list
 	return ..()
 
 /obj/item/radio/Initialize()
+	if(!istype(src, /obj/item/radio/intercom)) //Intercoms playing music is useless
+		GLOB.radio_list += src //Hippie. Adds the radio to the global radio list for usage in radio_station.dm
+	var/i
+	for(i = 1; i <= GLOB.radio_list.len; i++)
+		if(GLOB.radio_list[i] == src)
+			music_channel = i //I hope that over 1,000 radios are never initialized.
+								/*  Allow me to explain why. There are 1,024 usable channels. The top ~10
+									are preserved for ambience, admin music, etc. The other 1,000 are unused (to my knowledge)
+									and so to allow radios to play their own music without inferefering with other sounds, I give
+									each radio their own channel to play music on. This way the user can also stop the music
+									playing from their radio (headsets, etc.) without stopping the music of someone else's radio. */
+
 	wires = new /datum/wires/radio(src)
 	if(prison_radio)
 		wires.cut(WIRE_TX) // OH GOD WHY
@@ -332,6 +354,18 @@
 		. += "<span class='notice'>It can be attached and modified.</span>"
 	else
 		. += "<span class='notice'>It cannot be modified or attached.</span>"
+	. += "<span class='info'>Harm intent + alt-click to toggle music."
+	if(music_toggle)
+		. += "<span class ='notice'>Its music player is currently toggled <b>ON</b>.</span>"
+	else
+		. += "<span class ='notice'>Its music player is currently toggled <b>OFF</b>.</span>"
+	if(item_flags & IN_INVENTORY)
+		if(music_toggle)
+			if(istype(src, /obj/item/radio/headset))
+				if(item_action_slot_check(ITEM_SLOT_EARS, user))
+					. += "<span class ='notice'>Currently playing: [music_name] </span>"
+			else
+				. += "<span class ='notice'>Currently playing: [music_name] </span>"
 
 /obj/item/radio/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)
@@ -344,7 +378,7 @@
 	else
 		return ..()
 
-/obj/item/radio/emp_act(severity)
+/obj/item/radio/emp_act(severity, mob/user)
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
@@ -354,14 +388,116 @@
 		to_chat(loc, "<span class='warning'>\The [src] overloads.</span>")
 	broadcasting = FALSE
 	listening = FALSE
+	music_toggle = 0 //Hippie
 	for (var/ch_name in channels)
 		channels[ch_name] = 0
 	on = FALSE
+	stopmusic(user) //Hippie
 	spawn(200)
 		if(emped == curremp) //Don't fix it if it's been EMP'd again
 			emped = 0
 			if (!istype(src, /obj/item/radio/intercom)) // intercoms will turn back on on their own
 				on = TRUE
+
+/obj/item/radio/AltClick(mob/living/user) //Hippie
+	..()
+	if(!istype(user) || !Adjacent(user) || user.incapacitated())
+		return
+	if(user.a_intent == INTENT_HARM)
+		if(music_toggle)
+			music_toggle = 0
+			stopmusic(user)
+			to_chat(user, "<span class ='notice'>[src]'s music player is now <b>OFF</b>. </span>")
+		else
+			music_toggle = 1
+			to_chat(user, "<span class ='notice'>[src]'s music player is now <b>ON</b>. </span>")
+		return
+
+
+//Hippie start
+
+/obj/item/radio/proc/avoiding_a_sleep(mob/living/user, music_filepath, name_of_music, music_volume, radio_station_thats_PM)
+		music_name = name_of_music
+		user << sound(music_filepath, 0, 0, music_channel, music_volume) //plays the music to the user
+		music_playing = TRUE
+		linked_RS = radio_station_thats_PM
+		to_chat(user, "<span class='robot'><b>[src]</b> beeps into your ears, 'Now playing: <i>[music_name]</i>.' </span>")
+		update_icon()
+
+/obj/item/radio/proc/playmusic(mob/living/user, music_filepath, name_of_music, music_volume, radio_station_thats_playing_music) //Plays music at src using the filepath to the audio file. This proc is directly working with the bluespace radio station at radio_station.dm
+	radio_music_file = music_filepath
+
+	var/obj/itemholder = src
+	user = src.loc
+	while(user && !istype(user, /mob/living))
+		user = itemholder
+		itemholder = itemholder.loc
+		if(user == null)
+			return //radio was never in a mob
+
+	radio_holder = user
+
+	if(music_toggle == 1) //Music player is on
+		if(istype(src, /obj/item/radio/headset))
+			if(!(user.get_item_by_slot(ITEM_SLOT_EARS) == src)) //only want headsets to play music if they're equipped
+				return
+		stopmusic(user) //stop the previously playing song to make way for the new one
+		addtimer(CALLBACK(src, .proc/avoiding_a_sleep, user, music_filepath, name_of_music, music_volume, radio_station_thats_playing_music), 10)
+
+/obj/item/radio/proc/stopmusic(mob/living/user, music_turnoff_message_type)
+	if(music_playing)
+		music_playing = FALSE
+		update_icon()
+		user << sound(null, channel = music_channel)
+		user << sound('hippiestation/sound/effects/hitmarker.ogg', 0, 0, music_channel, 50)
+		music_name = ""
+		switch(music_turnoff_message_type)
+			if(1)
+				src.audible_message("<span class='robot'><b>[src]</b> beeps, '[src] removed, turning off music.' </span>")
+			if(2)
+				src.audible_message("<span class='robot'><b>[src]</b> beeps, 'Music toggled off.' </span>") //Unused message
+			if(3)
+				src.audible_message("<span class='robot'><b>[src]</b> beeps, 'Signal interrupted.' </span>")
+		music_playing = FALSE
+
+/obj/item/radio/update_icon()
+	cut_overlays()
+	if(music_playing)
+		add_overlay("sound_fx")
+
+/obj/item/radio/doStrip(mob/user)
+	..()
+	stopmusic(user, 1)
+
+/obj/item/radio/dropped(mob/user)
+	..()
+	addtimer(CALLBACK(src, .proc/droppedStopMusic, user), 3)
+
+/obj/item/radio/proc/droppedStopMusic(mob/user)
+	var/i
+	for(i = 1, i <= user.contents.len, i++)
+		if(user.contents[i] == src)
+			return
+	if(item_flags & IN_INVENTORY)
+		return
+	if(determineIfInMob(user) == TRUE)
+		return
+	stopmusic(user, 1)
+
+/obj/item/radio/proc/determineIfInMob(mob/user)
+	var/obj/itemholder = src
+	var/mob/M = src.loc
+	while(M && !istype(M, /mob/living))
+		M = itemholder
+		itemholder = itemholder.loc
+		if(M == null)
+			return FALSE
+	if(M == user)
+		return TRUE
+	else
+		return FALSE
+
+//Hippie end
 
 ///////////////////////////////
 //////////Borg Radios//////////

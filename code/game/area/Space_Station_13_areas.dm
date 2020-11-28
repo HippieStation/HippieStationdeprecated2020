@@ -16,8 +16,16 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /*-----------------------------------------------------------------------------*/
 
+
+//Hippie start
 /area/maintenance/longface
 	name = "Longface Lair"
+
+/area/DJoffice
+	name = "DJ Office"
+	icon_state = "DJ"
+
+//Hippie end
 
 /area/ai_monitored	//stub defined ai_monitored.dm
 

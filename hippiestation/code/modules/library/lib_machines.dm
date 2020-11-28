@@ -57,13 +57,12 @@
 	if(icon_screen == null)
 		return
 
-	if(printing)
-		to_chat(user, "<span class='warning'>You must wait for the [src] to finish printing!")
+	if(printcheck(user) == TRUE) //check if we're already printing a book
 		return
 	var/cartridgedisplay = "Spacestar-brand ink level: [ink]" + "u"
 	if(ishuman(user))
 		playsound(src, 'sound/machines/terminal_on.ogg', 50, 1)
-		corpchoice = input(user, "Print a book from Spacestar! Select a mega-corporation. " + cartridgedisplay) in corporations
+		corpchoice = input(user, "Print a book from Spacestar! Select a mega-corporation. [cartridgedisplay]", "Book Catalog") in corporations
 	switch(corpchoice)
 		if("Exit")
 			playsound(src, 'sound/machines/terminal_off.ogg', 50, 1)
@@ -72,18 +71,24 @@
 		if("Nanotrasen Approved Books")
 			playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
 			book = input(user, "Select a book. " + cartridgedisplay) in booklistNT
+			if(printcheck(user) == TRUE)
+				return
 			spawnbook(user, 1)
 
 		if("Syndicate nonsense books")
 			playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
 			visible_message("<span class='robot'><b>[src]</b> beeps, 'We remind you that books belonging to this mega-corporation are contraband in Nanotrasen controlled space.'")
 			book = input(user, "Select a book. WARNING: Syndicate books are contraband in all Nanotrasen controlled space. [cartridgedisplay]") in booklistSyndicate
+			if(printcheck(user) == TRUE)
+				return
 			spawnbook(user, 2)
 
 		if("Wizard Federation drivel")
 			playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
 			visible_message("<span class='robot'><b>[src]</b> beeps, 'We remind you that books belonging to this mega-corporation are contraband in Nanotrasen controlled space.'")
 			book = input(user, "Select a book. WARNING: Space Wizard Federation books are contraband in all Nanotrasen controlled space. [cartridgedisplay]") in booklistWizFed
+			if(printcheck(user) == TRUE)
+				return
 			spawnbook(user, 3)
 
 	if(thankyou == 1)
@@ -204,11 +209,15 @@
 
 /obj/machinery/computer/craftingbookcatalog/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/inkcartridge))
-		if(printing)
-			to_chat(user, "<span class='warning'>You must wait for the [src] to finish printing!")
+		if(printcheck(user) == TRUE)
 			return
 
 		qdel(I)
 		visible_message("<span class ='notice'>[user] loads a Spacestar-brand ink cartridge into the [src]")
 		ink++
 		return
+
+/obj/machinery/computer/craftingbookcatalog/proc/printcheck(mob/user)
+	if(printing)
+		to_chat(user, "<span class='warning'>You must wait for the [src] to finish printing!")
+		return TRUE

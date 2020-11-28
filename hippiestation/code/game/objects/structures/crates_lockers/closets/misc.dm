@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/mime
 	name = "Mime closet"
-	desc = "Filled with mime stuff"
+	desc = "Filled with mime stuff."
 	icon = 'hippiestation/icons/obj/closet.dmi'
 	req_access = list(ACCESS_THEATRE)
 	icon_state = "mime"
@@ -18,7 +18,7 @@
 /obj/structure/closet/secure_closet/clown
 	name = "Clown closet"
 	icon = 'hippiestation/icons/obj/closet.dmi'
-	desc = "Filled with clown stuff"
+	desc = "Filled with clown stuff."
 	req_access = list(ACCESS_THEATRE)
 	icon_state = "clown"
 
@@ -30,3 +30,17 @@
 	new /obj/item/clothing/mask/gas/clown_hat(src)
 	new /obj/item/storage/backpack/clown(src)
 	new /obj/item/bikehorn(src)
+
+/obj/structure/closet/secure_closet/discjockey
+	name = "DJ closet"
+	desc = "Filled with DJ stuff."
+	icon = 'hippiestation/icons/obj/closet.dmi'
+	icon_state = "DJ"
+	req_access = list(ACCESS_DJ)
+
+/obj/structure/closet/secure_closet/discjockey/PopulateContents()
+	new /obj/item/cartridge/discjockey(src)
+	new /obj/item/clothing/shoes/funk(src)
+	new /obj/item/clothing/under/hippie/telvis(src)
+	new /obj/item/clothing/head/helmet/daftpunk1(src)
+	new /obj/item/clothing/head/helmet/daftpunk2(src)

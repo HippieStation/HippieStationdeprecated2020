@@ -79,9 +79,12 @@ Slimecrossing Armor
 	name = "Fabricate Light Prism"
 	icon_icon = 'icons/obj/slimecrossing.dmi'
 	button_icon_state = "lightprism"
+	var/cooldowntime
 
 /datum/action/item_action/place_light_prism/Trigger()
 	if(!IsAvailable())
+		return
+	if(cooldowntime > world.time)
 		return
 	var/obj/item/clothing/glasses/prism_glasses/glasses = target
 	if(locate(/obj/structure/light_prism) in get_turf(owner))
@@ -93,6 +96,7 @@ Slimecrossing Armor
 			return
 		to_chat(owner, "<span class='notice'>You channel nearby light into a glowing, ethereal prism.</span>")
 		new /obj/structure/light_prism(get_turf(owner), glasses.glasses_color)
+		cooldowntime = world.time + 100
 
 /obj/item/clothing/head/peaceflower
 	name = "heroine bud"
