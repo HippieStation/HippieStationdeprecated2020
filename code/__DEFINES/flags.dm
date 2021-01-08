@@ -16,24 +16,38 @@
 
 GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768))
 
+/* Directions */
+///All the cardinal direction bitflags.
+#define ALL_CARDINALS (NORTH|SOUTH|EAST|WEST)
+
 // for /datum/var/datum_flags
 #define DF_USE_TAG		(1<<0)
 #define DF_VAR_EDITED	(1<<1)
 #define DF_ISPROCESSING (1<<2)
 
 //FLAGS BITMASK
+// scroll down before changing the numbers on these
 
-#define HEAR_1						(1<<3)		// This flag is what recursive_hear_check() uses to determine wether to add an item to the hearer list or not.
-#define CHECK_RICOCHET_1			(1<<4)		// Projectiels will check ricochet on things impacted that have this.
-#define CONDUCT_1					(1<<5)		// conducts electricity (metal etc.)
-#define NODECONSTRUCT_1				(1<<7)		// For machines and structures that should not break into parts, eg, holodeck stuff
-#define OVERLAY_QUEUED_1			(1<<8)		// atom queued to SSoverlay
-#define ON_BORDER_1					(1<<9)		// item has priority to check when entering or leaving
-#define PREVENT_CLICK_UNDER_1		(1<<11)	//Prevent clicking things below it on the same turf eg. doors/ fulltile windows
+/// This flag is what recursive_hear_check() uses to determine wether to add an item to the hearer list or not.
+#define HEAR_1						(1<<3)
+/// Projectiels will check ricochet on things impacted that have this.
+#define CHECK_RICOCHET_1			(1<<4)	
+/// conducts electricity (metal etc.)
+#define CONDUCT_1					(1<<5)
+/// For machines and structures that should not break into parts, eg, holodeck stuff
+#define NODECONSTRUCT_1				(1<<7)
+/// atom queued to SSoverlay
+#define OVERLAY_QUEUED_1			(1<<8)
+/// item has priority to check when entering or leaving
+#define ON_BORDER_1					(1<<9)
+/// Prevent clicking things below it on the same turf eg. doors/ fulltile windows
+#define PREVENT_CLICK_UNDER_1		(1<<11)
 #define HOLOGRAM_1					(1<<12)
 #define TESLA_IGNORE_1				(1<<13) // TESLA_IGNORE grants immunity from being targeted by tesla-style electricity
 #define INITIALIZED_1				(1<<14)  //Whether /atom/Initialize() has already run for the object
 #define ADMIN_SPAWNED_1			(1<<15) 	//was this spawned by an admin? used for stat tracking stuff.
+/// Is this object currently processing in the atmos object list?
+#define ATMOS_IS_PROCESSING_1 		(1<<16)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
@@ -41,6 +55,9 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define CAN_BE_DIRTY_1				(1<<2) // If a turf can be made dirty at roundstart. This is also used in areas.
 #define NO_LAVA_GEN_1				(1<<6) //Blocks lava rivers being generated on the turf
 #define NO_RUINS_1					(1<<10) //Blocks ruins spawning on the turf
+#define EXCITED_CLEANUP_1 (1 << 13) // Should this tile be cleaned up and reinserted into an excited group?
+
+
 
 /*
 	These defines are used specifically with the atom/pass_flags bitmask

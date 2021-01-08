@@ -514,18 +514,19 @@
 	background_icon_state = "bg_agent"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "deploy_box"
-	var/cooldown = 0
 	var/obj/structure/closet/cardboard/agent/box
+	COOLDOWN_DECLARE(box_cooldown)
 
 /datum/action/item_action/agent_box/Trigger()
 	if(!..())
 		return FALSE
 	if(QDELETED(box))
-		if(cooldown < world.time - 100)
-			box = new(owner.drop_location())
-			owner.forceMove(box)
-			cooldown = world.time
-			owner.playsound_local(box, 'sound/misc/box_deploy.ogg', 50, TRUE)
+		if(!COOLDOWN_FINISHED(src, box_cooldown))
+			return
+		COOLDOWN_START(src, box_cooldown, 10 SECONDS)
+		box = new(owner.drop_location())
+		owner.forceMove(box)
+		owner.playsound_local(box, 'sound/misc/box_deploy.ogg', 50, TRUE)
 	else
 		owner.forceMove(box.drop_location())
 		owner.playsound_local(box, 'sound/misc/box_deploy.ogg', 50, TRUE)

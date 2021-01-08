@@ -255,6 +255,8 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 	return 1
 
+	///Copies all gas info from the turf into the gas list along with temperature
+	///Returns: TRUE if we are mutable, FALSE otherwise
 /datum/gas_mixture/copy_from_turf(turf/model)
 	parse_gas_string(model.initial_gas_mix)
 
@@ -263,7 +265,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	if(model.temperature != initial(model.temperature) || model.temperature != initial(model_parent.temperature))
 		temperature = model.temperature
 
-	return 1
+	return TRUE
 
 /datum/gas_mixture/parse_gas_string(gas_string)
 	gas_string = SSair.preprocess_gas_string(gas_string)
@@ -272,6 +274,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	var/list/gas = params2list(gas_string)
 	if(gas["TEMP"])
 		temperature = text2num(gas["TEMP"])
+		temperature_archived = temperature
 		gas -= "TEMP"
 	gases.Cut()
 	for(var/id in gas)
@@ -394,7 +397,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 	var/our_moles
 	TOTAL_MOLES(cached_gases, our_moles)
-	if(our_moles > MINIMUM_MOLES_DELTA_TO_MOVE)
+	if(our_moles > MINIMUM_MOLES_DELTA_TO_MOVE) //Don't consider temp if there's not enough mols
 		var/temp = temperature
 		var/sample_temp = sample.temperature
 
@@ -410,12 +413,16 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	if(!length(cached_gases))
 		return
 	var/list/reactions = list()
-	for(var/datum/gas_reaction/G in SSair.gas_reactions)
-		if(cached_gases[G.major_gas])
+	for(var/G in SSair.gas_reactions)
+		var/datum/gas_reaction/reaction = G
+		if(cached_gases[reaction.major_gas])
 			reactions += G
+
 	if(!length(reactions))
 		return
+
 	reaction_results = new
+	//It might be worth looking into updating these after each reaction, but it changes things a lot, so be careful
 	var/temp = temperature
 	var/ener = THERMAL_ENERGY(src)
 
@@ -437,9 +444,11 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 			//at this point, all requirements for the reaction are satisfied. we can now react()
 
 			. |= reaction.react(src, holder)
+
 			if (. & STOP_REACTIONS)
 				break
-	if(.)
+
+	if(.) //If we changed the mix to any degree, or if we stopped reacting
 		garbage_collect()
 
 //Takes the amount of the gas you want to PP as an argument
@@ -461,4 +470,47 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 
 10/20*5 = 2.5
 10 = 2.5/5*20
-*/
+**/
+
+/// Pumps gas from src to output_air. Amount depends on target_pressure
+/datum/gas_mixture/proc/pump_gas_to(datum/gas_mixture/output_air, target_pressure)
+	var/output_starting_pressure = output_air.return_pressure()
+
+	if((target_pressure - output_starting_pressure) < 0.01)
+		//No need to pump gas if target is already reached!
+		return FALSE
+
+	//Calculate necessary moles to transfer using PV=nRT
+	if((total_moles() > 0) && (temperature>0))
+		var/pressure_delta = target_pressure - output_starting_pressure
+		var/transfer_moles = (pressure_delta*output_air.volume)/(temperature * R_IDEAL_GAS_EQUATION)
+
+		//Actually transfer the gas
+		var/datum/gas_mixture/removed = remove(transfer_moles)
+		output_air.merge(removed)
+		return TRUE
+	return FALSE
+
+/// Releases gas from src to output air. This means that it can not transfer air to gas mixture with higher pressure.
+/datum/gas_mixture/proc/release_gas_to(datum/gas_mixture/output_air, target_pressure)
+	var/output_starting_pressure = output_air.return_pressure()
+	var/input_starting_pressure = return_pressure()
+
+	if(output_starting_pressure >= min(target_pressure,input_starting_pressure-10))
+		//No need to pump gas if target is already reached or input pressure is too low
+		//Need at least 10 KPa difference to overcome friction in the mechanism
+		return FALSE
+
+	//Calculate necessary moles to transfer using PV = nRT
+	if((total_moles() > 0) && (temperature>0))
+		var/pressure_delta = min(target_pressure - output_starting_pressure, (input_starting_pressure - output_starting_pressure)/2)
+		//Can not have a pressure delta that would cause output_pressure > input_pressure
+
+		var/transfer_moles = (pressure_delta*output_air.volume)/(temperature * R_IDEAL_GAS_EQUATION)
+
+		//Actually transfer the gas
+		var/datum/gas_mixture/removed = remove(transfer_moles)
+		output_air.merge(removed)
+
+		return TRUE
+	return FALSE

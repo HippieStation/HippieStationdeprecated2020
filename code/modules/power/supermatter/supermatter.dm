@@ -406,7 +406,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			removed.gases[/datum/gas/freon][MOLES] = max((removed.gases[/datum/gas/freon][MOLES] + device_energy) * freoncomp / FREON_BREEDING_MODIFIER, 0)
 		if(produces_gas)
 			env.merge(removed)
-			air_update_turf()
+			air_update_turf(FALSE, FALSE)
 
 	for(var/mob/living/carbon/human/l in view(src, HALLUCINATION_RANGE(power))) // If they can see it without mesons on.  Bad on them.
 		if(!istype(l.glasses, /obj/item/clothing/glasses/meson))

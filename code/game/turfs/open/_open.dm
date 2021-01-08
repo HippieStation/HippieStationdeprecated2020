@@ -192,7 +192,7 @@
 
 /turf/open/proc/TakeTemperature(temp)
 	air.temperature += temp
-	air_update_turf()
+	air_update_turf(FALSE, FALSE)
 
 /turf/open/proc/freon_gas_act()
 	for(var/obj/I in contents)
@@ -307,4 +307,5 @@
 		air.assert_gas(/datum/gas/pluoxium)
 		air.gases[/datum/gas/pluoxium][MOLES]+=(pulse_strength/4000)
 		air.garbage_collect()
-		air_update_turf()
+		air_update_turf(FALSE, FALSE)
+

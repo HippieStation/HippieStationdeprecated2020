@@ -92,9 +92,11 @@
 		on = FALSE
 	if(!on || welded)
 		return
-
+	var/turf/open/us = loc
+	if(!istype(us))
+		return
 	var/datum/gas_mixture/air_contents = airs[1]
-	var/datum/gas_mixture/environment = loc.return_air()
+	var/datum/gas_mixture/environment = us.return_air()
 	var/environment_pressure = environment.return_pressure()
 
 	if(pump_direction & RELEASING) // internal -> external
@@ -107,12 +109,11 @@
 
 		if(pressure_delta > 0)
 			if(air_contents.temperature > 0)
-				var/transfer_moles = pressure_delta*environment.volume/(air_contents.temperature * R_IDEAL_GAS_EQUATION)
-
+				var/transfer_moles = (pressure_delta*environment.volume)/(air_contents.temperature * R_IDEAL_GAS_EQUATION)
 				var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
 
 				loc.assume_air(removed)
-				air_update_turf()
+				air_update_turf(FALSE, FALSE)
 
 	else // external -> internal
 		var/pressure_delta = 10000
@@ -122,14 +123,14 @@
 			pressure_delta = min(pressure_delta, (internal_pressure_bound - air_contents.return_pressure()))
 
 		if(pressure_delta > 0 && environment.temperature > 0)
-			var/transfer_moles = pressure_delta * air_contents.volume / (environment.temperature * R_IDEAL_GAS_EQUATION)
+			var/transfer_moles = (pressure_delta * air_contents.volume) / (environment.temperature * R_IDEAL_GAS_EQUATION)
 
 			var/datum/gas_mixture/removed = loc.remove_air(transfer_moles)
 			if (isnull(removed)) // in space
 				return
 
 			air_contents.merge(removed)
-			air_update_turf()
+			air_update_turf(FALSE, FALSE)
 	update_parents()
 
 //Radio remote control
