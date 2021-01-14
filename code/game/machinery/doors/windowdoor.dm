@@ -46,6 +46,8 @@
 	if(obj_integrity == 0)
 		playsound(src, "shatter", 70, 1)
 	electronics = null
+	var/turf/floor = get_turf(src)
+	floor.air_update_turf(TRUE)
 	return ..()
 
 /obj/machinery/door/window/update_icon()

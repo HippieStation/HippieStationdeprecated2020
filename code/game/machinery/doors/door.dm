@@ -80,6 +80,7 @@
 	if(spark_system)
 		qdel(spark_system)
 		spark_system = null
+	air_update_turf(TRUE)
 	return ..()
 
 /obj/machinery/door/proc/try_safety_unlock(mob/user)
@@ -136,7 +137,8 @@
 /obj/machinery/door/Move()
 	var/turf/T = loc
 	. = ..()
-	move_update_air(T)
+	if(density)
+		move_update_air(T)
 
 /obj/machinery/door/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && (mover.pass_flags & PASSGLASS))
