@@ -83,3 +83,8 @@ Name = Coder
 Include = DEBUG VAREDIT SERVER SPAWN POLL
 Exclude = AUTOADMIN
 Edit =
+
+Name = Babymin
+Include = EVERYTHING
+Exclude = 
+EDIT = EVERYTHING
