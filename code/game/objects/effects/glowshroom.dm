@@ -92,7 +92,11 @@
  */
 
 /obj/structure/glowshroom/proc/Spread()
-	var/turf/ownturf = get_turf(src)
+
+	//We could be deleted at any point and the timers might not be cleaned up
+	if(QDELETED(src))
+		return
+
 	var/shrooms_planted = 0
 	for(var/i in 1 to myseed.yield)
 		if(prob(1/(generation * generation) * 100))//This formula gives you diminishing returns based on generation. 100% with 1st gen, decreasing to 25%, 11%, 6, 4, 2...
@@ -105,7 +109,7 @@
 			for(var/turf/open/floor/earth in view(3,src))
 				if(is_type_in_typecache(earth, blacklisted_glowshroom_turfs))
 					continue
-				if(!ownturf.CanAtmosPass(earth))
+				if(!TURF_SHARES(earth))
 					continue
 				if(spreadsIntoAdjacent || !locate(/obj/structure/glowshroom) in view(1,earth))
 					possibleLocs += earth

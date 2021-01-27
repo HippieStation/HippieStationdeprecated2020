@@ -69,6 +69,7 @@ SUBSYSTEM_DEF(air)
 	msg += "PN:[networks.len]|"
 	msg += "AM:[atmos_machinery.len]|"
 	msg += "AO:[atom_process.len]|"
+	msg += "RB:[pipenets_needing_rebuilt.len]|"
 	msg += "AT/MS:[round((cost ? active_turfs.len/cost : 0),0.1)]"
 	return ..()
 
@@ -133,6 +134,18 @@ SUBSYSTEM_DEF(air)
 		if(state != SS_RUNNING)
 			return
 		cost_turfs = MC_AVERAGE(cost_turfs, TICK_DELTA_TO_MS(cached_cost))
+		resumed = FALSE
+		currentpart = SSAIR_HOTSPOTS
+
+	if(currentpart == SSAIR_HOTSPOTS) //We do this before excited groups to allow breakdowns to be independent of adding turfs while still *mostly preventing mass fires
+		timer = TICK_USAGE_REAL
+		if(!resumed)
+			cached_cost = 0
+		process_hotspots(delta_time, resumed)
+		cached_cost += TICK_USAGE_REAL - timer
+		if(state != SS_RUNNING)
+			return
+		cost_hotspots = MC_AVERAGE(cost_hotspots, TICK_DELTA_TO_MS(cached_cost))
 		resumed = FALSE
 		currentpart = SSAIR_EXCITEDCLEANUP
 

@@ -734,7 +734,7 @@ RLD
 						for(var/direction in GLOB.cardinals)
 							var/turf/C = get_step(W, direction)
 							var/list/dupes = checkdupes(C)
-							if(start.CanAtmosPass(C) && !dupes.len)
+							if((isspaceturf(C) || TURF_SHARES(C)) && !dupes.len)
 								candidates += C
 						if(!candidates.len)
 							to_chat(user, "<span class='warning'>Valid target not found...</span>")
@@ -811,10 +811,10 @@ RLD
 	///index, used in the attack self to get the type. stored here since it doesnt change
 	var/list/choices = list()
 	///index, used in the attack self to get the type. stored here since it doesnt change
-	var/list/name_to_type = list() 
+	var/list/name_to_type = list()
 	///
 	var/list/machinery_data = list("cost" = list(), "delay" = list())
-	
+
 /obj/item/construction/plumbing/attack_self(mob/user)
 	..()
 	if(!choices.len)
@@ -829,7 +829,7 @@ RLD
 	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
-	
+
 	blueprint = name_to_type[choice]
 	playsound(src, 'sound/effects/pop.ogg', 50, FALSE)
 	to_chat(user, "<span class='notice'>You change [name]s blueprint to '[choice]'.</span>")
