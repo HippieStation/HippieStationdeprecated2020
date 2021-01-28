@@ -69,7 +69,6 @@
 	var/old_heat_capacity = air.heat_capacity()
 	var/heat_efficency = min(temperature/(FIRE_MINIMUM_TEMPERATURE_TO_EXIST*3),cached_gases[/datum/gas/oxygen][MOLES],cached_gases[/datum/gas/nitrogen][MOLES])
 	var/energy_used = heat_efficency * NITRYL_FORMATION_ENERGY
-	ASSERT_GAS(/datum/gas/freon, air)
 	if ((cached_gases[/datum/gas/oxygen][MOLES] - heat_efficency < 0 )|| (cached_gases[/datum/gas/nitrogen][MOLES] - heat_efficency < 0)) //Shouldn't produce gas from nothing.
 		return NO_REACTION
 	cached_gases[/datum/gas/oxygen][MOLES] -= heat_efficency
@@ -80,6 +79,7 @@
 		var/new_heat_capacity = air.heat_capacity()
 		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
 			air.temperature = max(((temperature*old_heat_capacity - energy_used)/new_heat_capacity), TCMB)
+			ASSERT_GAS(/datum/gas/freon, air)
 		return REACTING
 
 
