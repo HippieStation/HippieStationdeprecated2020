@@ -15,4 +15,8 @@
 			movement_dir &= ~(NORTH|SOUTH)
 		if((movement_dir & EAST) && (movement_dir & WEST))
 			movement_dir &= ~(EAST|WEST)
+
+		if(movement_dir) //If we're not moving, don't compensate, as byond will auto-fill dir otherwise
+			movement_dir = turn(movement_dir, -dir2angle(user.dir)) //By doing this we ensure that our input direction is offset by the client (camera) direction
+
 		user.Move(get_step(src, movement_dir), movement_dir)
