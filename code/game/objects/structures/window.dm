@@ -95,7 +95,7 @@
 /obj/structure/window/singularity_pull(S, current_size)
 	..()
 	if(anchored && current_size >= STAGE_TWO)
-		anchored = FALSE
+		setAnchored(FALSE)
 	if(current_size >= STAGE_FIVE)
 		deconstruct(FALSE)
 
@@ -498,6 +498,9 @@
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile)
 	glass_amount = 2
+
+/obj/structure/window/plasma/reinforced/BlockSuperconductivity()
+	return TRUE
 
 /obj/structure/window/plasma/fulltile/unanchored
 	anchored = FALSE
