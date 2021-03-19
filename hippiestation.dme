@@ -2353,6 +2353,7 @@
 #include "code\modules\modular_computers\hardware\network_card.dm"
 #include "code\modules\modular_computers\hardware\portable_disk.dm"
 #include "code\modules\modular_computers\hardware\printer.dm"
+#include "code\modules\modular_computers\file_system\programs\borg_monitor.dm"
 #include "code\modules\modular_computers\hardware\recharger.dm"
 #include "code\modules\modular_computers\NTNet\NTNRC\conversation.dm"
 #include "code\modules\ninja\__ninjaDefines.dm"
