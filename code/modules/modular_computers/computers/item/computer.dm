@@ -69,61 +69,22 @@
 	physical = null
 	return ..()
 
-
-/obj/item/modular_computer/proc/add_verb(var/path)
-	switch(path)
-		if(MC_CARD)
-			verbs += /obj/item/modular_computer/proc/eject_id
-		if(MC_SDD)
-			verbs += /obj/item/modular_computer/proc/eject_disk
-		if(MC_AI)
-			verbs += /obj/item/modular_computer/proc/eject_card
-
-/obj/item/modular_computer/proc/remove_verb(path)
-	switch(path)
-		if(MC_CARD)
-			verbs -= /obj/item/modular_computer/proc/eject_id
-		if(MC_SDD)
-			verbs -= /obj/item/modular_computer/proc/eject_disk
-		if(MC_AI)
-			verbs -= /obj/item/modular_computer/proc/eject_card
-
-// Eject ID card from computer, if it has ID slot with card inside.
-/obj/item/modular_computer/proc/eject_id()
-	set name = "Eject ID"
-	set category = "Object"
-	set src in view(1)
-
-	if(issilicon(usr))
-		return
-	var/obj/item/computer_hardware/card_slot/card_slot = all_components[MC_CARD]
-	if(usr.canUseTopic(src, BE_CLOSE))
-		card_slot.try_eject(null, usr)
-
-// Eject ID card from computer, if it has ID slot with card inside.
-/obj/item/modular_computer/proc/eject_card()
-	set name = "Eject Intellicard"
-	set category = "Object"
-
-	if(issilicon(usr))
-		return
-	var/obj/item/computer_hardware/ai_slot/ai_slot = all_components[MC_AI]
-	if(usr.canUseTopic(src, BE_CLOSE))
-		ai_slot.try_eject(null, usr,1)
+/obj/item/modular_computer/pre_attack_secondary(atom/A, mob/living/user, params)
+	if(active_program?.tap(A, user, params))
+		user.do_attack_animation(A) //Emulate this animation since we kill the attack in three lines
+		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), TRUE, -1) //Likewise for the tap sound
+		addtimer(CALLBACK(src, .proc/play_ping), 0.5 SECONDS, TIMER_UNIQUE) //Slightly delayed ping to indicate success
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return ..()
 
 
-// Eject ID card from computer, if it has ID slot with card inside.
-/obj/item/modular_computer/proc/eject_disk()
-	set name = "Eject Data Disk"
-	set category = "Object"
-
-	if(issilicon(usr))
-		return
-
-	if(usr.canUseTopic(src, BE_CLOSE))
-		var/obj/item/computer_hardware/hard_drive/portable/portable_drive = all_components[MC_SDD]
-		if(uninstall_component(portable_drive, usr))
-			portable_drive.verb_pickup()
+/**
+ * Plays a ping sound.
+ *
+ * Timers runtime if you try to make them call playsound. Yep.
+ */
+/obj/item/modular_computer/proc/play_ping()
+	playsound(loc, 'sound/machines/ping.ogg', get_clamped_volume(), FALSE, -1)
 
 /obj/item/modular_computer/AltClick(mob/user)
 	..()
