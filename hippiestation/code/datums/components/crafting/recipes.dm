@@ -247,3 +247,13 @@
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_CROWBAR)
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/butterang
+	name = "butterang"
+	result = /obj/item/boomerang/butterang
+	reqs = list(/obj/item/organ/butt = 3,
+				/obj/item/stack/ducttape = 2
+				)
+	time = 50
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
