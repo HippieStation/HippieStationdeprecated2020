@@ -972,10 +972,17 @@
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
-/obj/item/gun/energy/e_gun/dragnet,
-/obj/item/gun/energy/e_gun/dragnet,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
+	},
+/obj/item/boomerang/riot{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/boomerang/riot,
+/obj/item/boomerang/riot{
+	pixel_x = 3;
+	pixel_y = -3
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
@@ -1059,6 +1066,8 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/gun/energy/e_gun/dragnet,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "acI" = (
