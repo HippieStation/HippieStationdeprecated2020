@@ -40859,9 +40859,7 @@
 /turf/open/space/basic,
 /area/maintenance/port/aft)
 "cpb" = (
-/obj/structure/closet,
-/obj/item/clothing/under/rank/vice,
-/obj/item/clothing/shoes/jackboots,
+/obj/item/toy/plush/amongus,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cpc" = (
@@ -52206,7 +52204,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "hTM" = (
-/obj/structure/cable,
+/obj/structure/table/wood,
+/obj/item/toy/plush/amongus,
 /turf/open/floor/carpet,
 /area/security/detectives_office)
 "hWI" = (
