@@ -546,7 +546,7 @@
 	playsound(src, 'sound/effects/amogussplurch.ogg', 100, 1, 5)
 	playsound(src, 'sound/effects/killsfx.ogg', 100, 1, 5)
 	H.gib()
-	return
+	return (BRUTELOSS)
 
 /obj/item/toy/plush/amongus/imposter // an agent of chaos 
 	var/bzusecount = 1
