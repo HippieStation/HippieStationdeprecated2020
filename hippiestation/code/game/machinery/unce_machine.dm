@@ -12,7 +12,7 @@
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 20)
 	circuit = /obj/item/circuitboard/machine/unce_machine
 	var/speed = 4.5 //Speed at which unces are played. This default speed is a good rythm for classic unce.
-	var/on = TRUE
+	var/on = FALSE
 	var/unce_file = 'hippiestation/sound/machines/unce.ogg'
 	var/unce_name = "Classic unce" //Displayed in the first input()
 	var/list/settings = list("Adjust unce speed", "Adjust unce sound")

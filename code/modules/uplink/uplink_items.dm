@@ -1439,6 +1439,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/assembly/flash/hypnotic
 	cost = 7
 
+/datum/uplink_item/device_tools/mr_sussus
+	name = "Mr. Sussus"
+	desc = "A seemingly harmless plushie that inflicts a small amount of brain damage every time you hit someone with it. It also has many \"features\", and like a box of chocolates... you never know what you're going to get."
+	item = /obj/item/toy/plush/amongus/imposter
+	cost = 2
+
 /datum/uplink_item/device_tools/medgun
 	name = "Medbeam Gun"
 	desc = "A wonder of Syndicate engineering, the Medbeam gun, or Medi-Gun enables a medic to keep his fellow \
@@ -1501,7 +1507,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/device_tools/surgerybag
 	name = "Syndicate Surgery Duffel Bag"
 	desc = "The Syndicate surgery duffel bag is a toolkit containing all surgery tools, surgical drapes, \
-			a Syndicate brand MMI, a straitjacket, and a muzzle."
+			a Syndicate brand MMI, a straight jacket, and a muzzle."
 	item = /obj/item/storage/backpack/duffelbag/syndie/surgery
 	cost = 3
 

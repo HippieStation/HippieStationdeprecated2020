@@ -29,7 +29,14 @@
 	var/list/vowbroken_message
 	var/list/parent_message
 	var/normal_desc
-	//--end of love :'(--
+	//--end of love :'(
+	//^^ stfu
+	var/TurnedOn = TRUE
+	var/current_color
+	var/TimerID
+	var/range = 1
+	var/power = 2
+	//
 
 /obj/item/toy/plush/Initialize()
 	. = ..()
@@ -353,7 +360,7 @@
 		if(mood_message in vowbroken_message)
 			mood_message = null
 	cheer_up()
-
+// gay ^^^
 /obj/item/toy/plush/proc/update_desc()
 	desc = normal_desc
 	if(mood_message)
@@ -493,6 +500,106 @@
 	item_state = "plushie_snake"
 	attack_verb = list("bitten", "hissed", "tail slapped")
 	squeak_override = list('sound/weapons/bite.ogg' = 1)
+
+/obj/item/toy/plush/amongus
+	name = "crewmate plushie"
+	desc = "A funny looking spaceman plushie."
+	attack_verb = list("susses", "punches", "slaps")
+	squeak_override = list('sound/effects/amogus.ogg', 'sound/effects/amoguspanch.ogg', 'sound/effects/amogussplurch.ogg', 'sound/effects/bong.ogg' = 1)
+
+/obj/item/toy/plush/amongus/Initialize() // different color amojus
+	. = ..()
+	var/pickcolor = pick("red_crewmate","cyan_crewmate","gray_crewmate","blue_crewmate","green_crewmate","orange_crewmate","gay_crewmate","yellow_crewmate","really_gay_crewmate")
+	icon_state = "[pickcolor]"
+	item_state = "red_crewmate"
+	if(prob(0.5))
+		name = "<font color = #eb0010>c</font><font color = #eb7600>h</font><font color = #ffd000>r</font><font color = #00ff40>o</font><font color = #0091ff>m</font><font color =#0400ff>a</font><font color =#eb0010>m</font><font color = #eb7600>o</font><font color = #ffd000>n</font><font color = #00ff40>g</font><font color = #0091ff>u</font><font color = #0400ff>s</font>"
+		icon_state = "rare"
+		item_state = "red_crewmate"
+		desc = "Red vented... wait no it was green... blue? Wait.. huh?!" 
+		if(icon_state == "rare")
+			DiscoAmogus()
+
+/obj/item/toy/plush/amongus/proc/DiscoAmogus()
+	current_color = random_color()
+	set_light(range, power, current_color)
+	TimerID = addtimer(CALLBACK(src, .proc/DiscoAmogus), 3, TIMER_STOPPABLE)
+
+/obj/item/toy/plush/amongus/suicide_act(mob/user)
+	if(iscarbon(user))
+		user.visible_message("<span class='suicide'>[user] tells the plushie they can't take it anymore! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+		var/mob/living/carbon/itemUser = user
+		var/obj/item/bodypart/head/head = itemUser.get_bodypart(BODY_ZONE_HEAD)
+		playsound(src, 'sound/effects/amogussplurch.ogg', 100, 1, 5)
+		playsound(src, 'sound/effects/killsfx.ogg', 100, 1, 5)
+		if(head)
+			head.drop_limb()
+		user.visible_message("<span class='suicide'>The plushie votes [user]'s head off their shoulders!</span>")
+		return (BRUTELOSS)
+
+/obj/item/toy/plush/amongus/imposter/suicide_act(mob/user)
+	var/mob/living/carbon/human/H = user
+	user.visible_message("<span class='suicide'>[user] tells the plushie they can't take it anymore! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	playsound(src, 'sound/effects/amogussplurch.ogg', 100, 1, 5)
+	playsound(src, 'sound/effects/killsfx.ogg', 100, 1, 5)
+	H.gib()
+	return (BRUTELOSS)
+
+/obj/item/toy/plush/amongus/imposter // an agent of chaos 
+	var/bzusecount = 1
+	var/msgdisplay = 1
+	var/gasusecount = 1
+	desc = "A funny looking spaceman plushie. It's a little <i><b>sus</b></i>."
+
+/obj/item/toy/plush/amongus/imposter/attack(mob/living/target, mob/living/user) // ideas 4 l8r - give amogus a chance to hand target a live bomb // give amogus chance to spawn a dangerous mob // give amogus chance to spit acid at target // 
+	..()
+	var/pickgas = pick("plasma=60", "miasma=850")
+	bzusecount++
+	var/turf/open/T = get_turf(target)
+	var/mob/living/carbon/human/M = target
+	if(ishuman(target))
+		M.adjustBrainLoss(3)
+		M.adjustToxLoss(0.5)
+		if (prob(2))
+			M.electrocute_act(1, "[src]")
+		if (prob(5))
+			playsound(get_turf(M), 'hippiestation/sound/effects/horror_scream.ogg', 50, 1, -1)
+			M.visible_message("<span class='big bold'><font color = red>[M] gets a chunk of flesh bitten out of them by the [src]!</font color></span>" , "<span class='userdanger'>The [src] takes a bite out of you!</span>" , "<span class='danger'>You hear a nasty sound...</span>")
+			M.adjustBruteLoss(30)
+	if(prob(5) && gasusecount < 4)
+		T.atmos_spawn_air("[pickgas]")
+		M.visible_message("<span class='big bold'><font color = red>[src] flips up its visor and emits a cloud of gas!</font color></span>")
+		gasusecount++
+	if (gasusecount == 4)
+		to_chat(user, "<span class='bold warning'> [src] feels <i>very</i> deflated.")
+		gasusecount++
+	if(bzusecount < 30)
+		T.atmos_spawn_air("bz=20;TEMP=[T20C]")
+	if(bzusecount == 30)
+		msgdisplay++
+	else if(bzusecount >= 30 && msgdisplay == 2)
+		to_chat(user, "<span class='bold warning'> [src] feels slightly deflated.") 
+		msgdisplay++ 
+	if(prob(5))
+		new /obj/effect/hotspot(T)
+		T.hotspot_expose(1000,50,1)
+		M.visible_message("<span class='big bold'><font color = red>[src] flips up its visor and spits flames!</font color></span>")
+	if(prob(5) && !target.anchored)
+		var/atom/throw_target = get_edge_target_turf(target, user.dir)
+		target.throw_at(throw_target, rand(1,2), 7, user)
+		M.adjustBruteLoss(10)
+		M.visible_message("<span class='big bold'><font color = red>[src] smacks [M] with a baseball bat!</font color></span>")
+
+/obj/item/toy/plush/amongus/imposter/Crossed(atom/movable/AM) // traitor amogus has chance to trip and fart on people who walk over it >:)
+	if(ishuman(AM))
+		if(prob(25))
+			var/mob/living/carbon/C = AM
+			if(!istype(C) || !C || in_range(src, C))
+				C.visible_message("<span class='bold warning'>[src] trips [C] and farts on them!</span>")
+				playsound(src, 'hippiestation/sound/effects/fart.ogg', 100, 1, 5)
+				spawnfartgas(src, 0)
+				C.Paralyze(10)
+	..()
 
 /obj/item/toy/plush/nukeplushie
 	name = "operative plushie"

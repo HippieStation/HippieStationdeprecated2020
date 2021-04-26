@@ -894,6 +894,10 @@
 	name = "Moustache (Pencilstache)"
 	icon_state = "facial_pencilstache"
 
+/datum/sprite_accessory/facial_hair/robotnik
+	name = "Moustache (Robotnik)"
+	icon_state = "facial_robotnik"
+
 /datum/sprite_accessory/facial_hair/smallstache
 	name = "Moustache (Smallstache)"
 	icon_state = "facial_smallstache"
@@ -942,6 +946,7 @@
 	name = "Shaved"
 	icon_state = null
 	gender = NEUTER
+
 
 ///////////////////////////
 // Underwear Definitions //
