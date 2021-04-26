@@ -512,9 +512,6 @@
 	var/pickcolor = pick("red_crewmate","cyan_crewmate","gray_crewmate","blue_crewmate","green_crewmate","orange_crewmate","gay_crewmate","yellow_crewmate","really_gay_crewmate")
 	icon_state = "[pickcolor]"
 	item_state = "red_crewmate"
-
-/obj/item/toy/plush/amongus/Initialize() //rare amojus - 2do give greentext if u escape with it
-	. = ..()
 	if(prob(0.5))
 		name = "<font color = #eb0010>c</font><font color = #eb7600>h</font><font color = #ffd000>r</font><font color = #00ff40>o</font><font color = #0091ff>m</font><font color =#0400ff>a</font><font color =#eb0010>m</font><font color = #eb7600>o</font><font color = #ffd000>n</font><font color = #00ff40>g</font><font color = #0091ff>u</font><font color = #0400ff>s</font>"
 		icon_state = "rare"
