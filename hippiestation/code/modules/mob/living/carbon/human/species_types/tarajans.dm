@@ -42,5 +42,4 @@
 	C.draw_hippie_parts(TRUE)
 	. = ..()
 
-/datum/species/human/felinid/tarajan/check_roundstart_eligible()
-	return TRUE
+
