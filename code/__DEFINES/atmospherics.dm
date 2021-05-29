@@ -43,7 +43,7 @@
 #define CELL_VOLUME				2500
 
 /// liters in a normal breath. note that breaths are taken once every 4 life ticks, which is 8 seconds
-#define BREATH_VOLUME			2
+#define BREATH_VOLUME			1.99
 /// Amount of air to take a from a tile
 #define BREATH_PERCENTAGE		(BREATH_VOLUME/CELL_VOLUME)
 
