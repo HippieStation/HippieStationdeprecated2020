@@ -5,7 +5,10 @@
 	var/list/obj/machinery/atmospherics/pipe/members
 	var/list/obj/machinery/atmospherics/components/other_atmosmch
 
+	///Should we equalize air amoung all our members?
 	var/update = TRUE
+	///Is this pipeline being reconstructed?
+	var/building = FALSE
 
 /datum/pipeline/New()
 	other_airs = list()
@@ -15,29 +18,56 @@
 
 /datum/pipeline/Destroy()
 	SSair.networks -= src
-	if(air && air.volume)
+	if(building)
+		SSair.remove_from_expansion(src)
+	if(air?.volume)
 		temporarily_store_air()
 	for(var/obj/machinery/atmospherics/pipe/P in members)
 		P.parent = null
+		if(!QDELETED(P))
+			SSair.add_to_rebuild_queue(P)
 	for(var/obj/machinery/atmospherics/components/C in other_atmosmch)
 		C.nullifyPipenet(src)
 	return ..()
 
 /datum/pipeline/process()
+	if(building)
+		return
 	if(update)
 		update = FALSE
 		reconcile_air()
 	update = air.react(src)
 
+///Preps a pipeline for rebuilding, insterts it into the rebuild queue
 /datum/pipeline/proc/build_pipeline(obj/machinery/atmospherics/base)
+	building = TRUE
 	var/volume = 0
 	if(istype(base, /obj/machinery/atmospherics/pipe))
-		var/obj/machinery/atmospherics/pipe/E = base
-		volume = E.volume
-		members += E
-		if(E.air_temporary)
-			air = E.air_temporary
-			E.air_temporary = null
+		var/obj/machinery/atmospherics/pipe/considered_pipe = base
+		volume = considered_pipe.volume
+		members += considered_pipe
+		if(considered_pipe.air_temporary)
+			air = considered_pipe.air_temporary
+			considered_pipe.air_temporary = null
+	else
+		addMachineryMember(base)
+
+	if(!air)
+		air = new
+
+	air.volume = volume
+	SSair.add_to_expansion(src, base)
+
+///Has the same effect as build_pipeline(), but this doesn't queue its work, so overrun abounds. It's useful for the pregame
+/datum/pipeline/proc/build_pipeline_blocking(obj/machinery/atmospherics/base)
+	var/volume = 0
+	if(istype(base, /obj/machinery/atmospherics/pipe))
+		var/obj/machinery/atmospherics/pipe/considered_pipe = base
+		volume = considered_pipe.volume
+		members += considered_pipe
+		if(considered_pipe.air_temporary)
+			air = considered_pipe.air_temporary
+			considered_pipe.air_temporary = null
 	else
 		addMachineryMember(base)
 	if(!air)
@@ -78,7 +108,7 @@
 
 /datum/pipeline/proc/addMachineryMember(obj/machinery/atmospherics/components/C)
 	other_atmosmch |= C
-	var/datum/gas_mixture/G = C.returnPipenetAir(src)
+	var/datum/gas_mixture/G = C.returnPipenetAirs(src)
 	if(!G)
 		stack_trace("addMachineryMember: Null gasmix added to pipeline datum from [C] which is of type [C.type]. Nearby: ([C.x], [C.y], [C.z])")
 	other_airs |= G
@@ -195,7 +225,7 @@
 	else
 		if((target.heat_capacity>0) && (partial_heat_capacity>0))
 			var/delta_temperature = air.temperature - target.temperature
-
+			//Temp share things, see superconduction for more like this
 			var/heat = thermal_conductivity*delta_temperature* \
 				(partial_heat_capacity*target.heat_capacity/(partial_heat_capacity+target.heat_capacity))
 
@@ -252,7 +282,9 @@
 
 		total_thermal_energy += THERMAL_ENERGY(G)
 
-	total_gas_mixture.temperature = total_heat_capacity ? total_thermal_energy/total_heat_capacity : 0
+	total_gas_mixture.temperature = total_heat_capacity ? (total_thermal_energy/total_heat_capacity) : 0
+	
+	total_gas_mixture.garbage_collect()
 
 	if(total_gas_mixture.volume > 0)
 		//Update individual gas_mixtures by volume ratio

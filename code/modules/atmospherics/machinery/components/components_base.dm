@@ -68,30 +68,55 @@
 /obj/machinery/atmospherics/components/nullifyNode(i)
 	if(parents[i])
 		nullifyPipenet(parents[i])
-		QDEL_NULL(airs[i])
-	..()
+	QDEL_NULL(airs[i])
+	return ..()
 
 /obj/machinery/atmospherics/components/on_construction()
 	..()
 	update_parents()
 
-/obj/machinery/atmospherics/components/build_network()
+/obj/machinery/atmospherics/components/get_rebuild_targets()
+	var/list/to_return = list()
 	for(var/i in 1 to device_type)
-		if(!parents[i])
-			parents[i] = new /datum/pipeline()
-			var/datum/pipeline/P = parents[i]
-			P.build_pipeline(src)
+		if(parents[i])
+			continue
+		parents[i] = new /datum/pipeline()
+		to_return += parents[i]
+	return to_return
 
+/**
+ * Called by nullifyNode(), used to remove the pipeline the component is attached to
+ * Arguments:
+ * * -reference: the pipeline the component is attached to
+ */
 /obj/machinery/atmospherics/components/proc/nullifyPipenet(datum/pipeline/reference)
 	if(!reference)
 		CRASH("nullifyPipenet(null) called by [type] on [COORD(src)]")
-	var/i = parents.Find(reference)
-	reference.other_airs -= airs[i]
-	reference.other_atmosmch -= src
-	parents[i] = null
+	for (var/i in 1 to parents.len)
+		if (parents[i] == reference)
+			reference.other_airs -= airs[i] // Disconnects from the pipeline side
+			parents[i] = null // Disconnects from the machinery side.
 
-/obj/machinery/atmospherics/components/returnPipenetAir(datum/pipeline/reference)
-	return airs[parents.Find(reference)]
+	reference.other_atmosmch -= src
+
+	/**
+	 *  We explicitly qdel pipeline when this particular pipeline
+	 *  is projected to have no member and cause GC problems.
+	 *  We have to do this because components don't qdel pipelines
+	 *  while pipes must and will happily wreck and rebuild everything
+	 * again every time they are qdeleted.
+	 */
+	if(!length(reference.other_atmosmch) && !length(reference.members))
+		if(QDESTROYING(reference))
+			CRASH("nullifyPipenet() called on qdeleting [reference]")
+		qdel(reference)
+		
+/obj/machinery/atmospherics/components/returnPipenetAirs(datum/pipeline/reference)
+	var/list/returned_air = list()
+	for (var/i in 1 to parents.len)
+		if (parents[i] == reference)
+			returned_air += airs[i]
+	return returned_air
 
 /obj/machinery/atmospherics/components/pipeline_expansion(datum/pipeline/reference)
 	if(reference)
@@ -130,7 +155,7 @@
 				continue
 			to_release.merge(air.remove(shared_loss))
 		T.assume_air(to_release)
-		air_update_turf(1)
+		air_update_turf(FALSE, FALSE)
 
 /obj/machinery/atmospherics/components/proc/safe_input(var/title, var/text, var/default_set)
 	var/new_value = input(usr,text,title,default_set) as num
@@ -146,8 +171,8 @@
 		if(!parent)
 			WARNING("Component is missing a pipenet! Rebuilding...")
 			SSair.add_to_rebuild_queue(src)
-			parent = parents[i]
-		parent.update = 1
+		else
+			parent.update = TRUE
 
 /obj/machinery/atmospherics/components/returnPipenets()
 	. = list()

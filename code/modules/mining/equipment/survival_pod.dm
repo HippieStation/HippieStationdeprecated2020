@@ -282,9 +282,13 @@
 
 /obj/structure/fans/Initialize(mapload)
 	. = ..()
-	air_update_turf(1)
+	air_update_turf(TRUE, TRUE)
 
-//Inivisible, indestructible fans
+/obj/structure/fans/Destroy()
+	air_update_turf(TRUE, FALSE)
+	return ..()
+
+//Invisible, indestructible fans
 /obj/structure/fans/tiny/invisible
 	name = "air flow blocker"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

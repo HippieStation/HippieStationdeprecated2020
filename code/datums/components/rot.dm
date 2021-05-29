@@ -22,7 +22,7 @@
 	stank.gases[/datum/gas/miasma][MOLES] = amount
 	stank.temperature = BODYTEMP_NORMAL // otherwise we have gas below 2.7K which will break our lag generator
 	T.assume_air(stank)
-	T.air_update_turf()
+	T.air_update_turf(FALSE, FALSE)
 
 /datum/component/rot/corpse
 	amount = MIASMA_CORPSE_MOLES

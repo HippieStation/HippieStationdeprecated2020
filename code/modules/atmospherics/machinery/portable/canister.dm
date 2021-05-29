@@ -55,6 +55,10 @@
 		"miasma" = /obj/machinery/portable_atmospherics/canister/miasma
 	)
 
+/obj/machinery/portable_atmospherics/canister/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/atmos_sensitive)
+
 /obj/machinery/portable_atmospherics/canister/interact(mob/user)
 	if(!allowed(user))
 		to_chat(user, "<span class='alert'>Error - Unauthorized User.</span>")
@@ -274,10 +278,12 @@
 #undef CANISTER_UPDATE_FULL
 #undef CANISTER_UPDATE_DANGER
 
-/obj/machinery/portable_atmospherics/canister/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature > temperature_resistance)
-		take_damage(5, BURN, 0)
 
+/obj/machinery/portable_atmospherics/canister/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
+	return exposed_temperature > temperature_resistance
+
+/obj/machinery/portable_atmospherics/canister/atmos_expose(datum/gas_mixture/air, exposed_temperature)
+	take_damage(5, BURN, 0)
 
 /obj/machinery/portable_atmospherics/canister/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -315,7 +321,7 @@
 	var/datum/gas_mixture/expelled_gas = air_contents.remove(air_contents.total_moles())
 	var/turf/T = get_turf(src)
 	T.assume_air(expelled_gas)
-	air_update_turf()
+	air_update_turf(FALSE, FALSE)
 
 	stat |= BROKEN
 	density = FALSE
@@ -352,7 +358,7 @@
 
 		pump.process_atmos() // Pump gas.
 		if(!holding)
-			air_update_turf() // Update the environment if needed.
+			air_update_turf(FALSE, FALSE) // Update the environment if needed.
 	else
 		pump.airs[1] = null
 		pump.airs[2] = null

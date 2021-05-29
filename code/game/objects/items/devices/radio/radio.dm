@@ -427,13 +427,8 @@
 /obj/item/radio/proc/playmusic(mob/living/user, music_filepath, name_of_music, music_volume, radio_station_thats_playing_music) //Plays music at src using the filepath to the audio file. This proc is directly working with the bluespace radio station at radio_station.dm
 	radio_music_file = music_filepath
 
-	var/obj/itemholder = src
-	user = src.loc
-	while(user && !istype(user, /mob/living))
-		user = itemholder
-		itemholder = itemholder.loc
-		if(user == null)
-			return //radio was never in a mob
+	if(loc != user)
+		return
 
 	radio_holder = user
 
@@ -453,11 +448,11 @@
 		music_name = ""
 		switch(music_turnoff_message_type)
 			if(1)
-				src.audible_message("<span class='robot'><b>[src]</b> beeps, '[src] removed, turning off music.' </span>")
+				audible_message("<span class='robot'><b>[src]</b> beeps, '[src] removed, turning off music.' </span>")
 			if(2)
-				src.audible_message("<span class='robot'><b>[src]</b> beeps, 'Music toggled off.' </span>") //Unused message
+				audible_message("<span class='robot'><b>[src]</b> beeps, 'Music toggled off.' </span>") //Unused message
 			if(3)
-				src.audible_message("<span class='robot'><b>[src]</b> beeps, 'Signal interrupted.' </span>")
+				audible_message("<span class='robot'><b>[src]</b> beeps, 'Signal interrupted.' </span>")
 		music_playing = FALSE
 
 /obj/item/radio/update_icon()
@@ -474,28 +469,14 @@
 	addtimer(CALLBACK(src, .proc/droppedStopMusic, user), 3)
 
 /obj/item/radio/proc/droppedStopMusic(mob/user)
-	var/i
-	for(i = 1, i <= user.contents.len, i++)
+	for(var/i = 1, i <= user.contents.len, i++)
 		if(user.contents[i] == src)
 			return
 	if(item_flags & IN_INVENTORY)
 		return
-	if(determineIfInMob(user) == TRUE)
+	if(loc == user)
 		return
 	stopmusic(user, 1)
-
-/obj/item/radio/proc/determineIfInMob(mob/user)
-	var/obj/itemholder = src
-	var/mob/M = src.loc
-	while(M && !istype(M, /mob/living))
-		M = itemholder
-		itemholder = itemholder.loc
-		if(M == null)
-			return FALSE
-	if(M == user)
-		return TRUE
-	else
-		return FALSE
 
 //Hippie end
 

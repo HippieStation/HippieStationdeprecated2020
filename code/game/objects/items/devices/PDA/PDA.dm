@@ -1111,28 +1111,14 @@ GLOBAL_LIST_EMPTY(PDAs)
 	addtimer(CALLBACK(src, .proc/droppedStopMusic, user), 3)
 
 /obj/item/pda/proc/droppedStopMusic(mob/user)
-	var/i
-	for(i = 1, i <= user.contents.len, i++)
+	for(var/i = 1, i <= user.contents.len, i++)
 		if(user.contents[i] == src)
 			return
 	if(item_flags & IN_INVENTORY)
 		return
-	if(determineIfInMob(user) == TRUE)
+	if(loc == user)
 		return
 	stopMusic(user)
-
-/obj/item/pda/proc/determineIfInMob(mob/user)
-	var/obj/itemholder = src
-	var/mob/M = src.loc
-	while(M && !istype(M, /mob/living))
-		M = itemholder
-		itemholder = itemholder.loc
-		if(M == null)
-			return FALSE
-	if(M == user)
-		return TRUE
-	else
-		return FALSE
 
 #undef PDA_SCANNER_NONE
 #undef PDA_SCANNER_MEDICAL

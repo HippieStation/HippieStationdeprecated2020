@@ -8,6 +8,7 @@
 #define NANO_EMP_CHARGE_DELAY 45
 
 #define POWER_PUNCH "QQQ"
+#define FINISH_HIM "SSS"
 #define HEAD_EXPLOSION "SSSS"
 #define MARTIALART_NANOSUIT "nanosuit strength"
 
@@ -893,12 +894,14 @@
 
 /datum/martial_art/nanosuit/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	A.hud_used.combo_object.update_icon(streak, 60)
-	if(findtext(streak,POWER_PUNCH))
+	if(findtext(streak, POWER_PUNCH))
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		PowerPunch(A,D)
 		return TRUE
-	if(findtext(streak,HEAD_EXPLOSION))
+	if(findtext(streak, FINISH_HIM))
+		to_chat(A, "<span class='cult italic'><b><span class='big'>FINISH HIM!!</span></b></span>")
+	if(findtext(streak, HEAD_EXPLOSION))
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		HeadStomp(A,D)

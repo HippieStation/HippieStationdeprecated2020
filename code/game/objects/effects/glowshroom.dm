@@ -43,8 +43,8 @@
 		QDEL_NULL(myseed)
 	return ..()
 
-/obj/structure/glowshroom/New(loc, obj/item/seeds/newseed, mutate_stats)
-	..()
+/obj/structure/glowshroom/Initialize(mapload, loc, obj/item/seeds/newseed, mutate_stats)
+	. = ..()
 	if(newseed)
 		myseed = newseed.Copy()
 		myseed.forceMove(src)
@@ -80,10 +80,23 @@
 	else //if on the floor, glowshroom on-floor sprite
 		icon_state = base_icon_state
 
-	addtimer(CALLBACK(src, .proc/Spread), delay)
+	addtimer(CALLBACK(src, .proc/Spread), delay, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
+
+
+/obj/structure/glowshroom/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/atmos_sensitive)
+
+/**
+ * Causes glowshroom spreading across the floor/walls.
+ */
 
 /obj/structure/glowshroom/proc/Spread()
-	var/turf/ownturf = get_turf(src)
+
+	//We could be deleted at any point and the timers might not be cleaned up
+	if(QDELETED(src))
+		return
+
 	var/shrooms_planted = 0
 	for(var/i in 1 to myseed.yield)
 		if(prob(1/(generation * generation) * 100))//This formula gives you diminishing returns based on generation. 100% with 1st gen, decreasing to 25%, 11%, 6, 4, 2...
@@ -96,7 +109,7 @@
 			for(var/turf/open/floor/earth in view(3,src))
 				if(is_type_in_typecache(earth, blacklisted_glowshroom_turfs))
 					continue
-				if(!ownturf.CanAtmosPass(earth))
+				if(!TURF_SHARES(earth))
 					continue
 				if(spreadsIntoAdjacent || !locate(/obj/structure/glowshroom) in view(1,earth))
 					possibleLocs += earth
@@ -165,8 +178,10 @@
 	if(damage_type == BURN && damage_amount)
 		playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 
-/obj/structure/glowshroom/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature > 300)
+/obj/structure/glowshroom/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
+	return exposed_temperature > 300
+
+/obj/structure/glowshroom/atmos_expose(datum/gas_mixture/air, exposed_temperature)
 		take_damage(5, BURN, 0, 0)
 
 /obj/structure/glowshroom/acid_act(acidpwr, acid_volume)

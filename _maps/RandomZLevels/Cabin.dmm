@@ -883,7 +883,7 @@
 /turf/open/floor/plating/snowed/temperatre,
 /area/awaymission/snowforest)
 "dj" = (
-/turf/open/floor/plating/ice/temperate,
+/turf/open/floor/plating/ice,
 /area/awaymission/snowforest)
 "dk" = (
 /obj/structure/chair{

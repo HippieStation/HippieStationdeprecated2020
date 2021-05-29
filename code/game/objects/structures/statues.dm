@@ -108,10 +108,9 @@
 	name = "statue of a scientist"
 	icon_state = "sci"
 
-/obj/structure/statue/plasma/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature > 300)
-		PlasmaBurn(exposed_temperature)
-
+/obj/structure/statue/plasma/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/atmos_sensitive)
 
 /obj/structure/statue/plasma/bullet_act(obj/item/projectile/Proj)
 	var/burn = FALSE
@@ -136,6 +135,12 @@
 		ignite(W.is_hot())
 	else
 		return ..()
+
+/obj/structure/statue/plasma/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
+	return exposed_temperature > 300
+
+/obj/structure/statue/plasma/atmos_expose(datum/gas_mixture/air, exposed_temperature)
+	PlasmaBurn(exposed_temperature)
 
 /obj/structure/statue/plasma/proc/PlasmaBurn(exposed_temperature)
 	if(QDELETED(src))

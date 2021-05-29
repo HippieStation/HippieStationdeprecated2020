@@ -235,8 +235,6 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
 		Master.Shutdown()	//run SS shutdowns
 
-	TgsReboot()
-
 	if(TEST_RUN_PARAMETER in params)
 		FinishTestRun()
 		return
@@ -263,6 +261,8 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 			TgsEndProcess()
 
 	log_world("World rebooted at [time_stamp()]")
+
+	TgsReboot()
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..()
 
