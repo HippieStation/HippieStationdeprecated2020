@@ -117,8 +117,8 @@
 		var/turf/T = get_turf(src)
 		if(T)
 			T.assume_air(air_contents)
-			air_update_turf()
-		playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
+			air_update_turf(FALSE, FALSE)
+		playsound(src.loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
 	qdel(src)
 
 /obj/item/tank/suicide_act(mob/user)

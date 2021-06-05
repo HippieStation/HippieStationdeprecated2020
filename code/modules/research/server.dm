@@ -58,8 +58,10 @@
 	. = max(. - penalty, 0)
 
 /obj/machinery/rnd/server/proc/get_env_temp()
-	var/datum/gas_mixture/environment = loc.return_air()
-	return environment.temperature
+	var/turf/open/L = loc
+	if(isturf(L))
+		return L.temperature
+	return 0 //what
 
 /obj/machinery/rnd/server/proc/produce_heat(heat_amt)
 	if(!(stat & (NOPOWER|BROKEN))) //Blatently stolen from space heater.
@@ -80,7 +82,7 @@
 					removed.temperature = min((removed.temperature*heat_capacity + heating_power)/heat_capacity, 1000)
 
 				env.merge(removed)
-				air_update_turf()
+				air_update_turf(FALSE, FALSE)
 
 /proc/fix_noid_research_servers()
 	var/list/no_id_servers = list()

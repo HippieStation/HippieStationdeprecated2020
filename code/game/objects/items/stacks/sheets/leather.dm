@@ -140,6 +140,10 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	var/wetness = 30 //Reduced when exposed to high temperautres
 	var/drying_threshold_temperature = 500 //Kelvin to start drying
 
+/obj/item/stack/sheet/wethide/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/atmos_sensitive)
+
 /*
  * Leather SHeet
  */
@@ -217,7 +221,7 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 
 //Step one - dehairing.
 
-/obj/item/stack/sheet/animalhide/attackby(obj/item/W, mob/user, params)
+/obj/item/stack/sheet/wetleather/attackby(obj/item/W, mob/user, params)
 	if(W.is_sharp())
 		playsound(loc, 'sound/weapons/slice.ogg', 50, 1, -1)
 		user.visible_message("[user] starts cutting hair off \the [src].", "<span class='notice'>You start cutting the hair off \the [src]...</span>", "<span class='italics'>You hear the sound of a knife rubbing against flesh.</span>")
@@ -232,14 +236,15 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 //Step two - washing..... it's actually in washing machine code.
 
 //Step three - drying
-/obj/item/stack/sheet/wetleather/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	..()
-	if(exposed_temperature >= drying_threshold_temperature)
-		wetness--
-		if(wetness == 0)
-			new /obj/item/stack/sheet/leather(drop_location(), 1)
-			wetness = initial(wetness)
-			use(1)
+/obj/item/stack/sheet/wetleather/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
+	return (exposed_temperature > drying_threshold_temperature)
+
+/obj/item/stack/sheet/wetleather/atmos_expose(datum/gas_mixture/air, exposed_temperature)
+	wetness--
+	if(wetness == 0)
+		new /obj/item/stack/sheet/leather(drop_location(), 1)
+		wetness = initial(wetness)
+		use(1)
 
 /obj/item/stack/sheet/wetleather/microwave_act(obj/machinery/microwave/MW)
 	..()

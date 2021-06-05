@@ -561,3 +561,11 @@
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 	item = /obj/item/syndie_glue
 	cost = 2
+
+/datum/uplink_item/dangerous/chainerang
+	name = "Chainerang"
+	desc = "The unholy combination of chainsaw and boomerang. Though usable as a melee weapon, it is most effective thrown. Don't forget to catch it on the way back."
+	surplus = 15
+	surplus_nullcrates = 15
+	item = /obj/item/boomerang/delimbing/chainsaw
+	cost = 10

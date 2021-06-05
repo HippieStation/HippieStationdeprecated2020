@@ -66,8 +66,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		add_overlay(/obj/effect/fullbright)
 
 	if(requires_activation)
-		CALCULATE_ADJACENT_TURFS(src)
-		SSair.add_to_active(src)
+		CALCULATE_ADJACENT_TURFS(src, KILL_EXCITED)
 
 	if (light_power && light_range)
 		update_light()
@@ -89,7 +88,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	return INITIALIZE_HINT_NORMAL
 
 /turf/proc/Initalize_Atmos(times_fired)
-	CALCULATE_ADJACENT_TURFS(src)
+	CALCULATE_ADJACENT_TURFS(src, NORMAL_TURF)
 
 /turf/Destroy(force)
 	. = QDEL_HINT_IWILLGC
@@ -111,7 +110,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		for(var/I in B.vars)
 			B.vars[I] = null
 		return
-	SSair.remove_from_active(src)
 	visibilityChanged()
 	QDEL_LIST(blueprint_data)
 	flags_1 &= ~INITIALIZED_1

@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(garbage)
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 	init_order = INIT_ORDER_GARBAGE
 
-	var/list/collection_timeout = list(15 SECONDS, 30 SECONDS)	// deciseconds to wait before moving something up in the queue to the next level
+	var/list/collection_timeout = list(2 MINUTES, 10 SECONDS)	// deciseconds to wait before moving something up in the queue to the next level
 
 	//Stat tracking
 	var/delslasttick = 0			// number of del()'s we've done this tick
@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(garbage)
 					state = SS_RUNNING
 				break
 
-	
+
 
 
 /datum/controller/subsystem/garbage/proc/HandleQueue(level = GC_QUEUE_CHECK)
@@ -117,18 +117,19 @@ SUBSYSTEM_DEF(garbage)
 
 	lastlevel = level
 
-	for (var/refID in queue)
-		if (!refID)
+	for (var/i in 1 to length(queue))
+		var/list/L = queue[i]
+		if (length(L) < 2)
 			count++
 			if (MC_TICK_CHECK)
 				return
 			continue
 
-		var/GCd_at_time = queue[refID]
+		var/GCd_at_time = L[1]
 		if(GCd_at_time > cut_off_time)
 			break // Everything else is newer, skip them
 		count++
-
+		var/refID = L[2]
 		var/datum/D
 		D = locate(refID)
 
@@ -185,10 +186,8 @@ SUBSYSTEM_DEF(garbage)
 
 	D.gc_destroyed = gctime
 	var/list/queue = queues[level]
-	if (queue[refid])
-		queue -= refid // Removing any previous references that were GC'd so that the current object will be at the end of the list.
 
-	queue[refid] = gctime
+	queue[++queue.len] = list(gctime, refid) // not += for byond reasons
 
 //this is mainly to separate things profile wise.
 /datum/controller/subsystem/garbage/proc/HardDelete(datum/D)

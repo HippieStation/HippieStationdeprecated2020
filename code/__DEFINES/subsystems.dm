@@ -23,6 +23,9 @@
 //In most cases you want a subsystem instead
 #define TIMER_LOOP				(1<<5)
 
+///Delete the timer on parent datum Destroy() and when deltimer'd
+#define TIMER_DELETE_ME			(1<<6)
+
 #define TIMER_ID_NULL -1
 
 #define INITIALIZATION_INSSATOMS 0	//New should not call Initialize
@@ -163,11 +166,15 @@
 #define SSAIR_PIPENETS 1
 #define SSAIR_ATMOSMACHINERY 2
 #define SSAIR_ACTIVETURFS 3
-#define SSAIR_EXCITEDGROUPS 4
-#define SSAIR_HIGHPRESSURE 5
-#define SSAIR_HOTSPOTS 6
+#define SSAIR_HOTSPOTS 4
+#define SSAIR_EXCITEDGROUPS 5
+#define SSAIR_HIGHPRESSURE 6
 #define SSAIR_SUPERCONDUCTIVITY 7
-#define SSAIR_REBUILD_PIPENETS 8
+#define SSAIR_PROCESS_ATOMS 8
+
+//Pipeline rebuild helper defines, these suck but it'll do for now
+#define SSAIR_REBUILD_PIPELINE 1
+#define SSAIR_REBUILD_QUEUE 2
 
 // Explosion Subsystem subtasks
 #define SSEXPLOSIONS_MOVABLES 1

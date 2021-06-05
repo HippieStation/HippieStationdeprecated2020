@@ -1111,11 +1111,6 @@ hippie end */
 						"[C] leaps out of [src]'s way!")]</span>")
 	C.Paralyze(40)
 
-/mob/living/ConveyorMove()
-	if((movement_type & FLYING) && !stat)
-		return
-	..()
-
 /mob/living/can_be_pulled()
 	return ..() && !(buckled && buckled.buckle_prevents_pull)
 

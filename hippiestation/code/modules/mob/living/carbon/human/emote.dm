@@ -88,6 +88,10 @@
 			"unflinchingly farts. True confidence.",
 			"shows everyone what they had for breakfast!",
 			"farts so loud it startles them!",
+			"lets loose the farts of justice!",
+			"rips a juicy one!",
+			"'s ass breathes a sigh of relief.",
+			"paints the elevator.",
 			"breaks wind and a nearby wine glass!",
 			"<b>finally achieves the perfect fart. All downhill from here.</b>")
 	LAZYINITLIST(user.alternate_farts)

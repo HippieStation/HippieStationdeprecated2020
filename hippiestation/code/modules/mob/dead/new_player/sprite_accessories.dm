@@ -92,3 +92,7 @@
 /datum/sprite_accessory/hair/hippie/twincurl_alt
 	name = "Upper Twincurls"
 	icon_state = "hair_twincurl2"
+
+/datum/sprite_accessory/hair/hippie/exclaimation
+	name = "Exclaimahair"
+	icon_state = "hair_exclaim"

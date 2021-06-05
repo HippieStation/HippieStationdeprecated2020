@@ -60,10 +60,8 @@
 	var/lum = source.luminosity
 	source.luminosity = 6
 
-	var/list/heard = view(range, source)
+	. = view(range, source)
 	source.luminosity = lum
-
-	return heard
 
 /proc/alone_in_area(area/the_area, mob/must_be_alone, check_type = /mob/living/carbon)
 	var/area/our_area = get_area(the_area)

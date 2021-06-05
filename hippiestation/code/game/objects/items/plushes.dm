@@ -13,7 +13,7 @@
 /obj/item/toy/plush/goatplushie/angry/Initialize()
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
-	
+
 /obj/item/toy/plush/goatplushie/angry/process()
 	if (prob(25) && !target)
 		var/list/targets_to_pick_from = list()
@@ -26,15 +26,15 @@
 		visible_message("<span class='notice'>[src] stares at [target].</span>")
 	if (world.time > cooldown)
 		ram()
-		
+
 /obj/item/toy/plush/goatplushie/angry/proc/ram()
 	if(prob((obj_flags & EMAGGED) ? 98:90) && isturf(loc) && considered_alive(target.mind))
 		throw_at(target, 10, 10)
-		visible_message("<span class='danger'>[src] rams [target]!</span>")	
+		visible_message("<span class='danger'>[src] rams [target]!</span>")
 		cooldown = world.time + cooldown_modifier
 	target = null
 	visible_message("<span class='notice'>[src] looks disinterested.</span>")
-	
+
 /obj/item/toy/plush/goatplushie/angry/emag_act(mob/user)
 	if (obj_flags&EMAGGED)
 		visible_message("<span class='notice'>[src] already looks angry enough, you shouldn't anger it more.</span>")
@@ -42,7 +42,7 @@
 	cooldown_modifier = 5
 	throwforce = 20
 	obj_flags |= EMAGGED
-	visible_message("<span class='danger'>[src] stares at [user] angrily before going docile.</span>")	
+	visible_message("<span class='danger'>[src] stares at [user] angrily before going docile.</span>")
 
 /obj/item/toy/plush/goatplushie/angry/Destroy()
 	STOP_PROCESSING(SSprocessing, src)

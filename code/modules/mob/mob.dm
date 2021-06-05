@@ -17,8 +17,7 @@
 	qdel(hud_used)
 	QDEL_LIST(client_colours)
 	ghostize()
-	..()
-	return QDEL_HINT_HARDDEL
+	return ..()
 
 /mob/Initialize()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_CREATED, src)

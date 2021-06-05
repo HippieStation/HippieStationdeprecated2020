@@ -10,19 +10,22 @@
 // The proc you should always use to set the light of this atom.
 // Nonesensical value for l_color default, so we can detect if it gets set to null.
 #define NONSENSICAL_VALUE -99999
-/atom/proc/set_light(var/l_range, var/l_power, var/l_color = NONSENSICAL_VALUE)
+/atom/proc/set_light(var/l_range, var/l_power, var/l_color = NONSENSICAL_VALUE, l_on)
 	if(l_range > 0 && l_range < MINIMUM_USEFUL_LIGHT_RANGE)
 		l_range = MINIMUM_USEFUL_LIGHT_RANGE	//Brings the range up to 1.4, which is just barely brighter than the soft lighting that surrounds players.
-	if (l_power != null)
+	if (!isnull(l_power))
 		light_power = l_power
 
-	if (l_range != null)
+	if (!isnull(l_range))
 		light_range = l_range
 
 	if (l_color != NONSENSICAL_VALUE)
 		light_color = l_color
 
-	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT, l_range, l_power, l_color)
+	//if(!isnull(l_on))
+	//	light_on = l_on
+
+	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT, l_range, l_power, l_color, l_on)
 
 	update_light()
 
