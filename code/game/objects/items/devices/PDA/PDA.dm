@@ -366,11 +366,15 @@ GLOBAL_LIST_EMPTY(PDAs)
 					update_icon()
 				else
 					to_chat(src.loc, "<span class='danger'>No record disk inserted!</span>")
+				mode = 0
+
 			if(10)
 				playMusic()
+				mode = 0
 
 			if(11)
 				stopMusic(user)
+				mode = 0
 
 			if(21)
 				dat += "<h4>[PDAIMG(mail)] SpaceMessenger V3.9.6</h4>"

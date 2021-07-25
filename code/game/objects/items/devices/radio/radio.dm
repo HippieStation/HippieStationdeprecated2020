@@ -47,8 +47,7 @@
 	var/music_toggle = 1 //Toggles whether music will play or not.
 	var/music_name = "" //Used to display the name of currently playing music.
 	var/music_playing = FALSE
-	var/obj/machinery/radio_station/linked_RS = null //The radio station that is broadcasting to this radio
-	var/radio_holder //stopmusic() will apply to this person
+	var/mob/living/radio_holder //stopmusic() will apply to this person
 
 /obj/item/radio/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] starts bouncing [src] off [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -416,28 +415,39 @@
 
 //Hippie start
 
-/obj/item/radio/proc/avoiding_a_sleep(mob/living/user, music_filepath, name_of_music, music_volume, radio_station_thats_PM)
+/obj/item/radio/proc/avoiding_a_sleep(mob/living/user, music_filepath, name_of_music, music_volume)
 		music_name = name_of_music
 		user << sound(music_filepath, 0, 0, music_channel, music_volume) //plays the music to the user
 		music_playing = TRUE
-		linked_RS = radio_station_thats_PM
 		to_chat(user, "<span class='robot'><b>[src]</b> beeps into your ears, 'Now playing: <i>[music_name]</i>.' </span>")
 		update_icon()
 
-/obj/item/radio/proc/playmusic(mob/living/user, music_filepath, name_of_music, music_volume, radio_station_thats_playing_music) //Plays music at src using the filepath to the audio file. This proc is directly working with the bluespace radio station at radio_station.dm
+/obj/item/radio/proc/playmusic(music_filepath, name_of_music, music_volume) //Plays music at src using the filepath to the audio file. This proc is directly working with the bluespace radio station at radio_station.dm
 	radio_music_file = music_filepath
 
-	if(loc != user)
-		return
-
-	radio_holder = user
+	if(!istype(src.loc, /mob/living)) //checks through 5 layers of storage to find if anyone has this radio in their inventory.
+		if(!istype(src.loc.loc, /mob/living))
+			if(!istype(src.loc.loc.loc, /mob/living))
+				if(!istype(src.loc.loc.loc.loc, /mob/living))
+					if(!istype(src.loc.loc.loc.loc.loc, /mob/living))
+						return
+					else
+						radio_holder = src.loc.loc.loc.loc.loc
+				else
+					radio_holder = src.loc.loc.loc.loc
+			else
+				radio_holder = src.loc.loc.loc
+		else
+			radio_holder = src.loc.loc
+	else
+		radio_holder = src.loc
 
 	if(music_toggle == 1) //Music player is on
 		if(istype(src, /obj/item/radio/headset))
-			if(!(user.get_item_by_slot(ITEM_SLOT_EARS) == src)) //only want headsets to play music if they're equipped
+			if(!(radio_holder.get_item_by_slot(ITEM_SLOT_EARS) == src)) //only want headsets to play music if they're equipped
 				return
-		stopmusic(user) //stop the previously playing song to make way for the new one
-		addtimer(CALLBACK(src, .proc/avoiding_a_sleep, user, music_filepath, name_of_music, music_volume, radio_station_thats_playing_music), 10)
+		stopmusic(radio_holder) //stop the previously playing song to make way for the new one
+		addtimer(CALLBACK(src, .proc/avoiding_a_sleep, radio_holder, music_filepath, name_of_music, music_volume), 10)
 
 /obj/item/radio/proc/stopmusic(mob/living/user, music_turnoff_message_type)
 	if(music_playing)
