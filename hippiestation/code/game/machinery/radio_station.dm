@@ -153,6 +153,10 @@
 		to_chat(user, "<span class ='warning'>The broadcasting antenna needs time to recharge! It will be ready in [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
 	var/cooming = input(user, "Last played music: [music_name]", "Available Music") as null|anything in music_list
+	if(!user.Adjacent(src))
+		to_chat(user, "<span class='warning'>You are too far away!")
+		return
+
 	if(cooldowntime > world.time)
 		to_chat(user, "<span class ='warning'>The broadcasting antenna needs time to recharge! It will be ready in [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
@@ -269,7 +273,7 @@
 	for(var/obj/item/radio/R in GLOB.radio_list) //Calls the playmusic() proc for every radio in radio_list (everyone)
 		R.playmusic(music_file, music_name, 100)
 
-	audible_message("<span class='robot'><b>[src]</b> beeps, 'Now broadcasting: <i>[music_name]</i>' </span>")
+	src.audible_message("<span class='robot'><b>[src]</b> beeps, 'Now broadcasting: <i>[music_name]</i>' </span>")
 
 	resistance_flags = store_resistance_flags
 
@@ -308,10 +312,9 @@
 	else
 		set_light(brightness_on)
 
-//tshirt cannon
+//tshirt cannon <-- reminder
 
-/*One of the staple powers of an admin is now in the hands of a player.
-One can only imagine the chaos this will bring when I get this merged.*/
+/*One of the staple powers of an admin is now in the hands of a player.*/
 /obj/item/record_disk
 	name = "record disk"
 	desc = "A disk for storing music. Dear god."
@@ -444,6 +447,9 @@ One can only imagine the chaos this will bring when I get this merged.*/
 		to_chat(user, "<span class ='warning'>A disk is currently being burned!</span>")
 		return
 	var/choice = input(user, "Choose an option \nDisk: [R.name]", "[src] menu") as null|anything in menu_options
+	if(!user.Adjacent(src))
+		to_chat(user, "<span class='warning'>You are too far away!")
+		return
 	if(inuse)
 		to_chat(user, "<span class ='warning'>A disk is currently being burned!</span>")
 		return
@@ -452,7 +458,7 @@ One can only imagine the chaos this will bring when I get this merged.*/
 			return
 		if("EJECT")
 			playsound(src, 'hippiestation/sound/effects/disk_tray.ogg', 100, 0)
-			visible_message(src, "<span class ='notice'>[user] ejects the [R] from the [src]!</span>")
+			src.visible_message(src, "<span class ='notice'>[user] ejects the [R] from the [src]!</span>")
 			R.forceMove(get_turf(src))
 			R = null
 			return
@@ -546,7 +552,7 @@ One can only imagine the chaos this will bring when I get this merged.*/
 			custom_name = input(user, "Enter new disk name") as null|text
 			if(custom_name)
 				R.name = custom_name
-				audible_message("<span class='robot'><b>[src]</b> beeps, 'Record disk renamed to: [R.name]' </span>")
+				src.audible_message("<span class='robot'><b>[src]</b> beeps, 'Record disk renamed to: [R.name]' </span>")
 				custom_name = null
 			else
 				to_chat(user, "<span class='warning'>Name selection invalid.</span>")
@@ -561,7 +567,7 @@ One can only imagine the chaos this will bring when I get this merged.*/
 			R = I
 			I.forceMove(src)
 			playsound(src, 'hippiestation/sound/effects/disk_tray.ogg', 100, 0)
-			visible_message(src, "<span class='notice'>[user] loads the [R] into the [src].</span>")
+			src.visible_message(src, "<span class='notice'>[user] loads the [R] into the [src].</span>")
 			return
 		else
 			to_chat(user, "<span class ='warning'>There is already a record disk loaded into the [src]!</span>")

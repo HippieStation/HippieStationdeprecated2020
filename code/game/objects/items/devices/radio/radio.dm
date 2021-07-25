@@ -458,11 +458,11 @@
 		music_name = ""
 		switch(music_turnoff_message_type)
 			if(1)
-				audible_message("<span class='robot'><b>[src]</b> beeps, '[src] removed, turning off music.' </span>")
+				src.audible_message("<span class='robot'><b>[src]</b> beeps, '[src] removed, turning off music.' </span>")
 			if(2)
-				audible_message("<span class='robot'><b>[src]</b> beeps, 'Music toggled off.' </span>") //Unused message
+				src.audible_message("<span class='robot'><b>[src]</b> beeps, 'Music toggled off.' </span>") //Unused message
 			if(3)
-				audible_message("<span class='robot'><b>[src]</b> beeps, 'Signal interrupted.' </span>")
+				src.audible_message("<span class='robot'><b>[src]</b> beeps, 'Signal interrupted.' </span>")
 		music_playing = FALSE
 
 /obj/item/radio/update_icon()

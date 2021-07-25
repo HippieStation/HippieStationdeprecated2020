@@ -63,6 +63,9 @@
 	if(ishuman(user))
 		playsound(src, 'sound/machines/terminal_on.ogg', 50, 1)
 		corpchoice = input(user, "Print a book from Spacestar! Select a mega-corporation. [cartridgedisplay]", "Book Catalog") in corporations
+		if(!user.Adjacent(src))
+			to_chat(user, "<span class='warning'>You are too far away!")
+			return
 	switch(corpchoice)
 		if("Exit")
 			playsound(src, 'sound/machines/terminal_off.ogg', 50, 1)
@@ -71,28 +74,37 @@
 		if("Nanotrasen Approved Books")
 			playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
 			book = input(user, "Select a book. " + cartridgedisplay) in booklistNT
+			if(!user.Adjacent(src))
+				to_chat(user, "<span class='warning'>You are too far away!")
+				return
 			if(printcheck(user) == TRUE)
 				return
 			spawnbook(user, 1)
 
 		if("Syndicate nonsense books")
 			playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
-			visible_message("<span class='robot'><b>[src]</b> beeps, 'We remind you that books belonging to this mega-corporation are contraband in Nanotrasen controlled space.'")
+			src.audible_message("<span class='robot'><b>[src]</b> beeps, 'We remind you that books belonging to this mega-corporation are contraband in Nanotrasen controlled space.'")
 			book = input(user, "Select a book. WARNING: Syndicate books are contraband in all Nanotrasen controlled space. [cartridgedisplay]") in booklistSyndicate
+			if(!user.Adjacent(src))
+				to_chat(user, "<span class='warning'>You are too far away!")
+				return
 			if(printcheck(user) == TRUE)
 				return
 			spawnbook(user, 2)
 
 		if("Wizard Federation drivel")
 			playsound(src, 'sound/machines/terminal_button03.ogg', 50, 1)
-			visible_message("<span class='robot'><b>[src]</b> beeps, 'We remind you that books belonging to this mega-corporation are contraband in Nanotrasen controlled space.'")
+			src.audible_message("<span class='robot'><b>[src]</b> beeps, 'We remind you that books belonging to this mega-corporation are contraband in Nanotrasen controlled space.'")
 			book = input(user, "Select a book. WARNING: Space Wizard Federation books are contraband in all Nanotrasen controlled space. [cartridgedisplay]") in booklistWizFed
+			if(!user.Adjacent(src))
+				to_chat(user, "<span class='warning'>You are too far away!")
+				return
 			if(printcheck(user) == TRUE)
 				return
 			spawnbook(user, 3)
 
 	if(thankyou == 1)
-		visible_message("<span class='robot'><b>[src]</b> beeps, 'Thank you for using Spacestar Ordering.'")
+		src.audible_message("<span class='robot'><b>[src]</b> beeps, 'Thank you for using Spacestar Ordering.'")
 		thankyou = 0
 
 /obj/machinery/computer/craftingbookcatalog/proc/spawnbook(mob/user, listtype) //listtype is which megacorporation was picked
@@ -191,7 +203,7 @@
 		return
 	else
 		ink = ink - inkprice
-		audible_message("[src] begins to hum as it warms up its printing drums.")
+		src.audible_message("[src] begins to hum as it warms up its printing drums.")
 		printing = TRUE
 		playsound(src, 'sound/machines/copier.ogg', 50, 1)
 		return 1
@@ -213,7 +225,7 @@
 			return
 
 		qdel(I)
-		visible_message("<span class ='notice'>[user] loads a Spacestar-brand ink cartridge into the [src]")
+		src.visible_message("<span class ='notice'>[user] loads a Spacestar-brand ink cartridge into the [src]")
 		ink++
 		return
 
