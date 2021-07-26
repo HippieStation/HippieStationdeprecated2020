@@ -46,12 +46,18 @@
 	if(stat & NOPOWER || stat & BROKEN || on == FALSE)
 		return
 	var/option = input(user, "Current unce speed: [speed] \n Current unce sound: [unce_name]", "Unce machine settings") as null|anything in settings
+	if(!user.Adjacent(src))
+		to_chat(user, "<span class='warning'>You are too far away!")
+		return
 	switch(option)
 		if("Adjust unce speed")
 			if(unce_file == 'hippiestation/sound/machines/disco_unce.ogg') //This file lasts too long for the player to have free reign over its speed.
 				to_chat(user, "<span class ='warning'>You can't change the unce speed with the currently selected unce sound!</span>")
 				return
 			speed = input(user, "Ranges from 1-10 \nHigher number: slower unce \nLower number: faster unce", "Unce machine settings") as null|num
+			if(!user.Adjacent(src))
+				to_chat(user, "<span class='warning'>You are too far away!")
+				return
 			if(isnull(speed))
 				speed = 4.5 //Default value
 			if(speed < 1)
@@ -61,6 +67,9 @@
 			to_chat(user, "<span class ='notice'>You adjust the unce speed to [speed].</span>")
 		if("Adjust unce sound")
 			var/chosen_sound = input(user, "Select the sound of the unce.", "Unce machine settings") as null|anything in unce_sounds
+			if(!user.Adjacent(src))
+				to_chat(user, "<span class='warning'>You are too far away!")
+				return
 			switch(chosen_sound)
 				if(null)
 					return
