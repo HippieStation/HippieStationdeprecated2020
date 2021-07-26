@@ -434,6 +434,8 @@
 			break
 	if(!loc_layer) //if loc is null then this proc doesn't need to continue
 		return
+	if(!istype(loc_layer, /mob/living)) //doesn't need to continue if not on a mob
+		return
 
 	if(music_toggle == 1) //Music player is on
 		if(istype(src, /obj/item/radio/headset))

@@ -25,6 +25,7 @@
 	var/can_eject_disk = 1
 	var/ready_to_delete = 0 //For Destroy()
 	var/brightness_on = 1
+	var/volume = 35 //the volume that music plays at
 
 /obj/machinery/radio_station/Initialize()
 	..()
@@ -271,7 +272,7 @@
 	cooldowntime = world.time + 1000
 
 	for(var/obj/item/radio/R in GLOB.radio_list) //Calls the playmusic() proc for every radio in radio_list (everyone)
-		R.playmusic(music_file, music_name, 100)
+		R.playmusic(music_file, music_name, volume)
 
 	src.audible_message("<span class='robot'><b>[src]</b> beeps, 'Now broadcasting: <i>[music_name]</i>' </span>")
 
