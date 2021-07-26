@@ -425,22 +425,15 @@
 /obj/item/radio/proc/playmusic(music_filepath, name_of_music, music_volume) //Plays music at src using the filepath to the audio file. This proc is directly working with the bluespace radio station at radio_station.dm
 	radio_music_file = music_filepath
 
-	if(!istype(src.loc, /mob/living)) //checks through 5 layers of storage to find if anyone has this radio in their inventory.
-		if(!istype(src.loc.loc, /mob/living))
-			if(!istype(src.loc.loc.loc, /mob/living))
-				if(!istype(src.loc.loc.loc.loc, /mob/living))
-					if(!istype(src.loc.loc.loc.loc.loc, /mob/living))
-						return
-					else
-						radio_holder = src.loc.loc.loc.loc.loc
-				else
-					radio_holder = src.loc.loc.loc.loc
-			else
-				radio_holder = src.loc.loc.loc
+	var/atom/loc_layer = loc
+	while(istype(loc_layer, /atom/movable))
+		if(!istype(loc_layer, /mob/living))
+			loc_layer = loc_layer.loc
 		else
-			radio_holder = src.loc.loc
-	else
-		radio_holder = src.loc
+			radio_holder = loc_layer
+			break
+	if(!loc_layer) //if loc is null then this proc doesn't need to continue
+		return
 
 	if(music_toggle == 1) //Music player is on
 		if(istype(src, /obj/item/radio/headset))
