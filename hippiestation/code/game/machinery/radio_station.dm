@@ -446,7 +446,7 @@
 	if(inuse)
 		to_chat(user, "<span class ='warning'>A disk is currently being burned!</span>")
 		return
-	var/choice = input(user, "Choose an option \nDisk: [R.name]", "[src] menu") as null|anything in menu_options
+	var/choice = input(user, "Disk: [R.name] \nChoose an option", "[src] menu") as null|anything in menu_options
 	if(!user.Adjacent(src))
 		to_chat(user, "<span class='warning'>You are too far away!")
 		return
