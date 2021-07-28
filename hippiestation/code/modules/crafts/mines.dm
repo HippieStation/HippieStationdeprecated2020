@@ -33,6 +33,7 @@
 	s.start()
 	mineEffect(victim)
 	triggered = 1
+	dropped(src)
 	qdel(src)
 
 /obj/item/mine/interact(mob/living/user)
@@ -49,9 +50,11 @@
 		playsound(src, 'sound/items/screwdriver2.ogg', 50)
 
 /obj/item/mine/pickup(mob/user)
+	..()
 	if(armed)
 		src.visible_message("<span class ='danger'>[user] picks up the [src], setting it off!</span>")
 		triggermine(user)
+		return
 
 /obj/item/mine/explosive
 	name = "explosive mine"
