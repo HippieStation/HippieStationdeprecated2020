@@ -453,6 +453,10 @@
 /datum/map_template/shuttle/cargo/donut
 	suffix = "donut"
 	name = "supply shuttle (Donut)"
+	
+/datum/map_template/shuttle/cargo/mini
+	suffix = "mini"
+	name = "supply shuttle (Mini)"
 
 /datum/map_template/shuttle/emergency/delta
 	suffix = "delta"
