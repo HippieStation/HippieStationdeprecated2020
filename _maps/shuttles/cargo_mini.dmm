@@ -1,0 +1,27 @@
+"a" = (/turf/closed/wall/mineral/titanium,/area/shuttle/supply)
+"b" = (/turf/open/floor/mineral/titanium/blue,/area/shuttle/supply)
+"c" = (/obj/machinery/light{dir = 1},/turf/open/floor/mineral/titanium/blue,/area/shuttle/supply)
+"d" = (/obj/machinery/conveyor{dir = 4; id = "QMLoad2"},/obj/machinery/door/poddoor{id = "QMLoaddoor2"; name = "supply dock loading door"},/turf/open/floor/plating,/area/shuttle/supply)
+"e" = (/obj/machinery/door/airlock/titanium{name = "Supply Shuttle Airlock"; req_access_txt = "31"},/turf/open/floor/plating,/area/shuttle/supply)
+"f" = (/obj/machinery/light{dir = 8},/turf/open/floor/mineral/titanium/blue,/area/shuttle/supply)
+"g" = (/obj/machinery/button/door{dir = 2; id = "QMLoaddoor2"; name = "Loading Doors"; pixel_x = 24; pixel_y = 8},/obj/machinery/button/door{id = "QMLoaddoor"; name = "Loading Doors"; pixel_x = 24; pixel_y = -8},/obj/machinery/light{dir = 4},/turf/open/floor/mineral/titanium/blue,/area/shuttle/supply)
+"h" = (/obj/machinery/door/airlock/titanium{name = "Supply Shuttle Airlock"; req_access_txt = "31"},/obj/docking_port/mobile/supply{dwidth = 5; width = 12},/turf/open/floor/plating,/area/shuttle/supply)
+"i" = (/obj/machinery/conveyor{dir = 8; id = "QMLoad"},/obj/machinery/door/poddoor{id = "QMLoaddoor"; name = "supply dock loading door"},/turf/open/floor/plating,/area/shuttle/supply)
+"j" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/shuttle/engine/heater,/turf/open/floor/plating/airless,/area/shuttle/supply)
+"k" = (/turf/template_noop,/area/shuttle/supply)
+"l" = (/obj/structure/shuttle/engine/propulsion/burst/left,/turf/open/floor/plating/airless,/area/shuttle/supply)
+"m" = (/obj/structure/shuttle/engine/propulsion,/turf/open/floor/plating/airless,/area/shuttle/supply)
+"n" = (/obj/structure/shuttle/engine/propulsion/burst/right,/turf/open/floor/plating/airless,/area/shuttle/supply)
+
+(1,1,1) = {"
+aaaaaaa
+abbcbba
+abbbbbd
+abbbbbe
+afbbbga
+abbbbbh
+abbbbbi
+abbbbba
+aajjjaa
+klmmmnk
+"}
