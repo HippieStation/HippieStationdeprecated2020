@@ -28,6 +28,7 @@
 #define ROLE_BRAINWASHED		"Brainwashed Victim"
 #define ROLE_OVERTHROW			"Syndicate Mutineer"
 #define ROLE_HIVE				"Hivemind Host"
+#define ROLE_MONKEY_HELMET "Monkey Mind Magnification Helmet"
 #define ROLE_OBSESSED				"Obsessed"
 #define ROLE_SENTIENCE			"Sentience Potion Spawn"
 #define ROLE_MIND_TRANSFER		"Mind Transfer Potion"
