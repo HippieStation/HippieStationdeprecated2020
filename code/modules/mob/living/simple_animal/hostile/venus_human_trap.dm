@@ -131,6 +131,10 @@
 
 /mob/living/simple_animal/hostile/venus_human_trap/CanAttack(atom/the_target)
 	. = ..()
-	if(.)
-		if(the_target in grasping)
-			return 0
+	to_chat(src, "<span class='boldwarning'>You a venus human trap!  Protect the kudzu at all costs, and feast on those who oppose you!</span>")
+
+/mob/living/simple_animal/hostile/venus_human_trap/attack_ghost(mob/user)
+	. = ..()
+	if(. || !(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER))
+		return
+	humanize_plant(user)
