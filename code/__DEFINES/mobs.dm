@@ -47,6 +47,11 @@
 #define MOB_REPTILE		"reptile"
 #define MOB_SPIRIT		"spirit"
 
+
+// Eye protection
+#define FLASH_PROTECTION_WELDER 2
+
+
 //Organ defines for carbon mobs
 #define ORGAN_ORGANIC   1
 #define ORGAN_ROBOTIC   2
