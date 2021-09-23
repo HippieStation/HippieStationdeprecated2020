@@ -21,6 +21,9 @@
 	var/ui_x = 575							// Default size of TGUI window, in pixels
 	var/ui_y = 700
 	var/ui_header = null					// Example: "something.gif" - a header image that will be rendered in computer's UI when this program is running at background. Images are taken from /icons/program_icons. Be careful not to use too large images!
+	var/program_icon = "window-maximize-o" 	// Font Awesome icon to use as this program's icon in the modular computer main menu. Defaults to a basic program maximize window icon if not overridden.
+
+
 
 /datum/computer_file/program/New(obj/item/modular_computer/comp = null)
 	..()
@@ -211,3 +214,17 @@
 	if(program_state != PROGRAM_STATE_ACTIVE) // Our program was closed. Close the ui if it exists.
 		return UI_CLOSE
 	return ..()
+
+/**
+ *
+ *Called by the device when it is emagged.
+ *
+ *Emagging the device allows certain programs to unlock new functions. However, the program will
+ *need to be downloaded first, and then handle the unlock on their own in their run_emag() proc.
+ *The device will allow an emag to be run multiple times, so the user can re-emag to run the
+ *override again, should they download something new. The run_emag() proc should return TRUE if
+ *the emagging affected anything, and FALSE if no change was made (already emagged, or has no
+ *emag functions).
+**/
+/datum/computer_file/program/proc/run_emag()
+	return FALSE
