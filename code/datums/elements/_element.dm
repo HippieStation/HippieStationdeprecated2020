@@ -30,13 +30,16 @@
 //DATUM PROCS
 
 /// Finds the singleton for the element type given and attaches it to src
-/datum/proc/AddElement(eletype, ...)
-	var/datum/element/ele = SSdcs.GetElement(eletype)
-	args[1] = src
-	if(ele.Attach(arglist(args)) == ELEMENT_INCOMPATIBLE)
-		CRASH("Incompatible [eletype] assigned to a [type]! args: [json_encode(args)]")
+/datum/proc/_AddElement(list/arguments)
+	var/datum/element/ele = SSdcs.GetElement(arguments)
+	arguments[1] = src
+	if(ele.Attach(arglist(arguments)) == ELEMENT_INCOMPATIBLE)
+		CRASH("Incompatible [arguments[1]] assigned to a [type]! args: [json_encode(args)]")
 
-/// Finds the singleton for the element type given and detaches it from src
-/datum/proc/RemoveElement(eletype)
-	var/datum/element/ele = SSdcs.GetElement(eletype)
+/**
+  * Finds the singleton for the element type given and detaches it from src
+  * You only need additional arguments beyond the type if you're using ELEMENT_BESPOKE
+  */
+/datum/proc/_RemoveElement(list/arguments)
+	var/datum/element/ele = SSdcs.GetElement(arguments)
 	ele.Detach(src)
