@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 // General procedures
 ///////////////////////////////////
 
-/obj/structure/cable/UPDATE_ICON_STATE)
+/obj/structure/cable/update_icon_state()
 	if(!linked_dirs)
 		icon_state = "l[cable_layer]-noconnection"
 		return ..()
@@ -143,8 +143,6 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	dir_string = "l[cable_layer]-[dir_string]"
 	icon_state = dir_string
 	return ..()
-
-
 
 
 /obj/structure/cable/proc/handlecable(obj/item/W, mob/user, params)
