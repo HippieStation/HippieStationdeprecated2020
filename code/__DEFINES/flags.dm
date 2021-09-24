@@ -49,8 +49,6 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /// Is this object currently processing in the atmos object list?
 #define ATMOS_IS_PROCESSING_1 		(1<<16)
 /// Update the atom's icon state
-#define UPDATE_ICON_STATE (1<<2)
-
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
@@ -63,6 +61,12 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 	These defines are used specifically with the atom/pass_flags bitmask
 	the atom/checkpass() proc uses them (tables will call movable atom checkpass(PASSTABLE) for example)
 */
+
+// Update flags for [/atom/proc/update_appearance]
+/// Update the atom's icon state
+#define UPDATE_ICON_STATE (1<<2)
+
+
 //flags for pass_flags
 #define PASSTABLE		(1<<0)
 #define PASSGLASS		(1<<1)
