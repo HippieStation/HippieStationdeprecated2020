@@ -346,7 +346,6 @@ All ShuttleMove procs go here
 
 /obj/structure/cable/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
-		hide(T.intact)
 	Connect_cable(TRUE)
 	propagate_if_no_network()
 
