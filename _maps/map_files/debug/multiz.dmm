@@ -106,9 +106,7 @@
 /turf/open/openspace,
 /area/space)
 "av" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs/north,
 /turf/open/floor/plating,
 /area/hallway/secondary/service)
 "aw" = (
@@ -910,7 +908,7 @@
 "dO" = (
 /obj/structure/table,
 /obj/machinery/light,
-/obj/item/twohanded/fireaxe,
+/obj/item/fireaxe,
 /obj/item/extinguisher,
 /turf/open/floor/plasteel,
 /area/storage/primary)
@@ -1185,8 +1183,7 @@
 /turf/open/floor/plating,
 /area/space)
 "iq" = (
-/obj/machinery/power/deck_relay,
-/obj/structure/cable,
+/obj/structure/cable/multilayer/multiz,
 /turf/open/floor/plating,
 /area/construction)
 "iu" = (
@@ -1275,8 +1272,7 @@
 /turf/open/floor/plasteel,
 /area/engine/storage)
 "nF" = (
-/obj/structure/cable,
-/obj/machinery/power/deck_relay,
+/obj/structure/cable/multilayer/multiz,
 /turf/open/floor/plating,
 /area/hallway/secondary/service)
 "od" = (
@@ -1349,7 +1345,7 @@
 	},
 /area/hallway/secondary/service)
 "sm" = (
-/obj/structure/stairs,
+/obj/structure/stairs/south,
 /turf/open/floor/plating,
 /area/construction)
 "su" = (
@@ -1775,8 +1771,7 @@
 /turf/open/floor/plating,
 /area/engine/storage)
 "Vm" = (
-/obj/machinery/power/deck_relay,
-/obj/structure/cable,
+/obj/structure/cable/multilayer/multiz,
 /turf/open/floor/plating,
 /area/engine/storage)
 "Vn" = (

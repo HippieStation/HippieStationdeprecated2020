@@ -113,6 +113,8 @@
 #include "code\__DEFINES\vv.dm"
 #include "code\__DEFINES\wall_dents.dm"
 #include "code\__DEFINES\wires.dm"
+#include "code\__DEFINES\span.dm"
+#include "code\__DEFINES\dcs\signals.dm"
 #include "code\__DEFINES\~hippie_defines\admin.dm"
 #include "code\__DEFINES\~hippie_defines\antagonists.dm"
 #include "code\__DEFINES\~hippie_defines\atmospherics.dm"
@@ -523,6 +525,7 @@
 #include "code\datums\elements\atmos_sensitive.dm"
 #include "code\datums\elements\cleaning.dm"
 #include "code\datums\elements\earhealing.dm"
+#include "code\datums\elements\undertile.dm
 #include "code\datums\helper_datums\events.dm"
 #include "code\datums\helper_datums\getrev.dm"
 #include "code\datums\helper_datums\icon_snapshot.dm"
