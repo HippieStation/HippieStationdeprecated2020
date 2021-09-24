@@ -40,6 +40,12 @@
 	var/rad_flags = NONE // Will move to flags_1 when i can be arsed to
 	var/rad_insulation = RAD_NO_INSULATION
 
+
+		///The custom materials this atom is made of, used by a lot of things like furniture, walls, and floors (if I finish the functionality, that is.)
+	///The list referenced by this var can be shared by multiple objects and should not be directly modified. Instead, use [set_custom_materials][/atom/proc/set_custom_materials].
+	var/list/datum/material/custom_materials
+	///Bitfield for how the atom handles materials.
+
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
