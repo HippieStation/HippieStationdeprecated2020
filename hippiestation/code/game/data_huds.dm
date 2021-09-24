@@ -1,4 +1,8 @@
-mob/living/carbon/human/Login()
+
+/mob/living/carbon/human
+	var/list/stored_hud_images = list()
+
+/mob/living/carbon/human/Login()
 	. = ..()
 	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 		H.sec_hud_set_threat_status(src)
