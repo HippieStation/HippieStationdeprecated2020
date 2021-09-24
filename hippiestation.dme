@@ -3534,7 +3534,6 @@
 #include "hippiestation\code\modules\modular_computers\computers\item\laptop.dm"
 #include "hippiestation\code\modules\modular_computers\computers\machinery\modular_console.dm"
 #include "hippiestation\code\modules\modular_computers\NTNet\NTNet_relay.dm.dm"
-#include "hippiestation\code\modules\NTNet\netdata.dm"
 #include "hippiestation\code\modules\paperwork\filingcabinet.dm"
 #include "hippiestation\code\modules\paperwork\paperbin.dm"
 #include "hippiestation\code\modules\paperwork\pen.dm"
