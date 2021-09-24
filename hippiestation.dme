@@ -3151,7 +3151,6 @@
 #include "hippiestation\code\game\objects\items\devices\extra_arm.dm"
 #include "hippiestation\code\game\objects\items\devices\glue.dm"
 #include "hippiestation\code\game\objects\items\devices\meeseeks_box.dm"
-#include "hippiestation\code\game\objects\items\devices\multitool.dm"
 #include "hippiestation\code\game\objects\items\devices\powersink.dm"
 #include "hippiestation\code\game\objects\items\devices\scanners.dm"
 #include "hippiestation\code\game\objects\items\devices\synthmorpher.dm"
