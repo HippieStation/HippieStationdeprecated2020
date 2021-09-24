@@ -17,11 +17,11 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	icon = 'icons/obj/power_cond/layer_cable.dmi'
 	icon_state = "l2-1-2-4-8-node"
 	color = "yellow"
-	level = 1 //is underfloor
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
 	var/linked_dirs = 0 //bitflag
+	var/node = FALSE //used for sprites display
 	var/cable_layer = CABLE_LAYER_2			//bitflag
 	var/machinery_layer = MACHINERY_LAYER_1 //bitflag
 	var/datum/powernet/powernet
@@ -43,11 +43,11 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 /obj/structure/cable/Initialize(mapload)
 	. = ..()
 
-	var/turf/T = get_turf(src)			// hide if turf is not intact
-	if(level==1)
-		hide(T.intact)
 	GLOB.cable_list += src //add it to the global cable list
 	Connect_cable()
+	AddElement(/datum/element/undertile, TRAIT_T_RAY_VISIBLE)
+
+
 ///Set the linked indicator bitflags
 /obj/structure/cable/proc/Connect_cable(clear_before_updating = FALSE)
 	var/under_thing = NONE
@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 						continue
 		var/inverse = turn(check_dir, 180)
 		for(var/obj/structure/cable/C in TB)
-			if(C.cable_layer == cable_layer)
+			if(C.cable_layer & cable_layer)
 				linked_dirs |= check_dir
 				C.linked_dirs |= inverse
 				C.update_icon()
@@ -98,9 +98,10 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 		if(linked_dirs & check_dir)
 			var/TB = get_step(loc, check_dir)
 			for(var/obj/structure/cable/C in TB)
-				if(cable_layer == C.cable_layer)
+				if(cable_layer & C.cable_layer)
 					C.linked_dirs &= ~inverse
 					C.update_icon()
+
 /obj/structure/cable/Destroy()					// called when a cable is deleted
 	Disconnect_cable()
 
@@ -119,15 +120,9 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 // General procedures
 ///////////////////////////////////
 
-//If underfloor, hide the cable
-/obj/structure/cable/hide(i)
-	if(level == 1 && isturf(loc))
-		invisibility = i ? INVISIBILITY_MAXIMUM : 0
-	update_icon()
-
-/obj/structure/cable/update_icon()
+/obj/structure/cable/update_icon_state()
 	if(!linked_dirs)
-		icon_state = "[cable_layer]-noconnection"
+		icon_state = "l[cable_layer]-noconnection"
 	else
 		var/list/dir_icon_list = list()
 		for(var/check_dir in GLOB.cardinals)
@@ -144,7 +139,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 					if(P.should_have_node())
 						dir_string = "[dir_string]-node"
 						break
-		dir_string = "[cable_layer]-[dir_string]"
+		dir_string = "l[cable_layer]-[dir_string]"
 		icon_state = dir_string
 
 
@@ -254,7 +249,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 		if(src == C)
 			continue
 
-		if(cable_layer != C.cable_layer)
+		if(!(cable_layer & C.cable_layer))
 			continue
 
 		if(C.linked_dirs & inverse_dir) //we've got a matching cable in the neighbor turf
@@ -310,13 +305,20 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 /obj/structure/cable/proc/get_cable_connections(powernetless_only)
 	. = list()
 	var/turf/T = get_turf(src)
-
 	for(var/check_dir in GLOB.cardinals)
 		if(linked_dirs & check_dir)
 			T = get_step(src, check_dir)
 			for(var/obj/structure/cable/C in T)
-				if(cable_layer == C.cable_layer)
+				if(cable_layer & C.cable_layer)
 					. += C
+
+/obj/structure/cable/proc/get_all_cable_connections(powernetless_only)
+	. = list()
+	var/turf/T
+	for(var/check_dir in GLOB.cardinals)
+		T = get_step(src, check_dir)
+		for(var/obj/structure/cable/C in T.contents - src)
+			. += C
 
 /obj/structure/cable/proc/get_machine_connections(powernetless_only)
 	. = list()
@@ -379,10 +381,9 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 
 GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restraints", /obj/item/restraints/handcuffs/cable, 15), new/datum/stack_recipe("multilayer cable", /obj/structure/cable/multilayer, 1), new/datum/stack_recipe("multiZ cable", /obj/structure/cable/multilayer/multiz, 1)))
 
-
 /obj/item/stack/cable_coil
 	name = "cable coil"
-	custom_price = 30
+	custom_price = 75
 	gender = NEUTER //That's a cable coil sounds better than that's some cable coils
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
@@ -399,7 +400,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 5
-	materials = list(MAT_METAL=10, MAT_GLASS=5)
+	custom_materials = list(/datum/material/iron=10, /datum/material/glass=5)
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
@@ -409,7 +410,6 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	usesound = 'sound/items/deconstruct.ogg'
 	var/obj/structure/cable/target_type = /obj/structure/cable
 	var/target_layer = CABLE_LAYER_2
-
 
 /obj/item/stack/cable_coil/Initialize(mapload, new_amount = null)
 	. = ..()
@@ -435,7 +435,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	if(user.incapacitated() || !user.Adjacent(src))
 		return FALSE
 	return TRUE
-	
+
 GLOBAL_LIST(cable_radial_layer_list)
 
 /obj/item/stack/cable_coil/CtrlClick(mob/living/user)
@@ -461,7 +461,6 @@ GLOBAL_LIST(cable_radial_layer_list)
 			color = "red"
 			target_type = /obj/structure/cable/layer1
 			target_layer = CABLE_LAYER_1
-
 		if("Layer 2")
 			name = "cable coil"
 			icon_state = "coil"
@@ -508,7 +507,6 @@ GLOBAL_LIST(cable_radial_layer_list)
 		return
 	else
 		return ..()
-
 
 //add cables to the stack
 /obj/item/stack/cable_coil/proc/give(extra)
@@ -581,7 +579,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 
 /obj/item/stack/cable_coil/cyborg
 	is_cyborg = 1
-	materials = list()
+	custom_materials = list()
 	cost = 1
 
 #undef UNDER_SMES
@@ -593,7 +591,6 @@ GLOBAL_LIST(cable_radial_layer_list)
 	desc = "A flexible, superconducting insulated multilayer hub for heavy-duty multilayer power transfer."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cable_bridge"
-	level = 1 //is underfloor
 	cable_layer = CABLE_LAYER_2
 	machinery_layer = MACHINERY_LAYER_1
 	layer = WIRE_LAYER - 0.02 //Below all cables Disabled layers can lay over hub
@@ -608,7 +605,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 	icon_state = "l2-noconnection"
 	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE|VIS_INHERIT_LAYER
 	color = "black"
-	
+
 /obj/effect/node/layer1
 	color = "red"
 	icon_state = "l1-1-2-4-8-node"
@@ -741,3 +738,5 @@ GLOBAL_LIST(hub_radial_layer_list)
 /obj/structure/cable/multilayer/CtrlClick(mob/living/user)
 	to_chat(user, "<span class='warning'>You pust reset button.</span>")
 	addtimer(CALLBACK(src, .proc/Reload), 10, TIMER_UNIQUE) //spam protect
+
+
