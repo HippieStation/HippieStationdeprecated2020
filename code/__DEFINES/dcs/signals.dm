@@ -1556,3 +1556,10 @@
 #define COMSIG_MOVABLE_UNCROSS "movable_uncross"				//from base of atom/movable/Uncross(): (/atom/movable)
 #define COMPONENT_MOVABLE_BLOCK_UNCROSS 1
 #define COMSIG_MOVABLE_UNCROSSED "movable_uncrossed"            //from base of atom/movable/Uncrossed(): (/atom/movable)
+
+
+// /mob/living/simple_animal/hostile signals
+#define COMSIG_HOSTILE_ATTACKINGTARGET "hostile_attackingtarget"
+	#define COMPONENT_HOSTILE_NO_ATTACK 1
+#define COMSIG_ATOM_RATVAR_ACT "atom_ratvar_act"				//from base of atom/ratvar_act(): ()	
+#define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
