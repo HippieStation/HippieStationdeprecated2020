@@ -64,17 +64,7 @@
 	contains = list(/obj/machinery/portable_atmospherics/canister/toxins)
 	crate_name = "plasma canister crate"
 	crate_type = /obj/structure/closet/crate/secure
-
-/datum/supply_pack/science/circuitry
-	name = "Circuitry Starter Pack Crate"
-	desc = "Journey into the mysterious world of Circuitry with this starter pack. Contains a circuit printer, analyzer, debugger and wirer. Power cells not included."
-	cost = 1000
-	contains = list(/obj/item/integrated_electronics/analyzer,
-					/obj/item/integrated_circuit_printer,
-					/obj/item/integrated_electronics/debugger,
-					/obj/item/integrated_electronics/wirer)
-	crate_name = "circuitry starter pack crate"
-
+	
 /datum/supply_pack/emergency/syndicate
 	cost = 10000
 
