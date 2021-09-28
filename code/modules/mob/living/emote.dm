@@ -204,7 +204,8 @@
 	message = "laughs."
 	message_mime = "laughs silently!"
 	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
+	//No more varying :)
+	//vary = TRUE
 
 /datum/emote/living/laugh/can_run_emote(mob/living/user, status_check = TRUE , intentional)
 	. = ..()
@@ -219,7 +220,8 @@
 			if(user.gender == FEMALE)
 				return 'sound/voice/human/womanlaugh.ogg'
 			else
-				return pick('sound/voice/human/manlaugh1.ogg', 'sound/voice/human/manlaugh2.ogg', 'hippiestation/sound/misc/laugh03.ogg', 'hippiestation/sound/misc/laugh04.ogg')
+				return pick('hippiestation/sound/misc/laughKitchen.ogg')
+				//return pick('sound/voice/human/manlaugh1.ogg', 'sound/voice/human/manlaugh2.ogg', 'hippiestation/sound/misc/laugh03.ogg', 'hippiestation/sound/misc/laugh04.ogg')
 
 /datum/emote/living/look
 	key = "look"
