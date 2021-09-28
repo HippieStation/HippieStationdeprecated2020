@@ -142,6 +142,8 @@
 	sleep(5)
 	to_chat(src, "<span class='danger'>LAW SYNCHRONISATION ERROR</span>")
 	sleep(5)
+	if(user)
+		logevent("LOG: New user \[[replacetext(user.real_name," ","")]\], groups \[root\]")
 	to_chat(src, "<span class='danger'>Would you like to send a report to NanoTraSoft? Y/N</span>")
 	sleep(10)
 	to_chat(src, "<span class='danger'>> N</span>")
