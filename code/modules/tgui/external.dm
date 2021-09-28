@@ -96,6 +96,7 @@
 	return html
 
  /**
+  *
   * private
   *
   * The UI's host object (usually src_object).
@@ -142,3 +143,12 @@
 		// Unset machine just to be sure.
 		if(src && src.mob)
 			src.mob.unset_machine()
+/**
+ * private
+ *
+ * The UI's state controller to be used for created uis
+ * This is a proc over a var for memory reasons
+ */
+/datum/proc/ui_state(mob/user)
+	return GLOB.default_state
+	

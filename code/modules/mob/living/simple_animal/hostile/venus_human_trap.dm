@@ -134,3 +134,25 @@
 	if(.)
 		if(the_target in grasping)
 			return 0
+/
+/**
+ * Sets a ghost to control the plant if the plant is eligible
+ *
+ * Asks the interacting ghost if they would like to control the plant.
+ * If they answer yes, and another ghost hasn't taken control, sets the ghost to control the plant.
+ * Arguments:
+ * * mob/user - The ghost to possibly control the plant
+ */
+/mob/living/simple_animal/hostile/venus_human_trap/proc/humanize_plant(mob/user)
+	if(key || !playable_plant || stat)
+		return
+	var/plant_ask = tgui_alert(usr,"Become a venus human trap?", "Are you reverse vegan?", list("Yes", "No"))
+	if(plant_ask == "No" || QDELETED(src))
+		return
+	if(key)
+		to_chat(user, span_warning("Someone else already took this plant!"))
+		return
+	key = user.key
+	log_game("[key_name(src)] took control of [name].")
+
+
