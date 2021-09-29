@@ -14,6 +14,7 @@
 
 // BEGIN_INCLUDE
 #include "_maps\_basemaphippie.dm"
+#include "_maps\endostation.dm"
 #include "code\_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\_globals.dm"
@@ -3272,6 +3273,7 @@
 #include "hippiestation\code\modules\assembly\flash.dm"
 #include "hippiestation\code\modules\atmospherics\gasmixtures\gas_types.dm"
 #include "hippiestation\code\modules\atmospherics\gasmixtures\reactions.dm"
+#include "hippiestation\code\modules\atmospherics\machinery\airalarm.dm"
 #include "hippiestation\code\modules\atmospherics\machinery\components\binary_devices\pump.dm"
 #include "hippiestation\code\modules\atmospherics\machinery\components\binary_devices\volume_pump.dm"
 #include "hippiestation\code\modules\atmospherics\machinery\portable\canister.dm"
@@ -3690,6 +3692,8 @@
 #include "hippiestation\code\modules\vending\boozeomat.dm"
 #include "hippiestation\code\modules\vending\cartridge.dm"
 #include "hippiestation\code\modules\vending\cigarette.dm"
+#include "hippiestation\code\modules\vending\citadelplush.dm"
+#include "hippiestation\code\modules\vending\classicbeats.dm"
 #include "hippiestation\code\modules\vending\clothesmate.dm"
 #include "hippiestation\code\modules\vending\coffee.dm"
 #include "hippiestation\code\modules\vending\cola.dm"

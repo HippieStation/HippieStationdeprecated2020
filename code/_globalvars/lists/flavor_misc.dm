@@ -153,6 +153,8 @@ GLOBAL_LIST_INIT(scarySounds, list('sound/weapons/thudswoosh.ogg','sound/weapons
 28 Xenobiology
 29 Law Office
 30 Detective's Office
+31 Plumbing
+32 Morgue
 */
 
 //The whole system for the sorttype var is determined based on the order of this list,

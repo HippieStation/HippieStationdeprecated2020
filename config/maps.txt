@@ -19,6 +19,12 @@ map hippiestation
 	votable
 endmap
 
+map endostation
+	default
+	#voteweight 1.5
+	votable
+endmap
+
 map metalake
 	minplayers 20
 	#voteweight 1.5
