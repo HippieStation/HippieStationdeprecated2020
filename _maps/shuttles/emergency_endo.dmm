@@ -1101,11 +1101,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
-"Sb" = (
-/obj/effect/spawner/structure/window/shuttle,
-/obj/machinery/door/firedoor/window,
-/turf/open/floor/plating,
-/area/shuttle/escape)
 "SM" = (
 /obj/machinery/button/door{
 	id = "Shuttle Dorm 1";
@@ -1376,15 +1371,15 @@ YF
 YF
 YF
 Og
-Sb
-Sb
+xl
+xl
 Xy
 Og
-Sb
-Sb
+xl
+xl
 Xy
-Sb
-Sb
+xl
+xl
 Og
 YF
 YF
@@ -1396,7 +1391,7 @@ YF
 YF
 YF
 YF
-Sb
+xl
 bx
 NQ
 xv
@@ -1406,7 +1401,7 @@ Ck
 LO
 cd
 Wv
-Sb
+xl
 YF
 YF
 YF
@@ -1417,7 +1412,7 @@ YF
 YF
 YF
 YF
-Sb
+xl
 FD
 NQ
 lS
@@ -1427,7 +1422,7 @@ Ld
 lS
 cd
 Zp
-Sb
+xl
 YF
 YF
 YF
@@ -1435,8 +1430,8 @@ YF
 (4,1,1) = {"
 Og
 Og
-Sb
-Sb
+xl
+xl
 Og
 pp
 Ht
@@ -1454,7 +1449,7 @@ Og
 Og
 "}
 (5,1,1) = {"
-Sb
+xl
 kq
 On
 lC
@@ -1493,10 +1488,10 @@ Xy
 gV
 gV
 gV
-Sb
+xl
 "}
 (7,1,1) = {"
-Sb
+xl
 gV
 gV
 gV
@@ -1535,7 +1530,7 @@ Ig
 gV
 aj
 El
-Sb
+xl
 "}
 (9,1,1) = {"
 Og
@@ -1601,7 +1596,7 @@ Cn
 Og
 "}
 (12,1,1) = {"
-Sb
+xl
 zL
 MI
 MI
@@ -1661,7 +1656,7 @@ Lf
 Dw
 Lf
 Lf
-Sb
+xl
 "}
 (15,1,1) = {"
 Og
@@ -1766,7 +1761,7 @@ Xv
 Xv
 Xv
 Xv
-Sb
+xl
 "}
 (20,1,1) = {"
 Xy
@@ -1850,7 +1845,7 @@ sT
 PA
 Lf
 Lf
-Sb
+xl
 "}
 (24,1,1) = {"
 Og
@@ -1981,21 +1976,21 @@ Og
 (30,1,1) = {"
 pp
 Og
-Sb
-Sb
+xl
+xl
 Xy
-Sb
-Sb
+xl
+xl
 Og
 Og
 Og
 Og
 Xy
-Sb
-Sb
+xl
+xl
 pp
-Sb
-Sb
+xl
+xl
 Og
 pp
 "}
