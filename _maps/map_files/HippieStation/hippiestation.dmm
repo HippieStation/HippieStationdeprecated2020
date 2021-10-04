@@ -447,7 +447,7 @@
 /turf/closed/wall,
 /area/security/main)
 "abs" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/main)
 "abt" = (
@@ -456,11 +456,11 @@
 /area/science/research)
 "abu" = (
 /obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "HOSOfficespace";
 	name = "HOS Space Door"
 	},
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
 "abv" = (
@@ -2475,7 +2475,7 @@
 /turf/open/space,
 /area/space/nearstation)
 "afI" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/execution/transfer)
 "afJ" = (
@@ -2642,10 +2642,10 @@
 /turf/closed/wall/r_wall,
 /area/ai_monitored/security/armory)
 "age" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/securearea{
 	pixel_x = -32
 	},
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/main)
 "agf" = (
@@ -3035,11 +3035,11 @@
 /area/security/brig)
 "ahb" = (
 /obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "wardenshutter";
 	name = "warden shutters"
 	},
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/warden)
 "ahc" = (
@@ -3074,7 +3074,7 @@
 /area/security/warden)
 "ahi" = (
 /obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/warden)
 "ahj" = (
@@ -3558,7 +3558,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/warden)
 "aiq" = (
@@ -3789,11 +3789,11 @@
 /obj/structure/sign/warning/electricshock{
 	pixel_x = -32
 	},
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "wardenshutter";
 	name = "warden shutters"
 	},
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/warden)
 "aiR" = (
@@ -3857,7 +3857,7 @@
 /turf/closed/wall,
 /area/security/processing)
 "ajd" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/processing)
 "aje" = (
@@ -4657,7 +4657,7 @@
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
 	},
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/processing)
 "alk" = (
@@ -4698,7 +4698,7 @@
 /area/security/brig)
 "alp" = (
 /obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/brig)
 "alq" = (
@@ -5498,12 +5498,12 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "any" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/courtroom)
 "anz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/courtroom)
 "anA" = (
@@ -5514,10 +5514,10 @@
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "anB" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/courtroom)
 "anC" = (
@@ -5671,7 +5671,7 @@
 	id = "Secure Gate";
 	name = "brig shutters"
 	},
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/brig)
 "aoe" = (
@@ -5681,7 +5681,7 @@
 	name = "brig shutters"
 	},
 /obj/structure/disposalpipe/segment,
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/brig)
 "aoh" = (
@@ -5718,7 +5718,7 @@
 	id = "briggate";
 	name = "security blast door"
 	},
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/brig)
 "aok" = (
@@ -6538,7 +6538,7 @@
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = -32
 	},
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/processing)
 "aqG" = (
@@ -16229,22 +16229,13 @@
 "aUs" = (
 /turf/closed/wall/r_wall,
 /area/bridge)
-"aUt" = (
-/obj/structure/cable,
-/obj/machinery/door/poddoor/preopen{
-	id = "bridge blast";
-	name = "bridge blast door"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/bridge)
 "aUu" = (
 /obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
 	name = "bridge blast door"
 	},
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/bridge)
 "aUz" = (
@@ -19366,7 +19357,7 @@
 /area/hallway/primary/central)
 "bdO" = (
 /obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/bridge)
 "bdP" = (
@@ -20660,14 +20651,6 @@
 	},
 /turf/open/floor/plating,
 /area/DJoffice)
-"bhH" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "heads_meeting";
-	name = "privacy shutters"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/bridge/meeting_room)
 "bhI" = (
 /obj/machinery/recharger{
 	pixel_y = 4
@@ -21073,11 +21056,11 @@
 /turf/open/floor/plasteel/vaporwave,
 /area/DJoffice)
 "bjd" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
 	id = "heads_meeting";
 	name = "privacy shutters"
 	},
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/bridge/meeting_room)
 "bje" = (
@@ -26492,7 +26475,7 @@
 	id = "hop";
 	name = "Privacy Shutters"
 	},
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "bxX" = (
@@ -26521,8 +26504,8 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "byb" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/ai_monitored/nuke_storage)
 "byc" = (
@@ -26921,7 +26904,7 @@
 	id = "hop";
 	name = "Privacy Shutters"
 	},
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "bzo" = (
@@ -26950,12 +26933,12 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "bzs" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/ai_monitored/nuke_storage)
 "bzt" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
 "bzu" = (
@@ -26968,10 +26951,10 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
 "bzv" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
 "bzx" = (
@@ -28831,11 +28814,11 @@
 /area/crew_quarters/heads/hop)
 "bFg" = (
 /obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "vaultshutter";
 	name = "Vault Shutters"
 	},
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/ai_monitored/nuke_storage)
 "bFh" = (
@@ -49368,7 +49351,7 @@
 /area/engine/gravity_generator)
 "dyK" = (
 /obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/main)
 "dzB" = (
@@ -50945,6 +50928,10 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"fRz" = (
+/obj/effect/spawner/structure/window/plasma,
+/turf/open/floor/plating,
+/area/hallway/primary/central)
 "fTz" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -51812,10 +51799,10 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "hnJ" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/ai_monitored/nuke_storage)
 "hoc" = (
@@ -55311,7 +55298,7 @@
 /area/maintenance/starboard/fore)
 "mHG" = (
 /obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/prison)
 "mIj" = (
@@ -62244,7 +62231,7 @@
 /area/engine/engineering)
 "xMZ" = (
 /obj/structure/cable,
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/plasma,
 /turf/open/floor/plating,
 /area/security/processing)
 "xOm" = (
@@ -87856,7 +87843,7 @@ aNa
 bdL
 bfs
 bfs
-bhH
+bjd
 bjd
 bjd
 bfs
@@ -90160,7 +90147,7 @@ rpi
 aNa
 aNa
 aMX
-aUt
+aUu
 aVU
 aXp
 aZb
@@ -90185,7 +90172,7 @@ aai
 aaa
 aaa
 aaa
-rpi
+fRz
 bct
 aNa
 bIN
@@ -92751,11 +92738,11 @@ aai
 aaa
 aai
 aaa
-aai
+aad
 aaa
 aaa
 aaa
-rpi
+fRz
 aNa
 aNa
 bct
