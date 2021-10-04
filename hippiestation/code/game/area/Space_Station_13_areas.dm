@@ -57,3 +57,20 @@
 						 'sound/ambience/ambimaint4.ogg',
 						 'sound/ambience/ambimaint5.ogg',
 						 'sound/spookoween/ghosty_wind.ogg')
+
+/area/solar/aft
+	name = "Aft Solar Array"
+	icon_state = "yellow"
+	icon_state = "panelsAFT"
+
+/area/maintenance/solars/aft
+	name = "Aft Solar Maintenance"
+	icon_state = "SolarcontrolAFT"
+
+/area/security/checkpoint/bridge_port //endo station specific
+	name = "Security Post - Bridge Port"
+	icon_state = "checkpoint_bridge_port"
+
+/area/security/checkpoint/bridge_star //endo station specific
+	name = "Security Post - Bridge Star"
+	icon_state = "checkpoint_bridge_star"
