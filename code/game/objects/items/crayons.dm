@@ -54,7 +54,7 @@
 
 	var/actually_paints = TRUE
 
-	var/instant = FALSE
+	var/instant = TRUE
 	var/self_contained = TRUE // If it deletes itself when it is empty
 
 	var/edible = TRUE // That doesn't mean eating it is a good idea
