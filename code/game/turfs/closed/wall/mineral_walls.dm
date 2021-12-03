@@ -203,7 +203,7 @@
 	icon_state = "wall"
 	smooth = SMOOTH_FALSE
 
-/turf/closed/wall/mineral/plastitanium/diagonal
+/turf/closed/wall/mineral/titanium/diagonal
 	icon_state = "map-shuttle-diag"
 	smooth = SMOOTH_FALSE
 
