@@ -22,6 +22,8 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
 	var/linked_dirs = 0 //bitflag
+	var/autodirs = TRUE //defaults to automatically finding connections
+	var/autonode = TRUE //defaults to automatically finding connected machinery and "node"ing the wire
 	var/node = FALSE //used for sprites display
 	var/cable_layer = CABLE_LAYER_2
 	var/datum/powernet/powernet
@@ -52,15 +54,16 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	if(clear_before_updating)
 		linked_dirs = 0
 	var/obj/machinery/power/search_parent
-	for(var/obj/machinery/power/P in loc)
-		if(istype(P, /obj/machinery/power/terminal))
-			under_thing = UNDER_TERMINAL
-			search_parent = P
-			break
-		if(istype(P, /obj/machinery/power/smes))
-			under_thing = UNDER_SMES
-			search_parent = P
-			break
+	if(autonode)
+		for(var/obj/machinery/power/P in loc)
+			if(istype(P, /obj/machinery/power/terminal))
+				under_thing = UNDER_TERMINAL
+				search_parent = P
+				break
+			if(istype(P, /obj/machinery/power/smes))
+				under_thing = UNDER_SMES
+				search_parent = P
+				break
 	for(var/check_dir in GLOB.cardinals)
 		var/TB = get_step(src, check_dir)
 		//don't link from smes to its terminal
@@ -81,11 +84,12 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 					if(S && (!S.terminal || S.terminal == search_parent))
 						continue
 		var/inverse = turn(check_dir, 180)
-		for(var/obj/structure/cable/C in TB)
-			if(C.cable_layer == cable_layer)
-				linked_dirs |= check_dir
-				C.linked_dirs |= inverse
-				C.update_icon()
+		if(autodirs)
+			for(var/obj/structure/cable/C in TB)
+				if(C.cable_layer == cable_layer)
+					linked_dirs |= check_dir
+					C.linked_dirs |= inverse
+					C.update_icon()
 
 	update_icon()
 
@@ -110,6 +114,151 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	if(!(flags_1 & NODECONSTRUCT_1))
 		new /obj/item/stack/cable_coil(get_turf(loc), 1)
 	qdel(src)
+
+//For mapping help, icons are automatically set anyways but this helps visualisation
+/obj/structure/cable/manual
+	autodirs = FALSE
+	autonode = FALSE
+
+/obj/structure/cable/manual/north
+	linked_dirs = 1
+	icon_state = "l2-1"
+	autonode = TRUE
+
+/obj/structure/cable/manual/south
+	linked_dirs = 2
+	icon_state = "l2-2"
+	autonode = TRUE
+
+/obj/structure/cable/manual/east
+	linked_dirs = 4
+	icon_state = "l2-4"
+	autonode = TRUE
+
+/obj/structure/cable/manual/west
+	linked_dirs = 8
+	icon_state = "l2-8"
+	autonode = TRUE
+
+/obj/structure/cable/manual/vertical
+	linked_dirs = 1 | 2
+	icon_state = "l2-1-2"
+
+/obj/structure/cable/manual/horizontal
+	linked_dirs = 4 | 8
+	icon_state = "l2-4-8"
+
+/obj/structure/cable/manual/bent_ne
+	linked_dirs = 1 | 4
+	icon_state = "l2-1-4"
+
+/obj/structure/cable/manual/bent_nw
+	linked_dirs = 1 | 8
+	icon_state = "l2-1-8"
+
+/obj/structure/cable/manual/bent_se
+	linked_dirs = 2 | 4
+	icon_state = "l2-2-4"
+
+/obj/structure/cable/manual/bent_sw
+	linked_dirs = 2 | 8
+	icon_state = "l2-2-8"
+
+/obj/structure/cable/layer1/manual
+	autodirs = FALSE
+	autonode = FALSE
+
+/obj/structure/cable/layer1/manual/north
+	linked_dirs = 1
+	icon_state = "l1-1"
+	autonode = TRUE
+
+/obj/structure/cable/layer1/manual/south
+	linked_dirs = 2
+	icon_state = "l1-2"
+	autonode = TRUE
+
+/obj/structure/cable/layer1/manual/east
+	linked_dirs = 4
+	icon_state = "l1-4"
+	autonode = TRUE
+
+/obj/structure/cable/layer1/manual/west
+	linked_dirs = 8
+	icon_state = "l1-8"
+	autonode = TRUE
+
+/obj/structure/cable/layer1/manual/vertical
+	linked_dirs = 1 | 2
+	icon_state = "l1-1-2"
+
+/obj/structure/cable/layer1/manual/horizontal
+	linked_dirs = 4 | 8
+	icon_state = "l1-4-8"
+
+/obj/structure/cable/layer1/manual/bent_ne
+	linked_dirs = 1 | 4
+	icon_state = "l1-1-4"
+
+/obj/structure/cable/layer1/manual/bent_nw
+	linked_dirs = 1 | 8
+	icon_state = "l1-1-8"
+
+/obj/structure/cable/layer1/manual/bent_se
+	linked_dirs = 2 | 4
+	icon_state = "l1-2-4"
+
+/obj/structure/cable/layer1/manual/bent_sw
+	linked_dirs = 2 | 8
+	icon_state = "l1-2-8"
+
+/obj/structure/cable/layer3/manual
+	autodirs = FALSE
+	autonode = FALSE
+
+/obj/structure/cable/layer3/manual/north
+	linked_dirs = 1
+	icon_state = "l3-1"
+	autonode = TRUE
+
+/obj/structure/cable/layer3/manual/south
+	linked_dirs = 2
+	icon_state = "l3-2"
+	autonode = TRUE
+
+/obj/structure/cable/layer3/manual/east
+	linked_dirs = 4
+	icon_state = "l3-4"
+	autonode = TRUE
+
+/obj/structure/cable/layer3/manual/west
+	linked_dirs = 8
+	icon_state = "l3-8"
+	autonode = TRUE
+
+/obj/structure/cable/layer3/manual/vertical
+	linked_dirs = 1 | 2
+	icon_state = "l3-1-2"
+
+/obj/structure/cable/layer3/manual/horizontal
+	linked_dirs = 4 | 8
+	icon_state = "l3-4-8"
+
+/obj/structure/cable/layer3/manual/bent_ne
+	linked_dirs = 1 | 4
+	icon_state = "l3-1-4"
+
+/obj/structure/cable/layer3/manual/bent_nw
+	linked_dirs = 1 | 8
+	icon_state = "l3-1-8"
+
+/obj/structure/cable/layer3/manual/bent_se
+	linked_dirs = 2 | 4
+	icon_state = "l3-2-4"
+
+/obj/structure/cable/layer3/manual/bent_sw
+	linked_dirs = 2 | 8
+	icon_state = "l3-2-8"
 
 ///////////////////////////////////
 // General procedures
