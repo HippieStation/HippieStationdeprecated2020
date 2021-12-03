@@ -203,6 +203,10 @@
 	icon_state = "wall"
 	smooth = SMOOTH_FALSE
 
+/turf/closed/wall/mineral/plastitanium/diagonal
+	icon_state = "map-shuttle-diag"
+	smooth = SMOOTH_FALSE
+
 /turf/closed/wall/mineral/titanium/overspace
 	icon_state = "map-overspace"
 	fixed_underlay = list("space"=1)
@@ -263,10 +267,6 @@
 /turf/closed/wall/mineral/plastitanium/nosmooth
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "wall"
-	smooth = SMOOTH_FALSE
-
-/turf/closed/wall/mineral/plastitanium/diagonal
-	icon_state = "map-shuttle-diag"
 	smooth = SMOOTH_FALSE
 
 /turf/closed/wall/mineral/plastitanium/overspace
