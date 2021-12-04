@@ -84,12 +84,12 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 					if(S && (!S.terminal || S.terminal == search_parent))
 						continue
 		var/inverse = turn(check_dir, 180)
-		if(autodirs)
-			for(var/obj/structure/cable/C in TB)
-				if(C.cable_layer == cable_layer)
+		for(var/obj/structure/cable/C in TB)
+			if(C.cable_layer == cable_layer)
+				if(autodirs)
 					linked_dirs |= check_dir
-					C.linked_dirs |= inverse
-					C.update_icon()
+				C.linked_dirs |= inverse
+				C.update_icon()
 
 	update_icon()
 
