@@ -207,6 +207,10 @@
 	icon_state = "map-shuttle-diag"
 	smooth = SMOOTH_FALSE
 
+/turf/closed/wall/mineral/titanium/diagonal/New()
+	..()
+	add_turf_underlay(calculate_adjacencies(src))
+
 /turf/closed/wall/mineral/titanium/overspace
 	icon_state = "map-overspace"
 	fixed_underlay = list("space"=1)
