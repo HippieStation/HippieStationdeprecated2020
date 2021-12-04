@@ -88,8 +88,9 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 			if(C.cable_layer == cable_layer)
 				if(autodirs)
 					linked_dirs |= check_dir
-				C.linked_dirs |= inverse
-				C.update_icon()
+				if(C.autodirs)
+					C.linked_dirs |= inverse
+					C.update_icon()
 
 	update_icon()
 
@@ -100,7 +101,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 		if(linked_dirs & check_dir)
 			var/TB = get_step(loc, check_dir)
 			for(var/obj/structure/cable/C in TB)
-				if(cable_layer == C.cable_layer)
+				if(cable_layer == C.cable_layer && C.autodirs)
 					C.linked_dirs &= ~inverse
 					C.update_icon()
 
