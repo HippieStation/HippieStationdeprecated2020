@@ -32,7 +32,7 @@
 	message = "screams!"
 	message_mime = "acts out a scream."
 	only_forced_audio = FALSE
-	vary = TRUE
+	vary = FALSE
 
 /datum/emote/living/scream/get_sound(mob/living/user)
 	LAZYINITLIST(user.alternate_screams)
@@ -59,7 +59,7 @@
 		if(user.gender == FEMALE)
 			return pick('hippiestation/sound/voice/scream_f1.ogg', 'hippiestation/sound/voice/scream_f2.ogg')
 		else
-			return pick('hippiestation/sound/voice/scream_m1.ogg', 'hippiestation/sound/voice/scream_m2.ogg')
+			return pick('hippiestation/sound/misc/softstonescream.ogg')
 	if(isalien(user))
 		return 'sound/voice/hiss6.ogg'
 	if(issilicon(user))
