@@ -53,11 +53,11 @@
 
 
 /turf/closed/wall/examine(mob/user)
-	. += ..()
-	. += deconstruction_hints(user)
+	..()
+	deconstruction_hints(user)
 
 /turf/closed/wall/proc/deconstruction_hints(mob/user)
-	return "<span class='notice'>The outer plating is <b>welded</b> firmly in place.</span>"
+	to_chat(user, "<span class='notice'>The outer plating is <b>welded</b> firmly in place.</span>")
 
 /turf/closed/wall/attack_tk()
 	return

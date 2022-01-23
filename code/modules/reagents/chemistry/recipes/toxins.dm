@@ -61,7 +61,7 @@
 /datum/chemical_reaction/zombiepowder
 	results = list(/datum/reagent/toxin/zombiepowder = 2)
 	required_reagents = list(/datum/reagent/toxin/carpotoxin = 5, /datum/reagent/medicine/morphine = 5, /datum/reagent/copper = 5)
-
+	
 /datum/chemical_reaction/ghoulpowder
 	results = list(/datum/reagent/toxin/ghoulpowder = 2)
 	required_reagents = list(/datum/reagent/toxin/zombiepowder = 1, /datum/reagent/medicine/epinephrine = 1)

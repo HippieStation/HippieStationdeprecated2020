@@ -93,6 +93,8 @@
 			braintype = "Cyborg"
 
 		SSblackbox.record_feedback("amount", "mmis_filled", 1)
+		
+		log_game("[key_name(user)] has put the brain of [key_name(brainmob)] into an MMI at [AREACOORD(src)]")
 
 		log_game("[key_name(user)] has put the brain of [key_name(brainmob)] into an MMI at [AREACOORD(src)]")
 

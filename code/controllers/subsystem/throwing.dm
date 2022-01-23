@@ -122,7 +122,7 @@ SUBSYSTEM_DEF(throwing)
 	//calculate how many tiles to move, making up for any missed ticks.
 	var/tilestomove = CEILING(min(((((world.time+world.tick_lag) - start_time + delayed_time) * speed) - (dist_travelled ? dist_travelled : -1)), speed*MAX_TICKS_TO_MAKE_UP) * (world.tick_lag * SSthrowing.wait), 1)
 	while (tilestomove-- > 0)
-		if ((dist_travelled >= maxrange || AM.loc == target_turf) && AM.has_gravity(AM.loc))
+		if ((dist_travelled >= maxrange || AM.loc == target_turf) && AM.has_gravity(AM.loc) && !AM.unlimitedthrow) // hippie -- bowling code
 			finalize()
 			return
 
@@ -174,6 +174,7 @@ SUBSYSTEM_DEF(throwing)
 			thrownthing.newtonian_move(init_dir)
 	else
 		thrownthing.newtonian_move(init_dir)
+	check_reset_throwforce(thrownthing)
 
 	if(target)
 		thrownthing.throw_impact(target, src)
@@ -182,6 +183,11 @@ SUBSYSTEM_DEF(throwing)
 
 	if (callback)
 		callback.Invoke()
+	
+	if(!thrownthing.zfalling) // I don't think you can zfall while thrown but hey, just in case.
+		var/turf/T = get_turf(thrownthing)
+		if(T && thrownthing.has_gravity(T))
+			T.zFall(thrownthing)
 
 	if(!thrownthing.zfalling) // I don't think you can zfall while thrown but hey, just in case.
 		var/turf/T = get_turf(thrownthing)

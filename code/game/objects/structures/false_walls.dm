@@ -243,6 +243,10 @@
 	. = ..()
 	AddElement(/datum/element/atmos_sensitive)
 
+/obj/structure/falsewall/plasma/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/atmos_sensitive)
+
 /obj/structure/falsewall/plasma/attackby(obj/item/W, mob/user, params)
 	if(W.get_temperature() > 300)
 		var/turf/T = get_turf(src)

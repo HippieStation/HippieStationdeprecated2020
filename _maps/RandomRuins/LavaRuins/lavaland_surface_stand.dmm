@@ -1,0 +1,309 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"b" = (
+/turf/open/lava/smooth/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"c" = (
+/turf/closed/indestructible/riveted/boss,
+/area/ruin/powered/stand_ruin)
+"d" = (
+/turf/open/floor/holofloor/wood,
+/area/ruin/powered/stand_ruin)
+"e" = (
+/obj/structure/displaycase/stand,
+/turf/open/floor/holofloor/wood,
+/area/ruin/powered/stand_ruin)
+"f" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/ruin/powered/stand_ruin)
+"g" = (
+/mob/living/simple_animal/hostile/netherworld{
+	environment_smash = 0;
+	faction = list("hostile","stand")
+	},
+/turf/open/floor/holofloor/wood,
+/area/ruin/powered/stand_ruin)
+"h" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/smg{
+	environment_smash = 0;
+	faction = list("hostile","stand");
+	name = "toy soldier";
+	resize = 0.75
+	},
+/turf/open/floor/holofloor/wood,
+/area/ruin/powered/stand_ruin)
+"j" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/shotgun{
+	environment_smash = 0;
+	faction = list("hostile","stand");
+	name = "toy soldier";
+	resize = 0.75
+	},
+/turf/open/floor/holofloor/wood,
+/area/ruin/powered/stand_ruin)
+"k" = (
+/mob/living/simple_animal/hostile/faithless{
+	environment_smash = 0;
+	faction = list("hostile","stand")
+	},
+/turf/open/floor/holofloor/wood,
+/area/ruin/powered/stand_ruin)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+c
+g
+d
+d
+d
+d
+d
+d
+k
+k
+c
+b
+a
+"}
+(5,1,1) = {"
+a
+b
+c
+d
+d
+d
+d
+d
+d
+d
+d
+d
+c
+b
+a
+"}
+(6,1,1) = {"
+a
+b
+c
+d
+d
+h
+d
+d
+d
+d
+d
+d
+c
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+c
+d
+d
+d
+d
+d
+d
+d
+d
+d
+c
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+c
+e
+d
+d
+j
+d
+d
+d
+d
+d
+f
+a
+a
+"}
+(9,1,1) = {"
+a
+b
+c
+d
+d
+d
+d
+d
+d
+d
+d
+d
+c
+b
+a
+"}
+(10,1,1) = {"
+a
+b
+c
+d
+d
+h
+d
+d
+d
+d
+d
+d
+c
+b
+a
+"}
+(11,1,1) = {"
+a
+b
+c
+d
+d
+d
+d
+d
+d
+d
+d
+d
+c
+b
+a
+"}
+(12,1,1) = {"
+a
+b
+c
+d
+d
+d
+d
+d
+d
+d
+k
+k
+c
+b
+a
+"}
+(13,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+a
+"}
+(14,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

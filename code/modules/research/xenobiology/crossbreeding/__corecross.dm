@@ -186,6 +186,10 @@ To add a crossbreed:
 	. = ..()
 	reagents.flags = NONE // It won't be *that* easy to get your hands on pax.
 
+/obj/item/slimecrossbeaker/autoinjector/peaceandlove/Initialize()
+	. = ..()
+	reagents.flags = NONE // It won't be *that* easy to get your hands on pax.
+
 /obj/item/slimecrossbeaker/autoinjector/slimestimulant
 	name = "invigorating gel"
 	desc = "A bubbling purple mixture, designed to heal and boost movement."

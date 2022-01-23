@@ -8859,6 +8859,11 @@
 /obj/item/seeds/cherry/bomb,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"yO" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/vending/liberationstation,
+/turf/open/floor/plasteel,
+/area/centcom/evac)
 "yU" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/centcom{
@@ -13986,6 +13991,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/tdome/tdomeadmin)
+"Kd" = (
+/obj/effect/spawner/template/infiltrator,
+/turf/open/space/basic,
+/area/space)
 "Kg" = (
 /turf/closed/indestructible/fakedoor{
 	name = "Thunderdome Admin"
@@ -15283,6 +15292,13 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/iron/cafeteria,
 /area/centcom/holding)
+"QG" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/vending/liberationstation,
+/turf/open/floor/plasteel,
+/area/centcom/evac)
 "QH" = (
 /obj/machinery/chem_master/condimaster{
 	desc = "Used to separate out liquids - useful for purifying botanical extracts. Also dispenses condiments.";
@@ -47299,7 +47315,7 @@ aa
 aa
 aa
 aa
-aa
+Kd
 aa
 aa
 aa
@@ -67980,7 +67996,7 @@ io
 qz
 qy
 qx
-sO
+QG
 tT
 uB
 uB
@@ -67992,7 +68008,7 @@ uB
 uB
 uB
 At
-AW
+yO
 qx
 qy
 qx

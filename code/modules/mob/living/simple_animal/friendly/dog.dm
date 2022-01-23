@@ -360,6 +360,15 @@
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
 		return
 
+	// hippie start -- Ian is unable to wear so many hats
+	if (istype(item_to_add, /obj/item/clothing/head) && item_to_add)
+		var/obj/item/clothing/head/H = item_to_add
+
+		if (LAZYLEN(H.stacked_hats) > 0)
+			to_chat(user, "<span class='warning'>It doesn't look like poor little Ian can handle such a burden!</span>")
+			return 0
+	// hippie end
+
 	if(user && !user.temporarilyRemoveItemFromInventory(item_to_add))
 		to_chat(user, "<span class='warning'>\The [item_to_add] is stuck to your hand, you cannot put it on [src]'s head!</span>")
 		return

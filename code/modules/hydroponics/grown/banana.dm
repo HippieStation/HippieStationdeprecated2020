@@ -61,6 +61,7 @@
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
+	alternate_slip_sounds = list('hippiestation/sound/misc/banana_slip.ogg') // hippie -- alternate sound
 
 /obj/item/grown/bananapeel/Initialize(mapload)
 	. = ..()

@@ -201,7 +201,7 @@
 	LAZYADD(processor_contents, picked_slime)
 	picked_slime.forceMove(src)
 
-/obj/machinery/processor/slime/process_food(datum/food_processor_process/recipe, atom/movable/what)
+/obj/machinery/processor/slime/process_food(datum/food_processor_process/recipe, atom/movable/what)//HIPPIE CODE- This is modularized in the corresponding file in the hippie folder
 	var/mob/living/simple_animal/slime/S = what
 	if (istype(S))
 		var/C = S.cores

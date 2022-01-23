@@ -1,0 +1,6 @@
+/mob/living/carbon/human/adjustStaminaLoss(amount, updating_health = TRUE, forced = FALSE)
+	..()
+	if(client)
+		if(hud_used)
+			if(hud_used.staminas)
+				hud_used.staminas.icon_state = staminahudamount()

@@ -104,7 +104,7 @@
 		/datum/reagent/consumable/ethanol/peppermint_patty,\
 		/datum/reagent/consumable/ethanol/aloe,\
 		/datum/reagent/consumable/pumpkin_latte)
-
+		
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name

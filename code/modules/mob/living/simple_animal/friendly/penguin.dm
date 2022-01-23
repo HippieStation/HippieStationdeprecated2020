@@ -27,6 +27,8 @@
 	. = ..()
 	AddElement(/datum/element/waddling)
 
+	do_footstep = TRUE
+
 /mob/living/simple_animal/pet/penguin/emperor
 	name = "Emperor penguin"
 	real_name = "penguin"

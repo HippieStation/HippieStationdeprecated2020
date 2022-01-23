@@ -122,6 +122,7 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/* hippie start -- NO MORE LAGSMAN RIFLE
 /datum/design/beamrifle
 	name = "Beam Marksman Rifle Part Kit"
 	desc = "The gunkit for a powerful long ranged anti-material rifle that fires charged particle beams to obliterate targets."
@@ -131,6 +132,7 @@
 	build_path = /obj/item/weaponcrafting/gunkit/beam_rifle
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+hippie end */
 
 /datum/design/decloner
 	name = "Decloner Part Kit"
@@ -169,7 +171,8 @@
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 500, /datum/material/uranium = 2000)
 	build_path = /obj/item/gun/energy/floragun
-	category = list("Weapons")
+	// hippie -- It's a tool, but it IN THE TOOLS SECTION
+	category = list("Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/large_grenade

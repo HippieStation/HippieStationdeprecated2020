@@ -61,7 +61,7 @@
 	var/list/speech_buffer = list() // Last phrase said near it and person who said it
 
 	var/mood = "" // To show its face
-	var/mutator_used = FALSE //So you can't shove a dozen mutators into a single slime
+	var/mutator_used = FALSE //So you can't shove a dozen mutators into a single slime //Unused on Hippie, see xenobiology.dm
 	var/force_stasis = FALSE
 
 	var/static/regex/slime_name_regex = new("\\w+ (baby|adult) slime \\(\\d+\\)")
@@ -284,10 +284,10 @@
 			return
 		attacked += 5
 		if(nutrition >= 100) //steal some nutrition. negval handled in life()
-			adjust_nutrition(-(50 + (40 * M.is_adult)))
-			M.add_nutrition(50 + (40 * M.is_adult))
+			adjust_nutrition(-(100 + (80 * M.is_adult))) //hippie edit -- changed from: adjust_nutrition(-(50 + (40 * M.is_adult)))
+			M.add_nutrition(100 + (80 * M.is_adult)) //hippie edit -- changed from: M.add_nutrition(50 + (40 * M.is_adult))
 		if(health > 0)
-			M.adjustBruteLoss(-10 + (-10 * M.is_adult))
+			M.adjustBruteLoss(-20 + (-20 * M.is_adult)) //hippie edit -- changed from: M.adjustBruteLoss(-10 + (-10 * M.is_adult))
 			M.updatehealth()
 
 /mob/living/simple_animal/slime/attack_animal(mob/living/simple_animal/M)

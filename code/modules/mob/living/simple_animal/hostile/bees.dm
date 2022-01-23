@@ -19,7 +19,6 @@
 	gender = FEMALE
 	speak_emote = list("buzzes")
 	emote_hear = list("buzzes")
-	turns_per_move = 0
 	melee_damage_lower = 1
 	melee_damage_upper = 1
 	attack_verb_continuous = "stings"
@@ -33,7 +32,8 @@
 	maxHealth = 10
 	health = 10
 	faction = list("hostile")
-	move_to_delay = 0
+	move_to_delay = 1
+	turns_per_move = 3
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
