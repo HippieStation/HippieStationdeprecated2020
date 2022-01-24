@@ -23,15 +23,15 @@
 	if(desc)
 		D.desc = desc
 	if(emote_see)
-		D.emote_see = emote_see
+		D.emote_see = string_list(emote_see)
 	if(emote_hear)
-		D.emote_hear = emote_hear
+		D.emote_hear = string_list(emote_hear)
 	if(speak)
-		D.speak = speak
+		D.speak = string_list(speak)
 	if(speak_emote)
-		D.speak_emote = speak_emote
+		D.speak_emote = string_list(speak_emote)
 
-/datum/dog_fashion/proc/get_overlay(var/dir)
+/datum/dog_fashion/proc/get_overlay(dir)
 	if(icon_file && obj_icon_state)
 		var/image/corgI = image(icon_file, obj_icon_state, dir = dir)
 		corgI.alpha = obj_alpha
@@ -174,3 +174,8 @@
 /datum/dog_fashion/back/deathsquad
 	name = "Trooper REAL_NAME"
 	desc = "That's not red paint. That's real corgi blood."
+
+/datum/dog_fashion/head/festive
+	name = "Festive REAL_NAME"
+	desc = "Ready to party!"
+	obj_icon_state = "festive"

@@ -2,10 +2,12 @@
 	name = "mousetrap"
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
-	item_state = "mousetrap"
-	materials = list(MAT_METAL=100)
+	inhand_icon_state = "mousetrap"
+	custom_materials = list(/datum/material/iron=100)
 	attachable = TRUE
 	var/armed = FALSE
+	drop_sound = 'sound/items/handling/component_drop.ogg'
+	pickup_sound =  'sound/items/handling/component_pickup.ogg'
 
 
 /obj/item/assembly/mousetrap/examine(mob/user)
@@ -60,10 +62,16 @@
 		var/mob/living/simple_animal/mouse/M = target
 		visible_message("<span class='boldannounce'>SPLAT!</span>")
 		M.splat()
+	else if(israt(target))
+		var/mob/living/simple_animal/hostile/rat/ratt = target
+		visible_message("<span class='boldannounce'>Clink!</span>")
+		ratt.apply_damage(5) //Not lethal, but just enought to make a mark.
+		ratt.Stun(1 SECONDS)
+	else if(isregalrat(target))
+		visible_message("<span class='boldannounce'>Skreeeee!</span>") //He's simply too large to be affected by a tiny mouse trap.
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 	armed = FALSE
 	update_icon()
-	sleep(1.5) // hippie -- adds a small enough delay to prevent mousetrap signalers from being better voice analyzers
 	pulse(FALSE)
 
 
@@ -77,7 +85,7 @@
 				which_hand = BODY_ZONE_PRECISE_R_HAND
 			triggered(user, which_hand)
 			user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
-								 "<span class='warning'>You accidentally trigger [src]!</span>")
+				"<span class='warning'>You accidentally trigger [src]!</span>")
 			return
 		to_chat(user, "<span class='notice'>You disarm [src].</span>")
 	armed = !armed
@@ -86,7 +94,7 @@
 
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/assembly/mousetrap/attack_hand(mob/living/carbon/human/user)
+/obj/item/assembly/mousetrap/attack_hand(mob/living/carbon/human/user, list/modifiers)
 	if(armed)
 		if((HAS_TRAIT(user, TRAIT_DUMB) || HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 			var/which_hand = BODY_ZONE_PRECISE_L_HAND
@@ -94,7 +102,7 @@
 				which_hand = BODY_ZONE_PRECISE_R_HAND
 			triggered(user, which_hand)
 			user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
-								 "<span class='warning'>You accidentally trigger [src]!</span>")
+					"<span class='warning'>You accidentally trigger [src]!</span>")
 			return
 	return ..()
 
@@ -109,23 +117,21 @@
 					if(H.m_intent == MOVE_INTENT_RUN)
 						triggered(H)
 						H.visible_message("<span class='warning'>[H] accidentally steps on [src].</span>", \
-										  "<span class='warning'>You accidentally step on [src]</span>")
-				else if(ismouse(MM))
+							"<span class='warning'>You accidentally step on [src]</span>")
+				else if(ismouse(MM) || israt(MM) || isregalrat(MM))
 					triggered(MM)
 		else if(AM.density) // For mousetrap grenades, set off by anything heavy
 			triggered(AM)
 	..()
 
 
-/obj/item/assembly/mousetrap/on_found(mob/living/finder) // hippie -- consider this whole section edited
+/obj/item/assembly/mousetrap/on_found(mob/finder)
 	if(armed)
-		if(finder && ishuman(finder))
-			var/mob/living/carbon/human/H = finder
-			if(!H.handcuffed && !H.incapacitated())
-				finder.visible_message("<span class='warning'>[finder] accidentally sets off [src], breaking their fingers.</span>", \
-								   "<span class='warning'>You accidentally trigger [src]!</span>")
-				triggered(finder, (finder.active_hand_index % 2 == 0) ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND)
-				return TRUE	//end the search!
+		if(finder)
+			finder.visible_message("<span class='warning'>[finder] accidentally sets off [src], breaking their fingers.</span>", \
+							   "<span class='warning'>You accidentally trigger [src]!</span>")
+			triggered(finder, (finder.active_hand_index % 2 == 0) ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND)
+			return TRUE //end the search!
 		else
 			visible_message("<span class='warning'>[src] snaps shut!</span>")
 			triggered(loc)

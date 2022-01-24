@@ -9,11 +9,11 @@
 	anchored = FALSE
 	density = TRUE
 	max_integrity = 100
-	buckle_lying = FALSE
+	buckle_lying = 0
 	layer = ABOVE_MOB_LAYER
-	var/view_range = 10
+	var/view_range = 2.5
 	var/cooldown = 0
-	var/projectile_type = /obj/item/projectile/bullet/manned_turret
+	var/projectile_type = /obj/projectile/bullet/manned_turret
 	var/rate_of_fire = 1
 	var/number_of_shots = 40
 	var/cooldown_duration = 90
@@ -30,20 +30,20 @@
 //BUCKLE HOOKS
 
 /obj/machinery/manned_turret/unbuckle_mob(mob/living/buckled_mob,force = FALSE)
-	playsound(src,'sound/mecha/mechmove01.ogg', 50, 1)
+	playsound(src,'sound/mecha/mechmove01.ogg', 50, TRUE)
 	for(var/obj/item/I in buckled_mob.held_items)
 		if(istype(I, /obj/item/gun_control))
 			qdel(I)
 	if(istype(buckled_mob))
-		buckled_mob.pixel_x = 0
-		buckled_mob.pixel_y = 0
+		buckled_mob.pixel_x = buckled_mob.base_pixel_x
+		buckled_mob.pixel_y = buckled_mob.base_pixel_y
 		if(buckled_mob.client)
-			buckled_mob.client.change_view(CONFIG_GET(string/default_view))
+			buckled_mob.client.view_size.resetToDefault()
 	anchored = FALSE
 	. = ..()
 	STOP_PROCESSING(SSfastprocess, src)
 
-/obj/machinery/manned_turret/user_buckle_mob(mob/living/M, mob/living/carbon/user)
+/obj/machinery/manned_turret/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if(user.incapacitated() || !istype(user))
 		return
 	M.forceMove(get_turf(src))
@@ -56,16 +56,16 @@
 			if(M.dropItemToGround(I))
 				var/obj/item/gun_control/TC = new(src)
 				M.put_in_hands(TC)
-		else	//Entries in the list should only ever be items or null, so if it's not an item, we can assume it's an empty hand
+		else //Entries in the list should only ever be items or null, so if it's not an item, we can assume it's an empty hand
 			var/obj/item/gun_control/TC = new(src)
 			M.put_in_hands(TC)
 	M.pixel_y = 14
 	layer = ABOVE_MOB_LAYER
 	setDir(SOUTH)
-	playsound(src,'sound/mecha/mechmove01.ogg', 50, 1)
+	playsound(src,'sound/mecha/mechmove01.ogg', 50, TRUE)
 	anchored = TRUE
 	if(M.client)
-		M.client.change_view(view_range)
+		M.client.view_size.setTo(view_range)
 	START_PROCESSING(SSfastprocess, src)
 
 /obj/machinery/manned_turret/process()
@@ -82,7 +82,7 @@
 	if(C)
 		var/atom/A = C.mouseObject
 		var/turf/T = get_turf(A)
-		if(istype(T))	//They're hovering over something in the map.
+		if(istype(T)) //They're hovering over something in the map.
 			direction_track(controller, T)
 			calculated_projectile_vars = calculate_projectile_angle_and_pixel_offsets(controller, C.mouseParams)
 
@@ -132,7 +132,7 @@
 	if(world.time < cooldown)
 		if(!warned && world.time > (cooldown - cooldown_duration + rate_of_fire*number_of_shots)) // To capture the window where one is done firing
 			warned = TRUE
-			playsound(src, 'sound/weapons/sear.ogg', 100, 1)
+			playsound(src, 'sound/weapons/sear.ogg', 100, TRUE)
 		return
 	else
 		cooldown = world.time + cooldown_duration
@@ -147,15 +147,15 @@
 /obj/machinery/manned_turret/proc/fire_helper(mob/user)
 	if(user.incapacitated() || !(user in buckled_mobs))
 		return
-	update_positioning()						//REFRESH MOUSE TRACKING!!
+	update_positioning() //REFRESH MOUSE TRACKING!!
 	var/turf/targets_from = get_turf(src)
 	if(QDELETED(target))
 		target = target_turf
-	var/obj/item/projectile/P = new projectile_type(targets_from)
+	var/obj/projectile/P = new projectile_type(targets_from)
 	P.starting = targets_from
 	P.firer = user
 	P.original = target
-	playsound(src, 'sound/weapons/gunshot_smg.ogg', 75, 1)
+	playsound(src, 'sound/weapons/gun/smg/shot.ogg', 75, TRUE)
 	P.xo = target.x - targets_from.x
 	P.yo = target.y - targets_from.y
 	P.Angle = calculated_projectile_vars[1] + rand(-9, 9)
@@ -166,7 +166,7 @@
 /obj/machinery/manned_turret/ultimate  // Admin-only proof of concept for autoclicker automatics
 	name = "Infinity Gun"
 	view_range = 12
-	projectile_type = /obj/item/projectile/bullet/manned_turret
+	projectile_type = /obj/projectile/bullet/manned_turret
 
 /obj/machinery/manned_turret/ultimate/checkfire(atom/targeted_atom, mob/user)
 	target = targeted_atom

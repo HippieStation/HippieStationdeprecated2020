@@ -1,5 +1,5 @@
 // Hey! Listen! Update \config\lavaruinblacklist.txt with your new ruins!
-// Some ruins will be commented out, simply uncomment them to have them reimplemented.
+
 /datum/map_template/ruin/lavaland
 	prefix = "_maps/RandomRuins/LavaRuins/"
 
@@ -7,14 +7,12 @@
 	cost = 5
 	allow_duplicates = FALSE
 
-/*
 /datum/map_template/ruin/lavaland/biodome/beach
 	name = "Biodome Beach"
 	id = "biodome-beach"
 	description = "Seemingly plucked from a tropical destination, this beach is calm and cool, with the salty waves roaring softly in the background. \
 	Comes with a rustic wooden bar and suicidal bartender."
 	suffix = "lavaland_biodome_beach.dmm"
-*/
 
 /datum/map_template/ruin/lavaland/biodome/winter
 	name = "Biodome Winter"
@@ -45,16 +43,7 @@
 	suffix = "lavaland_surface_seed_vault.dmm"
 	cost = 10
 	allow_duplicates = FALSE
-/*
-/datum/map_template/ruin/lavaland/dwarves
-	name = "Dwarven Settlement"
-	id = "dwarves"
-	description = "A settlement of dwarves from a strange faraway land."
-	suffix = "lavaland_surface_dwarves.dmm"
-	cost = 20
-	always_place = FALSE
-	allow_duplicates = FALSE
-*/
+
 /datum/map_template/ruin/lavaland/ash_walker
 	name = "Ash Walker Nest"
 	id = "ash-walker"
@@ -76,20 +65,19 @@
 	name = "Free Golem Ship"
 	id = "golem-ship"
 	description = "Lumbering humanoids, made out of precious metals, move inside this ship. They frequently leave to mine more minerals, which they somehow turn into more of them. \
-	Seem very intent on research and individual liberty, and also geology based naming?"
+	Seem very intent on research and individual liberty, and also geology-based naming?"
 	cost = 20
-	suffix = "lavaland_surface_golem_ship.dmm"
+	prefix = "_maps/RandomRuins/AnywhereRuins/"
+	suffix = "golem_ship.dmm"
 	allow_duplicates = FALSE
 
-/*
-/datum/map_template/ruin/lavaland/animal_hospital
-	name = "Animal Hospital"
-	id = "animal-hospital"
-	description = "Rats with cancer do not live very long. And the ones that wake up from cryostasis seem to commit suicide out of boredom."
+/datum/map_template/ruin/lavaland/gaia
+	name = "Patch of Eden"
+	id = "gaia"
+	description = "Who would have thought that such a peaceful place could be on such a horrific planet?"
 	cost = 5
-	suffix = "lavaland_surface_animal_hospital.dmm"
+	suffix = "lavaland_surface_gaia.dmm"
 	allow_duplicates = FALSE
-*/
 
 /datum/map_template/ruin/lavaland/sin
 	cost = 10
@@ -170,7 +158,7 @@
 /datum/map_template/ruin/lavaland/xeno_nest
 	name = "Xenomorph Nest"
 	id = "xeno-nest"
-	description = "These xenomorphs got bored of horrifically slaughtering people on space stations, and have settled down on a nice lava filled hellscape to focus on what's really important in life. \
+	description = "These xenomorphs got bored of horrifically slaughtering people on space stations, and have settled down on a nice lava-filled hellscape to focus on what's really important in life. \
 	Quality memes."
 	suffix = "lavaland_surface_xeno_nest.dmm"
 	cost = 20
@@ -179,7 +167,8 @@
 	name = "Fountain Hall"
 	id = "fountain"
 	description = "The fountain has a warning on the side. DANGER: May have undeclared side effects that only become obvious when implemented."
-	suffix = "lavaland_surface_fountain_hall.dmm"
+	prefix = "_maps/RandomRuins/AnywhereRuins/"
+	suffix = "fountain_hall.dmm"
 	cost = 5
 
 /datum/map_template/ruin/lavaland/survivalcapsule
@@ -229,9 +218,41 @@
 	allow_duplicates = FALSE
 	cost = 5
 
+/datum/map_template/ruin/lavaland/dark_wizards
+	name = "Dark Wizard Altar"
+	id = "dark_wizards"
+	description = "A ruin with dark wizards. What secret do they guard?"
+	suffix = "lavaland_surface_wizard.dmm"
+	cost = 5
+
+/datum/map_template/ruin/lavaland/strong_stone
+	name = "Strong Stone"
+	id = "strong_stone"
+	description = "A stone that seems particularly powerful."
+	suffix = "lavaland_strong_rock.dmm"
+	allow_duplicates = FALSE
+	cost = 2
+
 /datum/map_template/ruin/lavaland/puzzle
 	name = "Ancient Puzzle"
 	id = "puzzle"
 	description = "Mystery to be solved."
 	suffix = "lavaland_surface_puzzle.dmm"
 	cost = 5
+
+/datum/map_template/ruin/lavaland/elite_tumor
+	name = "Pulsating Tumor"
+	id = "tumor"
+	description = "A strange tumor which houses a powerful beast..."
+	suffix = "lavaland_surface_elite_tumor.dmm"
+	cost = 5
+	always_place = TRUE
+	allow_duplicates = TRUE
+
+/datum/map_template/ruin/lavaland/elephant_graveyard
+	name = "Elephant Graveyard"
+	id = "Graveyard"
+	description = "An abandoned graveyard, calling to those unable to continue."
+	suffix = "lavaland_surface_elephant_graveyard.dmm"
+	allow_duplicates = FALSE
+	cost = 10

@@ -3,7 +3,7 @@
 	icon = 'icons/obj/atmos.dmi'
 	use_power = NO_POWER_USE
 	max_integrity = 250
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 60, "acid" = 30)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, RAD = 100, FIRE = 60, ACID = 30)
 	anchored = FALSE
 
 	var/datum/gas_mixture/air_contents
@@ -14,20 +14,15 @@
 
 	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 
-/obj/machinery/portable_atmospherics/New()
-	..()
-	SSair.atmos_machinery += src
-
 /obj/machinery/portable_atmospherics/Initialize()
 	. = ..()
 	air_contents = new
 	air_contents.volume = volume
 	air_contents.temperature = T20C
-
-	return 1
+	SSair.start_processing_machine(src)
 
 /obj/machinery/portable_atmospherics/Destroy()
-	SSair.atmos_machinery -= src
+	SSair.stop_processing_machine(src)
 
 	disconnect()
 	qdel(air_contents)
@@ -95,7 +90,8 @@
 	return TRUE
 
 /obj/machinery/portable_atmospherics/AltClick(mob/living/user)
-	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, !ismonkey(user)))
+	. = ..()
+	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, !iscyborg(user)) || !can_interact(user))
 		return
 	if(holding)
 		to_chat(user, "<span class='notice'>You remove [holding] from [src].</span>")
@@ -104,24 +100,23 @@
 /obj/machinery/portable_atmospherics/examine(mob/user)
 	. = ..()
 	if(holding)
-		. += {"<span class='notice'>\The [src] contains [holding]. Alt-click [src] to remove it.</span>
-			<span class='notice'>Click [src] with another gas tank to hot swap [holding].</span>"}
+		. += "<span class='notice'>\The [src] contains [holding]. Alt-click [src] to remove it.</span>"+\
+			"<span class='notice'>Click [src] with another gas tank to hot swap [holding].</span>"
 
 /obj/machinery/portable_atmospherics/proc/replace_tank(mob/living/user, close_valve, obj/item/tank/new_tank)
+	if(!user)
+		return FALSE
 	if(holding)
-		holding.forceMove(drop_location())
-		if(Adjacent(user) && !issiliconoradminghost(user))
-			user.put_in_hands(holding)
+		user.put_in_hands(holding)
+		holding = null
 	if(new_tank)
 		holding = new_tank
-	else
-		holding = null
 	update_icon()
 	return TRUE
 
 /obj/machinery/portable_atmospherics/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/tank))
-		if(!(stat & BROKEN))
+		if(!(machine_stat & BROKEN))
 			var/obj/item/tank/T = W
 			if(!user.transferItemToLoc(T, src))
 				return
@@ -130,7 +125,7 @@
 			replace_tank(user, FALSE, T)
 			update_icon()
 	else if(W.tool_behaviour == TOOL_WRENCH)
-		if(!(stat & BROKEN))
+		if(!(machine_stat & BROKEN))
 			if(connected_port)
 				investigate_log("was disconnected from [connected_port] by [key_name(user)].", INVESTIGATE_ATMOS)
 				disconnect()
@@ -138,7 +133,7 @@
 				user.visible_message( \
 					"[user] disconnects [src].", \
 					"<span class='notice'>You unfasten [src] from the port.</span>", \
-					"<span class='italics'>You hear a ratchet.</span>")
+					"<span class='hear'>You hear a ratchet.</span>")
 				update_icon()
 				return
 			else
@@ -153,16 +148,40 @@
 				user.visible_message( \
 					"[user] connects [src].", \
 					"<span class='notice'>You fasten [src] to the port.</span>", \
-					"<span class='italics'>You hear a ratchet.</span>")
+					"<span class='hear'>You hear a ratchet.</span>")
 				update_icon()
 				investigate_log("was connected to [possible_port] by [key_name(user)].", INVESTIGATE_ATMOS)
 	else
 		return ..()
 
 /obj/machinery/portable_atmospherics/attacked_by(obj/item/I, mob/user)
-	if(I.force < 10 && !(stat & BROKEN))
+	if(I.force < 10 && !(machine_stat & BROKEN))
 		take_damage(0)
 	else
 		investigate_log("was smacked with \a [I] by [key_name(user)].", INVESTIGATE_ATMOS)
 		add_fingerprint(user)
 		..()
+
+/obj/machinery/portable_atmospherics/rad_act(strength)
+	. = ..()
+	var/gas_change = FALSE
+	var/list/cached_gases = air_contents.gases
+	if(cached_gases[/datum/gas/oxygen] && cached_gases[/datum/gas/carbon_dioxide])
+		gas_change = TRUE
+		var/pulse_strength = min(strength, cached_gases[/datum/gas/oxygen][MOLES] * 1000, cached_gases[/datum/gas/carbon_dioxide][MOLES] * 2000)
+		cached_gases[/datum/gas/carbon_dioxide][MOLES] -= pulse_strength / 2000
+		cached_gases[/datum/gas/oxygen][MOLES] -= pulse_strength / 1000
+		ASSERT_GAS(/datum/gas/pluoxium, air_contents)
+		cached_gases[/datum/gas/pluoxium][MOLES] += pulse_strength / 4000
+		strength -= pulse_strength
+
+	if(cached_gases[/datum/gas/hydrogen])
+		gas_change = TRUE
+		var/pulse_strength = min(strength, cached_gases[/datum/gas/hydrogen][MOLES] * 1000)
+		cached_gases[/datum/gas/hydrogen][MOLES] -= pulse_strength / 1000
+		ASSERT_GAS(/datum/gas/tritium, air_contents)
+		cached_gases[/datum/gas/tritium][MOLES] += pulse_strength / 1000
+		strength -= pulse_strength
+
+	if(gas_change)
+		air_contents.garbage_collect()

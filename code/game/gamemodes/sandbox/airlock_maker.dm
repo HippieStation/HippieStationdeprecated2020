@@ -7,7 +7,7 @@
 /obj/structure/door_assembly
 	var/datum/airlock_maker/maker = null
 
-/obj/structure/door_assembly/attack_hand()
+/obj/structure/door_assembly/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
@@ -21,14 +21,14 @@
 	var/require_all = 1
 
 	var/paintjob = "none"
-	var/glassdoor = 0
+	var/glassdoor = FALSE
 
 	var/doorname = "airlock"
 
-/datum/airlock_maker/New(var/atom/target_loc)
+/datum/airlock_maker/New(atom/target_loc)
 	linked = new(target_loc)
 	linked.maker = src
-	linked.anchored = FALSE
+	linked.set_anchored(FALSE)
 	access_used = list()
 
 	interact()
@@ -70,7 +70,7 @@
 	dat += "</table><hr><a href='?src=[REF(src)];done'>Finalize Airlock Construction</a> | <a href='?src=[REF(src)];cancel'>Cancel and Destroy Airlock</a>"
 	usr << browse(dat,"window=airlockmaker")
 
-/datum/airlock_maker/Topic(var/href,var/list/href_list)
+/datum/airlock_maker/Topic(href,list/href_list)
 	if(!usr)
 		return
 	if(!src || !linked || !linked.loc)
@@ -78,7 +78,7 @@
 		return
 
 	if("rename" in href_list)
-		var/newname = stripped_input(usr,"New airlock name:","Name the airlock", doorname, max_length = MAX_CHARTER_LEN)
+		var/newname = stripped_input(usr,"New airlock name:","Name the airlock",doorname)
 		if(newname)
 			doorname = newname
 	if("access" in href_list)

@@ -12,8 +12,7 @@
 	var/sound2 = 'sound/weapons/zapbang.ogg'
 
 /obj/effect/proc_holder/spell/targeted/turf_teleport/cast(list/targets,mob/user = usr)
-	var/turf/before_turf = get_turf(user) // hippie -- for after_teleport
-	playsound(get_turf(user), sound1, 50,1)
+	playsound(get_turf(user), sound1, 50,TRUE)
 	for(var/mob/living/target in targets)
 		var/list/turfs = new/list()
 		for(var/turf/T in range(target,outer_tele_radius))
@@ -24,7 +23,7 @@
 			if(T.density && !include_dense)
 				continue
 			if(T.x>world.maxx-outer_tele_radius || T.x<outer_tele_radius)
-				continue	//putting them at the edge is dumb
+				continue //putting them at the edge is dumb
 			if(T.y>world.maxy-outer_tele_radius || T.y<outer_tele_radius)
 				continue
 			turfs += T
@@ -42,5 +41,4 @@
 			return
 
 		if(do_teleport(user, picked, forceMove = TRUE, channel = TELEPORT_CHANNEL_MAGIC))
-			after_teleport(user, before_turf, picked) // hippie -- for bluespace blink
-			playsound(get_turf(user), sound1, 50,1)
+			playsound(get_turf(user), sound1, 50,TRUE)

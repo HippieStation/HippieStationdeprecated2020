@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	else
 		var/A
 
-		A = input("Select a beacon to connect to", "Balloon Extraction Pack", A) as null|anything in possible_beacons
+		A = input("Select a beacon to connect to", "Balloon Extraction Pack", A) as null|anything in sortNames(possible_beacons)
 
 		if(!A)
 			return
@@ -42,6 +42,10 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	. = ..()
 	if(!beacon)
 		to_chat(user, "<span class='warning'>[src] is not linked to a beacon, and cannot be used!</span>")
+		return
+	if(!(beacon in GLOB.total_extraction_beacons))
+		beacon = null
+		to_chat(user, "<span class='warning'>The connected beacon has been destroyed!</span>")
 		return
 	if(!can_use_indoors)
 		var/area/area = get_area(A)
@@ -75,9 +79,10 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			if(isliving(A))
 				var/mob/living/M = A
 				M.Paralyze(320) // Keep them from moving during the duration of the extraction
-				M.buckled = 0 // Unbuckle them to prevent anchoring problems
+				if(M.buckled)
+					M.buckled.unbuckle_mob(M, TRUE) // Unbuckle them to prevent anchoring problems
 			else
-				A.anchored = TRUE
+				A.set_anchored(TRUE)
 				A.density = FALSE
 			var/obj/effect/extraction_holder/holder_obj = new(A.loc)
 			holder_obj.appearance = A.appearance
@@ -92,7 +97,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			balloon.appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
 			holder_obj.cut_overlay(balloon2)
 			holder_obj.add_overlay(balloon)
-			playsound(holder_obj.loc, 'sound/items/fultext_deploy.ogg', 50, 1, -3)
+			playsound(holder_obj.loc, 'sound/items/fultext_deploy.ogg', 50, TRUE, -3)
 			animate(holder_obj, pixel_z = 10, time = 20)
 			sleep(20)
 			animate(holder_obj, pixel_z = 15, time = 10)
@@ -103,7 +108,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			sleep(10)
 			animate(holder_obj, pixel_z = 10, time = 10)
 			sleep(10)
-			playsound(holder_obj.loc, 'sound/items/fultext_launch.ogg', 50, 1, -3)
+			playsound(holder_obj.loc, 'sound/items/fultext_launch.ogg', 50, TRUE, -3)
 			animate(holder_obj, pixel_z = 1000, time = 30)
 			if(ishuman(A))
 				var/mob/living/carbon/human/L = A
@@ -128,7 +133,7 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 			holder_obj.add_overlay(balloon3)
 			sleep(4)
 			holder_obj.cut_overlay(balloon3)
-			A.anchored = FALSE // An item has to be unanchored to be extracted in the first place.
+			A.set_anchored(FALSE) // An item has to be unanchored to be extracted in the first place.
 			A.density = initial(A.density)
 			animate(holder_obj, pixel_z = 0, time = 5)
 			sleep(5)
@@ -169,22 +174,22 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 /obj/effect/extraction_holder
 	name = "extraction holder"
-	desc = "you shouldnt see this"
+	desc = "you shouldn't see this"
 	var/atom/movable/stored_obj
 
 /obj/item/extraction_pack/proc/check_for_living_mobs(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.stat != DEAD)
-			return 1
+			return TRUE
 	for(var/thing in A.GetAllContents())
 		if(isliving(A))
 			var/mob/living/L = A
 			if(L.stat != DEAD)
-				return 1
-	return 0
+				return TRUE
+	return FALSE
 
-/obj/effect/extraction_holder/singularity_pull()
+/obj/effect/extraction_holder/singularity_act()
 	return
 
 /obj/effect/extraction_holder/singularity_pull()

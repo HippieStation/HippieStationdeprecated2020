@@ -28,10 +28,10 @@ GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 
 	for(var/i = 1, i <= number_of_wormholes, i++)
 		var/turf/T = pick(pick_turfs)
-		wormholes += new /obj/effect/portal/wormhole(T, null, 0, null, FALSE)
+		wormholes += new /obj/effect/portal/wormhole(T, 0, null, FALSE)
 
 /datum/round_event/wormholes/announce(fake)
-	priority_announce("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert", 'hippiestation/sound/pyko/spanomalies.ogg') // hippie -- pykoai
+	priority_announce("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert", ANNOUNCER_SPANOMALIES)
 
 /datum/round_event/wormholes/tick()
 	if(activeFor % shift_frequency == 0)
@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 	GLOB.all_wormholes -= src
 
 /obj/effect/portal/wormhole/teleport(atom/movable/M)
-	if(iseffect(M))	//sparks don't teleport
+	if(iseffect(M)) //sparks don't teleport
 		return
 	if(M.anchored)
 		if(!(ismecha(M) && mech_sized))

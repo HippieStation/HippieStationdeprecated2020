@@ -9,9 +9,10 @@ Slimecrossing Armor
 	name = "rebreather mask"
 	desc = "A transparent mask, resembling a conventional breath mask, but made of bluish slime. Seems to lack any air supply tube, though."
 	icon_state = "slime"
-	item_state = "slime"
+	inhand_icon_state = "slime"
 	body_parts_covered = NONE
 	w_class = WEIGHT_CLASS_SMALL
+	clothing_traits = list(TRAIT_NOBREATH)
 	gas_transfer_coefficient = 0
 	permeability_coefficient = 0.5
 	flags_cover = MASKCOVERSMOUTH
@@ -20,14 +21,12 @@ Slimecrossing Armor
 /obj/item/clothing/mask/nobreath/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(slot == ITEM_SLOT_MASK)
-		ADD_TRAIT(user, TRAIT_NOBREATH, "breathmask_[REF(src)]")
 		user.failed_last_breath = FALSE
 		user.clear_alert("not_enough_oxy")
 		user.apply_status_effect(/datum/status_effect/rebreathing)
 
 /obj/item/clothing/mask/nobreath/dropped(mob/living/carbon/human/user)
 	..()
-	REMOVE_TRAIT(user, TRAIT_NOBREATH, "breathmask_[REF(src)]")
 	user.remove_status_effect(/datum/status_effect/rebreathing)
 
 /obj/item/clothing/glasses/prism_glasses
@@ -51,13 +50,13 @@ Slimecrossing Armor
 	anchored = TRUE
 	max_integrity = 10
 
-/obj/structure/light_prism/Initialize(mapload, var/newcolor)
+/obj/structure/light_prism/Initialize(mapload, newcolor)
 	. = ..()
 	color = newcolor
-	light_color = newcolor
+	set_light_color(newcolor)
 	set_light(5)
 
-/obj/structure/light_prism/attack_hand(mob/user)
+/obj/structure/light_prism/attack_hand(mob/user, list/modifiers)
 	to_chat(user, "<span class='notice'>You dispel [src].</span>")
 	qdel(src)
 
@@ -79,12 +78,9 @@ Slimecrossing Armor
 	name = "Fabricate Light Prism"
 	icon_icon = 'icons/obj/slimecrossing.dmi'
 	button_icon_state = "lightprism"
-	var/cooldowntime
 
 /datum/action/item_action/place_light_prism/Trigger()
 	if(!IsAvailable())
-		return
-	if(cooldowntime > world.time)
 		return
 	var/obj/item/clothing/glasses/prism_glasses/glasses = target
 	if(locate(/obj/structure/light_prism) in get_turf(owner))
@@ -96,15 +92,15 @@ Slimecrossing Armor
 			return
 		to_chat(owner, "<span class='notice'>You channel nearby light into a glowing, ethereal prism.</span>")
 		new /obj/structure/light_prism(get_turf(owner), glasses.glasses_color)
-		cooldowntime = world.time + 100
 
 /obj/item/clothing/head/peaceflower
 	name = "heroine bud"
 	desc = "An extremely addictive flower, full of peace magic."
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "peaceflower"
-	item_state = "peaceflower"
+	inhand_icon_state = "peaceflower"
 	slot_flags = ITEM_SLOT_HEAD
+	clothing_traits = list(TRAIT_PACIFISM)
 	body_parts_covered = NONE
 	dynamic_hair_suffix = ""
 	force = 0
@@ -113,16 +109,7 @@ Slimecrossing Armor
 	throw_speed = 1
 	throw_range = 3
 
-/obj/item/clothing/head/peaceflower/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(slot == ITEM_SLOT_HEAD)
-		ADD_TRAIT(user, TRAIT_PACIFISM, "peaceflower_[REF(src)]")
-
-/obj/item/clothing/head/peaceflower/dropped(mob/living/carbon/human/user)
-	..()
-	REMOVE_TRAIT(user, TRAIT_PACIFISM, "peaceflower_[REF(src)]")
-
-/obj/item/clothing/head/peaceflower/attack_hand(mob/user)
+/obj/item/clothing/head/peaceflower/attack_hand(mob/user, list/modifiers)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(src == C.head)
@@ -134,7 +121,7 @@ Slimecrossing Armor
 	name = "adamantine armor"
 	desc = "A full suit of adamantine plate armor. Impressively resistant to damage, but weighs about as much as you do."
 	icon_state = "adamsuit"
-	item_state = "adamsuit"
+	inhand_icon_state = "adamsuit"
 	flags_inv = NONE
 	obj_flags = IMMUTABLE_SLOW
 	slowdown = 4

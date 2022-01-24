@@ -5,9 +5,9 @@
 	desc = "A break-operated grenade launcher."
 	name = "grenade launcher"
 	icon_state = "dshotgun_sawn"
-	item_state = "gun"
+	inhand_icon_state = "gun"
 	mag_type = /obj/item/ammo_box/magazine/internal/grenadelauncher
-	fire_sound = 'sound/weapons/grenadelaunch.ogg'
+	fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
 	pin = /obj/item/firing_pin/implant/pindicate
 	bolt_type = BOLT_TYPE_NO_BOLT
@@ -39,7 +39,7 @@
 	name = "gyrojet pistol"
 	desc = "A prototype pistol designed to fire self propelled rockets."
 	icon_state = "gyropistol"
-	fire_sound = 'sound/weapons/grenadelaunch.ogg'
+	fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
 	mag_type = /obj/item/ammo_box/magazine/m75
 	burst_size = 1
 	fire_delay = 0
@@ -48,11 +48,12 @@
 
 /obj/item/gun/ballistic/rocketlauncher
 	name = "\improper PML-9"
-	desc = "A reusable rocket propelled grenade launcher. The words \"NT this way\" and an arrow have been written near the barrel."
+	desc = "A reusable rocket propelled grenade launcher. The words \"NT this way\" and an arrow have been written near the barrel. \
+	A sticker near the cheek rest reads, \"ENSURE AREA BEHIND IS CLEAR BEFORE FIRING\""
 	icon_state = "rocketlauncher"
-	item_state = "rocketlauncher"
+	inhand_icon_state = "rocketlauncher"
 	mag_type = /obj/item/ammo_box/magazine/internal/rocketlauncher
-	fire_sound = 'sound/weapons/rocketlaunch.ogg'
+	fire_sound = 'sound/weapons/gun/general/rocket_launch.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	can_suppress = FALSE
 	pin = /obj/item/firing_pin/implant/pindicate
@@ -65,9 +66,21 @@
 	cartridge_wording = "rocket"
 	empty_indicator = TRUE
 	tac_reloads = FALSE
+	/// Do we shit flames behind us when we fire?
+	var/backblast = TRUE
+
+/obj/item/gun/ballistic/rocketlauncher/Initialize()
+	. = ..()
+	if(backblast)
+		AddElement(/datum/element/backblast)
 
 /obj/item/gun/ballistic/rocketlauncher/unrestricted
 	pin = /obj/item/firing_pin
+
+/obj/item/gun/ballistic/rocketlauncher/nobackblast
+	name = "flameless PML-11"
+	desc = "A reusable rocket propelled grenade launcher. This one has been fitted with a special coolant loop to avoid embarassing teamkill 'accidents' from backblast."
+	backblast = FALSE
 
 /obj/item/gun/ballistic/rocketlauncher/afterattack()
 	. = ..()
@@ -77,11 +90,11 @@
 	return //too difficult to remove the rocket with TK
 	
 /obj/item/gun/ballistic/rocketlauncher/suicide_act(mob/living/user)
-	user.visible_message("<span class='warning'>[user] aims [src] at the ground! It looks like [user.p_theyre()] performing a sick rocket jump!<span>", \
+	user.visible_message("<span class='warning'>[user] aims [src] at the ground! It looks like [user.p_theyre()] performing a sick rocket jump!</span>", \
 		"<span class='userdanger'>You aim [src] at the ground to perform a bisnasty rocket jump...</span>")
 	if(can_shoot())
 		user.notransform = TRUE
-		playsound(src, 'sound/vehicles/rocketlaunch.ogg', 80, 1, 5)
+		playsound(src, 'sound/vehicles/rocketlaunch.ogg', 80, TRUE, 5)
 		animate(user, pixel_z = 300, time = 30, easing = LINEAR_EASING)
 		sleep(70)
 		animate(user, pixel_z = 0, time = 5, easing = LINEAR_EASING)

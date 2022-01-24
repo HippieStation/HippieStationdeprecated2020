@@ -24,7 +24,7 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 	var/cache_b  = LIGHTING_SOFT_THRESHOLD
 	var/cache_mx = 0
 
-/datum/lighting_corner/New(var/turf/new_turf, var/diagonal)
+/datum/lighting_corner/New(turf/new_turf, diagonal)
 	. = ..()
 	masters = list()
 	masters[new_turf] = turn(diagonal, 180)
@@ -81,10 +81,10 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 		T = thing
 		if (T.lighting_object)
 			active = TRUE
+			return
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
-/datum/lighting_corner/proc/update_lumcount(var/delta_r, var/delta_g, var/delta_b)
-
+/datum/lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b)
 	if (!(delta_r || delta_g || delta_b)) // 0 is falsey ok
 		return
 
@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 		SSlighting.corners_queue += src
 
 /datum/lighting_corner/proc/update_objects()
-	// Cache these values a head of time so 4 individual lighting objects don't all calculate them individually.
+	// Cache these values ahead of time so 4 individual lighting objects don't all calculate them individually.
 	var/lum_r = src.lum_r
 	var/lum_g = src.lum_g
 	var/lum_b = src.lum_b
@@ -130,11 +130,10 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 /datum/lighting_corner/dummy/New()
 	return
 
-
-/datum/lighting_corner/Destroy(var/force)
+/datum/lighting_corner/Destroy(force)
 	if (!force)
 		return QDEL_HINT_LETMELIVE
 
-	stack_trace("Ok, Look, /tg/, I need you to find whatever fucker decided to call qdel on a fucking lighting corner, then tell him very nicely and politely that he is 100% dumb and needs his head checked. Thanks. Send them my regards by the way.")
+	stack_trace("Ok, Look, /tg/, I need you to find whatever fucker decided to call qdel on a fucking lighting corner, then tell him very nicely and politely that he is brain damaged and needs his head checked. Thanks. Send them my regards by the way.")
 
 	return ..()

@@ -10,7 +10,8 @@ Coughing
 	Low Level.
 
 BONUS
-	Will force the affected mob to drop small items!
+	Spreads the virus in a small square around the host.
+	Can force the affected mob to drop small items!
 
 //////////////////////////////////////
 */
@@ -18,7 +19,7 @@ BONUS
 /datum/symptom/cough
 
 	name = "Cough"
-	desc = "The virus irritates the throat of the host, causing occasional coughing."
+	desc = "The virus irritates the throat of the host, causing occasional coughing. Each cough will try to infect bystanders who are within 1 tile of the host with the virus."
 	stealth = -1
 	resistance = 3
 	stage_speed = 1
@@ -28,7 +29,7 @@ BONUS
 	base_message_chance = 15
 	symptom_delay_min = 2
 	symptom_delay_max = 15
-	var/infective = FALSE
+	var/spread_range = 1
 	threshold_descs = list(
 		"Resistance 11" = "The host will drop small items when coughing.",
 		"Resistance 15" = "Occasionally causes coughing fits that stun the host. The extra coughs do not spread the virus.",
@@ -42,11 +43,11 @@ BONUS
 		return
 	if(A.properties["stealth"] >= 4)
 		suppress_warning = TRUE
-	if(A.spread_flags & DISEASE_SPREAD_AIRBORNE) //infect bystanders
-		infective = TRUE
-	if(A.properties["resistance"] >= 3) //strong enough to drop items
+	if(A.properties["transmittable"] >= 7)
+		spread_range = 2
+	if(A.properties["resistance"] >= 11) //strong enough to drop items
 		power = 1.5
-	if(A.properties["resistance"] >= 10) //strong enough to stun (rarely)
+	if(A.properties["resistance"] >= 15) //strong enough to stun (occasionally)
 		power = 2
 	if(A.properties["stage_rate"] >= 6) //cough more often
 		symptom_delay_max = 10
@@ -55,23 +56,23 @@ BONUS
 	if(!..())
 		return
 	var/mob/living/M = A.affected_mob
+	if(HAS_TRAIT(M, TRAIT_SOOTHED_THROAT))
+		return
 	switch(A.stage)
 		if(1, 2, 3)
 			if(prob(base_message_chance) && !suppress_warning)
 				to_chat(M, "<span notice='warning'>[pick("You swallow excess mucus.", "You lightly cough.")]</span>")
 		else
 			M.emote("cough")
+			if(M.CanSpreadAirborneDisease())
+				A.spread(spread_range)
 			if(power >= 1.5)
 				var/obj/item/I = M.get_active_held_item()
 				if(I && I.w_class == WEIGHT_CLASS_TINY)
 					M.dropItemToGround(I)
-			if(power >= 2 && prob(10))
+			if(power >= 2 && prob(30))
 				to_chat(M, "<span notice='userdanger'>[pick("You have a coughing fit!", "You can't stop coughing!")]</span>")
 				M.Immobilize(20)
-				M.emote("cough")
 				addtimer(CALLBACK(M, /mob/.proc/emote, "cough"), 6)
 				addtimer(CALLBACK(M, /mob/.proc/emote, "cough"), 12)
 				addtimer(CALLBACK(M, /mob/.proc/emote, "cough"), 18)
-			if(infective && M.CanSpreadAirborneDisease())
-				A.spread(1)
-

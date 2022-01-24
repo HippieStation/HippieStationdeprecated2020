@@ -51,14 +51,14 @@
 			dat += "<A href='?src=[REF(src)];read=[REF(P)]'>[P.name]</A> [auth ? "<A href='?src=[REF(src)];write=[REF(P)]'>Write</A> <A href='?src=[REF(src)];remove=[REF(P)]'>Remove</A>" : ""]<BR>"
 		else
 			dat += "<A href='?src=[REF(src)];read=[REF(P)]'>[P.name]</A> [auth ? "<A href='?src=[REF(src)];remove=[REF(P)]'>Remove</A>" : ""]<BR>"
-	user << browse("<HEAD>[UTF8HEADER]<TITLE>Notices</TITLE></HEAD>[dat]","window=noticeboard")
+	user << browse("<HEAD><TITLE>Notices</TITLE></HEAD>[dat]","window=noticeboard")
 	onclose(user, "noticeboard")
 
 /obj/structure/noticeboard/Topic(href, href_list)
 	..()
 	usr.set_machine(src)
 	if(href_list["remove"])
-		if((usr.stat || usr.restrained()))	//For when a player is handcuffed while they have the notice window open
+		if(usr.stat != CONSCIOUS || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED)) //For when a player is handcuffed while they have the notice window open
 			return
 		var/obj/item/I = locate(href_list["remove"]) in contents
 		if(istype(I) && I.loc == src)
@@ -68,7 +68,7 @@
 			icon_state = "nboard0[notices]"
 
 	if(href_list["write"])
-		if((usr.stat || usr.restrained())) //For when a player is handcuffed while they have the notice window open
+		if(usr.stat != CONSCIOUS || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED)) //For when a player is handcuffed while they have the notice window open
 			return
 		var/obj/item/P = locate(href_list["write"]) in contents
 		if(istype(P) && P.loc == src)
@@ -86,7 +86,7 @@
 
 /obj/structure/noticeboard/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
-		new /obj/item/stack/sheet/metal (loc, 1)
+		new /obj/item/stack/sheet/iron (loc, 1)
 	qdel(src)
 
 // Notice boards for the heads of staff (plus the qm)

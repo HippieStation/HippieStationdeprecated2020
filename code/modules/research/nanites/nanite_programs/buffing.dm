@@ -18,22 +18,6 @@
 		var/mob/living/carbon/human/H = host_mob
 		H.physiology.stun_mod *= 2
 
-/datum/nanite_program/adrenaline
-	name = "Adrenaline Burst"
-	desc = "The nanites cause a burst of adrenaline when triggered, allowing the user to push their body past its normal limits."
-	can_trigger = TRUE
-	trigger_cost = 25
-	trigger_cooldown = 1200
-	rogue_types = list(/datum/nanite_program/toxic, /datum/nanite_program/nerve_decay)
-
-/datum/nanite_program/adrenaline/on_trigger()
-	to_chat(host_mob, "<span class='notice'>You feel a sudden surge of energy!</span>")
-	host_mob.SetAllImmobility(0)
-	host_mob.adjustStaminaLoss(-75)
-	host_mob.set_resting(FALSE)
-	host_mob.update_mobility()
-	host_mob.reagents.add_reagent(/datum/reagent/medicine/stimulants, 1.5)
-
 /datum/nanite_program/hardening
 	name = "Dermal Hardening"
 	desc = "The nanites form a mesh under the host's skin, protecting them from melee and bullet impacts."
@@ -46,15 +30,15 @@
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.armor.melee += 50
-		H.physiology.armor.bullet += 35
+		H.physiology.armor.melee += 25
+		H.physiology.armor.bullet += 20
 
 /datum/nanite_program/hardening/disable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.armor.melee -= 50
-		H.physiology.armor.bullet -= 35
+		H.physiology.armor.melee -= 25
+		H.physiology.armor.bullet -= 20
 
 /datum/nanite_program/refractive
 	name = "Dermal Refractive Surface"
@@ -66,33 +50,33 @@
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.armor.laser += 50
-		H.physiology.armor.energy += 35
+		H.physiology.armor.laser += 25
+		H.physiology.armor.energy += 20
 
 /datum/nanite_program/refractive/disable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.armor.laser -= 50
-		H.physiology.armor.energy -= 35
+		H.physiology.armor.laser -= 25
+		H.physiology.armor.energy -= 20
 
 /datum/nanite_program/coagulating
-	name = "Rapid Coagulation"
-	desc = "The nanites induce rapid coagulation when the host is wounded, dramatically reducing bleeding rate."
-	use_rate = 0.10
+	name = "Vein Repressurization"
+	desc = "The nanites re-route circulating blood away from open wounds, dramatically reducing bleeding rate."
+	use_rate = 0.20
 	rogue_types = list(/datum/nanite_program/suffocating)
 
 /datum/nanite_program/coagulating/enable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.bleed_mod *= 0.1
+		H.physiology.bleed_mod *= 0.5
 
 /datum/nanite_program/coagulating/disable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.bleed_mod *= 10
+		H.physiology.bleed_mod *= 2
 
 /datum/nanite_program/conductive
 	name = "Electric Conduction"
@@ -117,7 +101,7 @@
 
 /datum/nanite_program/mindshield/enable_passive_effect()
 	. = ..()
-	if(!host_mob.mind.has_antag_datum(/datum/antagonist/rev, TRUE) && !is_hivemember(host_mob) && !host_mob.is_wokevessel()) //won't work if on a rev, to avoid having implanted revs. same applies for hivemind members.
+	if(!host_mob.mind.has_antag_datum(/datum/antagonist/rev, TRUE)) //won't work if on a rev, to avoid having implanted revs.
 		ADD_TRAIT(host_mob, TRAIT_MINDSHIELD, "nanites")
 		host_mob.sec_hud_set_implants()
 

@@ -1,8 +1,11 @@
+#define FREQ_LISTENING (1<<0)
+
 /obj/item/radio
 	icon = 'icons/obj/radio.dmi'
 	name = "station bounced radio"
 	icon_state = "walkietalkie"
-	item_state = "walkietalkie"
+	inhand_icon_state = "walkietalkie"
+	worn_icon_state = "radio"
 	desc = "A basic handheld radio that communicates with local telecommunication networks."
 	dog_fashion = /datum/dog_fashion/back
 
@@ -11,7 +14,7 @@
 	throw_speed = 3
 	throw_range = 7
 	w_class = WEIGHT_CLASS_SMALL
-	materials = list(MAT_METAL=75, MAT_GLASS=25)
+	custom_materials = list(/datum/material/iron=75, /datum/material/glass=25)
 	obj_flags = USES_TGUI
 
 	var/on = TRUE
@@ -30,24 +33,16 @@
 	var/use_command = FALSE  // If true, broadcasts will be large and BOLD.
 	var/command = FALSE  // If true, use_command can be toggled at will.
 
+	///makes anyone who is talking through this anonymous.
+	var/anonymize = FALSE
+
 	// Encryption key handling
 	var/obj/item/encryptionkey/keyslot
 	var/translate_binary = FALSE  // If true, can hear the special binary channel.
 	var/independent = FALSE  // If true, can say/hear on the special CentCom channel.
 	var/syndie = FALSE  // If true, hears all well-known channels automatically, and can say/hear on the Syndicate channel.
-	var/list/channels = list()  // Map from name (see communications.dm) to on/off. First entry is current department (:h).
+	var/list/channels = list()  // Map from name (see communications.dm) to on/off. First entry is current department (:h)
 	var/list/secure_radio_connections
-
-	var/const/FREQ_LISTENING = 1
-	//FREQ_BROADCASTING = 2
-
-	//Hippie
-	var/music_channel = null //The sound channel the music is playing on.
-	var/radio_music_file = "" //The file path to the music's audio file
-	var/music_toggle = 1 //Toggles whether music will play or not.
-	var/music_name = "" //Used to display the name of currently playing music.
-	var/music_playing = FALSE
-	var/mob/living/radio_holder //stopmusic() will apply to this person
 
 /obj/item/radio/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] starts bouncing [src] off [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -59,10 +54,7 @@
 	frequency = add_radio(src, new_frequency)
 
 /obj/item/radio/proc/recalculateChannels()
-	channels = list()
-	translate_binary = FALSE
-	syndie = FALSE
-	independent = FALSE
+	resetChannels()
 
 	if(keyslot)
 		for(var/ch_name in keyslot.channels)
@@ -79,6 +71,13 @@
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
+// Used for cyborg override
+/obj/item/radio/proc/resetChannels()
+	channels = list()
+	translate_binary = FALSE
+	syndie = FALSE
+	independent = FALSE
+
 /obj/item/radio/proc/make_syndie() // Turns normal radios into Syndicate radios!
 	qdel(keyslot)
 	keyslot = new /obj/item/encryptionkey/syndicate
@@ -89,22 +88,9 @@
 	remove_radio_all(src) //Just to be sure
 	QDEL_NULL(wires)
 	QDEL_NULL(keyslot)
-	GLOB.radio_list -= src //Hippie. Removes from global radio list
 	return ..()
 
 /obj/item/radio/Initialize()
-	if(!istype(src, /obj/item/radio/intercom)) //Intercoms playing music is useless
-		GLOB.radio_list += src //Hippie. Adds the radio to the global radio list for usage in radio_station.dm
-	var/i
-	for(i = 1; i <= GLOB.radio_list.len; i++)
-		if(GLOB.radio_list[i] == src)
-			music_channel = i //I hope that over 1,000 radios are never initialized.
-								/*  Allow me to explain why. There are 1,024 usable channels. The top ~10
-									are preserved for ambience, admin music, etc. The other 1,000 are unused (to my knowledge)
-									and so to allow radios to play their own music without inferefering with other sounds, I give
-									each radio their own channel to play music on. This way the user can also stop the music
-									playing from their radio (headsets, etc.) without stopping the music of someone else's radio. */
-
 	wires = new /datum/wires/radio(src)
 	if(prison_radio)
 		wires.cut(WIRE_TX) // OH GOD WHY
@@ -118,7 +104,7 @@
 
 /obj/item/radio/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
 
 /obj/item/radio/interact(mob/user)
 	if(unscrewed && !isAI(user))
@@ -127,19 +113,15 @@
 	else
 		..()
 
-/obj/item/radio/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.inventory_state)
-	. = ..()
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/radio/ui_state(mob/user)
+	return GLOB.inventory_state
+
+/obj/item/radio/ui_interact(mob/user, datum/tgui/ui, datum/ui_state/state)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		var/ui_width = 360
-		var/ui_height = 106
-		if(subspace_transmission)
-			if (channels.len > 0)
-				ui_height += 6 + channels.len * 21
-			else
-				ui_height += 24
-		ui = new(user, src, ui_key, "radio", name, ui_width, ui_height, master_ui, state)
+		ui = new(user, src, "Radio", name)
+		if(state)
+			ui.set_state(state)
 		ui.open()
 
 /obj/item/radio/ui_data(mob/user)
@@ -158,12 +140,13 @@
 	data["useCommand"] = use_command
 	data["subspace"] = subspace_transmission
 	data["subspaceSwitchable"] = subspace_switchable
-	data["headset"] = istype(src, /obj/item/radio/headset)
+	data["headset"] = FALSE
 
 	return data
 
 /obj/item/radio/ui_act(action, params, datum/tgui/ui)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("frequency")
@@ -171,16 +154,7 @@
 				return
 			var/tune = params["tune"]
 			var/adjust = text2num(params["adjust"])
-			if(tune == "input")
-				var/min = format_frequency(freerange ? MIN_FREE_FREQ : MIN_FREQ)
-				var/max = format_frequency(freerange ? MAX_FREE_FREQ : MAX_FREQ)
-				tune = input("Tune frequency ([min]-[max]):", name, format_frequency(frequency)) as null|num
-				if(!isnull(tune) && !..())
-					if (tune < MIN_FREE_FREQ && tune <= MAX_FREE_FREQ / 10)
-						// allow typing 144.7 to get 1447
-						tune *= 10
-					. = TRUE
-			else if(adjust)
+			if(adjust)
 				tune = frequency + adjust * 10
 				. = TRUE
 			else if(text2num(tune) != null)
@@ -215,15 +189,30 @@
 					recalculateChannels()
 				. = TRUE
 
-/obj/item/radio/talk_into(atom/movable/M, message, channel, list/spans, datum/language/language)
+/obj/item/radio/talk_into(atom/movable/M, message, channel, list/spans, datum/language/language, list/message_mods)
+	if(HAS_TRAIT(M, TRAIT_SIGN_LANG)) //Forces Sign Language users to wear the translation gloves to speak over radios
+		var/mob/living/carbon/mute = M
+		if(istype(mute))
+			var/empty_indexes = mute.get_empty_held_indexes() //How many hands the player has empty
+			var/obj/item/clothing/gloves/radio/G = mute.get_item_by_slot(ITEM_SLOT_GLOVES)
+			if(!istype(G))
+				return FALSE
+			if(length(empty_indexes) == 1)
+				message = stars(message)
+			if(length(empty_indexes) == 0) //Due to the requirement of gloves, the arm check for normal speech would be redundant here.
+				return FALSE
+			if(mute.handcuffed)//Would be weird if they couldn't sign but their words still went over the radio
+				return FALSE
+			if(HAS_TRAIT(mute, TRAIT_HANDS_BLOCKED) || HAS_TRAIT(mute, TRAIT_EMOTEMUTE))
+				return FALSE
 	if(!spans)
 		spans = list(M.speech_span)
 	if(!language)
-		language = M.get_default_language()
-	INVOKE_ASYNC(src, .proc/talk_into_impl, M, message, channel, spans.Copy(), language)
+		language = M.get_selected_language()
+	INVOKE_ASYNC(src, .proc/talk_into_impl, M, message, channel, spans.Copy(), language, message_mods)
 	return ITALICS | REDUCE_RANGE
 
-/obj/item/radio/proc/talk_into_impl(atom/movable/M, message, channel, list/spans, datum/language/language)
+/obj/item/radio/proc/talk_into_impl(atom/movable/M, message, channel, list/spans, datum/language/language, list/message_mods)
 	if(!on)
 		return // the device has to be on
 	if(!M || !message)
@@ -269,7 +258,7 @@
 	var/atom/movable/virtualspeaker/speaker = new(null, M, src)
 
 	// Construct the signal
-	var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, language, message, spans)
+	var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, language, message, spans, message_mods)
 
 	// Independent radios, on the CentCom frequency, reach all independent radios
 	if (independent && (freq == FREQ_CENTCOM || freq == FREQ_CTF_RED || freq == FREQ_CTF_BLUE))
@@ -301,21 +290,18 @@
 	signal.levels = list(T.z)
 	signal.broadcast()
 
-/obj/item/radio/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+/obj/item/radio/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
 		return
 
-	if(message_mode == MODE_WHISPER || message_mode == MODE_WHISPER_CRIT)
-		// radios don't pick up whispers very well
-		raw_message = stars(raw_message)
-	else if(message_mode == MODE_L_HAND || message_mode == MODE_R_HAND)
+	if(message_mods[RADIO_EXTENSION] == MODE_L_HAND || message_mods[RADIO_EXTENSION] == MODE_R_HAND)
 		// try to avoid being heard double
 		if (loc == speaker && ismob(speaker))
 			var/mob/M = speaker
 			var/idx = M.get_held_index_of_item(src)
 			// left hands are odd slots
-			if (idx && (idx % 2) == (message_mode == MODE_L_HAND))
+			if (idx && (idx % 2) == (message_mods[RADIO_EXTENSION] == MODE_L_HAND))
 				return
 
 	talk_into(speaker, raw_message, , spans, language=message_language)
@@ -353,18 +339,6 @@
 		. += "<span class='notice'>It can be attached and modified.</span>"
 	else
 		. += "<span class='notice'>It cannot be modified or attached.</span>"
-	. += "<span class='info'>Harm intent + alt-click to toggle music."
-	if(music_toggle)
-		. += "<span class ='notice'>Its music player is currently toggled <b>ON</b>.</span>"
-	else
-		. += "<span class ='notice'>Its music player is currently toggled <b>OFF</b>.</span>"
-	if(item_flags & IN_INVENTORY)
-		if(music_toggle)
-			if(istype(src, /obj/item/radio/headset))
-				if(item_action_slot_check(ITEM_SLOT_EARS, user))
-					. += "<span class ='notice'>Currently playing: [music_name] </span>"
-			else
-				. += "<span class ='notice'>Currently playing: [music_name] </span>"
 
 /obj/item/radio/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)
@@ -377,113 +351,27 @@
 	else
 		return ..()
 
-/obj/item/radio/emp_act(severity, mob/user)
+/obj/item/radio/emp_act(severity)
 	. = ..()
 	if (. & EMP_PROTECT_SELF)
 		return
 	emped++ //There's been an EMP; better count it
 	var/curremp = emped //Remember which EMP this was
-	if (listening && ismob(loc))	// if the radio is turned on and on someone's person they notice
+	if (listening && ismob(loc)) // if the radio is turned on and on someone's person they notice
 		to_chat(loc, "<span class='warning'>\The [src] overloads.</span>")
 	broadcasting = FALSE
 	listening = FALSE
-	music_toggle = 0 //Hippie
 	for (var/ch_name in channels)
 		channels[ch_name] = 0
 	on = FALSE
-	stopmusic(user) //Hippie
-	spawn(200)
-		if(emped == curremp) //Don't fix it if it's been EMP'd again
-			emped = 0
-			if (!istype(src, /obj/item/radio/intercom)) // intercoms will turn back on on their own
-				on = TRUE
+	addtimer(CALLBACK(src, .proc/end_emp_effect, curremp), 200)
 
-/obj/item/radio/AltClick(mob/living/user) //Hippie
-	..()
-	if(!istype(user) || !Adjacent(user) || user.incapacitated())
-		return
-	if(user.a_intent == INTENT_HARM)
-		if(music_toggle)
-			music_toggle = 0
-			stopmusic(user)
-			to_chat(user, "<span class ='notice'>[src]'s music player is now <b>OFF</b>. </span>")
-		else
-			music_toggle = 1
-			to_chat(user, "<span class ='notice'>[src]'s music player is now <b>ON</b>. </span>")
-		return
-
-
-//Hippie start
-
-/obj/item/radio/proc/avoiding_a_sleep(mob/living/user, music_filepath, name_of_music, music_volume)
-		music_name = name_of_music
-		user << sound(music_filepath, 0, 0, music_channel, music_volume) //plays the music to the user
-		music_playing = TRUE
-		to_chat(user, "<span class='robot'><b>[src]</b> beeps into your ears, 'Now playing: <i>[music_name]</i>.' </span>")
-		update_icon()
-
-/obj/item/radio/proc/playmusic(music_filepath, name_of_music, music_volume) //Plays music at src using the filepath to the audio file. This proc is directly working with the bluespace radio station at radio_station.dm
-	radio_music_file = music_filepath
-
-	var/atom/loc_layer = loc
-	while(istype(loc_layer, /atom/movable))
-		if(!istype(loc_layer, /mob/living))
-			loc_layer = loc_layer.loc
-		else
-			radio_holder = loc_layer
-			break
-	if(!loc_layer) //if loc is null then this proc doesn't need to continue
-		return
-	if(!istype(loc_layer, /mob/living)) //doesn't need to continue if not on a mob
-		return
-
-	if(music_toggle == 1) //Music player is on
-		if(istype(src, /obj/item/radio/headset))
-			if(!(radio_holder.get_item_by_slot(ITEM_SLOT_EARS) == src)) //only want headsets to play music if they're equipped
-				return
-		stopmusic(radio_holder) //stop the previously playing song to make way for the new one
-		addtimer(CALLBACK(src, .proc/avoiding_a_sleep, radio_holder, music_filepath, name_of_music, music_volume), 10)
-
-/obj/item/radio/proc/stopmusic(mob/living/user, music_turnoff_message_type)
-	if(music_playing)
-		music_playing = FALSE
-		update_icon()
-		user << sound(null, channel = music_channel)
-		user << sound('hippiestation/sound/effects/hitmarker.ogg', 0, 0, music_channel, 50)
-		music_name = ""
-		switch(music_turnoff_message_type)
-			if(1)
-				src.audible_message("<span class='robot'><b>[src]</b> beeps, '[src] removed, turning off music.' </span>")
-			if(2)
-				src.audible_message("<span class='robot'><b>[src]</b> beeps, 'Music toggled off.' </span>") //Unused message
-			if(3)
-				src.audible_message("<span class='robot'><b>[src]</b> beeps, 'Signal interrupted.' </span>")
-		music_playing = FALSE
-
-/obj/item/radio/update_icon()
-	cut_overlays()
-	if(music_playing)
-		add_overlay("sound_fx")
-
-/obj/item/radio/doStrip(mob/user)
-	..()
-	stopmusic(user, 1)
-
-/obj/item/radio/dropped(mob/user)
-	..()
-	addtimer(CALLBACK(src, .proc/droppedStopMusic, user), 3)
-
-/obj/item/radio/proc/droppedStopMusic(mob/user)
-	for(var/i = 1, i <= user.contents.len, i++)
-		if(user.contents[i] == src)
-			return
-	if(item_flags & IN_INVENTORY)
-		return
-	if(loc == user)
-		return
-	stopmusic(user, 1)
-
-//Hippie end
+/obj/item/radio/proc/end_emp_effect(curremp)
+	if(emped != curremp) //Don't fix it if it's been EMP'd again
+		return FALSE
+	emped = FALSE
+	on = TRUE
+	return TRUE
 
 ///////////////////////////////
 //////////Borg Radios//////////
@@ -492,11 +380,17 @@
 
 /obj/item/radio/borg
 	name = "cyborg radio"
+	subspace_transmission = TRUE
 	subspace_switchable = TRUE
 	dog_fashion = null
 
-/obj/item/radio/borg/Initialize(mapload)
+/obj/item/radio/borg/resetChannels()
 	. = ..()
+
+	var/mob/living/silicon/robot/R = loc
+	if(istype(R))
+		for(var/ch_name in R.model.radio_channels)
+			channels[ch_name] = 1
 
 /obj/item/radio/borg/syndicate
 	syndie = 1
@@ -540,6 +434,6 @@
 		recalculateChannels()
 
 
-/obj/item/radio/off	// Station bounced radios, their only difference is spawning with the speakers off, this was made to help the lag.
-	listening = 0			// And it's nice to have a subtype too for future features.
+/obj/item/radio/off // Station bounced radios, their only difference is spawning with the speakers off, this was made to help the lag.
+	listening = 0 // And it's nice to have a subtype too for future features.
 	dog_fashion = /datum/dog_fashion/back

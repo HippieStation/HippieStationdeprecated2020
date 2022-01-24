@@ -18,17 +18,19 @@
 	user_by_item -= target
 
 /datum/element/earhealing/proc/equippedChanged(datum/source, mob/living/carbon/user, slot)
+	SIGNAL_HANDLER
+
 	if(slot == ITEM_SLOT_EARS && istype(user))
 		user_by_item[source] = user
 	else
 		user_by_item -= source
 
-/datum/element/earhealing/process()
+/datum/element/earhealing/process(delta_time)
 	for(var/i in user_by_item)
 		var/mob/living/carbon/user = user_by_item[i]
-		if(HAS_TRAIT(user, TRAIT_DEAF))
-			continue
 		var/obj/item/organ/ears/ears = user.getorganslot(ORGAN_SLOT_EARS)
-		if (ears)
-			ears.deaf = max(ears.deaf - 1, (ears.ear_damage < UNHEALING_EAR_DAMAGE ? 0 : 1)) // Do not clear deafness while above the unhealing ear damage threshold
-			ears.ear_damage = max(ears.ear_damage - 0.1, 0)
+		if(!ears || HAS_TRAIT_NOT_FROM(user, TRAIT_DEAF, EAR_DAMAGE))
+			continue
+		ears.deaf = max(ears.deaf - 0.25 * delta_time, (ears.damage < ears.maxHealth ? 0 : 1)) // Do not clear deafness if our ears are too damaged
+		ears.damage = max(ears.damage - 0.025 * delta_time, 0)
+		CHECK_TICK

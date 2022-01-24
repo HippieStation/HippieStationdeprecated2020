@@ -4,7 +4,7 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mopbucket"
 	density = TRUE
-	var/amount_per_transfer_from_this = 5	//shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
+	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
 
 /obj/structure/mopbucket/Initialize()
@@ -18,13 +18,13 @@
 		else
 			reagents.trans_to(I, 5, transfered_by = user)
 			to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 			update_icon()
 	else
 		. = ..()
 		update_icon()
 
-/obj/structure/mopbucket/update_icon()
-	cut_overlays()
+/obj/structure/mopbucket/update_overlays()
+	. = ..()
 	if(reagents.total_volume > 0)
-		add_overlay("mopbucket_water")
+		. += "mopbucket_water"

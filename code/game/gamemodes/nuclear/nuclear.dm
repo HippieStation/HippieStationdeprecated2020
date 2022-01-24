@@ -4,7 +4,7 @@
 	report_type = "nuclear"
 	false_report_weight = 10
 	required_players = 30 // 30 players - 3 players to be the nuke ops = 27 players remaining
-	required_enemies = 1
+	required_enemies = 2
 	recommended_enemies = 5
 	antag_flag = ROLE_OPERATIVE
 	enemy_minimum_age = 14
@@ -54,11 +54,6 @@
 	..()
 	nukes_left--
 
-/datum/game_mode/nuclear/check_win()
-	if (nukes_left == 0)
-		return TRUE
-	return ..()
-
 /datum/game_mode/nuclear/check_finished()
 	//Keep the round going if ops are dead but bomb is ticking.
 	if(nuke_team.operatives_dead())
@@ -69,7 +64,7 @@
 
 /datum/game_mode/nuclear/set_round_result()
 	..()
-	var result = nuke_team.get_result()
+	var/result = nuke_team.get_result()
 	switch(result)
 		if(NUKE_RESULT_FLUKE)
 			SSticker.mode_result = "loss - syndicate nuked - disk secured"
@@ -115,30 +110,31 @@
 
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/combat
+	gloves =  /obj/item/clothing/gloves/combat
 	back = /obj/item/storage/backpack/fireproof
 	ears = /obj/item/radio/headset/syndicate/alt
-	l_pocket = /obj/item/reagent_containers/food/snacks/donkpocket/warm // hippie -- had to replace the syndie-lad with something!
+	l_pocket = /obj/item/modular_computer/tablet/nukeops
 	id = /obj/item/card/id/syndicate
 	belt = /obj/item/gun/ballistic/automatic/pistol
-	backpack_contents = list(/obj/item/storage/box/syndie=1,\
+	backpack_contents = list(/obj/item/storage/box/survival/syndie=1,\
 		/obj/item/kitchen/knife/combat/survival)
+
+	skillchips = list(/obj/item/skillchip/disk_verifier)
 
 	var/tc = 25
 	var/command_radio = FALSE
-	var/uplink_type = /obj/item/clothing/gloves/syndielad/nuke // hippie -- changed from regular station bounced radio to a syndielad
+	var/uplink_type = /obj/item/uplink/nuclear
 
 
 /datum/outfit/syndicate/leader
 	name = "Syndicate Leader - Basic"
 	id = /obj/item/card/id/syndicate/nuke_leader
 	gloves = /obj/item/clothing/gloves/krav_maga/combatglovesplus
-	r_hand = /obj/item/nuclear_challenge
 	command_radio = TRUE
 
 /datum/outfit/syndicate/no_crystals
 	name = "Syndicate Operative - Reinforcement"
 	tc = 0
-	l_pocket = /obj/item/pinpointer/nuke/syndicate
 
 /datum/outfit/syndicate/post_equip(mob/living/carbon/human/H)
 	var/obj/item/radio/R = H.ears
@@ -168,7 +164,7 @@
 	internals_slot = ITEM_SLOT_RPOCKET
 	belt = /obj/item/storage/belt/military
 	r_hand = /obj/item/gun/ballistic/shotgun/bulldog
-	backpack_contents = list(/obj/item/storage/box/syndie=1,\
+	backpack_contents = list(/obj/item/storage/box/survival/syndie=1,\
 		/obj/item/tank/jetpack/oxygen/harness=1,\
 		/obj/item/gun/ballistic/automatic/pistol=1,\
 		/obj/item/kitchen/knife/combat/survival)

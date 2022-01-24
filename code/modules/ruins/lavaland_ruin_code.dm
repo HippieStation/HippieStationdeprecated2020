@@ -1,7 +1,15 @@
 //If you're looking for spawners like ash walker eggs, check ghost_role_spawners.dm
 
-/obj/structure/fans/tiny/invisible //For blocking air in ruin doorways
-	invisibility = INVISIBILITY_ABSTRACT
+///Wizard tower item
+/obj/item/disk/design_disk/adv/knight_gear
+	name = "Magic Disk of Smithing"
+
+/obj/item/disk/design_disk/adv/knight_gear/Initialize()
+	. = ..()
+	var/datum/design/knight_armour/A = new
+	var/datum/design/knight_helmet/H = new
+	blueprints[1] = A
+	blueprints[2] = H
 
 //lavaland_surface_seed_vault.dmm
 //Seed Vault
@@ -34,7 +42,7 @@
 	desc = "Allows for the construction of a Golem Shell."
 	id = "golem"
 	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 40000)
+	materials = list(/datum/material/iron = 40000)
 	build_path = /obj/item/golem_shell
 	category = list("Imported")
 
@@ -50,35 +58,34 @@
 /obj/item/golem_shell/attackby(obj/item/I, mob/user, params)
 	..()
 	var/static/list/golem_shell_species_types = list(
-		/obj/item/stack/sheet/metal	                = /datum/species/golem,
-		/obj/item/stack/sheet/glass 	            = /datum/species/golem/glass,
-		/obj/item/stack/sheet/plasteel 	            = /datum/species/golem/plasteel,
-		/obj/item/stack/sheet/mineral/sandstone	    = /datum/species/golem/sand,
-		/obj/item/stack/sheet/mineral/plasma	    = /datum/species/golem/plasma,
-		/obj/item/stack/sheet/mineral/diamond	    = /datum/species/golem/diamond,
-		/obj/item/stack/sheet/mineral/gold	        = /datum/species/golem/gold,
-		/obj/item/stack/sheet/mineral/silver	    = /datum/species/golem/silver,
-		/obj/item/stack/sheet/mineral/uranium	    = /datum/species/golem/uranium,
-		/obj/item/stack/sheet/mineral/bananium	    = /datum/species/golem/bananium,
-		/obj/item/stack/sheet/mineral/titanium	    = /datum/species/golem/titanium,
-		/obj/item/stack/sheet/mineral/plastitanium	= /datum/species/golem/plastitanium,
-		/obj/item/stack/sheet/mineral/abductor	    = /datum/species/golem/alloy,
-		/obj/item/stack/sheet/mineral/wood	        = /datum/species/golem/wood,
-		/obj/item/stack/sheet/bluespace_crystal	    = /datum/species/golem/bluespace,
-		/obj/item/stack/sheet/runed_metal	        = /datum/species/golem/runic,
-		/obj/item/stack/medical/gauze	            = /datum/species/golem/cloth,
-		/obj/item/stack/sheet/cloth	                = /datum/species/golem/cloth,
-		/obj/item/stack/sheet/mineral/adamantine	= /datum/species/golem/adamantine,
-		/obj/item/stack/sheet/plastic	            = /datum/species/golem/plastic,
-		/obj/item/stack/tile/brass					= /datum/species/golem/clockwork,
-		/obj/item/stack/tile/bronze					= /datum/species/golem/bronze,
-		/obj/item/stack/sheet/cardboard				= /datum/species/golem/cardboard,
-		/obj/item/stack/sheet/leather				= /datum/species/golem/leather,
-		/obj/item/stack/sheet/bone					= /datum/species/golem/bone,
-		/obj/item/stack/sheet/cloth/durathread		= /datum/species/golem/durathread,
-		/obj/item/stack/sheet/cotton/durathread		= /datum/species/golem/durathread,
-		/obj/item/stack/sheet/capitalisium			= /datum/species/golem/capitalist,
-		/obj/item/stack/sheet/stalinium				= /datum/species/golem/soviet)
+		/obj/item/stack/sheet/iron                 = /datum/species/golem,
+		/obj/item/stack/sheet/glass             = /datum/species/golem/glass,
+		/obj/item/stack/sheet/plasteel             = /datum/species/golem/plasteel,
+		/obj/item/stack/sheet/mineral/sandstone     = /datum/species/golem/sand,
+		/obj/item/stack/sheet/mineral/plasma     = /datum/species/golem/plasma,
+		/obj/item/stack/sheet/mineral/diamond     = /datum/species/golem/diamond,
+		/obj/item/stack/sheet/mineral/gold         = /datum/species/golem/gold,
+		/obj/item/stack/sheet/mineral/silver     = /datum/species/golem/silver,
+		/obj/item/stack/sheet/mineral/uranium     = /datum/species/golem/uranium,
+		/obj/item/stack/sheet/mineral/bananium     = /datum/species/golem/bananium,
+		/obj/item/stack/sheet/mineral/titanium     = /datum/species/golem/titanium,
+		/obj/item/stack/sheet/mineral/plastitanium = /datum/species/golem/plastitanium,
+		/obj/item/stack/sheet/mineral/abductor     = /datum/species/golem/alloy,
+		/obj/item/stack/sheet/mineral/wood         = /datum/species/golem/wood,
+		/obj/item/stack/sheet/bluespace_crystal     = /datum/species/golem/bluespace,
+		/obj/item/stack/sheet/runed_metal         = /datum/species/golem/runic,
+		/obj/item/stack/medical/gauze             = /datum/species/golem/cloth,
+		/obj/item/stack/sheet/cloth                 = /datum/species/golem/cloth,
+		/obj/item/stack/sheet/mineral/adamantine = /datum/species/golem/adamantine,
+		/obj/item/stack/sheet/plastic             = /datum/species/golem/plastic,
+		/obj/item/stack/tile/bronze = /datum/species/golem/bronze,
+		/obj/item/stack/sheet/cardboard = /datum/species/golem/cardboard,
+		/obj/item/stack/sheet/leather = /datum/species/golem/leather,
+		/obj/item/stack/sheet/bone = /datum/species/golem/bone,
+		/obj/item/stack/sheet/durathread = /datum/species/golem/durathread,
+		/obj/item/stack/sheet/cotton/durathread = /datum/species/golem/durathread,
+		/obj/item/stack/sheet/mineral/snow = /datum/species/golem/snow,
+		/obj/item/stack/sheet/mineral/metal_hydrogen= /datum/species/golem/mhydrogen)
 
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/O = I
@@ -104,6 +111,7 @@
 	name = "Syndicate Bioweapon Scientist"
 	roundstart = FALSE
 	death = FALSE
+	random = TRUE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	short_desc = "You are a syndicate science technician, employed in a top secret research facility developing biological weapons."
@@ -113,7 +121,7 @@
 	assignedrole = "Lavaland Syndicate"
 
 /obj/effect/mob_spawn/human/lavaland_syndicate/special(mob/living/new_spawn)
-	new_spawn.grant_language(/datum/language/codespeak)
+	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
 
 /datum/outfit/lavaland_syndicate
 	name = "Lavaland Syndicate Agent"
@@ -121,7 +129,7 @@
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/combat
-	gloves = /obj/item/clothing/gloves/combat
+	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	ears = /obj/item/radio/headset/syndicate/alt
 	back = /obj/item/storage/backpack
 	r_pocket = /obj/item/gun/ballistic/automatic/pistol

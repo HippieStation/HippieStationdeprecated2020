@@ -1,10 +1,9 @@
 #define BP_MAX_ROOM_SIZE 300
 
-GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(/area/engine/engineering, \
-															    /area/engine/supermatter, \
-															    /area/engine/atmospherics_engine, \
-															    /area/ai_monitored/turret_protected/ai, \
-																/area/engine/gravity_generator)) // hippie edit -- adds gravity room
+GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(/area/engineering/main, \
+															    /area/engineering/supermatter, \
+															    /area/engineering/atmospherics_engine, \
+															    /area/ai_monitored/turret_protected/ai))
 
 // Gets an atmos isolated contained space
 // Returns an associative list of turf|dirs pairs
@@ -63,7 +62,7 @@ GLOBAL_LIST_INIT(typecache_powerfailure_safe_areas, typecacheof(/area/engine/eng
 		var/area/place = get_area(turfs[i])
 		if(blacklisted_areas[place.type])
 			continue
-		if(!place.requires_power || place.noteleport || place.hidden)
+		if(!place.requires_power || (place.area_flags & NOTELEPORT) || (place.area_flags & HIDDEN_AREA))
 			continue // No expanding powerless rooms etc
 		areas[place.name] = place
 	var/area_choice = input(creator, "Choose an area to expand or make a new area.", "Area Expansion") as null|anything in areas

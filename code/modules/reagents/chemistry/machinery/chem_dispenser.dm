@@ -22,19 +22,19 @@
 	interaction_flags_machine = INTERACT_MACHINE_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OFFLINE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	circuit = /obj/item/circuitboard/machine/chem_dispenser
-	ui_x = 565
-	ui_y = 620
+	processing_flags = NONE
 
 	var/obj/item/stock_parts/cell/cell
 	var/powerefficiency = 0.1
 	var/amount = 30
 	var/recharge_amount = 10
 	var/recharge_counter = 0
+	///If the UI has the pH meter shown
+	var/show_ph = TRUE
 	var/mutable_appearance/beaker_overlay
 	var/working_state = "dispenser_working"
 	var/nopower_state = "dispenser_nopower"
 	var/has_panel_overlay = TRUE
-	var/macroresolution = 1
 	var/obj/item/reagent_containers/beaker = null
 	//dispensable_reagents is copypasted in plumbing synthesizers. Please update accordingly. (I didn't make it global because that would limit custom chem dispensers)
 	var/list/dispensable_reagents = list(
@@ -56,7 +56,6 @@
 		/datum/reagent/potassium,
 		/datum/reagent/uranium/radium,
 		/datum/reagent/silicon,
-		/datum/reagent/silver,
 		/datum/reagent/sodium,
 		/datum/reagent/stable_plasma,
 		/datum/reagent/consumable/sugar,
@@ -71,7 +70,7 @@
 		/datum/reagent/ammonia,
 		/datum/reagent/ash,
 		/datum/reagent/diethylamine,
-		/datum/reagent/oil,
+		/datum/reagent/fuel/oil,
 		/datum/reagent/saltpetre
 	)
 	var/list/emagged_reagents = list(
@@ -82,6 +81,8 @@
 		/datum/reagent/toxin
 	)
 
+	var/list/recording_recipe
+
 	var/list/saved_recipes = list()
 
 /obj/machinery/chem_dispenser/Initialize()
@@ -91,6 +92,8 @@
 		emagged_reagents = sortList(emagged_reagents, /proc/cmp_reagents_asc)
 	if(upgrade_reagents)
 		upgrade_reagents = sortList(upgrade_reagents, /proc/cmp_reagents_asc)
+	if(is_operational)
+		begin_processing()
 	update_icon()
 
 /obj/machinery/chem_dispenser/Destroy()
@@ -103,19 +106,26 @@
 	if(panel_open)
 		. += "<span class='notice'>[src]'s maintenance hatch is open!</span>"
 	if(in_range(user, src) || isobserver(user))
-		. += {"<span class='notice'>The status display reads: <br>Recharging <b>[recharge_amount]</b> power units per interval.<br>Power efficiency increased by <b>
-		[round((powerefficiency*1000)-100, 1)]%</b>.<br>Macro granularity at <b>[macroresolution]u</b>.<span>"}
+		. += "<span class='notice'>The status display reads:\n\
+		Recharging <b>[recharge_amount]</b> power units per interval.\n\
+		Power efficiency increased by <b>[round((powerefficiency*1000)-100, 1)]%</b>.</span>"
 
-/obj/machinery/chem_dispenser/process()
-	if (recharge_counter >= 4)
-		if(!is_operational())
-			return
+
+/obj/machinery/chem_dispenser/on_set_is_operational(old_value)
+	if(old_value) //Turned off
+		end_processing()
+	else //Turned on
+		begin_processing()
+
+
+/obj/machinery/chem_dispenser/process(delta_time)
+	if (recharge_counter >= 8)
 		var/usedpower = cell.give(recharge_amount)
 		if(usedpower)
 			use_power(250*recharge_amount)
 		recharge_counter = 0
 		return
-	recharge_counter++
+	recharge_counter += delta_time
 
 /obj/machinery/chem_dispenser/proc/display_beaker()
 	var/mutable_appearance/b_o = beaker_overlay || mutable_appearance(icon, "disp_beaker")
@@ -127,16 +137,17 @@
 	if(working_state)
 		flick(working_state,src)
 
-/obj/machinery/chem_dispenser/update_icon()
-	cut_overlays()
+/obj/machinery/chem_dispenser/update_icon_state()
 	icon_state = "[(nopower_state && !powered()) ? nopower_state : initial(icon_state)]"
+
+/obj/machinery/chem_dispenser/update_overlays()
+	. = ..()
 	if(has_panel_overlay && panel_open)
-		add_overlay(mutable_appearance(icon, "[initial(icon_state)]_panel-o"))
+		. += mutable_appearance(icon, "[initial(icon_state)]_panel-o")
 
 	if(beaker)
 		beaker_overlay = display_beaker()
-		add_overlay(beaker_overlay)
-
+		. += beaker_overlay
 
 
 /obj/machinery/chem_dispenser/emag_act(mob/user)
@@ -156,11 +167,11 @@
 	if(beaker)
 		switch(severity)
 			if(EXPLODE_DEVASTATE)
-				SSexplosions.highobj += beaker
+				SSexplosions.high_mov_atom += beaker
 			if(EXPLODE_HEAVY)
-				SSexplosions.medobj += beaker
+				SSexplosions.med_mov_atom += beaker
 			if(EXPLODE_LIGHT)
-				SSexplosions.lowobj += beaker
+				SSexplosions.low_mov_atom += beaker
 
 /obj/machinery/chem_dispenser/handle_atom_del(atom/A)
 	..()
@@ -168,11 +179,10 @@
 		beaker = null
 		cut_overlays()
 
-/obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/chem_dispenser/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "chem_dispenser", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "ChemDispenser", name)
 		if(user.hallucinating())
 			ui.set_autoupdate(FALSE) //to not ruin the immersion by constantly changing the fake chemicals
 		ui.open()
@@ -183,26 +193,28 @@
 	data["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
 	data["maxEnergy"] = cell.maxcharge * powerefficiency
 	data["isBeakerLoaded"] = beaker ? 1 : 0
+	data["showpH"] = show_ph
 
 	var/beakerContents[0]
 	var/beakerCurrentVolume = 0
 	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
-			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
+			beakerContents.Add(list(list("name" = R.name, "volume" = round(R.volume, 0.01), "pH" = R.ph, "purity" = R.purity))) // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume
 	data["beakerContents"] = beakerContents
 
 	if (beaker)
-		data["beakerCurrentVolume"] = beakerCurrentVolume
+		data["beakerCurrentVolume"] = round(beakerCurrentVolume, 0.01)
 		data["beakerMaxVolume"] = beaker.volume
 		data["beakerTransferAmounts"] = beaker.possible_transfer_amounts
+		data["beakerCurrentpH"] = round(beaker.reagents.ph, 0.01)
 	else
 		data["beakerCurrentVolume"] = null
 		data["beakerMaxVolume"] = null
 		data["beakerTransferAmounts"] = null
+		data["beakerCurrentpH"] = null
 
 	var/chemicals[0]
-	var/recipes[0]
 	var/is_hallucinating = FALSE
 	if(user.hallucinating())
 		is_hallucinating = TRUE
@@ -212,19 +224,20 @@
 			var/chemname = temp.name
 			if(is_hallucinating && prob(5))
 				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name))))
-	for(var/recipe in saved_recipes)
-		recipes.Add(list(recipe))
+			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name), "pH" = temp.ph, "pHCol" = ConvertpHToCol(temp.ph))))
 	data["chemicals"] = chemicals
-	data["recipes"] = recipes
+	data["recipes"] = saved_recipes
+
+	data["recordingRecipe"] = recording_recipe
 	return data
 
 /obj/machinery/chem_dispenser/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("amount")
-			if(!is_operational() || QDELETED(beaker))
+			if(!is_operational || QDELETED(beaker))
 				return
 			var/target = text2num(params["target"])
 			if(target in beaker.possible_transfer_amounts)
@@ -232,22 +245,27 @@
 				work_animation()
 				. = TRUE
 		if("dispense")
-			if(!is_operational() || QDELETED(cell))
+			if(!is_operational || QDELETED(cell))
 				return
-			var/reagent = GLOB.name2reagent[params["reagent"]]
-			if(beaker && dispensable_reagents.Find(reagent))
-				var/datum/reagents/R = beaker.reagents
-				var/free = R.maximum_volume - R.total_volume
-				var/actual = min(amount, (cell.charge * powerefficiency)*10, free)
+			var/reagent_name = params["reagent"]
+			if(!recording_recipe)
+				var/reagent = GLOB.name2reagent[reagent_name]
+				if(beaker && dispensable_reagents.Find(reagent))
+					var/datum/reagents/R = beaker.reagents
+					var/free = R.maximum_volume - R.total_volume
+					var/actual = min(amount, (cell.charge * powerefficiency)*10, free)
 
-				if(!cell.use(actual / powerefficiency))
-					say("Not enough energy to complete operation!")
-					return
-				R.add_reagent(reagent, actual)
-				work_animation()
-				. = TRUE
+					if(!cell.use(actual / powerefficiency))
+						say("Not enough energy to complete operation!")
+						return
+					R.add_reagent(reagent, actual)
+
+					work_animation()
+			else
+				recording_recipe[reagent_name] += amount
+			. = TRUE
 		if("remove")
-			if(!is_operational())
+			if(!is_operational || recording_recipe)
 				return
 			var/amount = text2num(params["amount"])
 			if(beaker && (amount in beaker.possible_transfer_amounts))
@@ -258,62 +276,67 @@
 			replace_beaker(usr)
 			. = TRUE
 		if("dispense_recipe")
-			if(!is_operational() || QDELETED(cell))
+			if(!is_operational || QDELETED(cell))
 				return
-			var/recipe_to_use = params["recipe"]
-			var/list/chemicals_to_dispense = process_recipe_list(recipe_to_use)
-			for(var/key in chemicals_to_dispense) // i suppose you could edit the list locally before passing it
-				var/list/keysplit = splittext(key," ")
-				var/r_id = GLOB.name2reagent[translate_legacy_chem_id(keysplit[1])]
-				if(beaker && dispensable_reagents.Find(r_id)) // but since we verify we have the reagent, it'll be fine
+			var/list/chemicals_to_dispense = saved_recipes[params["recipe"]]
+			if(!LAZYLEN(chemicals_to_dispense))
+				return
+			for(var/key in chemicals_to_dispense)
+				var/reagent = GLOB.name2reagent[translate_legacy_chem_id(key)]
+				var/dispense_amount = chemicals_to_dispense[key]
+				if(!dispensable_reagents.Find(reagent))
+					return
+				if(!recording_recipe)
+					if(!beaker)
+						return
 					var/datum/reagents/R = beaker.reagents
 					var/free = R.maximum_volume - R.total_volume
-					var/rounded = is_resolution(chemicals_to_dispense[key]) ? chemicals_to_dispense[key] : round(chemicals_to_dispense[key], macroresolution)
-					var/actual = min(rounded, (cell.charge * powerefficiency)*10, free)
+					var/actual = min(dispense_amount, (cell.charge * powerefficiency)*10, free)
 					if(actual)
-						if(!cell.use(abs(actual) / powerefficiency))
+						if(!cell.use(actual / powerefficiency))
 							say("Not enough energy to complete operation!")
 							return
-						if(actual > 0)
-							R.add_reagent(r_id, actual)
-						if(actual < 0)
-							R.remove_reagent(r_id, abs(actual))
+						R.add_reagent(reagent, actual)
 						work_animation()
+				else
+					recording_recipe[key] += dispense_amount
+			. = TRUE
 		if("clear_recipes")
-			if(!is_operational())
+			if(!is_operational)
 				return
 			var/yesno = alert("Clear all recipes?",, "Yes","No")
 			if(yesno == "Yes")
 				saved_recipes = list()
-		if("add_recipe")
-			if(!is_operational())
+			. = TRUE
+		if("record_recipe")
+			if(!is_operational)
+				return
+			recording_recipe = list()
+			. = TRUE
+		if("save_recording")
+			if(!is_operational)
 				return
 			var/name = stripped_input(usr,"Name","What do you want to name this recipe?", "Recipe", MAX_NAME_LEN)
-			var/recipe = stripped_input(usr,"Recipe","Insert recipe with chem IDs")
 			if(!usr.canUseTopic(src, !issilicon(usr)))
 				return
-			if(name && recipe)
-				var/list/first_process = splittext(recipe, ";")
-				if(!LAZYLEN(first_process))
-					return
-				var/resmismatch = FALSE
-				for(var/reagents in first_process)
-					var/list/reagent = splittext(reagents, "=")
-					var/amt = text2num(reagent[2]) || 0
-					var/reagent_id = GLOB.name2reagent[translate_legacy_chem_id(reagent[1])]
-					if(dispensable_reagents.Find(reagent_id) || (reagent_id && amt < 0))
-						if (!resmismatch && !check_macro_part(reagents))
-							resmismatch = TRUE
-						continue
-					else
-						var/chemid = reagent[1]
-						visible_message("<span class='warning'>[src] buzzes.</span>", "<span class='italics'>You hear a faint buzz.</span>")
-						to_chat(usr, "<span class='danger'>[src] cannot find Chemical ID: <b>[chemid]</b>!</span>")
-						playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
+			if(saved_recipes[name] && alert("\"[name]\" already exists, do you want to overwrite it?",, "Yes", "No") == "No")
+				return
+			if(name && recording_recipe)
+				for(var/reagent in recording_recipe)
+					var/reagent_id = GLOB.name2reagent[translate_legacy_chem_id(reagent)]
+					if(!dispensable_reagents.Find(reagent_id))
+						visible_message("<span class='warning'>[src] buzzes.</span>", "<span class='hear'>You hear a faint buzz.</span>")
+						to_chat(usr, "<span class ='danger'>[src] cannot find <b>[reagent]</b>!</span>")
+						playsound(src, 'sound/machines/buzz-two.ogg', 50, TRUE)
 						return
-				if (resmismatch && alert("[src] is not yet capable of replicating this recipe with the precision it needs, do you want to save it anyway?",, "Yes","No") == "No")
-					return
-				saved_recipes += list(list("recipe_name" = name, "contents" = recipe))
+				saved_recipes[name] = recording_recipe
+				recording_recipe = null
+				. = TRUE
+		if("cancel_recording")
+			if(!is_operational)
+				return
+			recording_recipe = null
+			. = TRUE
 
 /obj/machinery/chem_dispenser/attackby(obj/item/I, mob/user, params)
 	if(default_unfasten_wrench(user, I))
@@ -331,7 +354,6 @@
 		replace_beaker(user, B)
 		to_chat(user, "<span class='notice'>You add [B] to [src].</span>")
 		updateUsrDialog()
-		update_icon()
 	else if(user.a_intent != INTENT_HARM && !istype(I, /obj/item/card/emag))
 		to_chat(user, "<span class='warning'>You can't load [I] into [src]!</span>")
 		return ..()
@@ -348,13 +370,13 @@
 	var/list/datum/reagents/R = list()
 	var/total = min(rand(7,15), FLOOR(cell.charge*powerefficiency, 1))
 	var/datum/reagents/Q = new(total*10)
-	if(beaker && beaker.reagents)
+	if(beaker?.reagents)
 		R += beaker.reagents
 	for(var/i in 1 to total)
 		Q.add_reagent(pick(dispensable_reagents), 10)
 	R += Q
 	chem_splash(get_turf(src), 3, R)
-	if(beaker && beaker.reagents)
+	if(beaker?.reagents)
 		beaker.reagents.remove_all()
 	cell.use(total/powerefficiency)
 	cell.emp_act(severity)
@@ -364,7 +386,6 @@
 /obj/machinery/chem_dispenser/RefreshParts()
 	recharge_amount = initial(recharge_amount)
 	var/newpowereff = 0.0666666
-	macroresolution = 5
 	for(var/obj/item/stock_parts/cell/P in component_parts)
 		cell = P
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
@@ -372,23 +393,46 @@
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		recharge_amount *= C.rating
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		if (M.rating > 1)
-			macroresolution -= M.rating		//5 for t1, 3 for t2, 2 for t3, 1 for t4
 		if (M.rating > 3)
 			dispensable_reagents |= upgrade_reagents
 	powerefficiency = round(newpowereff, 0.01)
 
 /obj/machinery/chem_dispenser/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
+	if(!user)
+		return FALSE
 	if(beaker)
-		beaker.forceMove(drop_location())
-		if(user && Adjacent(user) && !issiliconoradminghost(user))
-			user.put_in_hands(beaker)
+		try_put_in_hand(beaker, user)
+		beaker = null
 	if(new_beaker)
 		beaker = new_beaker
-	else
-		beaker = null
 	update_icon()
 	return TRUE
+
+//Converts the pH into a tgui readable color
+/obj/machinery/chem_dispenser/proc/ConvertpHToCol(pH)
+	switch(pH)
+		if(-INFINITY to 1)
+			return "red"
+		if(1 to 2)
+			return "orange"
+		if(2 to 3)
+			return "average"
+		if(3 to 4)
+			return "yellow" 
+		if(4 to 5)
+			return "olive"
+		if(5 to 6)
+			return "good"
+		if(6 to 8)
+			return "green"
+		if(8 to 9.5)
+			return "teal"
+		if(9.5 to 11)
+			return "blue"
+		if(11 to 12.5)
+			return "violet"
+		if(12.5 to INFINITY)
+			return "purple"
 
 /obj/machinery/chem_dispenser/on_deconstruction()
 	cell = null
@@ -397,35 +441,11 @@
 		beaker = null
 	return ..()
 
-/obj/machinery/chem_dispenser/proc/check_macro(macro)
-	for (var/reagent in splittext(trim(macro), ";"))
-		if (!check_macro_part(reagent))
-			return FALSE
-	return TRUE
-
-/obj/machinery/chem_dispenser/proc/check_macro_part(var/part, var/res = macroresolution)
-	var/detail = splittext(part, "=")
-	return is_resolution(text2num(detail[2]), res)
-
-/obj/machinery/chem_dispenser/proc/is_resolution(var/amt, var/res = macroresolution)
-	. = FALSE
-	for(var/i in 5 to macroresolution step -1)
-		if(amt % i == 0)
-			return TRUE
-
-/obj/machinery/chem_dispenser/proc/process_recipe_list(var/recipe)
-	var/list/key_list = list()
-	var/list/final_list = list()
-	var/list/first_process = splittext(recipe, ";")
-	for(var/reagents in first_process)
-		var/list/splitreagent = splittext(reagents, "=")
-		final_list += list(avoid_assoc_duplicate_keys(splitreagent[1],key_list) = text2num(splitreagent[2]))
-	return final_list
-
 /obj/machinery/chem_dispenser/AltClick(mob/living/user)
-	..()
-	if(istype(user) && user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-		replace_beaker(user)
+	. = ..()
+	if(!can_interact(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+		return
+	replace_beaker(user)
 
 /obj/machinery/chem_dispenser/drinks/Initialize()
 	. = ..()
@@ -467,6 +487,7 @@
 	working_state = null
 	nopower_state = null
 	pass_flags = PASSTABLE
+	show_ph = FALSE
 	dispensable_reagents = list(
 		/datum/reagent/water,
 		/datum/reagent/consumable/ice,
@@ -484,6 +505,7 @@
 		/datum/reagent/consumable/pwr_game,
 		/datum/reagent/consumable/shamblers,
 		/datum/reagent/consumable/sugar,
+		/datum/reagent/consumable/pineapplejuice,
 		/datum/reagent/consumable/orangejuice,
 		/datum/reagent/consumable/grenadine,
 		/datum/reagent/consumable/limejuice,
@@ -507,14 +529,21 @@
 /obj/machinery/chem_dispenser/drinks/fullupgrade/Initialize()
 	. = ..()
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
+
+	// Cache the old_parts first, we'll delete it after we've changed component_parts to a new list.
+	// This stops handle_atom_del being called on every part when not necessary.
+	var/list/old_parts = component_parts.Copy()
+
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/machine/chem_dispenser/drinks(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
-	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
-	component_parts += new /obj/item/stack/sheet/glass(null)
-	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
+	component_parts += new /obj/item/circuitboard/machine/chem_dispenser/drinks(src)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(src)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(src)
+	component_parts += new /obj/item/stock_parts/capacitor/quadratic(src)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(src)
+	component_parts += new /obj/item/stack/sheet/glass(src, 1)
+	component_parts += new /obj/item/stock_parts/cell/bluespace(src)
+
+	QDEL_LIST(old_parts)
 	RefreshParts()
 
 /obj/machinery/chem_dispenser/drinks/beer
@@ -539,6 +568,7 @@
 		/datum/reagent/consumable/ethanol/hcider,
 		/datum/reagent/consumable/ethanol/creme_de_menthe,
 		/datum/reagent/consumable/ethanol/creme_de_cacao,
+		/datum/reagent/consumable/ethanol/creme_de_coconut,
 		/datum/reagent/consumable/ethanol/triple_sec,
 		/datum/reagent/consumable/ethanol/sake,
 		/datum/reagent/consumable/ethanol/applejack
@@ -560,14 +590,21 @@
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade/Initialize()
 	. = ..()
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
+
+	// Cache the old_parts first, we'll delete it after we've changed component_parts to a new list.
+	// This stops handle_atom_del being called on every part when not necessary.
+	var/list/old_parts = component_parts.Copy()
+
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/machine/chem_dispenser/drinks/beer(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
-	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
-	component_parts += new /obj/item/stack/sheet/glass(null)
-	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
+	component_parts += new /obj/item/circuitboard/machine/chem_dispenser/drinks/beer(src)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(src)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(src)
+	component_parts += new /obj/item/stock_parts/capacitor/quadratic(src)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(src)
+	component_parts += new /obj/item/stack/sheet/glass(src, 1)
+	component_parts += new /obj/item/stock_parts/cell/bluespace(src)
+
+	QDEL_LIST(old_parts)
 	RefreshParts()
 
 /obj/machinery/chem_dispenser/mutagen
@@ -601,14 +638,21 @@
 
 /obj/machinery/chem_dispenser/mutagensaltpeter/Initialize()
 	. = ..()
+
+	// Cache the old_parts first, we'll delete it after we've changed component_parts to a new list.
+	// This stops handle_atom_del being called on every part when not necessary.
+	var/list/old_parts = component_parts.Copy()
+
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
-	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
-	component_parts += new /obj/item/stack/sheet/glass(null)
-	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
+	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(src)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(src)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(src)
+	component_parts += new /obj/item/stock_parts/capacitor/quadratic(src)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(src)
+	component_parts += new /obj/item/stack/sheet/glass(src, 1)
+	component_parts += new /obj/item/stock_parts/cell/bluespace(src)
+
+	QDEL_LIST(old_parts)
 	RefreshParts()
 
 /obj/machinery/chem_dispenser/fullupgrade //fully ugpraded stock parts, emagged
@@ -619,12 +663,88 @@
 /obj/machinery/chem_dispenser/fullupgrade/Initialize()
 	. = ..()
 	dispensable_reagents |= emagged_reagents //adds emagged reagents
+
+	// Cache the old_parts first, we'll delete it after we've changed component_parts to a new list.
+	// This stops handle_atom_del being called on every part when not necessary.
+	var/list/old_parts = component_parts.Copy()
+
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(null)
-	component_parts += new /obj/item/stock_parts/capacitor/quadratic(null)
-	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
-	component_parts += new /obj/item/stack/sheet/glass(null)
-	component_parts += new /obj/item/stock_parts/cell/bluespace(null)
+	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(src)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(src)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(src)
+	component_parts += new /obj/item/stock_parts/capacitor/quadratic(src)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(src)
+	component_parts += new /obj/item/stack/sheet/glass(src, 1)
+	component_parts += new /obj/item/stock_parts/cell/bluespace(src)
+
+	QDEL_LIST(old_parts)
+	RefreshParts()
+
+/obj/machinery/chem_dispenser/abductor
+	name = "reagent synthesizer"
+	desc = "Synthesizes a variety of reagents using proto-matter."
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "chem_dispenser"
+	has_panel_overlay = FALSE
+	circuit = /obj/item/circuitboard/machine/chem_dispenser/abductor
+	working_state = null
+	nopower_state = null
+	dispensable_reagents = list(
+		/datum/reagent/aluminium,
+		/datum/reagent/bromine,
+		/datum/reagent/carbon,
+		/datum/reagent/chlorine,
+		/datum/reagent/copper,
+		/datum/reagent/consumable/ethanol,
+		/datum/reagent/fluorine,
+		/datum/reagent/hydrogen,
+		/datum/reagent/iodine,
+		/datum/reagent/iron,
+		/datum/reagent/lithium,
+		/datum/reagent/mercury,
+		/datum/reagent/nitrogen,
+		/datum/reagent/oxygen,
+		/datum/reagent/phosphorus,
+		/datum/reagent/potassium,
+		/datum/reagent/uranium/radium,
+		/datum/reagent/silicon,
+		/datum/reagent/silver,
+		/datum/reagent/sodium,
+		/datum/reagent/stable_plasma,
+		/datum/reagent/consumable/sugar,
+		/datum/reagent/sulfur,
+		/datum/reagent/toxin/acid,
+		/datum/reagent/water,
+		/datum/reagent/fuel,
+		/datum/reagent/acetone,
+		/datum/reagent/ammonia,
+		/datum/reagent/ash,
+		/datum/reagent/diethylamine,
+		/datum/reagent/fuel/oil,
+		/datum/reagent/saltpetre,
+		/datum/reagent/medicine/mine_salve,
+		/datum/reagent/medicine/morphine,
+		/datum/reagent/drug/space_drugs,
+		/datum/reagent/toxin,
+		/datum/reagent/toxin/plasma,
+		/datum/reagent/uranium
+	)
+
+/obj/machinery/chem_dispenser/abductor/Initialize()
+	. = ..()
+
+	// Cache the old_parts first, we'll delete it after we've changed component_parts to a new list.
+	// This stops handle_atom_del being called on every part when not necessary.
+	var/list/old_parts = component_parts.Copy()
+
+	component_parts = list()
+	component_parts += new /obj/item/circuitboard/machine/chem_dispenser(src)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(src)
+	component_parts += new /obj/item/stock_parts/matter_bin/bluespace(src)
+	component_parts += new /obj/item/stock_parts/capacitor/quadratic(src)
+	component_parts += new /obj/item/stock_parts/manipulator/femto(src)
+	component_parts += new /obj/item/stack/sheet/glass(src, 1)
+	component_parts += new /obj/item/stock_parts/cell/bluespace(src)
+
+	QDEL_LIST(old_parts)
 	RefreshParts()

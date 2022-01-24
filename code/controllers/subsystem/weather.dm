@@ -31,8 +31,7 @@ SUBSYSTEM_DEF(weather)
 		run_weather(W, list(text2num(z)))
 		eligible_zlevels -= z
 		var/randTime = rand(3000, 6000)
-		addtimer(CALLBACK(src, .proc/make_eligible, z, possible_weather), randTime + initial(W.weather_duration_upper), TIMER_UNIQUE) //Around 5-10 minutes between weathers
-		next_hit_by_zlevel["[z]"] = world.time + randTime + initial(W.telegraph_duration)
+		next_hit_by_zlevel["[z]"] = addtimer(CALLBACK(src, .proc/make_eligible, z, possible_weather), randTime + initial(W.weather_duration_upper), TIMER_UNIQUE|TIMER_STOPPABLE) //Around 5-10 minutes between weathers
 
 /datum/controller/subsystem/weather/Initialize(start_timeofday)
 	for(var/V in subtypesof(/datum/weather))
@@ -72,10 +71,10 @@ SUBSYSTEM_DEF(weather)
 	next_hit_by_zlevel["[z]"] = null
 
 /datum/controller/subsystem/weather/proc/get_weather(z, area/active_area)
-    var/datum/weather/A
-    for(var/V in processing)
-        var/datum/weather/W = V
-        if((z in W.impacted_z_levels) && W.area_type == active_area.type)
-            A = W
-            break
-    return A
+	var/datum/weather/A
+	for(var/V in processing)
+		var/datum/weather/W = V
+		if((z in W.impacted_z_levels) && W.area_type == active_area.type)
+			A = W
+			break
+	return A

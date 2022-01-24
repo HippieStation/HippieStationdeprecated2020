@@ -6,16 +6,14 @@
 	losebreath = 0
 
 	if(!gibbed)
-		emote("deathgasp")
+		INVOKE_ASYNC(src, .proc/emote, "deathgasp")
+	reagents.end_metabolization(src)
 
 	. = ..()
-	
+
 	for(var/T in get_traumas())
 		var/datum/brain_trauma/BT = T
 		BT.on_death()
-	
-	if(SSticker.mode)
-		SSticker.mode.check_win() //Calls the rounds wincheck, mainly for wizard, malf, and changeling now
 
 /mob/living/carbon/proc/inflate_gib() // Plays an animation that makes mobs appear to inflate before finally gibbing
 	addtimer(CALLBACK(src, .proc/gib, null, null, TRUE, TRUE), 25)
@@ -33,7 +31,6 @@
 	for(var/mob/M in src)
 		M.forceMove(Tsec)
 		visible_message("<span class='danger'>[M] bursts out of [src]!</span>")
-	throw_hats(500, GLOB.alldirs) //hippie edit -- Throw our hats all over the place	
 	. = ..()
 
 /mob/living/carbon/spill_organs(no_brain, no_organs, no_bodyparts)

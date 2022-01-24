@@ -7,7 +7,8 @@
 	name = "area modification item"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "blueprints"
-	attack_verb = list("attacked", "bapped", "hit")
+	attack_verb_continuous = list("attacks", "baps", "hits")
+	attack_verb_simple = list("attack", "bap", "hit")
 	var/fluffnotice = "Nobody's gonna read this stuff!"
 	var/in_use = FALSE
 
@@ -27,11 +28,15 @@
 /obj/item/areaeditor/Topic(href, href_list)
 	if(..())
 		return TRUE
-	if(!usr.canUseTopic(src))
+	if(!usr.canUseTopic(src) || usr != loc)
 		usr << browse(null, "window=blueprints")
 		return TRUE
 	if(href_list["create_area"])
 		if(in_use)
+			return
+		var/area/A = get_area(usr)
+		if(A.area_flags & NOTELEPORT)
+			to_chat(usr, "<span class='warning'>You cannot edit restricted areas.</span>")
 			return
 		in_use = TRUE
 		create_area(usr)
@@ -48,7 +53,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/list/image/showing = list()
 	var/client/viewing
-	var/legend = FALSE	//Viewing the wire legend
+	var/legend = FALSE //Viewing the wire legend
 
 
 /obj/item/areaeditor/blueprints/Destroy()
@@ -117,7 +122,7 @@
 			. += TT.blueprint_data
 
 /obj/item/areaeditor/blueprints/proc/set_viewer(mob/user, message = "")
-	if(user && user.client)
+	if(user?.client)
 		if(viewing)
 			clear_viewer()
 		viewing = user.client
@@ -169,11 +174,11 @@
 /obj/item/areaeditor/blueprints/proc/view_wire_set(mob/user, wireset)
 	//for some reason you can't use wireset directly as a derefencer so this is the next best :/
 	for(var/device in GLOB.wire_color_directory)
-		if("[device]" == wireset)	//I know... don't change it...
+		if("[device]" == wireset) //I know... don't change it...
 			var/message = "<p><b>[GLOB.wire_name_directory[device]]:</b>"
 			for(var/Col in GLOB.wire_color_directory[device])
 				var/wire_name = GLOB.wire_color_directory[device][Col]
-				if(!findtext(wire_name, WIRE_DUD_PREFIX))	//don't show duds
+				if(!findtext(wire_name, WIRE_DUD_PREFIX)) //don't show duds
 					message += "<p><span style='color: [Col]'>[Col]</span>: [wire_name]</p>"
 			message += "</p>"
 			return message

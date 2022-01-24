@@ -14,7 +14,7 @@
 
 /datum/mutation/human/wacky
 	name = "Wacky"
-	desc = "<span class='sans'>Unknown.</span>"
+	desc = "You are not a clown. You are the entire circus."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='sans'>You feel an off sensation in your voicebox.</span>"
 	text_lose_indication = "<span class='notice'>The off sensation passes.</span>"
@@ -30,6 +30,8 @@
 	UnregisterSignal(owner, COMSIG_MOB_SAY)
 
 /datum/mutation/human/wacky/proc/handle_speech(datum/source, list/speech_args)
+	SIGNAL_HANDLER
+
 	speech_args[SPEECH_SPANS] |= SPAN_SANS
 
 /datum/mutation/human/mute
@@ -84,6 +86,8 @@
 	UnregisterSignal(owner, COMSIG_MOB_SAY)
 
 /datum/mutation/human/swedish/proc/handle_speech(datum/source, list/speech_args)
+	SIGNAL_HANDLER
+
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message)
 		message = replacetext(message,"w","v")
@@ -170,10 +174,12 @@
 	UnregisterSignal(owner, COMSIG_MOB_SAY)
 
 /datum/mutation/human/elvis/proc/handle_speech(datum/source, list/speech_args)
+	SIGNAL_HANDLER
+
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message)
 		message = " [message] "
-		message = replacetext(message," i'm not "," I aint ")
+		message = replacetext(message," i'm not "," I ain't ")
 		message = replacetext(message," girl ",pick(" honey "," baby "," baby doll "))
 		message = replacetext(message," man ",pick(" son "," buddy "," brother"," pal "," friendo "))
 		message = replacetext(message," out of "," outta ")
@@ -181,7 +187,6 @@
 		message = replacetext(message," thanks "," thank you, thank you very much ")
 		message = replacetext(message," what are you "," whatcha ")
 		message = replacetext(message," yes ",pick(" sure", "yea "))
-		message = replacetext(message," loser "," square ")
 		message = replacetext(message," muh valids "," my kicks ")
 		speech_args[SPEECH_MESSAGE] = trim(message)
 
@@ -196,11 +201,50 @@
 
 /datum/mutation/human/stoner/on_acquiring(mob/living/carbon/human/owner)
 	..()
-	owner.grant_language(/datum/language/beachbum)
-	owner.remove_language(/datum/language/common)
+	owner.grant_language(/datum/language/beachbum, TRUE, TRUE, LANGUAGE_STONER)
+	owner.add_blocked_language(subtypesof(/datum/language) - /datum/language/beachbum, LANGUAGE_STONER)
 
 /datum/mutation/human/stoner/on_losing(mob/living/carbon/human/owner)
 	..()
-	owner.grant_language(/datum/language/common)
-	owner.remove_language(/datum/language/beachbum)
+	owner.remove_language(/datum/language/beachbum, TRUE, TRUE, LANGUAGE_STONER)
+	owner.remove_blocked_language(subtypesof(/datum/language) - /datum/language/beachbum, LANGUAGE_STONER)
 
+/datum/mutation/human/medieval
+	name = "Medieval"
+	desc = "A horrible mutation originating from the distant past, thought to have once been a common gene in all of old world Europe."
+	quality = MINOR_NEGATIVE
+	text_gain_indication = "<span class='notice'>You feel like seeking the holy grail!</span>"
+	text_lose_indication = "<span class='notice'>You no longer feel like seeking anything.</span>"
+
+/datum/mutation/human/medieval/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	RegisterSignal(owner, COMSIG_MOB_SAY, .proc/handle_speech)
+
+/datum/mutation/human/medieval/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	UnregisterSignal(owner, COMSIG_MOB_SAY)
+
+/datum/mutation/human/medieval/proc/handle_speech(datum/source, list/speech_args)
+	SIGNAL_HANDLER
+
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message)
+		message = " [message] "
+		var/list/medieval_words = strings("medieval_replacement.json", "medieval")
+		var/list/startings = strings("medieval_replacement.json", "startings")
+		for(var/key in medieval_words)
+			var/value = medieval_words[key]
+			if(islist(value))
+				value = pick(value)
+			if(uppertext(key) == key)
+				value = uppertext(value)
+			if(capitalize(key) == key)
+				value = capitalize(value)
+			message = replacetextEx(message,regex("\b[REGEX_QUOTE(key)]\b","ig"), value)
+		message = trim(message)
+		var/chosen_starting = pick(startings)
+		message = "[chosen_starting] [message]"
+
+		speech_args[SPEECH_MESSAGE] = message

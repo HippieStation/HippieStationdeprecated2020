@@ -1,29 +1,46 @@
 #define RESTART_COUNTER_PATH "data/round_counter.txt"
-#define EXTOOLS (world.system_type == UNIX ? "byond-extools" : "byond-extools.dll")
 
 GLOBAL_VAR(restart_counter)
-GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 
-//This happens after the Master subsystem new(s) (it's a global datum)
-//So subsystems globals exist, but are not initialised
+/**
+ * World creation
+ *
+ * Here is where a round itself is actually begun and setup.
+ * * db connection setup
+ * * config loaded from files
+ * * loads admins
+ * * Sets up the dynamic menu system
+ * * and most importantly, calls initialize on the master subsystem, starting the game loop that causes the rest of the game to begin processing and setting up
+ *
+ *
+ * Nothing happens until something moves. ~Albert Einstein
+ *
+ * For clarity, this proc gets triggered later in the initialization pipeline, it is not the first thing to happen, as it might seem.
+ *
+ * Initialization Pipeline:
+ * Global vars are new()'ed, (including config, glob, and the master controller will also new and preinit all subsystems when it gets new()ed)
+ * Compiled in maps are loaded (mainly centcom). all areas/turfs/objs/mobs(ATOMs) in these maps will be new()ed
+ * world/New() (You are here)
+ * Once world/New() returns, client's can connect.
+ * 1 second sleep
+ * Master Controller initialization.
+ * Subsystem initialization.
+ * Non-compiled-in maps are maploaded, all atoms are new()ed
+ * All atoms in both compiled and uncompiled maps are initialized()
+ */
 /world/New()
-	if(fexists(EXTOOLS))
-		call(EXTOOLS, "cleanup")()
-		call(EXTOOLS, "maptick_initialize")()
-	enable_debugger()
-
-	//Early profile for auto-profiler - will be stopped on profiler init if necessary.
-#if DM_VERSION >= 513 && DM_BUILD >= 1506
-	world.Profile(PROFILE_START)
+#ifdef USE_EXTOOLS
+	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
+	if (fexists(extools))
+		call(extools, "maptick_initialize")()
 #endif
+	enable_debugger()
 
 	log_world("World loaded at [time_stamp()]!")
 
-	SetupExternalRSC()
+	make_datum_references_lists() //initialises global lists for referencing frequently used datums (so that we only ever do it once)
 
-	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
-
-	make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
+	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = GLOB.world_econ_log = GLOB.world_shuttle_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
 
 	GLOB.revdata = new
 
@@ -38,6 +55,7 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 	SSdbcore.CheckSchemaVersion()
 	SSdbcore.SetRoundID()
 	SetupLogs()
+	load_poll_data()
 
 #ifndef USE_CUSTOM_ERROR_HANDLER
 	world.log = file("[GLOB.log_directory]/dd.log")
@@ -46,7 +64,6 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 		world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
 #endif
 
-	hippie_initialize() // hippie -- loads mentor and other stuff. Due to mentors, it has to be after load_admins().
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
@@ -62,19 +79,13 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 
 	Master.Initialize(10, FALSE, TRUE)
 
-	if(TEST_RUN_PARAMETER in params)
-		HandleTestRun()
+	#ifdef UNIT_TESTS
+	HandleTestRun()
+	#endif
 
 /world/proc/InitTgs()
 	TgsNew(new /datum/tgs_event_handler/impl, TGS_SECURITY_TRUSTED)
 	GLOB.revdata.load_tgs_info()
-
-#ifdef USE_CUSTOM_ERROR_HANDLER
-	if (TgsAvailable())
-		world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
-#endif
-
-	GLOB.tgs_initialized = TRUE
 
 /world/proc/HandleTestRun()
 	//trigger things to run the whole process
@@ -87,18 +98,8 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 #else
 	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
 #endif
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/_addtimer, cb, 10 SECONDS))
 
-/world/proc/SetupExternalRSC()
-#if (PRELOAD_RSC == 0)
-	GLOB.external_rsc_urls = world.file2list("[global.config.directory]/external_rsc_urls.txt","\n")
-	var/i=1
-	while(i<=GLOB.external_rsc_urls.len)
-		if(GLOB.external_rsc_urls[i])
-			i++
-		else
-			GLOB.external_rsc_urls.Cut(i,i+1)
-#endif
 
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
@@ -128,7 +129,9 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 	GLOB.world_cloning_log = "[GLOB.log_directory]/cloning.log"
 	GLOB.world_asset_log = "[GLOB.log_directory]/asset.log"
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
+	GLOB.world_econ_log = "[GLOB.log_directory]/econ.log"
 	GLOB.world_pda_log = "[GLOB.log_directory]/pda.log"
+	GLOB.world_uplink_log = "[GLOB.log_directory]/uplink.log"
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
@@ -140,14 +143,19 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 	GLOB.world_job_debug_log = "[GLOB.log_directory]/job_debug.log"
 	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 	GLOB.tgui_log = "[GLOB.log_directory]/tgui.log"
+	GLOB.world_shuttle_log = "[GLOB.log_directory]/shuttle.log"
+
+	GLOB.demo_log = "[GLOB.log_directory]/demo.log"
 
 #ifdef UNIT_TESTS
-	GLOB.test_log = file("[GLOB.log_directory]/tests.log")
+	GLOB.test_log = "[GLOB.log_directory]/tests.log"
 	start_log(GLOB.test_log)
 #endif
 	start_log(GLOB.world_game_log)
 	start_log(GLOB.world_attack_log)
+	start_log(GLOB.world_econ_log)
 	start_log(GLOB.world_pda_log)
+	start_log(GLOB.world_uplink_log)
 	start_log(GLOB.world_telecomms_log)
 	start_log(GLOB.world_manifest_log)
 	start_log(GLOB.world_href_log)
@@ -155,6 +163,7 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 	start_log(GLOB.world_runtime_log)
 	start_log(GLOB.world_job_debug_log)
 	start_log(GLOB.tgui_log)
+	start_log(GLOB.world_shuttle_log)
 
 	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
 	if(fexists(GLOB.config_error_log))
@@ -170,7 +179,7 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 	log_runtime(GLOB.revdata.get_log_message())
 
 /world/Topic(T, addr, master, key)
-	TGS_TOPIC	//redirect to server tools if necessary
+	TGS_TOPIC //redirect to server tools if necessary
 
 	var/static/list/topic_handlers = TopicHandlers()
 
@@ -191,7 +200,7 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 	return handler.TryRun(input)
 
 /world/proc/AnnouncePR(announcement, list/payload)
-	var/static/list/PRcounts = list()	//PR id -> number of times announced this round
+	var/static/list/PRcounts = list() //PR id -> number of times announced this round
 	var/id = "[payload["pull_request"]["id"]]"
 	if(!PRcounts[id])
 		PRcounts[id] = 1
@@ -222,22 +231,23 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 		text2file("Success!", "[GLOB.log_directory]/clean_run.lk")
 	else
 		log_world("Test run failed!\n[fail_reasons.Join("\n")]")
-	sleep(0)	//yes, 0, this'll let Reboot finish and prevent byond memes
-	qdel(src)	//shut it down
+	sleep(0) //yes, 0, this'll let Reboot finish and prevent byond memes
+	qdel(src) //shut it down
 
 /world/Reboot(reason = 0, fast_track = FALSE)
 	if (reason || fast_track) //special reboot, do none of the normal stuff
 		if (usr)
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
 			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
-		to_chat(world, "<span class='boldannounce'>Rebooting World immediately due to host request</span>")
+		to_chat(world, "<span class='boldannounce'>Rebooting World immediately due to host request.</span>")
 	else
 		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
-		Master.Shutdown()	//run SS shutdowns
+		Master.Shutdown() //run SS shutdowns
 
-	if(TEST_RUN_PARAMETER in params)
-		FinishTestRun()
-		return
+	#ifdef UNIT_TESTS
+	FinishTestRun()
+	return
+	#endif
 
 	if(TgsAvailable())
 		var/do_hard_reboot
@@ -266,10 +276,7 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..()
 
-/world/proc/update_status() // hippie -- heavily edited. Needs modularization.
-	var/s = ""
-	var/hostedby
-	var/forumurl
+/world/proc/update_status()
 
 	var/list/features = list()
 
@@ -279,20 +286,25 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 	if (!GLOB.enter_allowed)
 		features += "closed"
 
+	var/s = ""
+	var/hostedby
 	if(config)
 		var/server_name = CONFIG_GET(string/servername)
-		hostedby = CONFIG_GET(string/hostedby)
-		forumurl = CONFIG_GET(string/forumurl)
 		if (server_name)
-			s += "<a href=\"[forumurl]\"><big><b>[server_name]</b> &#8212; [station_name()]</big></a>"
-	if(SSticker)
-		if(GLOB.master_mode)
-			s += "<br>Mode: <b>[GLOB.master_mode]</b>"
-	else
-		s += "<br>Mode: <b>STARTING</b>"
-	if (hostedby)
-		s += "<br>Hosted by <b>[hostedby]</b>."
-	s += "<img src=\"https://i.imgur.com/xfWVypg.png\">" //Banner image
+			s += "<b>[server_name]</b> &#8212; "
+		features += "[CONFIG_GET(flag/norespawn) ? "no " : ""]respawn"
+		if(CONFIG_GET(flag/allow_vote_mode))
+			features += "vote"
+		if(CONFIG_GET(flag/allow_ai))
+			features += "AI allowed"
+		hostedby = CONFIG_GET(string/hostedby)
+
+	s += "<b>[station_name()]</b>";
+	s += " ("
+	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
+	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
+	s += "</a>"
+	s += ")"
 
 	var/players = GLOB.clients.len
 
@@ -329,3 +341,27 @@ GLOBAL_VAR_INIT(tgs_initialized, FALSE)
 	maxz++
 	SSmobs.MaxZChanged()
 	SSidlenpcpool.MaxZChanged()
+
+
+/world/proc/change_fps(new_value = 20)
+	if(new_value <= 0)
+		CRASH("change_fps() called with [new_value] new_value.")
+	if(fps == new_value)
+		return //No change required.
+
+	fps = new_value
+	on_tickrate_change()
+
+
+/world/proc/change_tick_lag(new_value = 0.5)
+	if(new_value <= 0)
+		CRASH("change_tick_lag() called with [new_value] new_value.")
+	if(tick_lag == new_value)
+		return //No change required.
+
+	tick_lag = new_value
+	on_tickrate_change()
+
+
+/world/proc/on_tickrate_change()
+	SStimer?.reset_buckets()

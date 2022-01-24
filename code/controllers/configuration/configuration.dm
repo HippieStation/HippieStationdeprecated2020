@@ -4,22 +4,25 @@
 	var/directory = "config"
 
 	var/warned_deprecated_configs = FALSE
-	var/hiding_entries_by_type = TRUE	//Set for readability, admins can set this to FALSE if they want to debug it
+	var/hiding_entries_by_type = TRUE //Set for readability, admins can set this to FALSE if they want to debug it
 	var/list/entries
 	var/list/entries_by_type
 
 	var/list/maplist
 	var/datum/map_config/defaultmap
 
-	var/list/modes			// allowed modes
+	var/list/modes // allowed modes
 	var/list/gamemode_cache
-	var/list/votable_modes		// votable modes
+	var/list/votable_modes // votable modes
 	var/list/mode_names
 	var/list/mode_reports
 	var/list/mode_false_report_weight
 
 	var/motd
 	var/policy
+
+	/// If the configuration is loaded
+	var/loaded = FALSE
 
 	var/static/regex/ic_filter_regex
 
@@ -32,7 +35,7 @@
 	Load(world.params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
 /datum/controller/configuration/proc/Load(_directory)
-	if(IsAdminAdvancedProcCall())		//If admin proccall is detected down the line it will horribly break everything.
+	if(IsAdminAdvancedProcCall()) //If admin proccall is detected down the line it will horribly break everything.
 		return
 	if(_directory)
 		directory = _directory
@@ -52,6 +55,11 @@
 	LoadMOTD()
 	LoadPolicy()
 	LoadChatFilter()
+
+	loaded = TRUE
+
+	if (Master)
+		Master.OnConfigLoad()
 
 /datum/controller/configuration/proc/full_wipe()
 	if(IsAdminAdvancedProcCall())
@@ -75,7 +83,7 @@
 	var/list/_entries_by_type = list()
 	entries_by_type = _entries_by_type
 
-	for(var/I in typesof(/datum/config_entry))	//typesof is faster in this case
+	for(var/I in typesof(/datum/config_entry)) //typesof is faster in this case
 		var/datum/config_entry/E = I
 		if(initial(E.abstract_type) == I)
 			continue
@@ -154,7 +162,7 @@
 			var/good_update = istext(new_value)
 			log_config("Entry [entry] is deprecated and will be removed soon. Migrate to [new_ver.name]![good_update ? " Suggested new value is: [new_value]" : ""]")
 			if(!warned_deprecated_configs)
-				addtimer(CALLBACK(GLOBAL_PROC, /proc/message_admins, "This server is using deprecated configuration settings. Please check the logs and update accordingly."), 0)
+				DelayedMessageAdmins("This server is using deprecated configuration settings. Please check the logs and update accordingly.")
 				warned_deprecated_configs = TRUE
 			if(good_update)
 				value = new_value
@@ -183,10 +191,9 @@
 	var/list/banned_edits = list(NAMEOF(src, entries_by_type), NAMEOF(src, entries), NAMEOF(src, directory))
 	return !(var_name in banned_edits) && ..()
 
-/datum/controller/configuration/stat_entry()
-	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Edit", src)
-	stat("[name]:", statclick)
+/datum/controller/configuration/stat_entry(msg)
+	msg = "Edit"
+	return msg
 
 /datum/controller/configuration/proc/Get(entry_type)
 	var/datum/config_entry/E = entry_type
@@ -228,7 +235,7 @@
 		var/datum/game_mode/M = new T()
 
 		if(M.config_tag)
-			if(!(M.config_tag in modes))		// ensure each mode is added only once
+			if(!(M.config_tag in modes)) // ensure each mode is added only once
 				modes += M.config_tag
 				mode_names[M.config_tag] = M.name
 				probabilities[M.config_tag] = M.probability
@@ -261,9 +268,9 @@ special keywords defined in _DEFINES/admin.dm
 
 Example config:
 {
-    "Assistant" : "Don't kill everyone",
-    "/datum/antagonist/highlander" : "<b>Kill everyone</b>",
-    "Ash Walker" : "Kill all spacemans"
+	"Assistant" : "Don't kill everyone",
+	"/datum/antagonist/highlander" : "<b>Kill everyone</b>",
+	"Ash Walker" : "Kill all spacemans"
 }
 
 */
@@ -271,9 +278,10 @@ Example config:
 	policy = list()
 	var/rawpolicy = file2text("[directory]/policy.json")
 	if(rawpolicy)
-		var/parsed = json_decode(rawpolicy)
+		var/parsed = safe_json_decode(rawpolicy)
 		if(!parsed)
 			log_config("JSON parsing failure for policy.json")
+			DelayedMessageAdmins("JSON parsing failure for policy.json")
 		else
 			policy = parsed
 
@@ -400,19 +408,18 @@ Example config:
 	return runnable_modes
 
 /datum/controller/configuration/proc/LoadChatFilter()
-	GLOB.in_character_filter = list()
-
+	var/list/in_character_filter = list()
 	if(!fexists("[directory]/in_character_filter.txt"))
 		return
-
 	log_config("Loading config file in_character_filter.txt...")
-
 	for(var/line in world.file2list("[directory]/in_character_filter.txt"))
 		if(!line)
 			continue
 		if(findtextEx(line,"#",1,2))
 			continue
-		GLOB.in_character_filter += line
+		in_character_filter += REGEX_QUOTE(line)
+	ic_filter_regex = in_character_filter.len ? regex("\\b([jointext(in_character_filter, "|")])\\b", "i") : null
 
-	if(!ic_filter_regex && GLOB.in_character_filter.len)
-		ic_filter_regex = regex("\\b([jointext(GLOB.in_character_filter, "|")])\\b", "i")
+//Message admins when you can.
+/datum/controller/configuration/proc/DelayedMessageAdmins(text)
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/message_admins, text), 0)

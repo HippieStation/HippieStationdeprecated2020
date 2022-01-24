@@ -143,7 +143,7 @@
 	var/triple_metabolism = FALSE
 	var/reduced_hunger = FALSE
 	desc = "The virus causes the host's metabolism to accelerate rapidly, making them process chemicals twice as fast,\
-	 but also causing increased hunger."
+		but also causing increased hunger."
 	threshold_descs = list(
 		"Stealth 3" = "Reduces hunger rate.",
 		"Stage Speed 10" = "Chemical metabolization is tripled instead of doubled.",
@@ -229,6 +229,7 @@
 	level = 8
 	passive_message = "<span class='notice'>The pain from your wounds makes you feel oddly sleepy...</span>"
 	var/deathgasp = FALSE
+	var/stabilize = FALSE
 	var/active_coma = FALSE //to prevent multiple coma procs
 	threshold_descs = list(
 		"Stealth 2" = "Host appears to die when falling into a coma.",
@@ -241,39 +242,55 @@
 		return
 	if(A.properties["stage_rate"] >= 7)
 		power = 1.5
+	if(A.properties["resistance"] >= 4)
+		stabilize = TRUE
 	if(A.properties["stealth"] >= 2)
 		deathgasp = TRUE
+
+/datum/symptom/heal/coma/on_stage_change(datum/disease/advance/A)  //mostly copy+pasted from the code for self-respiration's TRAIT_NOBREATH stuff
+	if(!..())
+		return FALSE
+	if(A.stage >= 4 && stabilize)
+		ADD_TRAIT(A.affected_mob, TRAIT_NOCRITDAMAGE, DISEASE_TRAIT)
+	else
+		REMOVE_TRAIT(A.affected_mob, TRAIT_NOCRITDAMAGE, DISEASE_TRAIT)
+	return TRUE
+
+/datum/symptom/heal/coma/End(datum/disease/advance/A)
+	if(!..())
+		return
+	if(active_coma)
+		uncoma()
+	REMOVE_TRAIT(A.affected_mob, TRAIT_NOCRITDAMAGE, DISEASE_TRAIT)
 
 /datum/symptom/heal/coma/CanHeal(datum/disease/advance/A)
 	var/mob/living/M = A.affected_mob
 	if(HAS_TRAIT(M, TRAIT_DEATHCOMA))
 		return power
-	else if(M.IsUnconscious() || M.stat == UNCONSCIOUS)
-		return power * 0.9
-	else if(M.stat == SOFT_CRIT)
-		return power * 0.5
-	else if(M.IsSleeping())
-		return power * 0.25
-	else if(M.getBruteLoss() + M.getFireLoss() >= 70 && !active_coma)
+	if(M.IsSleeping())
+		return power * 0.25 //Voluntary unconsciousness yields lower healing.
+	switch(M.stat)
+		if(UNCONSCIOUS, HARD_CRIT)
+			return power * 0.9
+		if(SOFT_CRIT)
+			return power * 0.5
+	if(M.getBruteLoss() + M.getFireLoss() >= 70 && !active_coma)
 		to_chat(M, "<span class='warning'>You feel yourself slip into a regenerative coma...</span>")
 		active_coma = TRUE
 		addtimer(CALLBACK(src, .proc/coma, M), 60)
 
+
 /datum/symptom/heal/coma/proc/coma(mob/living/M)
-	if(deathgasp)
-		M.emote("deathgasp")
-	M.fakedeath("regenerative_coma")
-	M.update_stat()
-	M.update_mobility()
+	M.fakedeath("regenerative_coma", !deathgasp)
 	addtimer(CALLBACK(src, .proc/uncoma, M), 300)
 
+
 /datum/symptom/heal/coma/proc/uncoma(mob/living/M)
-	if(!active_coma)
+	if(QDELETED(M) || !active_coma)
 		return
 	active_coma = FALSE
 	M.cure_fakedeath("regenerative_coma")
-	M.update_stat()
-	M.update_mobility()
+
 
 /datum/symptom/heal/coma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
 	var/heal_amt = 4 * actual_power
@@ -324,12 +341,12 @@
 	. = 0
 	var/mob/living/M = A.affected_mob
 	if(M.fire_stacks < 0)
-		M.fire_stacks = min(M.fire_stacks + 1 * absorption_coeff, 0)
+		M.set_fire_stacks(min(M.fire_stacks + 1 * absorption_coeff, 0))
 		. += power
-	if(M.reagents.has_reagent(/datum/reagent/water/holywater))
+	if(M.reagents.has_reagent(/datum/reagent/water/holywater, needs_metabolizing = FALSE))
 		M.reagents.remove_reagent(/datum/reagent/water/holywater, 0.5 * absorption_coeff)
 		. += power * 0.75
-	else if(M.reagents.has_reagent(/datum/reagent/water))
+	else if(M.reagents.has_reagent(/datum/reagent/water, needs_metabolizing = FALSE))
 		M.reagents.remove_reagent(/datum/reagent/water, 0.5 * absorption_coeff)
 		. += power * 0.5
 
@@ -389,9 +406,9 @@
 		environment = M.loc.return_air()
 	if(environment)
 		gases = environment.gases
-		if(gases[/datum/gas/plasma] && gases[/datum/gas/plasma][MOLES] > gases[/datum/gas/plasma][GAS_META][META_GAS_MOLES_VISIBLE])  //if there's enough plasma in the air to see
+		if(gases[/datum/gas/plasma] && gases[/datum/gas/plasma][MOLES] > gases[/datum/gas/plasma][GAS_META][META_GAS_MOLES_VISIBLE]) //if there's enough plasma in the air to see
 			. += power * 0.5
-	if(M.reagents.has_reagent(/datum/reagent/toxin/plasma))
+	if(M.reagents.has_reagent(/datum/reagent/toxin/plasma, needs_metabolizing = TRUE))
 		. +=  power * 0.75
 
 /datum/symptom/heal/plasma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
@@ -400,12 +417,12 @@
 	if(prob(5))
 		to_chat(M, "<span class='notice'>You feel yourself absorbing plasma inside and around you...</span>")
 
-	if(M.bodytemperature > BODYTEMP_NORMAL)
-		M.adjust_bodytemperature(-20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,BODYTEMP_NORMAL)
+	if(M.bodytemperature > M.get_body_temp_normal())
+		M.adjust_bodytemperature(-20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT, M.get_body_temp_normal())
 		if(prob(5))
 			to_chat(M, "<span class='notice'>You feel less hot.</span>")
-	else if(M.bodytemperature < (BODYTEMP_NORMAL + 1))
-		M.adjust_bodytemperature(20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,0,BODYTEMP_NORMAL)
+	else if(M.bodytemperature < (M.get_body_temp_normal() + 1))
+		M.adjust_bodytemperature(20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,0, M.get_body_temp_normal())
 		if(prob(5))
 			to_chat(M, "<span class='notice'>You feel warmer.</span>")
 

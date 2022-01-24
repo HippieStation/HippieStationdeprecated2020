@@ -47,7 +47,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "k" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-22"
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -55,14 +55,14 @@
 "l" = (
 /obj/structure/chair/comfy/shuttle,
 /turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
+/area/shuttle/escape/brig)
 "m" = (
 /obj/structure/chair/comfy/shuttle,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
+/area/shuttle/escape/brig)
 "n" = (
 /obj/structure/table/optable,
 /obj/item/surgical_drapes,
@@ -101,7 +101,7 @@
 /area/shuttle/escape)
 "t" = (
 /turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
+/area/shuttle/escape/brig)
 "u" = (
 /obj/structure/shuttle/engine/propulsion/left{
 	dir = 4
@@ -128,25 +128,25 @@
 	use_power = 0
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
+/area/shuttle/escape/brig)
 "y" = (
 /obj/structure/table,
 /obj/item/storage/box/handcuffs,
 /turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
+/area/shuttle/escape/brig)
 "z" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "security airlock";
 	req_access_txt = "63"
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape)
+/area/shuttle/escape/brig)
 "A" = (
 /obj/machinery/door/airlock/public/glass,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "B" = (
-/obj/item/twohanded/required/kirbyplants{
+/obj/item/kirbyplants{
 	icon_state = "plant-21"
 	},
 /turf/open/floor/mineral/titanium,
@@ -182,7 +182,7 @@
 /area/shuttle/escape)
 "I" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/spaghetti/boiledspaghetti{
+/obj/item/food/spaghetti/boiledspaghetti{
 	name = "pasghetti";
 	pixel_x = 4;
 	pixel_y = 7
@@ -196,13 +196,12 @@
 "K" = (
 /obj/machinery/door/airlock/titanium,
 /obj/docking_port/mobile/emergency{
-	dheight = 0;
 	dir = 8;
 	dwidth = 6;
 	height = 18;
+	name = "Birdboat emergency escape shuttle";
 	port_direction = 4;
-	width = 14;
-	name = "Birdboat emergency escape shuttle"
+	width = 14
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
@@ -212,7 +211,7 @@
 /area/shuttle/escape)
 "M" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/item/food/chocolatebar,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "N" = (
@@ -299,6 +298,13 @@
 /obj/item/defibrillator/loaded,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
+"Z" = (
+/obj/machinery/door/airlock/command/glass{
+	name = "bridge door";
+	req_access_txt = "19"
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/escape/brig)
 
 (1,1,1) = {"
 a
@@ -400,7 +406,7 @@ b
 a
 b
 b
-s
+Z
 c
 b
 C

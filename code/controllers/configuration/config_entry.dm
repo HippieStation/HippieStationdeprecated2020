@@ -6,19 +6,19 @@
 #define KEY_MODE_TYPE 1
 
 /datum/config_entry
-	var/name	//read-only, this is determined by the last portion of the derived entry type
+	var/name //read-only, this is determined by the last portion of the derived entry type
 	var/config_entry_value
-	var/default	//read-only, just set value directly
+	var/default //read-only, just set value directly
 
-	var/resident_file	//the file which this was loaded from, if any
-	var/modified = FALSE	//set to TRUE if the default has been overridden by a config entry
+	var/resident_file //the file which this was loaded from, if any
+	var/modified = FALSE //set to TRUE if the default has been overridden by a config entry
 
-	var/deprecated_by	//the /datum/config_entry type that supercedes this one
+	var/deprecated_by //the /datum/config_entry type that supercedes this one
 
 	var/protection = NONE
-	var/abstract_type = /datum/config_entry	//do not instantiate if type matches this
+	var/abstract_type = /datum/config_entry //do not instantiate if type matches this
 
-	var/vv_VAS = TRUE		//Force validate and set on VV. VAS proccall guard will run regardless.
+	var/vv_VAS = TRUE //Force validate and set on VV. VAS proccall guard will run regardless.
 
 	var/dupes_allowed = FALSE
 
@@ -78,7 +78,7 @@
 	var/auto_trim = TRUE
 
 /datum/config_entry/string/vv_edit_var(var_name, var_value)
-	return var_name != "auto_trim" && ..()
+	return var_name != NAMEOF(src, auto_trim) && ..()
 
 /datum/config_entry/string/ValidateAndSet(str_val)
 	if(!VASProcCallGuard(str_val))
@@ -105,7 +105,7 @@
 	return FALSE
 
 /datum/config_entry/number/vv_edit_var(var_name, var_value)
-	var/static/list/banned_edits = list("max_val", "min_val", "integer")
+	var/static/list/banned_edits = list(NAMEOF(src, max_val), NAMEOF(src, min_val), NAMEOF(src, integer))
 	return !(var_name in banned_edits) && ..()
 
 /datum/config_entry/flag
@@ -116,6 +116,20 @@
 	if(!VASProcCallGuard(str_val))
 		return FALSE
 	config_entry_value = text2num(trim(str_val)) != 0
+	return TRUE
+
+/// List config entry, used for configuring a list of strings
+/datum/config_entry/str_list
+	abstract_type = /datum/config_entry/str_list
+	config_entry_value = list()
+	dupes_allowed = TRUE
+
+/datum/config_entry/str_list/ValidateAndSet(str_val)
+	if (!VASProcCallGuard(str_val))
+		return FALSE
+	str_val = trim(str_val)
+	if (str_val != "")
+		config_entry_value += str_val
 	return TRUE
 
 /datum/config_entry/number_list
@@ -142,7 +156,7 @@
 	abstract_type = /datum/config_entry/keyed_list
 	config_entry_value = list()
 	dupes_allowed = TRUE
-	vv_VAS = FALSE			//VAS will not allow things like deleting from lists, it'll just bug horribly.
+	vv_VAS = FALSE //VAS will not allow things like deleting from lists, it'll just bug horribly.
 	var/key_mode
 	var/value_mode
 	var/splitter = " "
@@ -194,4 +208,4 @@
 	return FALSE
 
 /datum/config_entry/keyed_list/vv_edit_var(var_name, var_value)
-	return var_name != "splitter" && ..()
+	return var_name != NAMEOF(src, splitter) && ..()

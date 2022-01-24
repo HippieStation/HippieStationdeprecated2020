@@ -7,6 +7,8 @@
 	anchored = TRUE
 	var/obj/structure/ladder/down   //the ladder below this one
 	var/obj/structure/ladder/up     //the ladder above this one
+	var/crafted = FALSE
+	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN
 
 /obj/structure/ladder/Initialize(mapload, obj/structure/ladder/up, obj/structure/ladder/down)
 	..()
@@ -34,15 +36,17 @@
 	if (!down)
 		L = locate() in SSmapping.get_turf_below(T)
 		if (L)
-			down = L
-			L.up = src  // Don't waste effort looping the other way
-			L.update_icon()
+			if(crafted == L.crafted)
+				down = L
+				L.up = src  // Don't waste effort looping the other way
+				L.update_icon()
 	if (!up)
 		L = locate() in SSmapping.get_turf_above(T)
 		if (L)
-			up = L
-			L.down = src  // Don't waste effort looping the other way
-			L.update_icon()
+			if(crafted == L.crafted)
+				up = L
+				L.down = src  // Don't waste effort looping the other way
+				L.update_icon()
 
 	update_icon()
 
@@ -55,17 +59,14 @@
 		down.update_icon()
 	up = down = null
 
-/obj/structure/ladder/update_icon()
+/obj/structure/ladder/update_icon_state()
 	if(up && down)
 		icon_state = "ladder11"
-
 	else if(up)
 		icon_state = "ladder10"
-
 	else if(down)
 		icon_state = "ladder01"
-
-	else	//wtf make your ladders properly assholes
+	else //wtf make your ladders properly assholes
 		icon_state = "ladder00"
 
 /obj/structure/ladder/singularity_pull()
@@ -87,38 +88,63 @@
 	if(AM)
 		user.start_pulling(AM)
 
+	//reopening ladder radial menu ahead
+	T = get_turf(user)
+	var/obj/structure/ladder/ladder_structure = locate() in T
+	if (ladder_structure)
+		ladder_structure.use(user)
+
 /obj/structure/ladder/proc/use(mob/user, is_ghost=FALSE)
 	if (!is_ghost && !in_range(src, user))
 		return
 
-	if (up && down)
-		var/result = alert("Go up or down [src]?", "Ladder", "Up", "Down", "Cancel")
-		if (!is_ghost && !in_range(src, user))
-			return  // nice try
-		switch(result)
-			if("Up")
-				travel(TRUE, user, is_ghost, up)
-			if("Down")
-				travel(FALSE, user, is_ghost, down)
-			if("Cancel")
-				return
-	else if(up)
-		travel(TRUE, user, is_ghost, up)
-	else if(down)
-		travel(FALSE, user, is_ghost, down)
-	else
+	var/list/tool_list = list()
+	if (up)
+		tool_list["Up"] = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = NORTH)
+	if (down)
+		tool_list["Down"] = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = SOUTH)
+	if (!length(tool_list))
 		to_chat(user, "<span class='warning'>[src] doesn't seem to lead anywhere!</span>")
+		return
+
+	var/result = show_radial_menu(user, src, tool_list, custom_check = CALLBACK(src, .proc/check_menu, user, is_ghost), require_near = !is_ghost, tooltips = TRUE)
+	if (!is_ghost && !in_range(src, user))
+		return  // nice try
+	switch(result)
+		if("Up")
+			travel(TRUE, user, is_ghost, up)
+		if("Down")
+			travel(FALSE, user, is_ghost, down)
+		if("Cancel")
+			return
 
 	if(!is_ghost)
 		add_fingerprint(user)
 
-/obj/structure/ladder/attack_hand(mob/user)
+/obj/structure/ladder/proc/check_menu(mob/user, is_ghost)
+	if(user.incapacitated() || (!user.Adjacent(src) && !is_ghost))
+		return FALSE
+	return TRUE
+
+/obj/structure/ladder/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
 	use(user)
 
-/obj/structure/ladder/attack_paw(mob/user)
+/obj/structure/ladder/attack_paw(mob/user, list/modifiers)
+	return use(user)
+
+/obj/structure/ladder/attack_alien(mob/user, list/modifiers)
+	return use(user)
+
+/obj/structure/ladder/attack_larva(mob/user)
+	return use(user)
+
+/obj/structure/ladder/attack_animal(mob/user)
+	return use(user)
+
+/obj/structure/ladder/attack_slime(mob/user)
 	return use(user)
 
 /obj/structure/ladder/attackby(obj/item/W, mob/user, params)
@@ -135,9 +161,9 @@
 
 /obj/structure/ladder/proc/show_fluff_message(going_up, mob/user)
 	if(going_up)
-		user.visible_message("[user] climbs up [src].","<span class='notice'>You climb up [src].</span>")
+		user.visible_message("<span class='notice'>[user] climbs up [src].</span>", "<span class='notice'>You climb up [src].</span>")
 	else
-		user.visible_message("[user] climbs down [src].","<span class='notice'>You climb down [src].</span>")
+		user.visible_message("<span class='notice'>[user] climbs down [src].</span>", "<span class='notice'>You climb down [src].</span>")
 
 
 // Indestructible away mission ladders which link based on a mapped ID and height value rather than X/Y/Z.
@@ -182,50 +208,5 @@
 
 	update_icon()
 
-/obj/structure/ladder/unbreakable/binary
-	name = "mysterious ladder"
-	desc = "Where does it go?"
-	height = 0
-	id = "lavaland_binary"
-	var/area_to_place = /area/lavaland/surface/outdoors
-	var/active = FALSE
-
-/obj/structure/ladder/unbreakable/binary/proc/ActivateAlmonds()
-	if(area_to_place && !active)
-		var/turf/T = getTargetTurf()
-		if(T)
-			var/obj/structure/ladder/unbreakable/U = new (T)
-			U.id = id
-			U.height = height+1
-			LateInitialize() // LateInit both of these to build the links. It's fine.
-			U.LateInitialize()
-			for(var/turf/TT in range(2,U))
-				TT.TerraformTurf(/turf/open/indestructible/binary, /turf/open/indestructible/binary, CHANGETURF_INHERIT_AIR)
-		active = TRUE
-
-/obj/structure/ladder/unbreakable/binary/proc/getTargetTurf()
-	var/list/turfList = get_area_turfs(area_to_place)
-	while (turfList.len && !.)
-		var/i = rand(1, turfList.len)
-		var/turf/potentialTurf = turfList[i]
-		if (is_centcom_level(potentialTurf.z)) // These ladders don't lead to centcom.
-			turfList.Cut(i,i+1)
-			continue
-		if(!istype(potentialTurf, /turf/open/lava) && !potentialTurf.density)			// Or inside dense turfs or lava
-			var/clear = TRUE
-			for(var/obj/O in potentialTurf) // Let's not place these on dense objects either. Might be funny though.
-				if(O.density)
-					clear = FALSE
-					break
-			if(clear)
-				. = potentialTurf
-		if (!.)
-			turfList.Cut(i,i+1)
-
-/obj/structure/ladder/unbreakable/binary/space
-	id = "space_binary"
-	area_to_place = /area/space
-
-/obj/structure/ladder/unbreakable/binary/unlinked //Crew gets to complete one
-	id = "unlinked_binary"
-	area_to_place = null
+/obj/structure/ladder/crafted
+	crafted = TRUE

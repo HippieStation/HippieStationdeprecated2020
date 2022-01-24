@@ -2,18 +2,21 @@
 	name = "syringe"
 	desc = "A syringe that can hold up to 15 units."
 	icon = 'icons/obj/syringe.dmi'
-	item_state = "syringe_0"
+	inhand_icon_state = "syringe_0"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	icon_state = "0"
+	worn_icon_state = "pen"
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list()
 	volume = 15
 	var/mode = SYRINGE_DRAW
 	var/busy = FALSE		// needed for delayed drawing of blood
 	var/proj_piercing = 0 //does it pierce through thick clothes when shot with syringe gun
-	materials = list(MAT_METAL=10, MAT_GLASS=20)
+	custom_materials = list(/datum/material/iron=10, /datum/material/glass=20)
 	reagent_flags = TRANSPARENT
+	custom_price = PAYCHECK_EASY * 0.5
+	sharpness = SHARP_POINTY
 
 /obj/item/reagent_containers/syringe/Initialize()
 	. = ..()
@@ -21,8 +24,9 @@
 		mode = SYRINGE_INJECT
 		update_icon()
 
-/obj/item/reagent_containers/syringe/on_reagent_change(changetype)
-	update_icon()
+/obj/item/reagent_containers/syringe/ComponentInitialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/reagent_containers/syringe/pickup(mob/user)
 	..()
@@ -59,14 +63,11 @@
 	var/mob/living/L
 	if(isliving(target))
 		L = target
-		if(!L.can_inject(user, 1))
+		if(!L.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE))
 			return
 
 	// chance of monkey retaliation
-	if(ismonkey(target) && prob(MONKEY_SYRINGE_RETALIATION_PROB))
-		var/mob/living/carbon/monkey/M
-		M = target
-		M.retaliate(user)
+	SEND_SIGNAL(target, COMSIG_LIVING_TRY_SYRINGE, user)
 
 	switch(mode)
 		if(SYRINGE_DRAW)
@@ -79,16 +80,16 @@
 				var/drawn_amount = reagents.maximum_volume - reagents.total_volume
 				if(target != user)
 					target.visible_message("<span class='danger'>[user] is trying to take a blood sample from [target]!</span>", \
-									"<span class='userdanger'>[user] is trying to take a blood sample from [target]!</span>")
+									"<span class='userdanger'>[user] is trying to take a blood sample from you!</span>")
 					busy = TRUE
-					if(!do_mob(user, target, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, user, TRUE)))
+					if(!do_mob(user, target, extra_checks=CALLBACK(L, /mob/living/proc/try_inject, user, null, INJECT_TRY_SHOW_ERROR_MESSAGE)))
 						busy = FALSE
 						return
 					if(reagents.total_volume >= reagents.maximum_volume)
 						return
 				busy = FALSE
 				if(L.transfer_blood_to(src, drawn_amount))
-					user.visible_message("[user] takes a blood sample from [L].")
+					user.visible_message("<span class='notice'>[user] takes a blood sample from [L].</span>")
 				else
 					to_chat(user, "<span class='warning'>You are unable to draw any blood from [L]!</span>")
 
@@ -126,12 +127,12 @@
 				return
 
 			if(L) //living mob
-				if(!L.can_inject(user, TRUE))
+				if(!L.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE))
 					return
 				if(L != user)
 					L.visible_message("<span class='danger'>[user] is trying to inject [L]!</span>", \
-											"<span class='userdanger'>[user] is trying to inject [L]!</span>")
-					if(!do_mob(user, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject, user, TRUE)))
+											"<span class='userdanger'>[user] is trying to inject you!</span>")
+					if(!do_mob(user, L, extra_checks=CALLBACK(L, /mob/living/proc/try_inject, user, null, INJECT_TRY_SHOW_ERROR_MESSAGE)))
 						return
 					if(!reagents.total_volume)
 						return
@@ -144,52 +145,68 @@
 					log_combat(user, L, "injected", src, addition="which had [contained]")
 				else
 					L.log_message("injected themselves ([contained]) with [src.name]", LOG_ATTACK, color="orange")
-			var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
-			reagents.reaction(L, INJECT, fraction)
-			reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
+			reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user, methods = INJECT)
 			to_chat(user, "<span class='notice'>You inject [amount_per_transfer_from_this] units of the solution. The syringe now contains [reagents.total_volume] units.</span>")
 			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
 				update_icon()
 
-
-/obj/item/reagent_containers/syringe/update_icon()
-	cut_overlays()
-	var/rounded_vol
-	if(reagents && reagents.total_volume)
-		rounded_vol = clamp(round((reagents.total_volume / volume * 15),5), 1, 15)
-		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
-		filling_overlay.color = mix_color_from_reagents(reagents.reagent_list)
-		add_overlay(filling_overlay)
+/*
+ * On accidental consumption, inject the eater with 2/3rd of the syringe and reveal it
+ */
+/obj/item/reagent_containers/syringe/on_accidental_consumption(mob/living/carbon/victim, mob/living/carbon/user, obj/item/source_item,  discover_after = TRUE)
+	if(source_item)
+		to_chat(victim, "<span class='boldwarning'>There's a [src] in [source_item]!!</span>")
 	else
-		rounded_vol = 0
+		to_chat(victim, "<span class='boldwarning'>[src] injects you!</span>")
+
+	victim.apply_damage(5, BRUTE, BODY_ZONE_HEAD)
+	reagents?.trans_to(victim, round(reagents.total_volume*(2/3)), transfered_by = user, methods = INJECT)
+
+	return discover_after
+
+/obj/item/reagent_containers/syringe/update_icon_state()
+	var/rounded_vol = get_rounded_vol()
 	icon_state = "[rounded_vol]"
-	item_state = "syringe_[rounded_vol]"
+	inhand_icon_state = "syringe_[rounded_vol]"
+
+/obj/item/reagent_containers/syringe/update_overlays()
+	. = ..()
+	var/rounded_vol = get_rounded_vol()
+	if(reagents?.total_volume)
+		var/mutable_appearance/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "syringe[rounded_vol]")
+		filling_overlay.color = mix_color_from_reagents(reagents.reagent_list)
+		. += filling_overlay
 	if(ismob(loc))
-		var/mob/M = loc
 		var/injoverlay
 		switch(mode)
 			if (SYRINGE_DRAW)
 				injoverlay = "draw"
 			if (SYRINGE_INJECT)
 				injoverlay = "inject"
-		add_overlay(injoverlay)
-		M.update_inv_hands()
+		. += injoverlay
+
+///Used by update_icon() and update_overlays()
+/obj/item/reagent_containers/syringe/proc/get_rounded_vol()
+	if(reagents?.total_volume)
+		return clamp(round((reagents.total_volume / volume * 15),5), 1, 15)
+	else
+		return 0
 
 /obj/item/reagent_containers/syringe/epinephrine
 	name = "syringe (epinephrine)"
 	desc = "Contains epinephrine - used to stabilize patients."
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 15)
 
-/obj/item/reagent_containers/syringe/charcoal
-	name = "syringe (charcoal)"
-	desc = "Contains charcoal."
-	list_reagents = list(/datum/reagent/medicine/charcoal = 15)
+/obj/item/reagent_containers/syringe/multiver
+	name = "syringe (multiver)"
+	desc = "Contains multiver. Diluted with granibitaluri."
+	list_reagents = list(/datum/reagent/medicine/c2/multiver = 6, /datum/reagent/medicine/granibitaluri = 9)
 
-/obj/item/reagent_containers/syringe/perfluorodecalin
-	name = "syringe (perfluorodecalin)"
-	desc = "Contains perfluorodecalin."
-	list_reagents = list(/datum/reagent/medicine/perfluorodecalin = 15)
+/obj/item/reagent_containers/syringe/convermol
+	name = "syringe (convermol)"
+	desc = "Contains convermol. Diluted with granibitaluri."
+	list_reagents = list(/datum/reagent/medicine/c2/convermol = 6, /datum/reagent/medicine/granibitaluri = 9)
 
 /obj/item/reagent_containers/syringe/antiviral
 	name = "syringe (spaceacillin)"
@@ -200,13 +217,6 @@
 	name = "bioterror syringe"
 	desc = "Contains several paralyzing reagents."
 	list_reagents = list(/datum/reagent/consumable/ethanol/neurotoxin = 5, /datum/reagent/toxin/mutetoxin = 5, /datum/reagent/toxin/sodium_thiopental = 5)
-
-/obj/item/reagent_containers/syringe/stimulants
-	name = "Stimpack"
-	desc = "Contains stimulants."
-	amount_per_transfer_from_this = 50
-	volume = 50
-	list_reagents = list(/datum/reagent/medicine/stimulants = 50)
 
 /obj/item/reagent_containers/syringe/calomel
 	name = "syringe (calomel)"
@@ -250,12 +260,6 @@
 	amount_per_transfer_from_this = 20
 	volume = 60
 
-/obj/item/reagent_containers/syringe/noreact
-	name = "cryo syringe"
-	desc = "An advanced syringe that stops reagents inside from reacting. It can hold up to 20 units."
-	volume = 20
-	reagent_flags = TRANSPARENT | NO_REACT
-
 /obj/item/reagent_containers/syringe/piercing
 	name = "piercing syringe"
 	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
@@ -266,3 +270,48 @@
 	name = "spider extract syringe"
 	desc = "Contains crikey juice - makes any gold core create the most deadly companions in the world."
 	list_reagents = list(/datum/reagent/spider_extract = 1)
+
+/obj/item/reagent_containers/syringe/oxandrolone
+	name = "syringe (oxandrolone)"
+	desc = "Contains oxandrolone, used to treat severe burns."
+	list_reagents = list(/datum/reagent/medicine/oxandrolone = 15)
+
+/obj/item/reagent_containers/syringe/salacid
+	name = "syringe (salicylic acid)"
+	desc = "Contains salicylic acid, used to treat severe brute damage."
+	list_reagents = list(/datum/reagent/medicine/sal_acid = 15)
+
+/obj/item/reagent_containers/syringe/penacid
+	name = "syringe (pentetic acid)"
+	desc = "Contains pentetic acid, used to reduce high levels of radiation and heal severe toxins."
+	list_reagents = list(/datum/reagent/medicine/pen_acid = 15)
+
+/obj/item/reagent_containers/syringe/syriniver
+	name = "syringe (syriniver)"
+	desc = "Contains syriniver, used to treat toxins and purge chemicals.The tag on the syringe states 'Inject one time per minute'"
+	list_reagents = list(/datum/reagent/medicine/c2/syriniver = 15)
+
+/obj/item/reagent_containers/syringe/contraband
+	name = "unlabeled syringe"
+	desc = "A syringe containing some sort of unknown chemical cocktail."
+
+/obj/item/reagent_containers/syringe/contraband/space_drugs
+	list_reagents = list(/datum/reagent/drug/space_drugs = 15)
+
+/obj/item/reagent_containers/syringe/contraband/krokodil
+	list_reagents = list(/datum/reagent/drug/krokodil = 15)
+
+/obj/item/reagent_containers/syringe/contraband/crank
+	list_reagents = list(/datum/reagent/drug/crank = 15)
+
+/obj/item/reagent_containers/syringe/contraband/methamphetamine
+	list_reagents = list(/datum/reagent/drug/methamphetamine = 15)
+
+/obj/item/reagent_containers/syringe/contraband/bath_salts
+	list_reagents = list(/datum/reagent/drug/bath_salts = 15)
+
+/obj/item/reagent_containers/syringe/contraband/fentanyl
+	list_reagents = list(/datum/reagent/toxin/fentanyl = 15)
+
+/obj/item/reagent_containers/syringe/contraband/morphine
+	list_reagents = list(/datum/reagent/medicine/morphine = 15)

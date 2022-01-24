@@ -10,7 +10,7 @@
 	var/device_type = null
 	var/id = null
 	var/initialized_button = 0
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 70)
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, RAD = 100, FIRE = 90, ACID = 70)
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
@@ -41,21 +41,24 @@
 			board.one_access = 1
 			board.accesses = req_one_access
 
+	setup_device()
 
-/obj/machinery/button/update_icon()
-	cut_overlays()
+/obj/machinery/button/update_icon_state()
 	if(panel_open)
 		icon_state = "button-open"
-		if(device)
-			add_overlay("button-device")
-		if(board)
-			add_overlay("button-board")
-
+	else if(machine_stat & (NOPOWER|BROKEN))
+		icon_state = "[skin]-p"
 	else
-		if(stat & (NOPOWER|BROKEN))
-			icon_state = "[skin]-p"
-		else
-			icon_state = skin
+		icon_state = skin
+
+/obj/machinery/button/update_overlays()
+	. = ..()
+	if(!panel_open)
+		return
+	if(device)
+		. += "button-device"
+	if(board)
+		. += "button-board"
 
 /obj/machinery/button/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
@@ -92,7 +95,7 @@
 			if(W.use_tool(src, user, 40))
 				to_chat(user, "<span class='notice'>You unsecure the button frame.</span>")
 				transfer_fingerprints_to(new /obj/item/wallframe/button(get_turf(src)))
-				playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
+				playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 				qdel(src)
 
 		update_icon()
@@ -108,7 +111,7 @@
 		return
 	req_access = list()
 	req_one_access = list()
-	playsound(src, "sparks", 100, 1)
+	playsound(src, "sparks", 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	obj_flags |= EMAGGED
 
 /obj/machinery/button/attack_ai(mob/user)
@@ -124,7 +127,12 @@
 		A.id = id
 	initialized_button = 1
 
-/obj/machinery/button/attack_hand(mob/user)
+/obj/machinery/button/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
+	if(id)
+		id = "[port.id]_[id]"
+		setup_device()
+
+/obj/machinery/button/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
@@ -152,8 +160,7 @@
 			to_chat(user, "<span class='notice'>You change the button frame's front panel.</span>")
 		return
 
-	if((stat & (NOPOWER|BROKEN)))
-		playsound(src, 'hippiestation/sound/halflife/button2.ogg', 100, 0)
+	if((machine_stat & (NOPOWER|BROKEN)))
 		return
 
 	if(device && device.next_activate > world.time)
@@ -162,18 +169,16 @@
 	if(!allowed(user))
 		to_chat(user, "<span class='alert'>Access Denied.</span>")
 		flick("[skin]-denied", src)
-		playsound(src, 'hippiestation/sound/halflife/button1.ogg', 100, 0)
 		return
 
-	playsound(src, pick('hippiestation/sound/halflife/button3.ogg', 'hippiestation/sound/halflife/button4.ogg', 'hippiestation/sound/halflife/button5.ogg', 'hippiestation/sound/halflife/button6.ogg', 'hippiestation/sound/halflife/button7.ogg', 'hippiestation/sound/halflife/button8.ogg', 'hippiestation/sound/halflife/button9.ogg', 'hippiestation/sound/halflife/button10.ogg', 'hippiestation/sound/halflife/button11.ogg'), 100, 0)
 	use_power(5)
 	icon_state = "[skin]1"
 
 	if(device)
 		device.pulsed()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_BUTTON_PRESSED,src)
 
-
-	addtimer(CALLBACK(src, .proc/update_icon), 15)
+	addtimer(CALLBACK(src, /atom/.proc/update_icon), 15)
 
 /obj/machinery/button/door
 	name = "door button"
@@ -200,7 +205,7 @@
 /obj/machinery/button/door/incinerator_vent_toxmix
 	name = "combustion chamber vent control"
 	id = INCINERATOR_TOXMIX_VENT
-	req_access = list(ACCESS_TOX)
+	req_access = list(ACCESS_TOXINS)
 
 /obj/machinery/button/door/incinerator_vent_atmos_main
 	name = "turbine vent control"
@@ -211,6 +216,16 @@
 	name = "combustion chamber vent control"
 	id = INCINERATOR_ATMOS_AUXVENT
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
+
+/obj/machinery/button/door/atmos_test_room_mainvent_1
+	name = "test chamber 1 vent control"
+	id = TEST_ROOM_ATMOS_MAINVENT_1
+	req_one_access = list(ACCESS_ATMOSPHERICS)
+
+/obj/machinery/button/door/atmos_test_room_mainvent_2
+	name = "test chamber 2 vent control"
+	id = TEST_ROOM_ATMOS_MAINVENT_2
+	req_one_access = list(ACCESS_ATMOSPHERICS)
 
 /obj/machinery/button/door/incinerator_vent_syndicatelava_main
 	name = "turbine vent control"
@@ -262,6 +277,13 @@
 	skin = "launcher"
 	device_type = /obj/item/assembly/control/flasher
 
+/obj/machinery/button/curtain
+	name = "curtain button"
+	desc = "A remote control switch for a mechanical curtain."
+	icon_state = "launcher"
+	skin = "launcher"
+	device_type = /obj/item/assembly/control/curtain
+
 /obj/machinery/button/flasher/indestructible
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
@@ -282,4 +304,37 @@
 	desc = "Used for building buttons."
 	icon_state = "button"
 	result_path = /obj/machinery/button
-	materials = list(MAT_METAL=MINERAL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
+
+/obj/machinery/button/elevator
+	name = "elevator button"
+	desc = "Go back. Go back. Go back. Can you operate the elevator."
+	icon_state = "launcher"
+	skin = "launcher"
+	device_type = /obj/item/assembly/control/elevator
+	req_access = list()
+	id = 1
+
+/obj/machinery/button/elevator/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>There's a small inscription on the button...</span>"
+	. += "<span class='notice'>THIS CALLS THE ELEVATOR! IT DOES NOT OPERATE IT! Interact with the elevator itself to use it!</span>"
+
+/obj/machinery/button/tram
+	name = "tram caller"
+	desc = "A button for calling the tram. It has a speakerbox in it with some internals."
+	icon_state = "launcher"
+	skin = "launcher"
+	device_type = /obj/item/assembly/control/tram
+	req_access = list()
+	id = 1
+
+/obj/machinery/button/tram/setup_device()
+	var/obj/item/assembly/control/tram/tram_device = device
+	tram_device.initial_id = id
+	. = ..()
+
+/obj/machinery/button/tram/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>There's a small inscription on the button...</span>"
+	. += "<span class='notice'>THIS CALLS THE TRAM! IT DOES NOT OPERATE IT! The console on the tram tells it where to go!</span>"

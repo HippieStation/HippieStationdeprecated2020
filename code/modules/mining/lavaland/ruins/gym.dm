@@ -8,12 +8,12 @@
 	var/list/hit_sounds = list('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg',\
 	'sound/weapons/punch1.ogg', 'sound/weapons/punch2.ogg', 'sound/weapons/punch3.ogg', 'sound/weapons/punch4.ogg')
 
-/obj/structure/punching_bag/attack_hand(mob/user as mob)
+/obj/structure/punching_bag/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
 	flick("[icon_state]2", src)
-	playsound(loc, pick(hit_sounds), 25, 1, -1)
+	playsound(loc, pick(hit_sounds), 25, TRUE, -1)
 	if(isliving(user))
 		var/mob/living/L = user
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "exercise", /datum/mood_event/exercise)
@@ -29,7 +29,7 @@
 /obj/structure/weightmachine/proc/AnimateMachine(mob/living/user)
 	return
 
-/obj/structure/weightmachine/attack_hand(mob/living/user)
+/obj/structure/weightmachine/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
@@ -46,9 +46,9 @@
 		user.visible_message("<B>[user] is [bragmessage]!</B>")
 		AnimateMachine(user)
 
-		playsound(user, 'sound/machines/click.ogg', 60, 1)
+		playsound(user, 'sound/machines/click.ogg', 60, TRUE)
 		obj_flags &= ~IN_USE
-		user.pixel_y = 0
+		user.pixel_y = user.base_pixel_y
 		var/finishmessage = pick("You feel stronger!","You feel like you can take on the world!","You feel robust!","You feel indestructible!")
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "exercise", /datum/mood_event/exercise)
 		icon_state = initial(icon_state)
@@ -70,7 +70,7 @@
 		sleep(3)
 		animate(user, pixel_y = -4, time = 3)
 		sleep(3)
-		playsound(user, 'goon/sound/effects/spring.ogg', 60, 1)
+		playsound(user, 'goon/sound/effects/spring.ogg', 60, TRUE)
 
 /obj/structure/weightmachine/weightlifter
 	icon = 'goon/icons/obj/fitness.dmi'
@@ -88,7 +88,7 @@
 		for (var/innerReps = max(reps, 1), innerReps > 0, innerReps--)
 			sleep(3)
 			animate(user, pixel_y = (user.pixel_y == 3) ? 5 : 3, time = 3)
-		playsound(user, 'goon/sound/effects/spring.ogg', 60, 1)
+		playsound(user, 'goon/sound/effects/spring.ogg', 60, TRUE)
 	sleep(3)
 	animate(user, pixel_y = 2, time = 3)
 	sleep(3)

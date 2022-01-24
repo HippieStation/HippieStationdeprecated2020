@@ -2,10 +2,10 @@
 	name = "Tesla Blast"
 	desc = "Charge up a tesla arc and release it at a random nearby target! You can move freely while it charges. The arc jumps between targets and can knock them down."
 	charge_type = "recharge"
-	charge_max	= 300
+	charge_max = 300
 	clothes_req = TRUE
 	invocation = "UN'LTD P'WAH!"
-	invocation_type = "shout"
+	invocation_type = INVOCATION_SHOUT
 	range = 7
 	cooldown_min = 30
 	selection_type = "view"
@@ -27,8 +27,8 @@
 	Snd = new/sound('sound/magic/lightning_chargeup.ogg',channel = 7)
 	halo = halo || mutable_appearance('icons/effects/effects.dmi', "electricity", EFFECTS_LAYER)
 	user.add_overlay(halo)
-	playsound(get_turf(user), Snd, 50, 0)
-	if(do_mob(user,user,100,1))
+	playsound(get_turf(user), Snd, 50, FALSE)
+	if(do_after(user, 10 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_HELD_ITEM)))
 		if(ready && cast_check(skipcharge=1))
 			choose_targets()
 		else
@@ -50,32 +50,32 @@
 	ready = FALSE
 	var/mob/living/carbon/target = targets[1]
 	Snd=sound(null, repeat = 0, wait = 1, channel = Snd.channel) //byond, why you suck?
-	playsound(get_turf(user),Snd,50,0)// Sorry MrPerson, but the other ways just didn't do it the way i needed to work, this is the only way.
+	playsound(get_turf(user),Snd,50,FALSE)// Sorry MrPerson, but the other ways just didn't do it the way i needed to work, this is the only way.
 	if(get_dist(user,target)>range)
 		to_chat(user, "<span class='warning'>[target.p_theyre(TRUE)] too far away!</span>")
 		Reset(user)
 		return
 
-	playsound(get_turf(user), 'sound/magic/lightningbolt.ogg', 50, 1)
-	user.Beam(target,icon_state="lightning[rand(1,12)]",time=5)
+	playsound(get_turf(user), 'sound/magic/lightningbolt.ogg', 50, TRUE)
+	user.Beam(target,icon_state="lightning[rand(1,12)]", time = 5)
 
 	Bolt(user,target,30,5,user)
 	Reset(user)
 
 /obj/effect/proc_holder/spell/targeted/tesla/proc/Bolt(mob/origin,mob/target,bolt_energy,bounces,mob/user = usr)
-	origin.Beam(target,icon_state="lightning[rand(1,12)]",time=5)
+	origin.Beam(target,icon_state="lightning[rand(1,12)]", time = 5)
 	var/mob/living/carbon/current = target
 	if(current.anti_magic_check())
-		playsound(get_turf(current), 'sound/magic/lightningshock.ogg', 50, 1, -1)
+		playsound(get_turf(current), 'sound/magic/lightningshock.ogg', 50, TRUE, -1)
 		current.visible_message("<span class='warning'>[current] absorbs the spell, remaining unharmed!</span>", "<span class='userdanger'>You absorb the spell, remaining unharmed!</span>")
 	else if(bounces < 1)
-		current.electrocute_act(bolt_energy,"Lightning Bolt",safety=1)
-		playsound(get_turf(current), 'sound/magic/lightningshock.ogg', 50, 1, -1)
+		current.electrocute_act(bolt_energy,"Lightning Bolt",flags = SHOCK_NOGLOVES)
+		playsound(get_turf(current), 'sound/magic/lightningshock.ogg', 50, TRUE, -1)
 	else
-		current.electrocute_act(bolt_energy,"Lightning Bolt",safety=1)
-		playsound(get_turf(current), 'sound/magic/lightningshock.ogg', 50, 1, -1)
+		current.electrocute_act(bolt_energy,"Lightning Bolt",flags = SHOCK_NOGLOVES)
+		playsound(get_turf(current), 'sound/magic/lightningshock.ogg', 50, TRUE, -1)
 		var/list/possible_targets = new
-		for(var/mob/living/M in view_or_range(range,target,"view"))
+		for(var/mob/living/M in view(range,target))
 			if(user == M || target == M && los_check(current,M)) // || origin == M ? Not sure double shockings is good or not
 				continue
 			possible_targets += M

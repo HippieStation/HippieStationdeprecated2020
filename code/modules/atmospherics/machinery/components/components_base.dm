@@ -2,8 +2,10 @@
 // On top of that, now people can add component-speciic procs/vars if they want!
 
 /obj/machinery/atmospherics/components
+	hide = FALSE
+
 	var/welded = FALSE //Used on pumps and scrubbers
-	var/showpipe = FALSE
+	var/showpipe = TRUE
 	var/shift_underlay_only = TRUE //Layering only shifts underlay?
 
 	var/list/datum/pipeline/parents
@@ -20,26 +22,30 @@
 		A.volume = 200
 		airs[i] = A
 
+/obj/machinery/atmospherics/components/Initialize()
+	. = ..()
+
+	if(hide)
+		RegisterSignal(src, COMSIG_OBJ_HIDE, .proc/hide_pipe)
+
 // Iconnery
 
 /obj/machinery/atmospherics/components/proc/update_icon_nopipes()
 	return
+
+/obj/machinery/atmospherics/components/proc/hide_pipe(datum/source, covered)
+	showpipe = !covered
+	update_icon()
 
 /obj/machinery/atmospherics/components/update_icon()
 	update_icon_nopipes()
 
 	underlays.Cut()
 
-	var/turf/T = loc
-	if(level == 2 || (istype(T) && !T.intact))
-		showpipe = TRUE
-		plane = GAME_PLANE
-	else
-		showpipe = FALSE
-		plane = FLOOR_PLANE
+	plane = showpipe ? GAME_PLANE : FLOOR_PLANE
 
 	if(!showpipe)
-		return //no need to update the pipes if they aren't showing
+		return ..()
 
 	var/connected = 0 //Direction bitset
 
@@ -56,12 +62,13 @@
 
 	if(!shift_underlay_only)
 		PIPING_LAYER_SHIFT(src, piping_layer)
+	return ..()
 
 /obj/machinery/atmospherics/components/proc/get_pipe_underlay(state, dir, color = null)
 	if(color)
-		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, color, piping_layer = shift_underlay_only ? piping_layer : 2)
+		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, color, piping_layer = shift_underlay_only ? piping_layer : 3)
 	else
-		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, piping_layer = shift_underlay_only ? piping_layer : 2)
+		. = getpipeimage('icons/obj/atmospherics/components/binary_devices.dmi', state, dir, piping_layer = shift_underlay_only ? piping_layer : 3)
 
 // Pipenet stuff; housekeeping
 
@@ -75,30 +82,19 @@
 	..()
 	update_parents()
 
-/obj/machinery/atmospherics/components/get_rebuild_targets()
-	var/list/to_return = list()
+/obj/machinery/atmospherics/components/build_network()
 	for(var/i in 1 to device_type)
-		if(parents[i])
-			continue
-		parents[i] = new /datum/pipeline()
-		to_return += parents[i]
-	return to_return
+		if(!parents[i])
+			parents[i] = new /datum/pipeline()
+			var/datum/pipeline/P = parents[i]
+			P.build_pipeline(src)
 
-/**
- * Called by nullifyNode(), used to remove the pipeline the component is attached to
- * Arguments:
- * * -reference: the pipeline the component is attached to
- */
 /obj/machinery/atmospherics/components/proc/nullifyPipenet(datum/pipeline/reference)
 	if(!reference)
 		CRASH("nullifyPipenet(null) called by [type] on [COORD(src)]")
-	for (var/i in 1 to parents.len)
-		if (parents[i] == reference)
-			reference.other_airs -= airs[i] // Disconnects from the pipeline side
-			parents[i] = null // Disconnects from the machinery side.
-
+	var/i = parents.Find(reference)
+	reference.other_airs -= airs[i]
 	reference.other_atmosmch -= src
-
 	/**
 	 *  We explicitly qdel pipeline when this particular pipeline
 	 *  is projected to have no member and cause GC problems.
@@ -108,15 +104,13 @@
 	 */
 	if(!length(reference.other_atmosmch) && !length(reference.members))
 		if(QDESTROYING(reference))
-			CRASH("nullifyPipenet() called on qdeleting [reference]")
+			parents[i] = null
+			CRASH("nullifyPipenet() called on qdeleting [reference] indexed on parents\[[i]\]")
 		qdel(reference)
-		
-/obj/machinery/atmospherics/components/returnPipenetAirs(datum/pipeline/reference)
-	var/list/returned_air = list()
-	for (var/i in 1 to parents.len)
-		if (parents[i] == reference)
-			returned_air += airs[i]
-	return returned_air
+	parents[i] = null
+
+/obj/machinery/atmospherics/components/returnPipenetAir(datum/pipeline/reference)
+	return airs[parents.Find(reference)]
 
 /obj/machinery/atmospherics/components/pipeline_expansion(datum/pipeline/reference)
 	if(reference)
@@ -132,7 +126,7 @@
 /obj/machinery/atmospherics/components/replacePipenet(datum/pipeline/Old, datum/pipeline/New)
 	parents[parents.Find(Old)] = New
 
-/obj/machinery/atmospherics/components/unsafe_pressure_release(var/mob/user, var/pressures)
+/obj/machinery/atmospherics/components/unsafe_pressure_release(mob/user, pressures)
 	..()
 
 	var/turf/T = get_turf(src)
@@ -157,10 +151,15 @@
 		T.assume_air(to_release)
 		air_update_turf(FALSE, FALSE)
 
-/obj/machinery/atmospherics/components/proc/safe_input(var/title, var/text, var/default_set)
-	var/new_value = input(usr,text,title,default_set) as num
+/obj/machinery/atmospherics/components/proc/safe_input(title, text, default_set)
+	var/new_value = input(usr,text,title,default_set) as num|null
+
+	if (isnull(new_value))
+		return default_set
+
 	if(usr.canUseTopic(src))
 		return new_value
+
 	return default_set
 
 // Helpers

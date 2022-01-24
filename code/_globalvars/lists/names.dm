@@ -4,6 +4,7 @@ GLOBAL_LIST_INIT(wizard_second, world.file2list("strings/names/wizardsecond.txt"
 GLOBAL_LIST_INIT(ninja_titles, world.file2list("strings/names/ninjatitle.txt"))
 GLOBAL_LIST_INIT(ninja_names, world.file2list("strings/names/ninjaname.txt"))
 GLOBAL_LIST_INIT(commando_names, world.file2list("strings/names/death_commando.txt"))
+GLOBAL_LIST_INIT(first_names, world.file2list("strings/names/first.txt"))
 GLOBAL_LIST_INIT(first_names_male, world.file2list("strings/names/first_male.txt"))
 GLOBAL_LIST_INIT(first_names_female, world.file2list("strings/names/first_female.txt"))
 GLOBAL_LIST_INIT(last_names, world.file2list("strings/names/last.txt"))
@@ -26,6 +27,7 @@ GLOBAL_LIST_INIT(verbs, world.file2list("strings/names/verbs.txt"))
 GLOBAL_LIST_INIT(ing_verbs, world.file2list("strings/names/ing_verbs.txt"))
 GLOBAL_LIST_INIT(adverbs, world.file2list("strings/names/adverbs.txt"))
 GLOBAL_LIST_INIT(adjectives, world.file2list("strings/names/adjectives.txt"))
+GLOBAL_LIST_INIT(gross_adjectives,  world.file2list("strings/names/gross_adjectives.txt"))
 GLOBAL_LIST_INIT(dream_strings, world.file2list("strings/dreamstrings.txt"))
 //loaded on startup because of "
 //would include in rsc if ' was used
@@ -49,5 +51,3 @@ GLOBAL_LIST_INIT(preferences_custom_names, list(
 	"religion" = list("pref_name" = "Chaplain religion", "qdesc" = "religion" , "allow_numbers" = TRUE , "group" = "chaplain", "allow_null" = FALSE),
 	"deity" = list("pref_name" = "Chaplain deity", "qdesc" = "deity", "allow_numbers" = TRUE , "group" = "chaplain", "allow_null" = FALSE)
 	))
-
-GLOBAL_LIST_EMPTY(in_character_filter)

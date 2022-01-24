@@ -3,8 +3,13 @@
 	var/title = "NOPE"
 
 	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
-	var/list/minimal_access = list()		//Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
-	var/list/access = list()				//Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
+	var/list/minimal_access = list() //Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
+	var/list/access = list() //Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
+
+	/// Innate skill levels unlocked at roundstart. Based on config.jobs_have_minimal_access config setting, for example with a skeleton crew. Format is list(/datum/skill/foo = SKILL_EXP_NOVICE) with exp as an integer or as per code/_DEFINES/skills.dm
+	var/list/skills
+	/// Innate skill levels unlocked at roundstart. Based on config.jobs_have_minimal_access config setting, for example with a full crew. Format is list(/datum/skill/foo = SKILL_EXP_NOVICE) with exp as an integer or as per code/_DEFINES/skills.dm
+	var/list/minimal_skills
 
 	//Determines who can demote this position
 	var/department_head = list()
@@ -13,8 +18,6 @@
 	var/list/head_announce = null
 
 	//Bitflags for the job
-	var/flag = NONE //Deprecated
-	var/department_flag = NONE //Deprecated
 	var/auto_deadmin_role_flags = NONE
 
 	//Players will be allowed to spawn in as jobs that are set to "Station"
@@ -58,21 +61,68 @@
 
 	var/list/mind_traits // Traits added to the mind of the mob assigned this job
 
+	///Lazylist of traits added to the liver of the mob assigned this job (used for the classic "cops heal from donuts" reaction, among others)
+	var/list/liver_traits = null
+
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
+
+	var/bounty_types = CIV_JOB_BASIC
+
+	/// Should this job be allowed to be picked for the bureaucratic error event?
+	var/allow_bureaucratic_error = TRUE
+
+/datum/job/New()
+	. = ..()
+	var/list/jobs_changes = GetMapChanges()
+	if(!jobs_changes)
+		return
+	if(isnum(jobs_changes["additional_access"]))
+		access += jobs_changes["additional_access"]
+	if(isnum(jobs_changes["additional_minimal_access"]))
+		minimal_access += jobs_changes["additional_minimal_access"]
+	if(isnum(jobs_changes["spawn_positions"]))
+		spawn_positions = jobs_changes["spawn_positions"]
+	if(isnum(jobs_changes["total_positions"]))
+		total_positions = jobs_changes["total_positions"]
 
 //Only override this proc
 //H is usually a human unless an /equip override transformed it
 /datum/job/proc/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	//do actions on H but send messages to M as the key may not have been transferred_yet
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_SPAWN, src, H, M, latejoin)
 	if(mind_traits)
 		for(var/t in mind_traits)
 			ADD_TRAIT(H.mind, t, JOB_TRAIT)
+
+	var/obj/item/organ/liver/liver = H.getorganslot(ORGAN_SLOT_LIVER)
+
+	if(liver)
+		for(var/t in liver_traits)
+			ADD_TRAIT(liver, t, JOB_TRAIT)
+
+	var/list/roundstart_experience
+
+	if(!ishuman(H))
+		return
+
+	if(!config) //Needed for robots.
+		roundstart_experience = minimal_skills
+
+	if(CONFIG_GET(flag/jobs_have_minimal_access))
+		roundstart_experience = minimal_skills
+	else
+		roundstart_experience = skills
+
+	if(roundstart_experience)
+		var/mob/living/carbon/human/experiencer = H
+		for(var/i in roundstart_experience)
+			experiencer.mind.adjust_experience(i, roundstart_experience[i], TRUE)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)
 		announce_head(H, head_announce)
 
-/datum/job/proc/override_latejoin_spawn(mob/living/carbon/human/H)		//Return TRUE to force latejoining to not automatically place the person in latejoin shuttle/whatever.
+/datum/job/proc/override_latejoin_spawn(mob/living/carbon/human/H) //Return TRUE to force latejoining to not automatically place the person in latejoin shuttle/whatever.
 	return FALSE
 
 //Used for a special check of whether to allow a client to latejoin as this job.
@@ -88,14 +138,14 @@
 /datum/job/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
 	if(!H)
 		return FALSE
-	if(!visualsOnly)
-		var/datum/bank_account/bank_account = new(H.real_name, src, H.gender)
-		bank_account.payday(STARTING_PAYCHECKS, TRUE)
-		H.account_id = bank_account.account_id
 	if(CONFIG_GET(flag/enforce_human_authority) && (title in GLOB.command_positions))
 		if(H.dna.species.id != "human")
 			H.set_species(/datum/species/human)
 			H.apply_pref_name("human", preference_source)
+	if(!visualsOnly)
+		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
+		bank_account.payday(STARTING_PAYCHECKS, TRUE)
+		H.account_id = bank_account.account_id
 
 	//Equip the rest of the gear
 	H.dna.species.before_equip_job(src, H, visualsOnly)
@@ -109,7 +159,7 @@
 		announce(H)
 
 /datum/job/proc/get_access()
-	if(!config)	//Needed for robots.
+	if(!config) //Needed for robots.
 		return src.minimal_access.Copy()
 
 	. = list()
@@ -122,15 +172,15 @@
 	if(CONFIG_GET(flag/everyone_has_maint_access)) //Config has global maint access set
 		. |= list(ACCESS_MAINT_TUNNELS)
 
-/datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
+/datum/job/proc/announce_head(mob/living/carbon/human/H, channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(H && GLOB.announcement_systems.len)
 		//timer because these should come after the captain announcement
-		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/addtimer, CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/_addtimer, CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
 	if(available_in_days(C) == 0)
-		return TRUE	//Available in 0 days = available right now = player is old enough to play.
+		return TRUE //Available in 0 days = available right now = player is old enough to play.
 	return FALSE
 
 
@@ -150,7 +200,26 @@
 	return TRUE
 
 /datum/job/proc/map_check()
+	var/list/job_changes = GetMapChanges()
+	if(!job_changes)
+		return FALSE
 	return TRUE
+
+/**
+ * Gets the changes dictionary made to the job template by the map config. Returns null if job is removed.
+ */
+/datum/job/proc/GetMapChanges()
+	var/string_type = "[type]"
+	var/list/splits = splittext(string_type, "/")
+	var/endpart = splits[splits.len]
+
+	SSmapping.HACK_LoadMapConfig()
+
+	var/list/job_changes = SSmapping.config.job_changes
+	if(!(endpart in job_changes))
+		return list()
+
+	return job_changes[endpart]
 
 /datum/job/proc/radio_help_message(mob/M)
 	to_chat(M, "<b>Prefix your message with :h to speak on your department's radio. To see other prefixes, look closely at your headset.</b>")
@@ -175,7 +244,7 @@
 	var/pda_slot = ITEM_SLOT_BELT
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	switch(H.backbag)
+	switch(H.backpack)
 		if(GBACKPACK)
 			back = /obj/item/storage/backpack //Grey backpack
 		if(GSATCHEL)
@@ -191,6 +260,16 @@
 		else
 			back = backpack //Department backpack
 
+	//converts the uniform string into the path we'll wear, whether it's the skirt or regular variant
+	var/holder
+	if(H.jumpsuit_style == PREF_SKIRT)
+		holder = "[uniform]/skirt"
+		if(!text2path(holder))
+			holder = "[uniform]"
+	else
+		holder = "[uniform]"
+	uniform = text2path(holder)
+
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
@@ -205,13 +284,13 @@
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
 		C.assignment = J.title
+		if(H.age)
+			C.registered_age = H.age
 		C.update_label()
-		for(var/A in SSeconomy.bank_accounts)
-			var/datum/bank_account/B = A
-			if(B.account_id == H.account_id)
-				C.registered_account = B
-				B.bank_cards += C
-				break
+		var/datum/bank_account/B = SSeconomy.bank_accounts_by_id["[H.account_id]"]
+		if(B && B.account_id == H.account_id)
+			C.registered_account = B
+			B.bank_cards += C
 		H.sec_hud_set_ID()
 
 	var/obj/item/pda/PDA = H.get_item_by_slot(pda_slot)
@@ -219,6 +298,10 @@
 		PDA.owner = H.real_name
 		PDA.ownjob = J.title
 		PDA.update_label()
+
+	if(H.client?.prefs.playtime_reward_cloak)
+		neck = /obj/item/clothing/neck/cloak/skill_reward/playing
+
 
 /datum/outfit/job/get_chameleon_disguise_info()
 	var/list/types = ..()

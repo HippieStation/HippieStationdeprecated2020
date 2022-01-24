@@ -18,7 +18,7 @@ Bonus
 /datum/symptom/hallucigen
 	name = "Hallucigen"
 	desc = "The virus stimulates the brain, causing occasional hallucinations."
-	stealth = -2
+	stealth = -1
 	resistance = -3
 	stage_speed = -3
 	transmittable = -1
@@ -47,7 +47,7 @@ Bonus
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	var/list/healthy_messages = list("Your lungs feel great.", "You realize you haven't been breathing.", "You don't feel the need to breathe.",\
-					"Your eyes feel great.", "You are now blinking manually.", "You don't feel the need to blink.")
+					"Your eyes feel great.", "Your ears feel great.", "You don't feel the need to blink.")
 	switch(A.stage)
 		if(1, 2)
 			if(prob(base_message_chance))
@@ -63,5 +63,8 @@ Bonus
 					to_chat(M, "<span class='notice'>[pick(healthy_messages)]</span>")
 		else
 			if(prob(base_message_chance))
-				to_chat(M, "<span class='userdanger'>[pick("Oh, your head...", "Your head pounds.", "They're everywhere! Run!", "Something in the shadows...")]</span>")
+				if(!fake_healthy)
+					to_chat(M, "<span class='userdanger'>[pick("Oh, your head...", "Your head pounds.", "They're everywhere! Run!", "Something in the shadows...")]</span>")
+				else
+					to_chat(M, "<span class='notice'>[pick(healthy_messages)]</span>")
 			M.hallucination += (45 * power)

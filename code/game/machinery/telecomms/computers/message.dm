@@ -3,12 +3,12 @@
 	Lets you read PDA and request console messages.
 */
 
-#define LINKED_SERVER_NONRESPONSIVE  (!linkedServer || (linkedServer.stat & (NOPOWER|BROKEN)))
+#define LINKED_SERVER_NONRESPONSIVE  (!linkedServer || (linkedServer.machine_stat & (NOPOWER|BROKEN)))
 
-#define MSG_MON_SCREEN_MAIN 		0
-#define MSG_MON_SCREEN_LOGS 		1
-#define MSG_MON_SCREEN_HACKED 		2
-#define MSG_MON_SCREEN_CUSTOM_MSG 	3
+#define MSG_MON_SCREEN_MAIN 0
+#define MSG_MON_SCREEN_LOGS 1
+#define MSG_MON_SCREEN_HACKED 2
+#define MSG_MON_SCREEN_CUSTOM_MSG 3
 #define MSG_MON_SCREEN_REQUEST_LOGS 4
 
 // The monitor itself.
@@ -17,6 +17,7 @@
 	desc = "Used to monitor the crew's PDA messages, as well as request console messages."
 	icon_screen = "comm_logs"
 	circuit = /obj/item/circuitboard/computer/message_monitor
+	light_color = LIGHT_COLOR_GREEN
 	//Server linked to.
 	var/obj/machinery/telecomms/message_server/linkedServer = null
 	//Sparks effect - For emag
@@ -27,18 +28,17 @@
 	var/defaultmsg = "<span class='notice'>Welcome. Please select an option.</span>"
 	var/rebootmsg = "<span class='warning'>%$&(£: Critical %$$@ Error // !RestArting! <lOadiNg backUp iNput ouTput> - ?pLeaSe wAit!</span>"
 	//Computer properties
-	var/screen = MSG_MON_SCREEN_MAIN 		// 0 = Main menu, 1 = Message Logs, 2 = Hacked screen, 3 = Custom Message
-	var/hacking = FALSE		// Is it being hacked into by the AI/Cyborg
-	var/message = "<span class='notice'>System bootup complete. Please select an option.</span>"	// The message that shows on the main menu.
+	var/screen = MSG_MON_SCREEN_MAIN // 0 = Main menu, 1 = Message Logs, 2 = Hacked screen, 3 = Custom Message
+	var/hacking = FALSE // Is it being hacked into by the AI/Cyborg
+	var/message = "<span class='notice'>System bootup complete. Please select an option.</span>" // The message that shows on the main menu.
 	var/auth = FALSE // Are they authenticated?
 	var/optioncount = 7
 	// Custom Message Properties
 	var/customsender = "System Administrator"
 	var/obj/item/pda/customrecepient = null
-	var/customjob		= "Admin"
-	var/custommessage 	= "This is a test, please ignore."
+	var/customjob = "Admin"
+	var/custommessage = "This is a test, please ignore."
 
-	light_color = LIGHT_COLOR_GREEN
 
 /obj/machinery/computer/message_monitor/attackby(obj/item/O, mob/living/user, params)
 	if(O.tool_behaviour == TOOL_SCREWDRIVER && (obj_flags & EMAGGED))
@@ -92,10 +92,10 @@
 
 	if(auth)
 		dat += "<h4><dd><A href='?src=[REF(src)];auth=1'>&#09;<font color='green'>\[Authenticated\]</font></a>&#09;/"
-		dat += " Server Power: <A href='?src=[REF(src)];active=1'>[linkedServer && linkedServer.on ? "<font color='green'>\[On\]</font>":"<font color='red'>\[Off\]</font>"]</a></h4>"
+		dat += " Server Power: <A href='?src=[REF(src)];active=1'>[linkedServer?.on ? "<font color='green'>\[On\]</font>":"<font color='red'>\[Off\]</font>"]</a></h4>"
 	else
 		dat += "<h4><dd><A href='?src=[REF(src)];auth=1'>&#09;<font color='red'>\[Unauthenticated\]</font></a>&#09;/"
-		dat += " Server Power: <u>[linkedServer && linkedServer.on ? "<font color='green'>\[On\]</font>":"<font color='red'>\[Off\]</font>"]</u></h4>"
+		dat += " Server Power: <u>[linkedServer?.on ? "<font color='green'>\[On\]</font>":"<font color='red'>\[Off\]</font>"]</u></h4>"
 
 	if(hacking || (obj_flags & EMAGGED))
 		screen = MSG_MON_SCREEN_HACKED
@@ -202,7 +202,7 @@
 					<td width='20%'><A href='?src=[REF(src)];select=Recepient'>Recipient</a></td>
 					<td width='300px' word-wrap: break-word><A href='?src=[REF(src)];select=Message'>Message</a></td></tr>"}
 				//Sender  - Sender's Job  - Recepient - Message
-				//Al Green- Your Dad	  - Your Mom  - WHAT UP!?
+				//Al Green- Your Dad   - Your Mom  - WHAT UP!?
 
 			dat += {"<tr><td width='20%'>[customsender]</td>
 			<td width='20%'>[customjob]</td>
@@ -214,14 +214,14 @@
 		if(MSG_MON_SCREEN_REQUEST_LOGS)
 
 			var/index = 0
-			/* 	data_rc_msg
-				X												 - 5%
+			/* data_rc_msg
+				X  - 5%
 				var/rec_dpt = "Unspecified" //name of the person - 15%
 				var/send_dpt = "Unspecified" //name of the sender- 15%
-				var/message = "Blank" //transferred message		 - 300px
-				var/stamp = "Unstamped"							 - 15%
-				var/id_auth = "Unauthenticated"					 - 15%
-				var/priority = "Normal"							 - 10%
+				var/message = "Blank" //transferred message  - 300px
+				var/stamp = "Unstamped"  - 15%
+				var/id_auth = "Unauthenticated"  - 15%
+				var/priority = "Normal"  - 10%
 			*/
 			dat += "<center><A href='?src=[REF(src)];back=1'>Back</a> - <A href='?src=[REF(src)];refresh=1'>Refresh</a></center><hr>"
 			dat += {"<table border='1' width='100%'><tr><th width = '5%'>X</th><th width='15%'>Sending Dep.</th><th width='15%'>Receiving Dep.</th>
@@ -239,7 +239,6 @@
 	message = defaultmsg
 	var/datum/browser/popup = new(user, "hologram_console", name, 700, 700)
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 
 /obj/machinery/computer/message_monitor/proc/BruteForce(mob/user)
@@ -255,10 +254,10 @@
 	obj_flags &= ~EMAGGED
 
 /obj/machinery/computer/message_monitor/proc/ResetMessage()
-	customsender 	= "System Administrator"
+	customsender = "System Administrator"
 	customrecepient = null
-	custommessage 	= "This is a test, please ignore."
-	customjob 		= "Admin"
+	custommessage = "This is a test, please ignore."
+	customjob = "Admin"
 
 /obj/machinery/computer/message_monitor/Topic(href, href_list)
 	if(..())
@@ -330,7 +329,7 @@
 				var/dkey = stripped_input(usr, "Please enter the decryption key.")
 				if(dkey && dkey != "")
 					if(linkedServer.decryptkey == dkey)
-						var/newkey = trim(input(usr,"Please enter the new key (3 - 16 characters max):"))
+						var/newkey = stripped_input(usr,"Please enter the new key (3 - 16 characters max):")
 						if(length(newkey) <= 3)
 							message = "<span class='notice'>NOTICE: Decryption key too short!</span>"
 						else if(length(newkey) > 16)
@@ -348,9 +347,8 @@
 				hacking = TRUE
 				screen = MSG_MON_SCREEN_HACKED
 				//Time it takes to bruteforce is dependant on the password length.
-				spawn(100*length(linkedServer.decryptkey))
-					if(src && linkedServer && usr)
-						BruteForce(usr)
+				addtimer(CALLBACK(src, .proc/finish_bruteforce, usr), 100*length(linkedServer.decryptkey))
+
 		//Delete the log.
 		if (href_list["delete_logs"])
 			//Are they on the view logs screen?
@@ -396,7 +394,7 @@
 						//Get out list of viable PDAs
 						var/list/obj/item/pda/sendPDAs = get_viewable_pdas()
 						if(GLOB.PDAs && GLOB.PDAs.len > 0)
-							customrecepient = input(usr, "Select a PDA from the list.") as null|anything in sortNames(sendPDAs)
+							customrecepient = input(usr, "Select a PDA from the list.") as null|anything in sendPDAs
 						else
 							customrecepient = null
 
@@ -444,6 +442,13 @@
 
 	return attack_hand(usr)
 
+/obj/machinery/computer/message_monitor/proc/finish_bruteforce(mob/user)
+	if(!QDELETED(user))
+		BruteForce(user)
+		return
+	hacking = FALSE
+	screen = MSG_MON_SCREEN_MAIN
+
 #undef MSG_MON_SCREEN_MAIN
 #undef MSG_MON_SCREEN_LOGS
 #undef MSG_MON_SCREEN_HACKED
@@ -465,7 +470,6 @@
 
 /obj/item/paper/monitorkey/proc/print(obj/machinery/telecomms/message_server/server)
 	info = "<center><h2>Daily Key Reset</h2></center><br>The new message monitor key is '[server.decryptkey]'.<br>Please keep this a secret and away from the clown.<br>If necessary, change the password to a more secure one."
-	info_links = info
 	add_overlay("paper_words")
 
 /obj/item/paper/monitorkey/LateInitialize()

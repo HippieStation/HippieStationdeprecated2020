@@ -15,7 +15,7 @@
 	for(var/datum/changelingprofile/prof in changeling.stored_profiles)
 		names += "[prof.name]"
 
-	var/chosen_name = input("Select the target DNA: ", "Target DNA", null) as null|anything in names
+	var/chosen_name = input("Select the target DNA: ", "Target DNA", null) as null|anything in sortList(names)
 	if(!chosen_name)
 		return
 
@@ -28,7 +28,7 @@
 	..()
 	changeling.purchasedpowers -= src
 
-	var/newmob = user.humanize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSTUNS | TR_KEEPREAGENTS | TR_KEEPSE)
+	var/newmob = user.humanize()
 
 	changeling_transform(newmob, chosen_prof)
 	return TRUE

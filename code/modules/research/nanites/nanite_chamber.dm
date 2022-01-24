@@ -32,7 +32,7 @@
 /obj/machinery/nanite_chamber/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Scanning module has been upgraded to level <b>[scan_level]</b>.<span>"
+		. += "<span class='notice'>The status display reads: Scanning module has been upgraded to level <b>[scan_level]</b>.</span>"
 
 /obj/machinery/nanite_chamber/proc/set_busy(status, message, working_icon)
 	busy = status
@@ -51,9 +51,9 @@
 	SEND_SIGNAL(occupant, COMSIG_NANITE_SET_CLOUD, cloud_id)
 
 /obj/machinery/nanite_chamber/proc/inject_nanites()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	if((stat & MAINT) || panel_open)
+	if((machine_stat & MAINT) || panel_open)
 		return
 	if(!occupant || busy)
 		return
@@ -78,9 +78,9 @@
 	occupant.AddComponent(/datum/component/nanites, 100)
 
 /obj/machinery/nanite_chamber/proc/remove_nanites(datum/nanite_program/NP)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	if((stat & MAINT) || panel_open)
+	if((machine_stat & MAINT) || panel_open)
 		return
 	if(!occupant || busy)
 		return
@@ -104,30 +104,30 @@
 		return
 	SEND_SIGNAL(occupant, COMSIG_NANITE_DELETE)
 
-/obj/machinery/nanite_chamber/update_icon()
-	cut_overlays()
-
-	if((stat & MAINT) || panel_open)
-		add_overlay("maint")
-
-	else if(!(stat & (NOPOWER|BROKEN)))
-		if(busy || locked)
-			add_overlay("red")
-			if(locked)
-				add_overlay("bolted")
-		else
-			add_overlay("green")
-
+/obj/machinery/nanite_chamber/update_icon_state()
 	//running and someone in there
 	if(occupant)
 		if(busy)
 			icon_state = busy_icon_state
 		else
-			icon_state = initial(icon_state)+ "_occupied"
-		return
+			icon_state = initial(icon_state) + "_occupied"
+	else
+		//running
+		icon_state = initial(icon_state) + (state_open ? "_open" : "")
 
-	//running
-	icon_state = initial(icon_state)+ (state_open ? "_open" : "")
+/obj/machinery/nanite_chamber/update_overlays()
+	. = ..()
+
+	if((machine_stat & MAINT) || panel_open)
+		. += "maint"
+
+	else if(!(machine_stat & (NOPOWER|BROKEN)))
+		if(busy || locked)
+			. += "red"
+			if(locked)
+				. += "bolted"
+		else
+			. += "green"
 
 /obj/machinery/nanite_chamber/proc/toggle_open(mob/user)
 	if(panel_open)
@@ -144,7 +144,7 @@
 
 	open_machine()
 
-/obj/machinery/nanite_chamber/container_resist(mob/living/user)
+/obj/machinery/nanite_chamber/container_resist_act(mob/living/user)
 	if(!locked)
 		open_machine()
 		return
@@ -154,7 +154,7 @@
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	user.visible_message("<span class='notice'>You see [user] kicking against the door of [src]!</span>", \
 		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
-		"<span class='italics'>You hear a metallic creaking from [src].</span>")
+		"<span class='hear'>You hear a metallic creaking from [src].</span>")
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open || !locked || busy)
 			return
@@ -178,7 +178,7 @@
 
 	return TRUE
 
-/obj/machinery/nanite_chamber/relaymove(mob/user as mob)
+/obj/machinery/nanite_chamber/relaymove(mob/living/user, direction)
 	if(user.stat || locked)
 		if(message_cooldown <= world.time)
 			message_cooldown = world.time + 50

@@ -1,15 +1,15 @@
 #define HOLOPAD_MAX_DIAL_TIME 200
 
-#define HOLORECORD_DELAY	"delay"
-#define HOLORECORD_SAY		"say"
-#define HOLORECORD_SOUND	"sound"
-#define HOLORECORD_LANGUAGE	"lang"
-#define HOLORECORD_PRESET	"preset"
+#define HOLORECORD_DELAY "delay"
+#define HOLORECORD_SAY "say"
+#define HOLORECORD_SOUND "sound"
+#define HOLORECORD_LANGUAGE "lang"
+#define HOLORECORD_PRESET "preset"
 #define HOLORECORD_RENAME "rename"
 
 #define HOLORECORD_MAX_LENGTH 200
 
-/mob/camera/aiEye/remote/holo/setLoc()
+/mob/camera/ai_eye/remote/holo/setLoc()
 	. = ..()
 	var/obj/machinery/holopad/H = origin
 	H?.move_hologram(eye_user, loc)
@@ -22,17 +22,17 @@
 //this datum manages it's own references
 
 /datum/holocall
-	var/mob/living/user	//the one that called
-	var/obj/machinery/holopad/calling_holopad	//the one that sent the call
-	var/obj/machinery/holopad/connected_holopad	//the one that answered the call (may be null)
-	var/list/dialed_holopads	//all things called, will be cleared out to just connected_holopad once answered
+	var/mob/living/user //the one that called
+	var/obj/machinery/holopad/calling_holopad //the one that sent the call
+	var/obj/machinery/holopad/connected_holopad //the one that answered the call (may be null)
+	var/list/dialed_holopads //all things called, will be cleared out to just connected_holopad once answered
 
-	var/mob/camera/aiEye/remote/holo/eye	//user's eye, once connected
-	var/obj/effect/overlay/holo_pad_hologram/hologram	//user's hologram, once connected
-	var/datum/action/innate/end_holocall/hangup	//hangup action
+	var/mob/camera/ai_eye/remote/holo/eye //user's eye, once connected
+	var/obj/effect/overlay/holo_pad_hologram/hologram //user's hologram, once connected
+	var/datum/action/innate/end_holocall/hangup //hangup action
 
 	var/call_start_time
-	var/head_call = FALSE //calls from a head of staff autoconnect, if the recieving pad is not secure.
+	var/head_call = FALSE //calls from a head of staff autoconnect, if the receiving pad is not secure.
 
 //creates a holocall made by `caller` from `calling_pad` to `callees`
 /datum/holocall/New(mob/living/caller, obj/machinery/holopad/calling_pad, list/callees, elevated_access = FALSE)
@@ -45,7 +45,7 @@
 
 	for(var/I in callees)
 		var/obj/machinery/holopad/H = I
-		if(!QDELETED(H) && H.is_operational())
+		if(!QDELETED(H) && H.is_operational)
 			dialed_holopads += H
 			if(head_call)
 				if(H.secure)
@@ -88,6 +88,7 @@
 	dialed_holopads.Cut()
 
 	if(calling_holopad)
+		calling_holopad.calling = FALSE
 		calling_holopad.outgoing_call = null
 		calling_holopad.SetLightsAndPower()
 		calling_holopad = null
@@ -154,6 +155,7 @@
 	if(!Check())
 		return
 
+	calling_holopad.calling = FALSE
 	hologram = H.activate_holo(user)
 	hologram.HC = src
 
@@ -176,20 +178,19 @@
 /datum/holocall/proc/Check()
 	for(var/I in dialed_holopads)
 		var/obj/machinery/holopad/H = I
-		if(!H.is_operational())
+		if(!H.is_operational)
 			ConnectionFailure(H)
 
 	if(QDELETED(src))
 		return FALSE
 
-	. = !QDELETED(user) && !user.incapacitated() && !QDELETED(calling_holopad) && calling_holopad.is_operational() && user.loc == calling_holopad.loc
+	. = !QDELETED(user) && !user.incapacitated() && !QDELETED(calling_holopad) && calling_holopad.is_operational && user.loc == calling_holopad.loc
 
 	if(.)
 		if(!connected_holopad)
 			. = world.time < (call_start_time + HOLOPAD_MAX_DIAL_TIME)
 			if(!.)
 				calling_holopad.say("No answer received.")
-				calling_holopad.temp = ""
 
 	if(!.)
 		testing("Holocall Check fail")
@@ -227,7 +228,7 @@
 	desc = "Stores recorder holocalls."
 	icon_state = "holodisk"
 	obj_flags = UNIQUE_RENAME
-	materials = list(MAT_METAL = 100, MAT_GLASS = 100)
+	custom_materials = list(/datum/material/iron = 100, /datum/material/glass = 100)
 	var/datum/holorecord/record
 	//Preset variables
 	var/preset_image_type
@@ -236,7 +237,7 @@
 /obj/item/disk/holodisk/Initialize(mapload)
 	. = ..()
 	if(preset_record_text)
-		build_record()
+		INVOKE_ASYNC(src, .proc/build_record)
 
 /obj/item/disk/holodisk/Destroy()
 	QDEL_NULL(record)
@@ -342,6 +343,21 @@
 	DELAY 20"}
 
 /datum/preset_holoimage/engineer
+	outfit_type = /datum/outfit/job/engineer
+
+/datum/preset_holoimage/engineer/rig
+	outfit_type = /datum/outfit/job/engineer/gloved/rig
+
+/datum/preset_holoimage/engineer/ce
+	outfit_type = /datum/outfit/job/ce
+
+/datum/preset_holoimage/engineer/ce/rig
+	outfit_type = /datum/outfit/job/engineer/gloved/rig
+
+/datum/preset_holoimage/engineer/atmos
+	outfit_type = /datum/outfit/job/atmos
+
+/datum/preset_holoimage/engineer/atmos/rig
 	outfit_type = /datum/outfit/job/engineer/gloved/rig
 
 /datum/preset_holoimage/researcher
@@ -362,26 +378,89 @@
 /datum/preset_holoimage/clown
 	outfit_type = /datum/outfit/job/clown
 
-/obj/item/disk/holodisk/donutstation/enginewars
-	name = "Conversation #DS034"
+/obj/item/disk/holodisk/donutstation/whiteship
+	name = "Blackbox Print-out #DS024"
+	desc = "A holodisk containing the last viable recording of DS024's blackbox."
+	preset_image_type = /datum/preset_holoimage/engineer/ce
+	preset_record_text = {"
+	NAME Geysr Shorthalt
+	SAY Engine renovations complete and the ships been loaded. We all ready?
+	DELAY 25
+	PRESET /datum/preset_holoimage/engineer
+	NAME Jacob Ullman
+	SAY Lets blow this popsicle stand of a station.
+	DELAY 20
+	PRESET /datum/preset_holoimage/engineer/atmos
+	NAME Lindsey Cuffler
+	SAY Uh, sir? Shouldn't we call for a secondary shuttle? The bluespace drive on this thing made an awfully weird noise when we jumped here..
+	DELAY 30
+	PRESET /datum/preset_holoimage/engineer/ce
+	NAME Geysr Shorthalt
+	SAY Pah! Ship techie at the dock said to give it a good few kicks if it started acting up, let me just..
+	DELAY 25
+	SOUND punch
+	SOUND sparks
+	DELAY 10
+	SOUND punch
+	SOUND sparks
+	DELAY 10
+	SOUND punch
+	SOUND sparks
+	SOUND warpspeed
+	DELAY 15
+	PRESET /datum/preset_holoimage/engineer/atmos
+	NAME Lindsey Cuffler
+	SAY Uhh.. is it supposed to be doing that??
+	DELAY 15
+	PRESET /datum/preset_holoimage/engineer/ce
+	NAME Geysr Shorthalt
+	SAY See? Working as intended. Now, are we all ready?
+	DELAY 10
+	PRESET /datum/preset_holoimage/engineer
+	NAME Jacob Ullman
+	SAY Is it supposed to be glowing like that?
+	DELAY 20
+	SOUND explosion
+
+	"}
+
+/obj/item/disk/holodisk/ruin/snowengieruin
+	name = "Blackbox Print-out #EB412"
+	desc = "A holodisk containing the last moments of EB412. There's a bloody fingerprint on it."
 	preset_image_type = /datum/preset_holoimage/engineer
 	preset_record_text = {"
-	NAME Rigsuit Engineer #1
+	NAME Dave Tundrale
+	SAY Maria, how's Build?
 	DELAY 10
-	SAY The blueprints say we're installing a.. singularity engine?
-	DELAY 45
-	NAME Rigsuit Engineer #2
+	NAME Maria Dell
+	PRESET /datum/preset_holoimage/engineer/atmos
+	SAY It's fine, don't worry. I've got Plastic on it. And frankly, i'm kinda busy with, the, uhhm, incinerator.
+	DELAY 30
+	NAME Dave Tundrale
+	PRESET /datum/preset_holoimage/engineer
+	SAY Aight, wonderful. The science mans been kinda shit though. No RCDs-
+	DELAY 20
+	NAME Maria Dell
+	PRESET /datum/preset_holoimage/engineer/atmos
+	SAY Enough about your RCDs. They're not even that important, just bui-
+	DELAY 15
+	SOUND explosion
 	DELAY 10
-	SAY Yep, apparently part of the classic design.
-	DELAY 45
-	NAME Rigsuit Engineer #1
+	SAY Oh, shit!
 	DELAY 10
-	SAY Hasn't the singularity engine been out of standard use for awhile now?
-	DELAY 45
-	NAME Rigsuit Engineer #2
+	PRESET /datum/preset_holoimage/engineer/atmos/rig
+	LANGUAGE /datum/language/narsie
+	NAME Unknown
+	SAY RISE, MY LORD!!
 	DELAY 10
-	SAY Yeah, but apparently the architects bribed one of the higher ups to bypass standard regulations.
-	DELAY 55
-	NAME Rigsuit Engineery #1
+	LANGUAGE /datum/language/common
+	NAME Plastic
+	PRESET /datum/preset_holoimage/engineer/rig
+	SAY Fuck, fuck, fuck!
+	DELAY 20
+	SAY It's loose! CALL THE FUCKING SHUTT-
 	DELAY 10
-	SAY It's gonna be a pain in the ass rebuilding this place when it inevitably gets loose.."}
+	PRESET /datum/preset_holoimage/corgi
+	NAME Blackbox Automated Message
+	SAY Connection lost. Dumping audio logs to disk.
+	DELAY 50"}

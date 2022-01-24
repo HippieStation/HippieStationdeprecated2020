@@ -2,7 +2,7 @@
 	name = "chemical grenade"
 	desc = "A custom made grenade."
 	icon_state = "chemg"
-	item_state = "flashbang"
+	inhand_icon_state = "flashbang"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 2
 	var/stage = GRENADE_EMPTY
@@ -10,8 +10,6 @@
 	var/list/allowed_containers = list(/obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle)
 	var/list/banned_containers = list(/obj/item/reagent_containers/glass/beaker/bluespace) //Containers to exclude from specific grenade subtypes
 	var/affected_area = 3
-	var/obj/item/assembly_holder/nadeassembly = null	
-	var/assemblyattacher
 	var/ignition_temp = 10 // The amount of heat added to the reagents when this grenade goes off.
 	var/threatscale = 1 // Used by advanced grenades to make them slightly more worthy.
 	var/no_splash = FALSE //If the grenade deletes even if it has no reagents to splash with. Used for slime core reactions.
@@ -20,7 +18,7 @@
 
 /obj/item/grenade/chem_grenade/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
 
 /obj/item/grenade/chem_grenade/Initialize()
 	. = ..()
@@ -29,7 +27,7 @@
 	wires = new /datum/wires/explosive/chem_grenade(src)
 
 /obj/item/grenade/chem_grenade/examine(mob/user)
-	display_timer = (stage == GRENADE_READY && !nadeassembly)	//show/hide the timer based on assembly state
+	display_timer = (stage == GRENADE_READY) //show/hide the timer based on assembly state
 	. = ..()
 	if(user.can_see_reagents())
 		if(beakers.len)
@@ -50,10 +48,7 @@
 
 /obj/item/grenade/chem_grenade/attack_self(mob/user)
 	if(stage == GRENADE_READY && !active)
-		if(nadeassembly)
-			nadeassembly.attack_self(user)
-		else
-			..()
+		..()
 	if(stage == GRENADE_WIRED)
 		wires.interact(user)
 
@@ -71,7 +66,7 @@
 		else if(stage == GRENADE_READY)
 			det_time = det_time == 50 ? 30 : 50 //toggle between 30 and 50
 			if(landminemode)
-				landminemode.time = det_time * 0.1	//overwrites the proxy sensor activation timer
+				landminemode.time = det_time * 0.1 //overwrites the proxy sensor activation timer
 
 			to_chat(user, "<span class='notice'>You modify the time delay. It's set for [DisplayTimeText(det_time)].</span>")
 		else
@@ -95,21 +90,6 @@
 				user.log_message("inserted [I] ([reagent_list]) into [src]",LOG_GAME)
 			else
 				to_chat(user, "<span class='warning'>[I] is empty!</span>")
-
-	else if(stage == GRENADE_EMPTY && istype(I, /obj/item/assembly_holder))	
-		. = TRUE // no afterattack	
-		var/obj/item/assembly_holder/A = I	
-		if(isigniter(A.a_left) == isigniter(A.a_right))	//Check if either part of the assembly has an igniter, but if both parts are igniters, then fuck it	
-			return	
-		if(!user.transferItemToLoc(I, src))	
-			return	
-
-		nadeassembly = A	
-		A.master = src	
-		assemblyattacher = user.ckey	
-
-		stage_change(GRENADE_WIRED)	
-		to_chat(user, "<span class='notice'>You add [A] to the [initial(name)] assembly.</span>")
 
 	else if(stage == GRENADE_EMPTY && istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = I
@@ -135,14 +115,9 @@
 				user.log_message("removed [O] ([reagent_list]) from [src]", LOG_GAME)
 			beakers = list()
 			to_chat(user, "<span class='notice'>You open the [initial(name)] assembly and remove the payload.</span>")
-			wires.detach_assembly(wires.get_wire(1))
 			return
-		if(nadeassembly)
-			nadeassembly.forceMove(drop_location())	
-			nadeassembly.master = null	
-			nadeassembly = null	
-		else // If "nadeassembly = null && stage == WIRED", then it most have been cable_coil that was used.	
-			new /obj/item/stack/cable_coil(get_turf(src),1)
+		wires.detach_assembly(wires.get_wire(1))
+		new /obj/item/stack/cable_coil(get_turf(src),1)
 		stage_change(GRENADE_EMPTY)
 		to_chat(user, "<span class='notice'>You remove the activation mechanism from the [initial(name)] assembly.</span>")
 	else
@@ -164,19 +139,6 @@
 		desc = initial(desc)
 		icon_state = "[initial(icon_state)]_locked"
 
-//assembly stuff	
-/obj/item/grenade/chem_grenade/receive_signal()	
-	prime()	
-
-
-/obj/item/grenade/chem_grenade/Crossed(atom/movable/AM)	
-	if(nadeassembly)	
-		nadeassembly.Crossed(AM)	
-
-/obj/item/grenade/chem_grenade/on_found(mob/finder)	
-	if(nadeassembly)	
-		nadeassembly.on_found(finder)	
-
 /obj/item/grenade/chem_grenade/on_found(mob/finder)
 	var/obj/item/assembly/A = wires.get_attached(wires.get_wire(1))
 	if(A)
@@ -194,7 +156,7 @@
 	else
 		log_bomber(user, "primed a", src, "containing:[reagent_string]")
 
-/obj/item/grenade/chem_grenade/preprime(mob/user, delayoverride, msg = TRUE, volume = 60)
+/obj/item/grenade/chem_grenade/arm_grenade(mob/user, delayoverride, msg = TRUE, volume = 60)
 	var/turf/T = get_turf(src)
 	log_grenade(user, T) //Inbuilt admin procs already handle null users
 	if(user)
@@ -204,18 +166,19 @@
 				to_chat(user, "<span class='warning'>You prime [src], activating its proximity sensor.</span>")
 			else
 				to_chat(user, "<span class='warning'>You prime [src]! [DisplayTimeText(det_time)]!</span>")
-	playsound(src, pick('sound/weapons/armbomb.ogg', 'hippiestation/sound/halflife/takecover.ogg', 'hippiestation/sound/halflife/grenade.ogg'), volume, 0)
+	playsound(src, 'sound/weapons/armbomb.ogg', volume, TRUE)
 	icon_state = initial(icon_state) + "_active"
 	if(landminemode)
 		landminemode.activate()
 		return
 	active = TRUE
-	addtimer(CALLBACK(src, .proc/prime), isnull(delayoverride)? det_time : delayoverride)
+	addtimer(CALLBACK(src, .proc/detonate), isnull(delayoverride)? det_time : delayoverride)
 
-/obj/item/grenade/chem_grenade/prime()
+/obj/item/grenade/chem_grenade/detonate(mob/living/lanced_by)
 	if(stage != GRENADE_READY)
 		return
 
+	. = ..()
 	var/list/datum/reagents/reactants = list()
 	for(var/obj/item/reagent_containers/glass/G in beakers)
 		reactants += G.reagents
@@ -223,7 +186,7 @@
 	var/turf/detonation_turf = get_turf(src)
 
 	if(!chem_splash(detonation_turf, affected_area, reactants, ignition_temp, threatscale) && !no_splash)
-		playsound(src, 'sound/items/screwdriver2.ogg', 50, 1)
+		playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 		if(beakers.len)
 			for(var/obj/O in beakers)
 				O.forceMove(drop_location())
@@ -231,14 +194,7 @@
 		stage_change(GRENADE_EMPTY)
 		active = FALSE
 		return
-
-	if(nadeassembly)	
-		var/mob/M = get_mob_by_ckey(assemblyattacher)	
-		var/mob/last = get_mob_by_ckey(nadeassembly.fingerprintslast)	
-		message_admins("grenade primed by an assembly, attached by [ADMIN_LOOKUPFLW(M)] and last touched by [ADMIN_LOOKUPFLW(last)] ([nadeassembly.a_left.name] and [nadeassembly.a_right.name]) at [ADMIN_VERBOSEJMP(detonation_turf)]</a>.")	
-		log_game("grenade primed by an assembly, attached by [key_name(M)] and last touched by [key_name(last)] ([nadeassembly.a_left.name] and [nadeassembly.a_right.name]) at [AREACOORD(detonation_turf)]")	
-
-//	logs from custom assemblies priming are handled by the wire component
+// logs from custom assemblies priming are handled by the wire component
 	log_game("A grenade detonated at [AREACOORD(detonation_turf)]")
 
 	update_mob()
@@ -255,9 +211,9 @@
 	banned_containers = list()
 	affected_area = 5
 	ignition_temp = 25 // Large grenades are slightly more effective at setting off heat-sensitive mixtures than smaller grenades.
-	threatscale = 1.1	// 10% more effective.
+	threatscale = 1.1 // 10% more effective.
 
-/obj/item/grenade/chem_grenade/large/prime()
+/obj/item/grenade/chem_grenade/large/detonate(mob/living/lanced_by)
 	if(stage != GRENADE_READY)
 		return
 
@@ -324,7 +280,7 @@
 			to_chat(user, "<span class='notice'>The new value is out of bounds. Minimum spread is 5 units, maximum is 100 units.</span>")
 	..()
 
-/obj/item/grenade/chem_grenade/adv_release/prime()
+/obj/item/grenade/chem_grenade/adv_release/detonate(mob/living/lanced_by)
 	if(stage != GRENADE_READY)
 		return
 
@@ -342,13 +298,7 @@
 	chem_splash(get_turf(src), affected_area, list(reactants), ignition_temp, threatscale)
 
 	var/turf/DT = get_turf(src)
-	if(nadeassembly)
-		var/mob/M = get_mob_by_ckey(assemblyattacher)	
-		var/mob/last = get_mob_by_ckey(nadeassembly.fingerprintslast)	
-		message_admins("grenade primed by an assembly at [AREACOORD(DT)], attached by [ADMIN_LOOKUPFLW(M)] and last touched by [ADMIN_LOOKUPFLW(last)] ([nadeassembly.a_left.name] and [nadeassembly.a_right.name])</a>.")	
-		log_game("grenade primed by an assembly at [AREACOORD(DT)], attached by [key_name(M)] and last touched by [key_name(last)] ([nadeassembly.a_left.name] and [nadeassembly.a_right.name])")	
-	else	
-		addtimer(CALLBACK(src, .proc/prime), det_time)	
+	addtimer(CALLBACK(src, .proc/detonate), det_time)
 	log_game("A grenade detonated at [AREACOORD(DT)]")
 
 
@@ -624,11 +574,11 @@
 
 /obj/item/grenade/chem_grenade/holy/Initialize()
 	. = ..()
-	var/obj/item/reagent_containers/glass/beaker/large/B1 = new(src)
-	var/obj/item/reagent_containers/glass/beaker/large/B2 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/meta/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/meta/B2 = new(src)
 
-	B1.reagents.add_reagent(/datum/reagent/potassium, 100)
-	B2.reagents.add_reagent(/datum/reagent/water/holywater, 100)
+	B1.reagents.add_reagent(/datum/reagent/potassium, 150)
+	B2.reagents.add_reagent(/datum/reagent/water/holywater, 150)
 
 	beakers += B1
 	beakers += B2

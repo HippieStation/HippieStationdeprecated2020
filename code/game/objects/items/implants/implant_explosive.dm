@@ -11,8 +11,14 @@
 	var/popup = FALSE // is the DOUWANNABLOWUP window open?
 	var/active = FALSE
 
-/obj/item/implant/explosive/on_mob_death(mob/living/L, gibbed)
-	activate("death")
+/obj/item/implant/explosive/proc/on_death(datum/source, gibbed)
+	SIGNAL_HANDLER
+
+	// There may be other signals that want to handle mob's death
+	// and the process of activating destroys the body, so let the other
+	// signal handlers at least finish. Also, the "delayed explosion"
+	// uses sleeps, which is bad for signal handlers to do.
+	INVOKE_ASYNC(src, .proc/activate, "death")
 
 /obj/item/implant/explosive/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
@@ -54,29 +60,31 @@
 
 /obj/item/implant/explosive/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	for(var/X in target.implants)
-		if(istype(X, type))
+		if(istype(X, /obj/item/implant/explosive)) //we don't use our own type here, because macrobombs inherit this proc and need to be able to upgrade microbombs
 			var/obj/item/implant/explosive/imp_e = X
 			imp_e.heavy += heavy
 			imp_e.medium += medium
 			imp_e.weak += weak
 			imp_e.delay += delay
 			qdel(src)
-			return 1
+			return TRUE
 
-	return ..()
+	. = ..()
+	if(.)
+		RegisterSignal(target, COMSIG_LIVING_DEATH, .proc/on_death)
 
 /obj/item/implant/explosive/proc/timed_explosion()
 	imp_in.visible_message("<span class='warning'>[imp_in] starts beeping ominously!</span>")
-	playsound(loc, 'sound/items/timer.ogg', 30, 0)
+	playsound(loc, 'sound/items/timer.ogg', 30, FALSE)
 	sleep(delay*0.25)
 	if(imp_in && !imp_in.stat)
 		imp_in.visible_message("<span class='warning'>[imp_in] doubles over in pain!</span>")
 		imp_in.Paralyze(140)
-	playsound(loc, 'sound/items/timer.ogg', 30, 0)
+	playsound(loc, 'sound/items/timer.ogg', 30, FALSE)
 	sleep(delay*0.25)
-	playsound(loc, 'sound/items/timer.ogg', 30, 0)
+	playsound(loc, 'sound/items/timer.ogg', 30, FALSE)
 	sleep(delay*0.25)
-	playsound(loc, 'sound/items/timer.ogg', 30, 0)
+	playsound(loc, 'sound/items/timer.ogg', 30, FALSE)
 	sleep(delay*0.25)
 	explosion(src,heavy,medium,weak,weak, flame_range = weak)
 	if(imp_in)
@@ -87,28 +95,10 @@
 	name = "macrobomb implant"
 	desc = "And boom goes the weasel. And everything else nearby."
 	icon_state = "explosive"
-	weak = 16
+	weak = 20 //the strength and delay of 10 microbombs
 	medium = 8
 	heavy = 4
 	delay = 70
-
-/obj/item/implant/explosive/macro/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
-	for(var/X in target.implants)
-		if(istype(X, type))
-			return 0
-
-	for(var/Y in target.implants)
-		if(istype(Y, /obj/item/implant/explosive))
-			var/obj/item/implant/explosive/imp_e = Y
-			heavy += imp_e.heavy
-			medium += imp_e.medium
-			weak += imp_e.weak
-			delay += imp_e.delay
-			qdel(imp_e)
-			break
-
-	return ..()
-
 
 /obj/item/implanter/explosive
 	name = "implanter (microbomb)"

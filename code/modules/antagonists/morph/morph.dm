@@ -1,5 +1,3 @@
-#define MORPH_COOLDOWN 50
-
 /mob/living/simple_animal/hostile/morph
 	name = "morph"
 	real_name = "morph"
@@ -15,7 +13,6 @@
 	stop_automated_movement = 1
 	status_flags = CANPUSH
 	pass_flags = PASSTABLE
-	ventcrawler = VENTCRAWLER_ALWAYS
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxHealth = 150
@@ -28,27 +25,26 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	vision_range = 1 // Only attack when target is close
 	wander = FALSE
-	attacktext = "glomps"
+	attack_verb_continuous = "glomps"
+	attack_verb_simple = "glomp"
 	attack_sound = 'sound/effects/blobattack.ogg'
-	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2)
+	butcher_results = list(/obj/item/food/meat/slab = 2)
 
 	var/morphed = FALSE
 	var/melee_damage_disguised = 0
 	var/eat_while_disguised = FALSE
 	var/atom/movable/form = null
-	var/morph_time = 0
 	var/static/list/blacklist_typecache = typecacheof(list(
-	/obj/screen,
+	/atom/movable/screen,
 	/obj/singularity,
+	/obj/energy_ball,
+	/obj/narsie,
 	/mob/living/simple_animal/hostile/morph,
 	/obj/effect))
 
-	var/playstyle_string = "<span class='big bold'>You are a morph,</span></b> an abomination of science created primarily with changeling cells. \
-							You may take the form of anything nearby by shift-clicking it. This process will alert any nearby \
-							observers, and can only be performed once every five seconds. While morphed, you move faster, but do \
-							less damage. In addition, anyone within three tiles will note an uncanny wrongness if examining you. \
-							You can attack any item or dead creature to consume it - creatures will restore your health. \
-							Finally, you can restore yourself to your original form while morphed by shift-clicking yourself.</b>"
+/mob/living/simple_animal/hostile/morph/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
 /mob/living/simple_animal/hostile/morph/examine(mob/user)
 	if(morphed)
@@ -77,7 +73,7 @@
 
 /mob/living/simple_animal/hostile/morph/proc/eat(atom/movable/A)
 	if(morphed && !eat_while_disguised)
-		to_chat(src, "<span class='warning'>You can not eat anything while you are disguised!</span>")
+		to_chat(src, "<span class='warning'>You cannot eat anything while you are disguised!</span>")
 		return FALSE
 	if(A && A.loc != src)
 		visible_message("<span class='warning'>[src] swallows [A] whole!</span>")
@@ -86,20 +82,17 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/morph/ShiftClickOn(atom/movable/A)
-	if(morph_time <= world.time && !stat)
+	if(!stat)
 		if(A == src)
 			restore()
 			return
 		if(istype(A) && allowed(A))
 			assume(A)
 	else
-		to_chat(src, "<span class='warning'>Your chameleon skin is still repairing itself!</span>")
+		to_chat(src, "<span class='warning'>You need to be conscious to transform!</span>")
 		..()
 
 /mob/living/simple_animal/hostile/morph/proc/assume(atom/movable/target)
-	if(morphed)
-		to_chat(src, "<span class='warning'>You must restore to your original form first!</span>")
-		return
 	morphed = TRUE
 	form = target
 
@@ -107,17 +100,16 @@
 					"<span class='notice'>You twist your body and assume the form of [target].</span>")
 	appearance = target.appearance
 	copy_overlays(target)
-	alpha = max(alpha, 150)	//fucking chameleons
+	alpha = max(alpha, 150) //fucking chameleons
 	transform = initial(transform)
-	pixel_y = initial(pixel_y)
-	pixel_x = initial(pixel_x)
+	pixel_y = base_pixel_y
+	pixel_x = base_pixel_x
 
 	//Morphed is weaker
 	melee_damage_lower = melee_damage_disguised
 	melee_damage_upper = melee_damage_disguised
-	speed = 0
+	set_varspeed(0)
 
-	morph_time = world.time + MORPH_COOLDOWN
 	med_hud_set_health()
 	med_hud_set_status() //we're an object honest
 	return
@@ -130,7 +122,8 @@
 	form = null
 	alpha = initial(alpha)
 	color = initial(color)
-	animate_movement = initial(animate_movement)
+	desc = initial(desc)
+	animate_movement = SLIDE_STEPS
 	maptext = null
 
 	visible_message("<span class='warning'>[src] suddenly collapses in on itself, dissolving into a pile of green flesh!</span>", \
@@ -143,9 +136,8 @@
 	//Baseline stats
 	melee_damage_lower = initial(melee_damage_lower)
 	melee_damage_upper = initial(melee_damage_upper)
-	speed = initial(speed)
+	set_varspeed(initial(speed))
 
-	morph_time = world.time + MORPH_COOLDOWN
 	med_hud_set_health()
 	med_hud_set_status() //we are not an object
 
@@ -174,7 +166,7 @@
 /mob/living/simple_animal/hostile/morph/LoseAggro()
 	vision_range = initial(vision_range)
 
-/mob/living/simple_animal/hostile/morph/AIShouldSleep(var/list/possible_targets)
+/mob/living/simple_animal/hostile/morph/AIShouldSleep(list/possible_targets)
 	. = ..()
 	if(.)
 		var/list/things = list()
@@ -228,7 +220,7 @@
 	var/mob/dead/selected = pick_n_take(candidates)
 
 	var/datum/mind/player_mind = new /datum/mind(selected.key)
-	player_mind.active = 1
+	player_mind.active = TRUE
 	if(!GLOB.xeno_spawn)
 		return MAP_ERROR
 	var/mob/living/simple_animal/hostile/morph/S = new /mob/living/simple_animal/hostile/morph(pick(GLOB.xeno_spawn))
@@ -236,7 +228,6 @@
 	player_mind.assigned_role = "Morph"
 	player_mind.special_role = "Morph"
 	player_mind.add_antag_datum(/datum/antagonist/morph)
-	to_chat(S, S.playstyle_string)
 	SEND_SOUND(S, sound('sound/magic/mutate.ogg'))
 	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a morph by an event.")
 	log_game("[key_name(S)] was spawned as a morph by an event.")

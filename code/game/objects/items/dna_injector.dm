@@ -3,6 +3,7 @@
 	desc = "This injects the person with DNA."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "dnainjector"
+	worn_icon_state = "pen"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	throw_speed = 3
@@ -16,11 +17,11 @@
 
 	var/used = 0
 
-/obj/item/dnainjector/attack_paw(mob/user)
-	return attack_hand(user)
+/obj/item/dnainjector/attack_paw(mob/user, list/modifiers)
+	return attack_hand(user, modifiers)
 
 /obj/item/dnainjector/proc/inject(mob/living/carbon/M, mob/user)
-	if(M.has_dna() && !HAS_TRAIT(M, TRAIT_RADIMMUNE) && !HAS_TRAIT(M, TRAIT_BADDNA))
+	if(M.has_dna() && !HAS_TRAIT(M, TRAIT_GENELESS) && !HAS_TRAIT(M, TRAIT_BADDNA))
 		M.radiation += rand(20/(damage_coeff  ** 2),50/(damage_coeff  ** 2))
 		var/log_msg = "[key_name(user)] injected [key_name(M)] with the [name]"
 		for(var/HM in remove_mutations)
@@ -39,7 +40,7 @@
 				M.dna.unique_enzymes = fields["UE"]
 				M.name = M.real_name
 				M.dna.blood_type = fields["blood_type"]
-			if(fields["UI"])	//UI+UE
+			if(fields["UI"]) //UI+UE
 				M.dna.uni_identity = merge_text(M.dna.uni_identity, fields["UI"])
 				M.updateappearance(mutations_overlay_update=1)
 		log_attack("[log_msg] [loc_name(user)]")
@@ -47,7 +48,7 @@
 	return FALSE
 
 /obj/item/dnainjector/attack(mob/target, mob/user)
-	if(!user.IsAdvancedToolUser())
+	if(!ISADVANCEDTOOLUSER(user))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(used)
@@ -55,23 +56,24 @@
 		return
 	if(ishuman(target))
 		var/mob/living/carbon/human/humantarget = target
-		if (!humantarget.can_inject(user, 1))
+		if (!humantarget.try_inject(user, injection_flags = INJECT_TRY_SHOW_ERROR_MESSAGE))
 			return
 	log_combat(user, target, "attempted to inject", src)
 
 	if(target != user)
-		target.visible_message("<span class='danger'>[user] is trying to inject [target] with [src]!</span>", "<span class='userdanger'>[user] is trying to inject [target] with [src]!</span>")
+		target.visible_message("<span class='danger'>[user] is trying to inject [target] with [src]!</span>", \
+			"<span class='userdanger'>[user] is trying to inject you with [src]!</span>")
 		if(!do_mob(user, target) || used)
 			return
 		target.visible_message("<span class='danger'>[user] injects [target] with the syringe with [src]!</span>", \
-						"<span class='userdanger'>[user] injects [target] with the syringe with [src]!</span>")
+						"<span class='userdanger'>[user] injects you with the syringe with [src]!</span>")
 
 	else
 		to_chat(user, "<span class='notice'>You inject yourself with [src].</span>")
 
 	log_combat(user, target, "injected", src)
 
-	if(!inject(target, user))	//Now we actually do the heavy lifting.
+	if(!inject(target, user)) //Now we actually do the heavy lifting.
 		to_chat(user, "<span class='notice'>It appears that [target] does not have compatible DNA.</span>")
 
 	used = 1
@@ -247,15 +249,7 @@
 /obj/item/dnainjector/mutemut
 	name = "\improper DNA injector (Mute)"
 	add_mutations = list(MUT_MUTE)
-/*
-/obj/item/dnainjector/antismile
-	name = "\improper DNA injector (Anti-Smile)"
-	remove_mutations = list(SMILE)
 
-/obj/item/dnainjector/smilemut
-	name = "\improper DNA injector (Smile)"
-	add_mutations = list(SMILE)
-*/
 /obj/item/dnainjector/unintelligiblemut
 	name = "\improper DNA injector (Unintelligible)"
 	add_mutations = list(UNINTELLIGIBLE)
@@ -359,12 +353,12 @@
 	name = "\improper DNA injector (Anti-Shock Touch)"
 	remove_mutations = list(SHOCKTOUCH)
 
-/obj/item/dnainjector/spacialinstability
-	name = "\improper DNA injector (Spacial Instability)"
+/obj/item/dnainjector/spatialinstability
+	name = "\improper DNA injector (Spatial Instability)"
 	add_mutations = list(BADBLINK)
 
-/obj/item/dnainjector/antispacialinstability
-	name = "\improper DNA injector (Anti-Spacial Instability)"
+/obj/item/dnainjector/antispatialinstability
+	name = "\improper DNA injector (Anti-Spatial Instability)"
 	remove_mutations = list(BADBLINK)
 
 /obj/item/dnainjector/acidflesh
@@ -423,11 +417,27 @@
 	name = "\improper DNA injector (Anti-Thermal Vision)"
 	remove_mutations = list(THERMAL)
 
+/obj/item/dnainjector/glow
+	name = "\improper DNA injector (Glowy)"
+	add_mutations = list(GLOWY)
+
+/obj/item/dnainjector/removeglow
+	name = "\improper DNA injector (Anti-Glowy)"
+	remove_mutations = list(GLOWY)
+
+/obj/item/dnainjector/antiglow
+	name = "\improper DNA injector (Antiglowy)"
+	add_mutations = list(ANTIGLOWY)
+
+/obj/item/dnainjector/removeantiglow
+	name = "\improper DNA injector (Anti-Antiglowy)"
+	remove_mutations = list(ANTIGLOWY)
+
 /obj/item/dnainjector/timed
 	var/duration = 600
 
 /obj/item/dnainjector/timed/inject(mob/living/carbon/M, mob/user)
-	if(M.stat == DEAD)	//prevents dead people from having their DNA changed
+	if(M.stat == DEAD) //prevents dead people from having their DNA changed
 		to_chat(user, "<span class='notice'>You can't modify [M]'s DNA while [M.p_theyre()] dead.</span>")
 		return FALSE
 
@@ -437,7 +447,7 @@
 		var/endtime = world.time+duration
 		for(var/mutation in remove_mutations)
 			if(mutation == RACEMUT)
-				if(ishuman(M))
+				if(!ismonkey(M))
 					continue
 				M = M.dna.remove_mutation(mutation)
 			else
@@ -445,7 +455,7 @@
 		for(var/mutation in add_mutations)
 			if(M.dna.get_mutation(mutation))
 				continue //Skip permanent mutations we already have.
-			if(mutation == RACEMUT && ishuman(M))
+			if(mutation == RACEMUT && !ismonkey(M))
 				message_admins("[ADMIN_LOOKUPFLW(user)] injected [key_name_admin(M)] with the [name] <span class='danger'>(MONKEY)</span>")
 				log_msg += " (MONKEY)"
 				M = M.dna.add_mutation(mutation, MUT_OTHER, endtime)
@@ -464,7 +474,7 @@
 				M.name = M.real_name
 				M.dna.blood_type = fields["blood_type"]
 				M.dna.temporary_mutations[UE_CHANGED] = endtime
-			if(fields["UI"])	//UI+UE
+			if(fields["UI"]) //UI+UE
 				if(!M.dna.previous["UI"])
 					M.dna.previous["UI"] = M.dna.uni_identity
 				M.dna.uni_identity = merge_text(M.dna.uni_identity, fields["UI"])
@@ -491,11 +501,14 @@
 	var/doitanyway = FALSE
 	var/research = FALSE //Set to true to get expended and filled injectors for chromosomes
 	var/filled = FALSE
+	var/crispr_charge = FALSE // Look for viruses, look at symptoms, if research and Dormant DNA Activator or Viral Evolutionary Acceleration, set to true
 
 /obj/item/dnainjector/activator/inject(mob/living/carbon/M, mob/user)
-	if(M.has_dna() && !HAS_TRAIT(M, TRAIT_RADIMMUNE) && !HAS_TRAIT(M, TRAIT_BADDNA))
+	if(M.has_dna() && !HAS_TRAIT(M, TRAIT_GENELESS) && !HAS_TRAIT(M, TRAIT_BADDNA))
 		M.radiation += rand(20/(damage_coeff  ** 2),50/(damage_coeff  ** 2))
 		var/log_msg = "[key_name(user)] injected [key_name(M)] with the [name]"
+		var/pref = ""
+		var/suff = ""
 		for(var/mutation in add_mutations)
 			var/datum/mutation/human/HM = mutation
 			if(istype(HM, /datum/mutation/human))
@@ -505,13 +518,19 @@
 					log_msg += "(FAILED)"
 				else
 					M.dna.add_mutation(HM, MUT_EXTRA)
-					name = "expended [name]"
+					pref = "expended"
 			else if(research && M.client)
 				filled = TRUE
-				name = "filled [name]"
+				pref = "filled"
 			else
-				name = "expended [name]"
+				pref = "expended"
+			for(var/datum/disease/advance/disease in M.diseases)
+				for(var/datum/symptom/symp in disease.symptoms)
+					if((symp.type == /datum/symptom/genetic_mutation)||(symp.type == /datum/symptom/viralevolution))
+						crispr_charge = TRUE
+			suff = (crispr_charge ? "with CRISPR charge" : "")
 			log_msg += "([mutation])"
+		name = "[pref] [name] [suff]"
 		log_attack("[log_msg] [loc_name(user)]")
 		return TRUE
 	return FALSE

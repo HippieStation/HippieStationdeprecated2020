@@ -8,11 +8,11 @@
 	icon_state = "smoke"
 	pixel_x = -32
 	pixel_y = -32
-	opacity = 0
+	opacity = FALSE
 	layer = FLY_LAYER
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	animate_movement = 0
+	animate_movement = FALSE
 	var/amount = 4
 	var/lifetime = 5
 	var/opaque = 1 //whether the smoke can block the view when in enough amount
@@ -30,7 +30,6 @@
 			set_opacity(0) //if we were blocking view, we aren't now because we're fading out
 		stoplag()
 
-/* hippie start -- mirrored so smoke processes with reagents subsystem instead
 /obj/effect/particle_effect/smoke/Initialize()
 	. = ..()
 	create_reagents(500)
@@ -45,28 +44,28 @@
 	STOP_PROCESSING(SSobj, src)
 	INVOKE_ASYNC(src, .proc/fade_out)
 	QDEL_IN(src, 10)
-hippie end */
+
 /obj/effect/particle_effect/smoke/process()
 	lifetime--
 	if(lifetime < 1)
 		kill_smoke()
-		return 0
+		return FALSE
 	for(var/mob/living/L in range(0,src))
 		smoke_mob(L)
-	return 1
+	return TRUE
 
 /obj/effect/particle_effect/smoke/proc/smoke_mob(mob/living/carbon/C)
 	if(!istype(C))
-		return 0
+		return FALSE
 	if(lifetime<1)
-		return 0
+		return FALSE
 	if(C.internal != null || C.has_smoke_protection())
-		return 0
+		return FALSE
 	if(C.smoke_delay)
-		return 0
+		return FALSE
 	C.smoke_delay++
 	addtimer(CALLBACK(src, .proc/remove_smoke_delay, C), 10)
-	return 1
+	return TRUE
 
 /obj/effect/particle_effect/smoke/proc/remove_smoke_delay(mob/living/carbon/C)
 	if(C)
@@ -116,7 +115,7 @@ hippie end */
 	var/obj/effect/particle_effect/smoke/S = new effect_type(location)
 	S.amount = amount
 	if(S.amount)
-		INVOKE_ASYNC(S, /obj/effect/particle_effect/smoke/chem.proc/spread_smoke)
+		S.spread_smoke()
 
 
 /////////////////////////////////////////////
@@ -127,19 +126,18 @@ hippie end */
 	lifetime = 8
 
 /obj/effect/particle_effect/smoke/bad/smoke_mob(mob/living/carbon/M)
-	if(..())
+	. = ..()
+	if(.)
 		M.drop_all_held_items()
 		M.adjustOxyLoss(1)
 		M.emote("cough")
-		return 1
+		return TRUE
 
-/obj/effect/particle_effect/smoke/bad/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover, /obj/item/projectile/beam))
-		var/obj/item/projectile/beam/B = mover
+/obj/effect/particle_effect/smoke/bad/Crossed(atom/movable/AM, oldloc)
+	. = ..()
+	if(istype(AM, /obj/projectile/beam))
+		var/obj/projectile/beam/B = AM
 		B.damage = (B.damage/2)
-	return 1
-
-
 
 /datum/effect_system/smoke_spread/bad
 	effect_type = /obj/effect/particle_effect/smoke/bad
@@ -151,7 +149,7 @@ hippie end */
 /obj/effect/particle_effect/smoke/freezing
 	name = "nanofrost smoke"
 	color = "#B2FFFF"
-	opaque = 0
+	opaque = FALSE
 
 /datum/effect_system/smoke_spread/freezing
 	effect_type = /obj/effect/particle_effect/smoke/freezing
@@ -181,9 +179,9 @@ hippie end */
 				if(!isnull(U.welded) && !U.welded) //must be an unwelded vent pump or vent scrubber.
 					U.welded = TRUE
 					U.update_icon()
-					U.visible_message("<span class='danger'>[U] was frozen shut!</span>")
+					U.visible_message("<span class='danger'>[U] is frozen shut!</span>")
 		for(var/mob/living/L in T)
-			L.ExtinguishMob()
+			L.extinguish_mob()
 		for(var/obj/item/Item in T)
 			Item.extinguish()
 
@@ -229,31 +227,34 @@ hippie end */
 
 
 /obj/effect/particle_effect/smoke/chem/process()
-	if(..())
+	. = ..()
+	if(.)
 		var/turf/T = get_turf(src)
 		var/fraction = 1/initial(lifetime)
 		for(var/atom/movable/AM in T)
 			if(AM.type == src.type)
 				continue
-			if(T.intact && AM.level == 1) //hidden under the floor
+			if(T.intact && HAS_TRAIT(AM, TRAIT_T_RAY_VISIBLE))
 				continue
-			reagents?.reaction(AM, TOUCH, fraction, special_modifier = amount*0.1)//hippie edit -- apparently this sanity check is needed for runtime prevention
+			reagents.expose(AM, TOUCH, fraction)
 
-		reagents?.reaction(T, TOUCH, fraction)//hippie edit -- apparently this sanity check is needed for runtime prevention
-		return 1
+		reagents.expose(T, TOUCH, fraction)
+		return TRUE
 
 /obj/effect/particle_effect/smoke/chem/smoke_mob(mob/living/carbon/M)
 	if(lifetime<1)
-		return 0
+		return FALSE
 	if(!istype(M))
-		return 0
+		return FALSE
 	var/mob/living/carbon/C = M
 	if(C.internal != null || C.has_smoke_protection())
-		return 0
+		return FALSE
 	var/fraction = 1/initial(lifetime)
 	reagents.copy_to(C, fraction*reagents.total_volume)
-	reagents.reaction(M, INGEST, fraction)
-	return 1
+	reagents.expose(M, INGEST, fraction)
+	return TRUE
+
+
 
 /datum/effect_system/smoke_spread/chem
 	var/obj/chemholder
@@ -262,12 +263,14 @@ hippie end */
 /datum/effect_system/smoke_spread/chem/New()
 	..()
 	chemholder = new /obj()
-	var/datum/reagents/R = new/datum/reagents(500)
+	var/datum/reagents/R = new (500, REAGENT_HOLDER_INSTANT_REACT) //This is a safety for now to prevent smoke generating more smoke as the smoke reagents react in the smoke. This is prevented naturally from happening even if this is off, but I want to be sure that any edge cases are prevented before I get a chance to rework smoke reactions (specifically adding water or reacting away stabilizing agent in the middle of it).
 	chemholder.reagents = R
+	
 	R.my_atom = chemholder
 
 /datum/effect_system/smoke_spread/chem/Destroy()
-	QDEL_NULL(chemholder)
+	qdel(chemholder)
+	chemholder = null
 	return ..()
 
 /datum/effect_system/smoke_spread/chem/set_up(datum/reagents/carry = null, radius = 1, loca, silent = FALSE)
@@ -277,7 +280,7 @@ hippie end */
 		location = get_turf(loca)
 	amount = radius
 	carry.copy_to(chemholder, carry.total_volume)
-	carry.clear_reagents()
+
 	if(!silent)
 		var/contained = ""
 		for(var/reagent in carry.reagent_list)
@@ -286,7 +289,7 @@ hippie end */
 			contained = "\[[contained]\]"
 
 		var/where = "[AREACOORD(location)]"
-		if(carry.my_atom.fingerprintslast)
+		if(carry.my_atom?.fingerprintslast) //Some reagents don't have a my_atom in some cases
 			var/mob/M = get_mob_by_key(carry.my_atom.fingerprintslast)
 			var/more = ""
 			if(M)
@@ -313,7 +316,7 @@ hippie end */
 		S.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY) // give the smoke color, if it has any to begin with
 	S.amount = amount
 	if(S.amount)
-		INVOKE_ASYNC(S, /obj/effect/particle_effect/smoke/chem.proc/spread_smoke) //calling process right now so the smoke immediately attacks mobs.
+		S.spread_smoke() //calling process right now so the smoke immediately attacks mobs.
 
 
 /////////////////////////////////////////////
@@ -332,3 +335,15 @@ hippie end */
 	smoke.effect_type = smoke_type
 	smoke.set_up(range, location)
 	smoke.start()
+
+/////////////////////////////////////////////
+// Bad Smoke (But Green)
+/////////////////////////////////////////////
+
+/obj/effect/particle_effect/smoke/bad/green
+	name = "green smoke"
+	color = "#00FF00"
+	opaque = FALSE
+
+/datum/effect_system/smoke_spread/bad/green
+	effect_type = /obj/effect/particle_effect/smoke/bad/green

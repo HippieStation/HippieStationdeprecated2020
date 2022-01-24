@@ -13,6 +13,9 @@
 	var/spawned_loot = FALSE
 	tamperproof = 90
 
+	// Stop people from "diving into" the crate accidentally, and then detonating it.
+	divable = FALSE
+
 /obj/structure/closet/crate/secure/loot/Initialize()
 	. = ..()
 	var/list/digits = list("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
@@ -23,7 +26,7 @@
 		digits -= dig  //there are never matching digits in the answer
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/structure/closet/crate/secure/loot/attack_hand(mob/user)
+/obj/structure/closet/crate/secure/loot/attack_hand(mob/user, list/modifiers)
 	if(locked)
 		to_chat(user, "<span class='notice'>The crate is locked with a Deca-code lock.</span>")
 		var/input = input(usr, "Enter [codelen] digits. All digits must be unique.", "Deca-Code Lock", "") as text|null
@@ -98,17 +101,11 @@
 			return
 	return ..()
 
-/obj/structure/closet/secure/loot/dive_into(mob/living/user)
-	if(!locked)
-		return ..()
-	to_chat(user, "<span class='notice'>That seems like a stupid idea.</span>")
-	return FALSE
-
 /obj/structure/closet/crate/secure/loot/emag_act(mob/user)
 	if(locked)
 		boom(user)
 
-/obj/structure/closet/crate/secure/loot/togglelock(mob/user)
+/obj/structure/closet/crate/secure/loot/togglelock(mob/user, silent = FALSE)
 	if(locked)
 		boom(user)
 	else
@@ -129,9 +126,9 @@
 			new /obj/item/lighter(src)
 			new /obj/item/reagent_containers/food/drinks/bottle/absinthe/premium(src)
 			for(var/i in 1 to 3)
-			new /obj/item/clothing/mask/cigarette/rollie(src)
+				new /obj/item/clothing/mask/cigarette/rollie(src)
 		if(6 to 10)
-			new /obj/item/melee/skateboard(src)
+			new /obj/item/melee/skateboard/pro(src)
 		if(11 to 15)
 			new /mob/living/simple_animal/bot/honkbot(src)
 		if(16 to 20)
@@ -147,18 +144,20 @@
 			new /obj/item/seeds/firelemon(src)
 		if(36 to 40)
 			for(var/i in 1 to 5)
-			new /obj/item/toy/snappop/phoenix(src)
+				new /obj/item/toy/snappop/phoenix(src)
 		if(41 to 45)
 			new /obj/item/pda/clear(src)
 		if(46 to 50)
 			new /obj/item/storage/box/syndie_kit/chameleon/broken
 		if(51 to 52) // 2% chance
 			new /obj/item/melee/classic_baton(src)
+		if(53 to 54)
+			new /obj/item/toy/balloon/corgi(src)
 		if(55 to 56)
 			var/newitem = pick(subtypesof(/obj/item/toy/prize))
 			new newitem(src)
 		if(57 to 58)
-			new /obj/item/toy/syndicateballoon(src)
+			new /obj/item/toy/balloon/syndicate(src)
 		if(59 to 60)
 			new /obj/item/borg/upgrade/modkit/aoe/mobs(src)
 			new /obj/item/clothing/suit/space(src)
@@ -168,7 +167,7 @@
 				new /obj/item/clothing/head/kitty(src)
 				new /obj/item/clothing/neck/petcollar(src)
 		if(63 to 64)
-			new /obj/item/clothing/shoes/kindleKicks(src)
+			new /obj/item/clothing/shoes/kindle_kicks(src)
 		if(65 to 66)
 			new /obj/item/clothing/suit/ianshirt(src)
 			new /obj/item/clothing/suit/hooded/ian_costume(src)
@@ -202,7 +201,7 @@
 			new /obj/item/dnainjector/wackymut(src)
 		if(91)
 			for(var/i in 1 to 30)
-			 new /mob/living/simple_animal/cockroach(src)
+				new /mob/living/simple_animal/hostile/cockroach(src)
 		if(92)
 			new /obj/item/katana(src)
 		if(93)
@@ -216,19 +215,21 @@
 			new /obj/item/banhammer(src)
 			for(var/i in 1 to 3)
 				var/obj/effect/mine/sound/bwoink/mine = new (src)
-				mine.anchored = FALSE
+				mine.set_anchored(FALSE)
 				mine.move_resist = MOVE_RESIST_DEFAULT
 		if(97)
 			for(var/i in 1 to 4)
-			new /obj/item/clothing/mask/balaclava(src)
+				new /obj/item/clothing/mask/balaclava(src)
 			new /obj/item/gun/ballistic/shotgun/toy(src)
-			new /obj/item/gun/ballistic/automatic/toy/pistol/unrestricted(src)
+			new /obj/item/gun/ballistic/automatic/pistol/toy(src)
 			new /obj/item/gun/ballistic/automatic/toy/unrestricted(src)
 			new /obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted(src)
 			new /obj/item/ammo_box/foambox(src)
 		if(98)
 			for(var/i in 1 to 3)
-			 new /mob/living/simple_animal/hostile/poison/bees/toxin(src)
+				new /mob/living/simple_animal/hostile/poison/bees/toxin(src)
 		if(99)
 			new /obj/item/implanter/sad_trombone(src)
+		if(100)
+			new /obj/item/melee/skateboard/hoverboard(src)
 	spawned_loot = TRUE

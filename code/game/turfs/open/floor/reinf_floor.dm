@@ -3,6 +3,7 @@
 	name = "reinforced floor"
 	desc = "Extremely sturdy."
 	icon_state = "engine"
+	holodeck_compatible = TRUE
 	thermal_conductivity = 0.025
 	heat_capacity = INFINITY
 	floor_tile = /obj/item/stack/rods
@@ -11,6 +12,7 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+
 
 /turf/open/floor/engine/examine(mob/user)
 	. += ..()
@@ -25,9 +27,9 @@
 /turf/open/floor/engine/burn_tile()
 	return //unburnable
 
-/turf/open/floor/engine/make_plating(force = 0)
+/turf/open/floor/engine/make_plating(force = FALSE)
 	if(force)
-		..()
+		return ..()
 	return //unplateable
 
 /turf/open/floor/engine/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
@@ -49,7 +51,7 @@
 
 /turf/open/floor/engine/acid_act(acidpwr, acid_volume)
 	acidpwr = min(acidpwr, 50) //we reduce the power so reinf floor never get melted.
-	. = ..()
+	return ..()
 
 /turf/open/floor/engine/ex_act(severity,target)
 	var/shielded = is_shielded()
@@ -81,14 +83,14 @@
 		if(floor_tile)
 			if(prob(30))
 				new floor_tile(src)
-				make_plating()
+				make_plating(TRUE)
 		else if(prob(30))
 			ReplaceWithLattice()
 
-/turf/open/floor/engine/attack_paw(mob/user)
-	return attack_hand(user)
+/turf/open/floor/engine/attack_paw(mob/user, list/modifiers)
+	return attack_hand(user, modifiers)
 
-/turf/open/floor/engine/attack_hand(mob/user)
+/turf/open/floor/engine/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
@@ -118,6 +120,73 @@
 	name = "\improper N2 floor"
 	initial_gas_mix = ATMOS_TANK_N2
 
+/turf/open/floor/engine/bz
+	name = "\improper BZ floor"
+	initial_gas_mix = ATMOS_TANK_BZ
+
+/turf/open/floor/engine/freon
+	name = "\improper Freon floor"
+	initial_gas_mix = ATMOS_TANK_FREON
+
+/turf/open/floor/engine/halon
+	name = "\improper Halon floor"
+	initial_gas_mix = ATMOS_TANK_HALON
+
+/turf/open/floor/engine/healium
+	name = "\improper Healium floor"
+	initial_gas_mix = ATMOS_TANK_HEALIUM
+
+/turf/open/floor/engine/h2
+	article = "an"
+	name = "\improper H2 floor"
+	initial_gas_mix = ATMOS_TANK_H2
+
+/turf/open/floor/engine/hypernoblium
+	name = "\improper Hypernoblium floor"
+	initial_gas_mix = ATMOS_TANK_HYPERNOBLIUM
+
+/turf/open/floor/engine/miasma
+	name = "\improper Miasma floor"
+	initial_gas_mix = ATMOS_TANK_MIASMA
+
+/turf/open/floor/engine/no2
+	article = "an"
+	name = "\improper NO2 floor"
+	initial_gas_mix = ATMOS_TANK_NO2
+
+/turf/open/floor/engine/pluoxium
+	name = "\improper Pluoxium floor"
+	initial_gas_mix = ATMOS_TANK_PLUOXIUM
+
+/turf/open/floor/engine/proto_nitrate
+	name = "\improper Proto-Nitrate floor"
+	initial_gas_mix = ATMOS_TANK_PROTO_NITRATE
+
+/turf/open/floor/engine/stimulum
+	name = "\improper Stimulum floor"
+	initial_gas_mix = ATMOS_TANK_STIMULUM
+
+/turf/open/floor/engine/tritium
+	name = "\improper Tritium floor"
+	initial_gas_mix = ATMOS_TANK_TRITIUM
+
+/turf/open/floor/engine/h2o
+	article = "an"
+	name = "\improper H2O floor"
+	initial_gas_mix = ATMOS_TANK_H2O
+
+/turf/open/floor/engine/zauker
+	name = "\improper Zauker floor"
+	initial_gas_mix = ATMOS_TANK_ZAUKER
+
+/turf/open/floor/engine/helium
+	name = "\improper Helium floor"
+	initial_gas_mix = ATMOS_TANK_HELIUM
+
+/turf/open/floor/engine/antinoblium
+	name = "\improper Antinoblium floor"
+	initial_gas_mix = ATMOS_TANK_ANTINOBLIUM
+
 /turf/open/floor/engine/air
 	name = "air floor"
 	initial_gas_mix = ATMOS_TANK_AIRMIX
@@ -126,16 +195,16 @@
 
 /turf/open/floor/engine/cult
 	name = "engraved floor"
-	desc = "The air smells strangely over this sinister flooring."
+	desc = "The air smells strange over this sinister flooring."
 	icon_state = "plating"
 	floor_tile = null
-	var/obj/effect/clockwork/overlay/floor/bloodcult/realappearance
+	var/obj/effect/cult_turf/overlay/floor/bloodcult/realappearance
 
 
 /turf/open/floor/engine/cult/Initialize()
 	. = ..()
 	new /obj/effect/temp_visual/cult/turf/floor(src)
-	realappearance = new /obj/effect/clockwork/overlay/floor/bloodcult(src)
+	realappearance = new /obj/effect/cult_turf/overlay/floor/bloodcult(src)
 	realappearance.linked = src
 
 /turf/open/floor/engine/cult/Destroy()
@@ -148,16 +217,7 @@
 	return ..()
 
 /turf/open/floor/engine/cult/proc/be_removed()
-	qdel(realappearance)
-	realappearance = null
-
-/turf/open/floor/engine/cult/ratvar_act()
-	. = ..()
-	if(istype(src, /turf/open/floor/engine/cult)) //if we haven't changed type
-		var/previouscolor = color
-		color = "#FAE48C"
-		animate(src, color = previouscolor, time = 8)
-		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
+	QDEL_NULL(realappearance)
 
 /turf/open/floor/engine/cult/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -165,3 +225,6 @@
 /turf/open/floor/engine/vacuum
 	name = "vacuum floor"
 	initial_gas_mix = AIRLESS_ATMOS
+
+/turf/open/floor/engine/telecomms
+	initial_gas_mix = TCOMMS_ATMOS

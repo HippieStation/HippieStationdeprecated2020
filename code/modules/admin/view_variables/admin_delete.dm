@@ -19,6 +19,6 @@
 			T.ScrapeAway()
 		else
 			vv_update_display(D, "deleted", VV_MSG_DELETED)
-			qdel(D, TRUE) // hippie -- force qdel
+			qdel(D)
 			if(!QDELETED(D))
 				vv_update_display(D, "deleted", "")

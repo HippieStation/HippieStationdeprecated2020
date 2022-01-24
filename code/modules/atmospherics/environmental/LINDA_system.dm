@@ -16,6 +16,7 @@
 /turf/open/CanAtmosPass = ATMOS_PASS_PROC
 /turf/open/CanAtmosPassVertical = ATMOS_PASS_PROC
 
+//Do NOT use this to see if 2 turfs are connected, it mutates state, and we cache that info anyhow. Use TURFS_CAN_SHARE or TURF_SHARES depending on your usecase
 /turf/open/CanAtmosPass(turf/T, vertical = FALSE)
 	var/dir = vertical? get_dir_multiz(src, T) : get_dir(src, T)
 	var/opp = REVERSE_DIR(dir)
@@ -30,21 +31,21 @@
 		var/turf/other = (O.loc == src ? T : src)
 		if(!(vertical? (CANVERTICALATMOSPASS(O, other)) : (CANATMOSPASS(O, other))))
 			R = TRUE
-			if(O.BlockSuperconductivity()) 	//the direction and open/closed are already checked on CanAtmosPass() so there are no arguments
+			if(O.BlockSuperconductivity()) //the direction and open/closed are already checked on CanAtmosPass() so there are no arguments
 				atmos_supeconductivity |= dir
 				T.atmos_supeconductivity |= opp
-				return FALSE						//no need to keep going, we got all we asked
+				return FALSE //no need to keep going, we got all we asked
 
 	atmos_supeconductivity &= ~dir
 	T.atmos_supeconductivity &= ~opp
 
 	return !R
 
-/atom/movable/proc/BlockSuperconductivity() // objects that block air and don't let superconductivity act. Only firelocks atm.
+/atom/movable/proc/BlockSuperconductivity() // objects that block air and don't let superconductivity act
 	return FALSE
 
 /turf/proc/ImmediateCalculateAdjacentTurfs()
-	var/canpass = CANATMOSPASS(src, src) 
+	var/canpass = CANATMOSPASS(src, src)
 	var/canvpass = CANVERTICALATMOSPASS(src, src)
 	for(var/direction in GLOB.cardinals_multiz)
 		var/turf/T = get_step_multiz(src, direction)
@@ -66,7 +67,7 @@
 
 //returns a list of adjacent turfs that can share air with this one.
 //alldir includes adjacent diagonal tiles that can share
-//	air with both of the related adjacent cardinal tiles
+// air with both of the related adjacent cardinal tiles
 /turf/proc/GetAtmosAdjacentTurfs(alldir = 0)
 	var/adjacent_turfs
 	if (atmos_adjacent_turfs)

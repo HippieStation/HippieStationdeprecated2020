@@ -8,10 +8,14 @@
 	range = -1
 	include_user = TRUE
 	invocation = "CLANG!"
-	invocation_type = "shout"
+	invocation_type = INVOCATION_SHOUT
 	action_icon_state = "immrod"
 
 /obj/effect/proc_holder/spell/targeted/rod_form/cast(list/targets,mob/user = usr)
+	var/area/A = get_area(user)
+	if(istype(A, /area/wizard_station))
+		to_chat(user, "<span class='warning'>You know better than to trash Wizard Federation property. Best wait until you leave to use [src].</span>")
+		return
 	for(var/mob/living/M in targets)
 		var/turf/start = get_turf(M)
 		var/obj/effect/immovablerod/wizard/W = new(start, get_ranged_target_turf(start, M.dir, (15 + spell_level * 3)))
@@ -30,6 +34,7 @@
 	var/damage_bonus = 0
 	var/turf/start_turf
 	notify = FALSE
+	dnd_style_level_up = FALSE
 
 /obj/effect/immovablerod/wizard/Move()
 	if(get_dist(start_turf, get_turf(src)) >= max_distance)

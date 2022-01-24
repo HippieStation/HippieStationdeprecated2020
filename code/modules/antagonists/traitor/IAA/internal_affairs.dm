@@ -15,41 +15,51 @@
 
 
 /datum/antagonist/traitor/internal_affairs/proc/give_pinpointer()
-	if(owner && owner.current)
+	if(!owner)
+		CRASH("Antag datum with no owner.")
+
+	if(owner.current)
 		owner.current.apply_status_effect(/datum/status_effect/agent_pinpointer)
 
 /datum/antagonist/traitor/internal_affairs/apply_innate_effects()
-	.=..() //in case the base is used in future
-	if(owner && owner.current)
+	. = ..()
+
+	if(!owner)
+		CRASH("Antag datum with no owner.")
+
+	if(owner.current)
 		give_pinpointer(owner.current)
 
 /datum/antagonist/traitor/internal_affairs/remove_innate_effects()
-	.=..()
-	if(owner && owner.current)
+	. = ..()
+
+	if(!owner)
+		CRASH("Antag datum with no owner.")
+
+	if(owner.current)
 		owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer)
 
 /datum/antagonist/traitor/internal_affairs/on_gain()
 	START_PROCESSING(SSprocessing, src)
-	.=..()
+	. = ..()
 /datum/antagonist/traitor/internal_affairs/on_removal()
 	STOP_PROCESSING(SSprocessing,src)
-	.=..()
+	. = ..()
 /datum/antagonist/traitor/internal_affairs/process()
 	iaa_process()
-
 
 /datum/status_effect/agent_pinpointer
 	id = "agent_pinpointer"
 	duration = -1
 	tick_interval = PINPOINTER_PING_TIME
-	alert_type = /obj/screen/alert/status_effect/agent_pinpointer
+	alert_type = /atom/movable/screen/alert/status_effect/agent_pinpointer
 	var/minimum_range = PINPOINTER_MINIMUM_RANGE
 	var/range_fuzz_factor = PINPOINTER_EXTRA_RANDOM_RANGE
 	var/mob/scan_target = null
 	var/range_mid = 8
 	var/range_far = 16
 
-/obj/screen/alert/status_effect/agent_pinpointer
+/atom/movable/screen/alert/status_effect/agent_pinpointer
 	name = "Internal Affairs Integrated Pinpointer"
 	desc = "Even stealthier than a normal implant."
 	icon = 'icons/obj/device.dmi'
@@ -101,7 +111,9 @@
 	return (istype(O, /datum/objective/assassinate/internal)||istype(O, /datum/objective/destroy/internal))
 
 /datum/antagonist/traitor/proc/replace_escape_objective()
-	if(!owner || !objectives.len)
+	if(!owner)
+		CRASH("Antag datum with no owner.")
+	if(!objectives.len)
 		return
 	for (var/objective_ in objectives)
 		if(!(istype(objective_, /datum/objective/escape)||istype(objective_, /datum/objective/survive)))
@@ -113,7 +125,9 @@
 	add_objective(martyr_objective)
 
 /datum/antagonist/traitor/proc/reinstate_escape_objective()
-	if(!owner||!objectives.len)
+	if(!owner)
+		CRASH("Antag datum with no owner.")
+	if(!objectives.len)
 		return
 	for (var/objective_ in objectives)
 		if(!istype(objective_, /datum/objective/martyr))
@@ -130,7 +144,7 @@
 /datum/antagonist/traitor/internal_affairs/proc/steal_targets(datum/mind/victim)
 	if(!owner.current||owner.current.stat==DEAD)
 		return
-	to_chat(owner.current, "<span class='userdanger'> Target eliminated: [victim.name]</span>")
+	to_chat(owner.current, "<span class='userdanger'>Target eliminated: [victim.name]</span>")
 	for(var/objective_ in victim.get_all_objectives())
 		if(istype(objective_, /datum/objective/assassinate/internal))
 			var/datum/objective/assassinate/internal/objective = objective_
@@ -144,7 +158,7 @@
 				add_objective(new_objective)
 				targets_stolen += objective.target
 				var/status_text = objective.check_completion() ? "neutralised" : "active"
-				to_chat(owner.current, "<span class='userdanger'> New target added to database: [objective.target.name] ([status_text]) </span>")
+				to_chat(owner.current, "<span class='userdanger'>New target added to database: [objective.target.name] ([status_text])</span>")
 		else if(istype(objective_, /datum/objective/destroy/internal))
 			var/datum/objective/destroy/internal/objective = objective_
 			var/datum/objective/destroy/internal/new_objective = new
@@ -157,7 +171,7 @@
 				add_objective(new_objective)
 				targets_stolen += objective.target
 				var/status_text = objective.check_completion() ? "neutralised" : "active"
-				to_chat(owner.current, "<span class='userdanger'> New target added to database: [objective.target.name] ([status_text]) </span>")
+				to_chat(owner.current, "<span class='userdanger'>New target added to database: [objective.target.name] ([status_text])</span>")
 	last_man_standing = TRUE
 	for(var/objective_ in objectives)
 		if(!is_internal_objective(objective_))
@@ -168,13 +182,15 @@
 			return
 	if(last_man_standing)
 		if(syndicate)
-			to_chat(owner.current,"<span class='userdanger'> All the loyalist agents are dead, and no more is required of you. Die a glorious death, agent. </span>")
+			to_chat(owner.current,"<span class='userdanger'>All the loyalist agents are dead, and no more is required of you. Die a glorious death, agent.</span>")
 		else
-			to_chat(owner.current,"<span class='userdanger'> All the other agents are dead, and you're the last loose end. Stage a Syndicate terrorist attack to cover up for today's events. You no longer have any limits on collateral damage.</span>")
+			to_chat(owner.current,"<span class='userdanger'>All the other agents are dead, and you're the last loose end. Stage a Syndicate terrorist attack to cover up for today's events. You no longer have any limits on collateral damage.</span>")
 		replace_escape_objective(owner)
 
 /datum/antagonist/traitor/internal_affairs/proc/iaa_process()
-	if(owner&&owner.current&&owner.current.stat!=DEAD)
+	if(!owner)
+		CRASH("Antag datum with no owner.")
+	if(owner.current && owner.current.stat != DEAD)
 		for(var/objective_ in objectives)
 			if(!is_internal_objective(objective_))
 				continue
@@ -240,7 +256,7 @@
 	if(syndicate)
 		to_chat(owner.current, "<span class='userdanger'>Your target has been framed for [crime], and you have been tasked with eliminating them to prevent them defending themselves in court.</span>")
 		to_chat(owner.current, "<B><font size=5 color=red>Any damage you cause will be a further embarrassment to Nanotrasen, so you have no limits on collateral damage.</font></B>")
-		to_chat(owner.current, "<span class='userdanger'> You have been provided with a standard uplink to accomplish your task. </span>")
+		to_chat(owner.current, "<span class='userdanger'>You have been provided with a standard uplink to accomplish your task.</span>")
 	else
 		to_chat(owner.current, "<span class='userdanger'>Your target is suspected of [crime], and you have been tasked with eliminating them by any means necessary to avoid a costly and embarrassing public trial.</span>")
 		to_chat(owner.current, "<B><font size=5 color=red>While you have a license to kill, unneeded property damage or loss of employee life will lead to your contract being terminated.</font></B>")

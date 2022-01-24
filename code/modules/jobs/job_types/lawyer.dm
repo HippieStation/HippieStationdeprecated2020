@@ -1,13 +1,11 @@
 /datum/job/lawyer
 	title = "Lawyer"
-	flag = LAWYER
 	department_head = list("Head of Personnel")
-	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "the head of personnel"
-	selection_color = "#dddddd"
+	selection_color = "#bbe291"
 	var/lawyers = 0 //Counts lawyer amount
 
 	outfit = /datum/outfit/job/lawyer
@@ -15,8 +13,10 @@
 	access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
 	minimal_access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
 	paycheck = PAYCHECK_EASY
-	paycheck_department = ACCOUNT_CIV
-	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
+	paycheck_department = ACCOUNT_SRV
+
+	mind_traits = list(TRAIT_DONUT_LOVER)
+	liver_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_LAWYER
 
@@ -26,7 +26,7 @@
 
 	belt = /obj/item/pda/lawyer
 	ears = /obj/item/radio/headset/headset_srvsec
-	uniform = /obj/item/clothing/under/lawyer/bluesuit
+	uniform = /obj/item/clothing/under/rank/civilian/lawyer/bluesuit
 	suit = /obj/item/clothing/suit/toggle/lawyer
 	shoes = /obj/item/clothing/shoes/laceup
 	l_hand = /obj/item/storage/briefcase/lawyer
@@ -37,12 +37,13 @@
 
 
 /datum/outfit/job/lawyer/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	..()
 	if(visualsOnly)
-		return
+		return ..()
 
-	var/datum/job/lawyer/J = SSjob.GetJobType(jobtype)
-	J.lawyers++
-	if(J.lawyers>1)
-		uniform = /obj/item/clothing/under/lawyer/purpsuit
+	var/static/use_purple_suit = FALSE //If there is one lawyer, they get the default blue suit. If another lawyer joins the round, they start with a purple suit.
+	if(use_purple_suit)
+		uniform = /obj/item/clothing/under/rank/civilian/lawyer/purpsuit
 		suit = /obj/item/clothing/suit/toggle/lawyer/purple
+	else
+		use_purple_suit = TRUE
+	..()

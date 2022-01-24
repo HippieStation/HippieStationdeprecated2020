@@ -1,7 +1,7 @@
 /obj/item/onetankbomb
 	name = "bomb"
 	icon = 'icons/obj/tank.dmi'
-	item_state = "assembly"
+	inhand_icon_state = "assembly"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	throwforce = 5
@@ -19,15 +19,17 @@
 /obj/item/onetankbomb/examine(mob/user)
 	return bombtank.examine(user)
 
-/obj/item/onetankbomb/update_icon()
-	cut_overlays()
+/obj/item/onetankbomb/update_icon_state()
 	if(bombtank)
 		icon = bombtank.icon
 		icon_state = bombtank.icon_state
+
+/obj/item/onetankbomb/update_overlays()
+	. = ..()
 	if(bombassembly)
-		add_overlay(bombassembly.icon_state)
-		copy_overlays(bombassembly)
-		add_overlay("bomb_assembly")
+		. += bombassembly.icon_state
+		. += bombassembly.overlays
+		. += "bomb_assembly"
 
 /obj/item/onetankbomb/wrench_act(mob/living/user, obj/item/I)
 	..()
@@ -63,14 +65,14 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/onetankbomb/receive_signal()	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.
+/obj/item/onetankbomb/receive_signal() //This is mainly called by the sensor through sense() to the holder, and from the holder to here.
 	audible_message("[icon2html(src, hearers(src))] *beep* *beep* *beep*")
 	playsound(src, 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
 	sleep(10)
 	if(QDELETED(src))
 		return
 	if(status)
-		bombtank.ignite()	//if its not a dud, boom (or not boom if you made shitty mix) the ignite proc is below, in this file
+		bombtank.ignite() //if its not a dud, boom (or not boom if you made shitty mix) the ignite proc is below, in this file
 	else
 		bombtank.release()
 
@@ -85,7 +87,7 @@
 	if(bombassembly)
 		bombassembly.on_found(finder)
 
-/obj/item/onetankbomb/attack_hand() //also for mousetraps
+/obj/item/onetankbomb/attack_hand(mob/user, list/modifiers) //also for mousetraps
 	. = ..()
 	if(.)
 		return
@@ -126,20 +128,20 @@
 	user.transferItemToLoc(src, bomb)
 	user.transferItemToLoc(assembly, bomb)
 
-	bomb.bombassembly = assembly	//Tell the bomb about its assembly part
-	assembly.master = bomb			//Tell the assembly about its new owner
+	bomb.bombassembly = assembly //Tell the bomb about its assembly part
+	assembly.master = bomb //Tell the assembly about its new owner
 
-	bomb.bombtank = src	//Same for tank
+	bomb.bombtank = src //Same for tank
 	master = bomb
 
 	forceMove(bomb)
 	bomb.update_icon()
 
-	user.put_in_hands(bomb)		//Equips the bomb if possible, or puts it on the floor.
+	user.put_in_hands(bomb) //Equips the bomb if possible, or puts it on the floor.
 	to_chat(user, "<span class='notice'>You attach [assembly] to [src].</span>")
 	return
 
-/obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
+/obj/item/tank/proc/ignite() //This happens when a bomb is told to explode
 	air_contents.assert_gases(/datum/gas/plasma, /datum/gas/oxygen)
 	var/fuel_moles = air_contents.gases[/datum/gas/plasma][MOLES] + air_contents.gases[/datum/gas/oxygen][MOLES]/6
 	air_contents.garbage_collect()
@@ -155,8 +157,10 @@
 	if(bomb_mixture.temperature > (T0C + 400))
 		strength = (fuel_moles/15)
 
-		if(strength >=1)
+		if(strength >=2)
 			explosion(ground_zero, round(strength,1), round(strength*2,1), round(strength*3,1), round(strength*4,1))
+		else if(strength >=1)
+			explosion(ground_zero, round(strength,1), round(strength*2,1), round(strength*2,1), round(strength*3,1))
 		else if(strength >=0.5)
 			explosion(ground_zero, 0, 1, 2, 4)
 		else if(strength >=0.2)
@@ -170,7 +174,7 @@
 
 		if(strength >=1)
 			explosion(ground_zero, 0, round(strength,1), round(strength*2,1), round(strength*3,1))
-		else if (strength >=0.5)
+		else if(strength >=0.5)
 			explosion(ground_zero, -1, 0, 1, 2)
 		else
 			ground_zero.assume_air(bomb_mixture)
@@ -179,7 +183,7 @@
 	else if(bomb_mixture.temperature > (T0C + 100))
 		strength = (fuel_moles/25)
 
-		if (strength >=1)
+		if(strength >=1)
 			explosion(ground_zero, -1, 0, round(strength,1), round(strength*3,1))
 		else
 			ground_zero.assume_air(bomb_mixture)
@@ -191,7 +195,7 @@
 
 	ground_zero.air_update_turf(FALSE, FALSE)
 
-/obj/item/tank/proc/release()	//This happens when the bomb is not welded. Tank contents are just spat out.
+/obj/item/tank/proc/release() //This happens when the bomb is not welded. Tank contents are just spat out.
 	var/datum/gas_mixture/removed = air_contents.remove(air_contents.total_moles())
 	var/turf/T = get_turf(src)
 	if(!T)

@@ -23,14 +23,14 @@ SUBSYSTEM_DEF(communications)
 		minor_announce(html_decode(input),"[user.name] Announces:")
 		silicon_message_cooldown = world.time + COMMUNICATION_COOLDOWN_AI
 	else
-		priority_announce(html_decode(user.treat_message(input)), null, 'sound/misc/announce.ogg', "Captain")
+		priority_announce(html_decode(user.treat_message(input)), null, 'sound/misc/announce.ogg', "Captain", has_important_message = TRUE)
 		nonsilicon_message_cooldown = world.time + COMMUNICATION_COOLDOWN
 	user.log_talk(input, LOG_SAY, tag="priority announcement")
 	message_admins("[ADMIN_LOOKUPFLW(user)] has made a priority announcement.")
 
 /datum/controller/subsystem/communications/proc/send_message(datum/comm_message/sending,print = TRUE,unique = FALSE)
 	for(var/obj/machinery/computer/communications/C in GLOB.machines)
-		if(!(C.stat & (BROKEN|NOPOWER)) && is_station_level(C.z))
+		if(!(C.machine_stat & (BROKEN|NOPOWER)) && is_station_level(C.z))
 			if(unique)
 				C.add_message(sending)
 			else //We copy the message for each console, answers and deletions won't be shared

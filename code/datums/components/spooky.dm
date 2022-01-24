@@ -5,6 +5,8 @@
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/spectral_attack)
 
 /datum/component/spooky/proc/spectral_attack(datum/source, mob/living/carbon/C, mob/user)
+	SIGNAL_HANDLER
+
 	if(ishuman(user)) //this weapon wasn't meant for mortals.
 		var/mob/living/carbon/human/U = user
 		if(!istype(U.dna.species, /datum/species/skeleton))
@@ -13,7 +15,7 @@
 			U.stuttering = 20
 			if(U.getStaminaLoss() > 95)
 				to_chat(U, "<font color ='red', size ='4'><B>Your ears weren't meant for this spectral sound.</B></font>")
-				spectral_change(U)
+				INVOKE_ASYNC(src, .proc/spectral_change, U)
 			return
 
 	if(ishuman(C))
@@ -28,7 +30,7 @@
 		if((!istype(H.dna.species, /datum/species/skeleton)) && (!istype(H.dna.species, /datum/species/golem)) && (!istype(H.dna.species, /datum/species/android)) && (!istype(H.dna.species, /datum/species/jelly)))
 			C.adjustStaminaLoss(25) //boneless humanoids don't lose the will to live
 		to_chat(C, "<font color='red' size='4'><B>DOOT</B></font>")
-		spectral_change(H)
+		INVOKE_ASYNC(src, .proc/spectral_change, H)
 
 	else //the sound will spook monkeys.
 		C.Jitter(15)
@@ -51,10 +53,10 @@
 				to_chat(H, "<span class='boldwarning'>The spooky gods forgot to ship your instrument. Better luck next unlife.</span>")
 		to_chat(H, "<span class='boldnotice'>You are the spooky skeleton!</span>")
 		to_chat(H, "<span class='boldnotice'>A new life and identity has begun. Help your fellow skeletons into bringing out the spooky-pocalypse. You haven't forgotten your past life, and are still beholden to past loyalties.</span>")
-		change_name(H)	//time for a new name!
+		change_name(H) //time for a new name!
 
 /datum/component/spooky/proc/change_name(mob/living/carbon/human/H)
-	var/t = stripped_input(H, "Enter your new skeleton name", H.real_name, null, MAX_NAME_LEN)
+	var/t = sanitize_name(stripped_input(H, "Enter your new skeleton name", H.real_name, null, MAX_NAME_LEN))
 	if(!t)
 		t = "spooky skeleton"
 	H.fully_replace_character_name(null, t)

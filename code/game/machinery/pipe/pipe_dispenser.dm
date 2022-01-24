@@ -8,8 +8,8 @@
 	var/wait = 0
 	var/piping_layer = PIPING_LAYER_DEFAULT
 
-/obj/machinery/pipedispenser/attack_paw(mob/user)
-	return attack_hand(user)
+/obj/machinery/pipedispenser/attack_paw(mob/user, list/modifiers)
+	return attack_hand(user, modifiers)
 
 /obj/machinery/pipedispenser/ui_interact(mob/user)
 	. = ..()
@@ -27,7 +27,7 @@
 
 		dat += "</ul>"
 
-	user << browse("<HEAD>[UTF8HEADER]<TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
+	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
 	onclose(user, "pipedispenser")
 	return
 
@@ -35,7 +35,7 @@
 	if(..())
 		return 1
 	var/mob/living/L = usr
-	if(!anchored || (istype(L) && !(L.mobility_flags & MOBILITY_UI)) || usr.stat || usr.restrained() || !in_range(loc, usr))
+	if(!anchored || (istype(L) && !(L.mobility_flags & MOBILITY_UI)) || usr.stat != CONSCIOUS || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED) || !in_range(loc, usr))
 		usr << browse(null, "window=pipedispenser")
 		return 1
 	usr.set_machine(src)
@@ -125,7 +125,7 @@
 
 		dat += "</ul>"
 
-	user << browse("<HEAD>[UTF8HEADER]<TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
+	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
 	return
 
 
@@ -176,7 +176,7 @@
 <A href='?src=[REF(src)];tube=[TRANSIT_TUBE_POD]'>Transit Tube Pod</A><BR>
 "}
 
-	user << browse("<HEAD>[UTF8HEADER]<TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
+	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
 	return
 
 

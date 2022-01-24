@@ -21,7 +21,7 @@
 	anchored = TRUE
 	density = TRUE
 	max_buckled_mobs = 1
-	buckle_lying = FALSE
+	buckle_lying = 0
 	buckle_prevents_pull = TRUE
 	layer = ABOVE_MOB_LAYER
 	var/blade_status = GUILLOTINE_BLADE_RAISED
@@ -123,7 +123,7 @@
 		if (QDELETED(head))
 			return
 
-		playsound(src, 'sound/weapons/bladeslice.ogg', 100, 1)
+		playsound(src, 'sound/weapons/guillotine.ogg', 100, TRUE)
 		if (blade_sharpness >= GUILLOTINE_DECAP_MIN_SHARP || head.brute_dam >= 100)
 			head.dismember()
 			log_combat(user, H, "beheaded", src)
@@ -175,7 +175,7 @@
 					user.visible_message("<span class='notice'>[user] sharpens the large blade of the guillotine.</span>",
 						                 "<span class='notice'>You sharpen the large blade of the guillotine.</span>")
 					blade_sharpness += 1
-					playsound(src, 'sound/items/unsheath.ogg', 100, 1)
+					playsound(src, 'sound/items/unsheath.ogg', 100, TRUE)
 					return
 				else
 					blade_status = GUILLOTINE_BLADE_RAISED
@@ -189,9 +189,9 @@
 	else
 		return ..()
 
-/obj/structure/guillotine/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
+/obj/structure/guillotine/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if (!anchored)
-		to_chat(usr, "<span class='warning'>The [src] needs to be wrenched to the floor!</span>")
+		to_chat(usr, "<span class='warning'>[src] needs to be wrenched to the floor!</span>")
 		return FALSE
 
 	if (!istype(M, /mob/living/carbon/human))
@@ -202,12 +202,13 @@
 		to_chat(usr, "<span class='warning'>You need to raise the blade before buckling someone in!</span>")
 		return FALSE
 
-	return ..(M, force, FALSE)
+	return ..(M, user, check_loc = FALSE) //check_loc = FALSE to allow moving people in from adjacent turfs
 
 /obj/structure/guillotine/post_buckle_mob(mob/living/M)
 	if (!istype(M, /mob/living/carbon/human))
 		return
 
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "dying", /datum/mood_event/deaths_door)
 	var/mob/living/carbon/human/H = M
 
 	if (H.dna)
@@ -232,6 +233,7 @@
 	M.regenerate_icons()
 	M.pixel_y -= -GUILLOTINE_HEAD_OFFSET // Move their body back
 	M.layer -= GUILLOTINE_LAYER_DIFF
+	SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "dying")
 	..()
 
 /obj/structure/guillotine/can_be_unfasten_wrench(mob/user, silent)

@@ -1,11 +1,13 @@
 /mob/dead/observer/Login()
-	..()
+	. = ..()
+	if(!. || !client)
+		return FALSE
 
 	ghost_accs = client.prefs.ghost_accs
 	ghost_others = client.prefs.ghost_others
 	var/preferred_form = null
 
-	if(IsAdminGhost(src))
+	if(isAdminGhostAI(src))
 		has_unlimited_silicon_privilege = 1
 
 	if(client.prefs.unlock_content)
@@ -18,3 +20,6 @@
 
 	update_icon(preferred_form)
 	updateghostimages()
+	client.set_right_click_menu_mode(FALSE)
+
+

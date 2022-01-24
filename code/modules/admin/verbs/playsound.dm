@@ -1,5 +1,5 @@
 /client/proc/play_sound(S as sound)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Play Global Sound"
 	if(!check_rights(R_SOUND))
 		return
@@ -16,14 +16,14 @@
 	admin_sound.channel = CHANNEL_ADMIN
 	admin_sound.frequency = freq
 	admin_sound.wait = 1
-	admin_sound.repeat = 0
+	admin_sound.repeat = FALSE
 	admin_sound.status = SOUND_STREAM
 	admin_sound.volume = vol
 
 	var/res = alert(usr, "Show the title of this song to the players?",, "Yes","No", "Cancel")
 	switch(res)
 		if("Yes")
-			to_chat(world, "<span class='boldannounce'>An admin played: [S]</span>")
+			to_chat(world, "<span class='boldannounce'>An admin played: [S]</span>", confidential = TRUE)
 		if("Cancel")
 			return
 
@@ -32,9 +32,7 @@
 
 	for(var/mob/M in GLOB.player_list)
 		if(M.client.prefs.toggles & SOUND_MIDI)
-			var/user_vol = M.client.chatOutput.adminMusicVolume
-			if(user_vol)
-				admin_sound.volume = vol * (user_vol / 100)
+			admin_sound.volume = vol * M.client.admin_music_volume
 			SEND_SOUND(M, admin_sound)
 			admin_sound.volume = vol
 
@@ -42,18 +40,33 @@
 
 
 /client/proc/play_local_sound(S as sound)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Play Local Sound"
 	if(!check_rights(R_SOUND))
 		return
 
 	log_admin("[key_name(src)] played a local sound [S]")
 	message_admins("[key_name_admin(src)] played a local sound [S]")
-	playsound(get_turf(src.mob), S, 50, 0, 0)
+	playsound(get_turf(src.mob), S, 50, FALSE, FALSE)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Local Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/play_direct_mob_sound(S as sound, mob/M)
+	set category = "Admin.Fun"
+	set name = "Play Direct Mob Sound"
+	if(!check_rights(R_SOUND))
+		return
+
+	if(!M)
+		M = input(usr, "Choose a mob to play the sound to. Only they will hear it.", "Play Mob Sound") as null|anything in sortNames(GLOB.player_list)
+	if(!M || QDELETED(M))
+		return
+	log_admin("[key_name(src)] played a direct mob sound [S] to [M].")
+	message_admins("[key_name_admin(src)] played a direct mob sound [S] to [ADMIN_LOOKUPFLW(M)].")
+	SEND_SOUND(M, S)
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Direct Mob Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/proc/play_web_sound()
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Play Internet Sound"
 	if(!check_rights(R_SOUND))
 		return
@@ -76,7 +89,7 @@
 				to_chat(src, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website.</span>", confidential = TRUE)
 				return
 			var/shell_scrubbed_input = shell_url_scrub(web_sound_input)
-			var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
+			var/list/output = world.shelleo("[ytdl] --geo-bypass --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
 			var/errorlevel = output[SHELLEO_ERRORLEVEL]
 			var/stdout = output[SHELLEO_STDOUT]
 			var/stderr = output[SHELLEO_STDERR]
@@ -97,11 +110,13 @@
 						webpage_url = "<a href=\"[data["webpage_url"]]\">[title]</a>"
 					music_extra_data["start"] = data["start_time"]
 					music_extra_data["end"] = data["end_time"]
+					music_extra_data["link"] = data["webpage_url"]
+					music_extra_data["title"] = data["title"]
 
 					var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "No", "Yes", "Cancel")
 					switch(res)
 						if("Yes")
-							to_chat(world, "<span class='boldannounce'>An admin played: [webpage_url]</span>")
+							to_chat(world, "<span class='boldannounce'>An admin played: [webpage_url]</span>", confidential = TRUE)
 						if("Cancel")
 							return
 
@@ -126,16 +141,16 @@
 			for(var/m in GLOB.player_list)
 				var/mob/M = m
 				var/client/C = M.client
-				if((C.prefs.toggles & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
+				if(C.prefs.toggles & SOUND_MIDI)
 					if(!stop_web_sounds)
-						C.chatOutput.sendMusic(web_sound_url, music_extra_data)
+						C.tgui_panel?.play_music(web_sound_url, music_extra_data)
 					else
-						C.chatOutput.stopMusic()
+						C.tgui_panel?.stop_music()
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Internet Sound")
 
 /client/proc/set_round_end_sound(S as sound)
-	set category = "Fun"
+	set category = "Admin.Fun"
 	set name = "Set Round End Sound"
 	if(!check_rights(R_SOUND))
 		return
@@ -155,9 +170,7 @@
 	log_admin("[key_name(src)] stopped all currently playing sounds.")
 	message_admins("[key_name_admin(src)] stopped all currently playing sounds.")
 	for(var/mob/M in GLOB.player_list)
-		if(M.client)
-			SEND_SOUND(M, sound(null))
-			var/client/C = M.client
-			if(C && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-				C.chatOutput.stopMusic()
+		SEND_SOUND(M, sound(null))
+		var/client/C = M.client
+		C?.tgui_panel?.stop_music()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Stop All Playing Sounds") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

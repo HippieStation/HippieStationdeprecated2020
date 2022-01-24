@@ -10,7 +10,16 @@
 
 #define NANITE_CLOUD_TOGGLE 1
 #define NANITE_CLOUD_DISABLE 2
-#define NANITE_CLOUD_ENABLE	3
+#define NANITE_CLOUD_ENABLE 3
+
+//Nanite excess thresholds
+#define NANITE_EXCESS_MINOR 25
+#define NANITE_EXCESS_VOMIT 100
+#define NANITE_EXCESS_BURST 350
+
+///Nanite Protocol types
+#define NANITE_PROTOCOL_REPLICATION "nanite_replication"
+#define NANITE_PROTOCOL_STORAGE "nanite_storage"
 
 ///Nanite extra settings types: used to help uis know what type an extra setting is
 #define NESTYPE_TEXT "text"
@@ -42,4 +51,3 @@
 #define NES_SCAN_TYPE "Scan Type"
 #define NES_BUTTON_NAME "Button Name"
 #define NES_ICON "Icon"
-#define NES_COLOR "Color"

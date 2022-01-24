@@ -3,7 +3,7 @@
 	desc = "A device that can be linked to an Express Supply Console for precision supply pod deliveries. Alt-click to remove link."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "supplypod_beacon"
-	item_state = "radio"
+	inhand_icon_state = "radio"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
@@ -12,33 +12,33 @@
 	var/ready = FALSE
 	var/launched = FALSE
 
-/obj/item/supplypod_beacon/proc/update_status(var/consoleStatus)
+/obj/item/supplypod_beacon/proc/update_status(consoleStatus)
 	switch(consoleStatus)
 		if (SP_LINKED)
 			linked = TRUE
-			playsound(src,'sound/machines/twobeep.ogg',50,0)
+			playsound(src,'sound/machines/twobeep.ogg',50,FALSE)
 		if (SP_READY)
 			ready = TRUE
 		if (SP_LAUNCH)
 			launched = TRUE
-			playsound(src,'sound/machines/triple_beep.ogg',50,0)
-			playsound(src,'sound/machines/warning-buzzer.ogg',50,0)
+			playsound(src,'sound/machines/triple_beep.ogg',50,FALSE)
+			playsound(src,'sound/machines/warning-buzzer.ogg',50,FALSE)
 			addtimer(CALLBACK(src, .proc/endLaunch), 33)//wait 3.3 seconds (time it takes for supplypod to land), then update icon
 		if (SP_UNLINK)
 			linked = FALSE
-			playsound(src,'sound/machines/synth_no.ogg',50,0)
+			playsound(src,'sound/machines/synth_no.ogg',50,FALSE)
 		if (SP_UNREADY)
 			ready = FALSE
 	update_icon()
 
-/obj/item/supplypod_beacon/update_icon()
-	cut_overlays()
+/obj/item/supplypod_beacon/update_overlays()
+	. = ..()
 	if (launched)
-		add_overlay("sp_green")
+		. += "sp_green"
 	else if (ready)
-		add_overlay("sp_yellow")
+		. += "sp_yellow"
 	else if (linked)
-		add_overlay("sp_orange")
+		. += "sp_orange"
 
 /obj/item/supplypod_beacon/proc/endLaunch()
 	launched = FALSE

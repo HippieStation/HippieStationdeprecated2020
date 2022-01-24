@@ -4,9 +4,8 @@
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "nanite_cloud_controller"
 	circuit = /obj/item/circuitboard/computer/nanite_cloud_controller
-	ui_x = 375
-	ui_y = 700
-	
+	icon_screen = "nanite_cloud_controller_screen"
+
 	var/obj/item/disk/nanite_program/disk
 	var/list/datum/nanite_cloud_backup/cloud_backups = list()
 	var/current_view = 0 //0 is the main menu, any other number is the page of the backup with that ID
@@ -20,14 +19,20 @@
 /obj/machinery/computer/nanite_cloud_controller/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/disk/nanite_program))
 		var/obj/item/disk/nanite_program/N = I
-		if(disk)
-			eject(user)
-		if(user.transferItemToLoc(N, src))
-			to_chat(user, "<span class='notice'>You insert [N] into [src]</span>")
-			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
+		if (user.transferItemToLoc(N, src))
+			to_chat(user, "<span class='notice'>You insert [N] into [src].</span>")
+			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+			if(disk)
+				eject(user)
 			disk = N
 	else
 		..()
+
+/obj/machinery/computer/nanite_cloud_controller/AltClick(mob/user)
+	if(disk && user.canUseTopic(src, !issilicon(user)))
+		to_chat(user, "<span class='notice'>You take out [disk] from [src].</span>")
+		eject(user)
+	return
 
 /obj/machinery/computer/nanite_cloud_controller/proc/eject(mob/living/user)
 	if(!disk)
@@ -48,15 +53,15 @@
 		return
 
 	var/datum/nanite_cloud_backup/backup = new(src)
-	var/datum/component/nanites/cloud_copy = new(backup)
+	var/datum/component/nanites/cloud_copy = backup.AddComponent(/datum/component/nanites)
 	backup.cloud_id = cloud_id
 	backup.nanites = cloud_copy
 	investigate_log("[key_name(user)] created a new nanite cloud backup with id #[cloud_id]", INVESTIGATE_NANITES)
 
-/obj/machinery/computer/nanite_cloud_controller/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/nanite_cloud_controller/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "nanite_cloud_control", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "NaniteCloudControl", name)
 		ui.open()
 
 /obj/machinery/computer/nanite_cloud_controller/ui_data()
@@ -139,6 +144,7 @@
 				cloud_program["rules"] = rules
 				if(LAZYLEN(rules))
 					cloud_program["has_rules"] = TRUE
+				cloud_program["all_rules_required"] = P.all_rules_required
 
 				var/list/extra_settings = P.get_extra_settings_frontend()
 				cloud_program["extra_settings"] = extra_settings
@@ -158,7 +164,8 @@
 	return data
 
 /obj/machinery/computer/nanite_cloud_controller/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("eject")
@@ -173,22 +180,22 @@
 		if("create_backup")
 			var/cloud_id = new_backup_id
 			if(!isnull(cloud_id))
-				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
+				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 				cloud_id = clamp(round(cloud_id, 1),1,100)
 				generate_backup(cloud_id, usr)
 			. = TRUE
 		if("delete_backup")
 			var/datum/nanite_cloud_backup/backup = get_backup(current_view)
 			if(backup)
-				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
+				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 				qdel(backup)
 				investigate_log("[key_name(usr)] deleted the nanite cloud backup #[current_view]", INVESTIGATE_NANITES)
 			. = TRUE
 		if("upload_program")
-			if(disk && disk.program)
+			if(disk?.program)
 				var/datum/nanite_cloud_backup/backup = get_backup(current_view)
 				if(backup)
-					playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
+					playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 					var/datum/component/nanites/nanites = backup.nanites
 					nanites.add_program(null, disk.program.copy())
 					investigate_log("[key_name(usr)] uploaded program [disk.program.name] to cloud #[current_view]", INVESTIGATE_NANITES)
@@ -196,7 +203,7 @@
 		if("remove_program")
 			var/datum/nanite_cloud_backup/backup = get_backup(current_view)
 			if(backup)
-				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
+				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 				var/datum/component/nanites/nanites = backup.nanites
 				var/datum/nanite_program/P = nanites.programs[text2num(params["program_id"])]
 				investigate_log("[key_name(usr)] deleted program [P.name] from cloud #[current_view]", INVESTIGATE_NANITES)
@@ -213,7 +220,7 @@
 					var/datum/component/nanites/nanites = backup.nanites
 					var/datum/nanite_program/P = nanites.programs[text2num(params["program_id"])]
 					var/datum/nanite_rule/rule = rule_template.make_rule(P)
-					
+
 					investigate_log("[key_name(usr)] added rule [rule.display()] to program [P.name] in cloud #[current_view]", INVESTIGATE_NANITES)
 			. = TRUE
 		if("remove_rule")
@@ -224,9 +231,18 @@
 				var/datum/nanite_program/P = nanites.programs[text2num(params["program_id"])]
 				var/datum/nanite_rule/rule = P.rules[text2num(params["rule_id"])]
 				rule.remove()
-				
+
 				investigate_log("[key_name(usr)] removed rule [rule.display()] from program [P.name] in cloud #[current_view]", INVESTIGATE_NANITES)
 			. = TRUE
+		if("toggle_rule_logic")
+			var/datum/nanite_cloud_backup/backup = get_backup(current_view)
+			if(backup)
+				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
+				var/datum/component/nanites/nanites = backup.nanites
+				var/datum/nanite_program/P = nanites.programs[text2num(params["program_id"])]
+				P.all_rules_required = !P.all_rules_required
+				investigate_log("[key_name(usr)] edited rule logic for program [P.name] into [P.all_rules_required ? "All" : "Any"] in cloud #[current_view]", INVESTIGATE_NANITES)
+				. = TRUE
 
 /datum/nanite_cloud_backup
 	var/cloud_id = 0

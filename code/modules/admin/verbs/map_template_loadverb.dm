@@ -4,7 +4,7 @@
 
 	var/datum/map_template/template
 
-	var/map = input(src, "Choose a Map Template to place at your CURRENT LOCATION","Place Map Template") as null|anything in SSmapping.map_templates
+	var/map = input(src, "Choose a Map Template to place at your CURRENT LOCATION","Place Map Template") as null|anything in sortList(SSmapping.map_templates)
 	if(!map)
 		return
 	template = SSmapping.map_templates[map]
@@ -21,6 +21,13 @@
 	images += preview
 	if(alert(src,"Confirm location.","Template Confirm","Yes","No") == "Yes")
 		if(template.load(T, centered = TRUE))
+			var/affected = template.get_affected_turfs(T, centered=TRUE)
+			for(var/AT in affected)
+				for(var/obj/docking_port/mobile/P in AT)
+					if(istype(P, /obj/docking_port/mobile))
+						template.post_load(P)
+						break
+
 			message_admins("<span class='adminnotice'>[key_name_admin(src)] has placed a map template ([template.name]) at [ADMIN_COORDJMP(T)]</span>")
 		else
 			to_chat(src, "Failed to place map", confidential = TRUE)
@@ -33,7 +40,7 @@
 	var/map = input(src, "Choose a Map Template to upload to template storage","Upload Map Template") as null|file
 	if(!map)
 		return
-	if(copytext("[map]", -4) != ".dmm")
+	if(copytext("[map]", -4) != ".dmm")//4 == length(".dmm")
 		to_chat(src, "<span class='warning'>Filename must end in '.dmm': [map]</span>", confidential = TRUE)
 		return
 	var/datum/map_template/M

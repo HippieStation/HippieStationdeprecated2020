@@ -1,5 +1,3 @@
-GLOBAL_LIST_EMPTY(uplinks)
-
 #define PEN_ROTATIONS 2
 
 /**
@@ -31,7 +29,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 
 	var/list/previous_attempts
 
-/datum/component/uplink/Initialize(_owner, _lockable = TRUE, _enabled = FALSE, datum/game_mode/_gamemode, starting_tc = 20)
+/datum/component/uplink/Initialize(_owner, _lockable = TRUE, _enabled = FALSE, datum/game_mode/_gamemode, starting_tc = TELECRYSTALS_DEFAULT)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -51,7 +49,6 @@ GLOBAL_LIST_EMPTY(uplinks)
 	else if(istype(parent, /obj/item/pen))
 		RegisterSignal(parent, COMSIG_PEN_ROTATED, .proc/pen_rotation)
 
-	GLOB.uplinks += src
 	uplink_items = get_uplink_items(_gamemode, TRUE, allow_restricted)
 
 	if(_owner)
@@ -81,7 +78,6 @@ GLOBAL_LIST_EMPTY(uplinks)
 		purchase_log.MergeWithAndDel(U.purchase_log)
 
 /datum/component/uplink/Destroy()
-	GLOB.uplinks -= src
 	gamemode = null
 	purchase_log = null
 	return ..()
@@ -92,14 +88,17 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/amt = TC.amount
 	telecrystals += amt
 	TC.use(amt)
+	log_uplink("[key_name(user)] loaded [amt] telecrystals into [parent]'s uplink")
 
 /datum/component/uplink/proc/set_gamemode(_gamemode)
 	gamemode = _gamemode
 	uplink_items = get_uplink_items(gamemode, TRUE, allow_restricted)
 
 /datum/component/uplink/proc/OnAttackBy(datum/source, obj/item/I, mob/user)
+	SIGNAL_HANDLER
+
 	if(!active)
-		return	//no hitting everyone/everything just to try to slot tcs in!
+		return //no hitting everyone/everything just to try to slot tcs in!
 	if(istype(I, /obj/item/stack/telecrystal))
 		LoadTC(user, I)
 	for(var/category in uplink_items)
@@ -109,6 +108,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 			var/cost = UI.refund_amount || UI.cost
 			if(I.type == path && UI.refundable && I.check_uplink_validity())
 				telecrystals += cost
+				log_uplink("[key_name(user)] refunded [UI] for [cost] telecrystals using [parent]'s uplink")
 				if(purchase_log)
 					purchase_log.total_spent -= cost
 				to_chat(user, "<span class='notice'>[I] refunded.</span>")
@@ -116,22 +116,28 @@ GLOBAL_LIST_EMPTY(uplinks)
 				return
 
 /datum/component/uplink/proc/interact(datum/source, mob/user)
+	SIGNAL_HANDLER
+
 	if(locked)
 		return
 	active = TRUE
 	if(user)
-		ui_interact(user)
+		INVOKE_ASYNC(src, .proc/ui_interact, user)
 	// an unlocked uplink blocks also opening the PDA or headset menu
-	return COMPONENT_NO_INTERACT
+	return COMPONENT_CANCEL_ATTACK_CHAIN
 
-/datum/component/uplink/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.inventory_state)
+
+/datum/component/uplink/ui_state(mob/user)
+	return GLOB.inventory_state
+
+/datum/component/uplink/ui_interact(mob/user, datum/tgui/ui)
 	active = TRUE
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "uplink", name, 620, 580, master_ui, state)
-		ui.set_autoupdate(FALSE) // This UI is only ever opened by one person, and never is updated outside of user input.
-		ui.set_style("syndicate")
+		ui = new(user, src, "Uplink", name)
+		// This UI is only ever opened by one person,
+		// and never is updated outside of user input.
+		ui.set_autoupdate(FALSE)
 		ui.open()
 
 /datum/component/uplink/ui_data(mob/user)
@@ -140,8 +146,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/list/data = list()
 	data["telecrystals"] = telecrystals
 	data["lockable"] = lockable
-	data["compact_mode"] = compact_mode
-
+	data["compactMode"] = compact_mode
 	return data
 
 /datum/component/uplink/ui_static_data(mob/user)
@@ -181,21 +186,21 @@ GLOBAL_LIST_EMPTY(uplinks)
 	return data
 
 /datum/component/uplink/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
 	if(!active)
 		return
-
 	switch(action)
 		if("buy")
-			var/item = params["item"]
-
+			var/item_name = params["name"]
 			var/list/buyable_items = list()
 			for(var/category in uplink_items)
 				buyable_items += uplink_items[category]
-
-			if(item in buyable_items)
-				var/datum/uplink_item/I = buyable_items[item]
+			if(item_name in buyable_items)
+				var/datum/uplink_item/I = buyable_items[item_name]
 				MakePurchase(usr, I)
-				. = TRUE
+				return TRUE
 		if("lock")
 			active = FALSE
 			locked = TRUE
@@ -204,9 +209,10 @@ GLOBAL_LIST_EMPTY(uplinks)
 			SStgui.close_uis(src)
 		if("select")
 			selected_cat = params["category"]
+			return TRUE
 		if("compact_toggle")
 			compact_mode = !compact_mode
-	return TRUE
+			return TRUE
 
 /datum/component/uplink/proc/MakePurchase(mob/user, datum/uplink_item/U)
 	if(!istype(U))
@@ -229,31 +235,39 @@ GLOBAL_LIST_EMPTY(uplinks)
 // Implant signal responses
 
 /datum/component/uplink/proc/implant_activation()
+	SIGNAL_HANDLER
+
 	var/obj/item/implant/implant = parent
 	locked = FALSE
 	interact(null, implant.imp_in)
 
 /datum/component/uplink/proc/implanting(datum/source, list/arguments)
-	var/mob/target = arguments[1]
-	 // hippie start -- Fix runtime when implanting infiltrators
+	SIGNAL_HANDLER
+
 	var/mob/user = arguments[2]
-	owner = "[user ? user.key : target.key]" // hippie end
+	owner = "[user.key]"
 
 /datum/component/uplink/proc/old_implant(datum/source, list/arguments, obj/item/implant/new_implant)
+	SIGNAL_HANDLER
+
 	// It kinda has to be weird like this until implants are components
 	return SEND_SIGNAL(new_implant, COMSIG_IMPLANT_EXISTING_UPLINK, src)
 
 /datum/component/uplink/proc/new_implant(datum/source, datum/component/uplink/uplink)
+	SIGNAL_HANDLER
+
 	uplink.telecrystals += telecrystals
 	return COMPONENT_DELETE_NEW_IMPLANT
 
 // PDA signal responses
 
 /datum/component/uplink/proc/new_ringtone(datum/source, mob/living/user, new_ring_text)
+	SIGNAL_HANDLER
+
 	var/obj/item/pda/master = parent
 	if(trim(lowertext(new_ring_text)) != trim(lowertext(unlock_code)))
-		if(failsafe_code && trim(lowertext(new_ring_text)) == trim(lowertext(failsafe_code)))
-			failsafe()
+		if(trim(lowertext(new_ring_text)) == trim(lowertext(failsafe_code)))
+			failsafe(user)
 			return COMPONENT_STOP_RINGTONE_CHANGE
 		return
 	locked = FALSE
@@ -264,16 +278,20 @@ GLOBAL_LIST_EMPTY(uplinks)
 	return COMPONENT_STOP_RINGTONE_CHANGE
 
 /datum/component/uplink/proc/check_detonate()
+	SIGNAL_HANDLER
+
 	return COMPONENT_PDA_NO_DETONATE
 
 // Radio signal responses
 
 /datum/component/uplink/proc/new_frequency(datum/source, list/arguments)
+	SIGNAL_HANDLER
+
 	var/obj/item/radio/master = parent
 	var/frequency = arguments[1]
 	if(frequency != unlock_code)
 		if(frequency == failsafe_code)
-			failsafe()
+			failsafe(master.loc)
 		return
 	locked = FALSE
 	if(ismob(master.loc))
@@ -282,6 +300,8 @@ GLOBAL_LIST_EMPTY(uplinks)
 // Pen signal responses
 
 /datum/component/uplink/proc/pen_rotation(datum/source, degrees, mob/living/carbon/user)
+	SIGNAL_HANDLER
+
 	var/obj/item/pen/master = parent
 	previous_attempts += degrees
 	if(length(previous_attempts) > PEN_ROTATIONS)
@@ -295,7 +315,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		to_chat(user, "<span class='warning'>Your pen makes a clicking noise, before quickly rotating back to 0 degrees!</span>")
 
 	else if(compare_list(previous_attempts, failsafe_code))
-		failsafe()
+		failsafe(user)
 
 /datum/component/uplink/proc/setup_unlock_code()
 	unlock_code = generate_code()
@@ -311,18 +331,20 @@ GLOBAL_LIST_EMPTY(uplinks)
 	if(istype(parent,/obj/item/pda))
 		return "[rand(100,999)] [pick(GLOB.phonetic_alphabet)]"
 	else if(istype(parent,/obj/item/radio))
-		return sanitize_frequency(rand(MIN_FREQ, MAX_FREQ))
+		return return_unused_frequency()
 	else if(istype(parent,/obj/item/pen))
 		var/list/L = list()
 		for(var/i in 1 to PEN_ROTATIONS)
 			L += rand(1, 360)
 		return L
 
-/datum/component/uplink/proc/failsafe()
+/datum/component/uplink/proc/failsafe(mob/living/carbon/user)
 	if(!parent)
 		return
 	var/turf/T = get_turf(parent)
 	if(!T)
 		return
+	message_admins("[ADMIN_LOOKUPFLW(user)] has triggered an uplink failsafe explosion at [AREACOORD(T)] The owner of the uplink was [ADMIN_LOOKUPFLW(owner)].")
+	log_game("[key_name(user)] triggered an uplink failsafe explosion. The owner of the uplink was [key_name(owner)].")
 	explosion(T,1,2,3)
 	qdel(parent) //Alternatively could brick the uplink.

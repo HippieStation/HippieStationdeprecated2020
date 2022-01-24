@@ -13,40 +13,11 @@ Format:
 	votable (is this map votable)
 endmap
 
-map hippiestation
-	default
-	#voteweight 1.5
-	votable
-endmap
-
-map endostation
-	#voteweight 1.5
-	votable
-endmap
-
-map metalake
-	minplayers 20
-	#voteweight 1.5
-endmap
-
-map ministation
-	votable
-endmap
-
-map boxstation
-endmap
-
 map metastation
+	#default
 	minplayers 25
 	#voteweight 0.5
 	votable
-endmap
-
-map pubbystation
-	votable
-endmap
-
-map multiz_debug
 endmap
 
 map deltastation
@@ -54,13 +25,18 @@ map deltastation
 	votable
 endmap
 
-map donutstation
-	minplayers 50
+map kilostation
 	votable
 endmap
 
-map donutstation
-	minplayers 50
+map icebox
+	minplayers 25
+	votable
+endmap
+
+map tramstation
+	minplayers 35
+	votable
 endmap
 
 map runtimestation

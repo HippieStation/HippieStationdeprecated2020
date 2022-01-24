@@ -7,10 +7,12 @@
 	var/static/list/falling_atoms = list() // Atoms currently falling into chasms
 	var/static/list/forbidden_types = typecacheof(list(
 		/obj/singularity,
+		/obj/energy_ball,
+		/obj/narsie,
 		/obj/docking_port,
 		/obj/structure/lattice,
 		/obj/structure/stone_tile,
-		/obj/item/projectile,
+		/obj/projectile,
 		/obj/effect/projectile,
 		/obj/effect/portal,
 		/obj/effect/abstract,
@@ -29,6 +31,8 @@
 	START_PROCESSING(SSobj, src) // process on create, in case stuff is still there
 
 /datum/component/chasm/proc/Entered(datum/source, atom/movable/AM)
+	SIGNAL_HANDLER
+
 	START_PROCESSING(SSobj, src)
 	drop_stuff(AM)
 
@@ -65,17 +69,15 @@
 		return FALSE
 	if(!isliving(AM) && !isobj(AM))
 		return FALSE
-	if(is_type_in_typecache(AM, forbidden_types) || AM.throwing || (AM.movement_type & FLOATING))
+	if(is_type_in_typecache(AM, forbidden_types) || AM.throwing || (AM.movement_type & (FLOATING|FLYING)))
 		return FALSE
 	//Flies right over the chasm
 	if(ismob(AM))
 		var/mob/M = AM
-		if(M.buckled)		//middle statement to prevent infinite loops just in case!
+		if(M.buckled) //middle statement to prevent infinite loops just in case!
 			var/mob/buckled_to = M.buckled
 			if((!ismob(M.buckled) || (buckled_to.buckled != M)) && !droppable(M.buckled))
 				return FALSE
-		if(M.is_flying())
-			return FALSE
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
 			if(istype(H.belt, /obj/item/wormhole_jaunter))
@@ -110,8 +112,7 @@
 		if (isliving(AM))
 			var/mob/living/L = AM
 			L.notransform = TRUE
-			L.Stun(200)
-			L.resting = TRUE
+			L.Paralyze(20 SECONDS)
 
 		var/oldtransform = AM.transform
 		var/oldcolor = AM.color
@@ -131,10 +132,14 @@
 		if(iscyborg(AM))
 			var/mob/living/silicon/robot/S = AM
 			qdel(S.mmi)
+		if(isliving(AM))
+			var/mob/living/L = AM
+			if(L.stat != DEAD)
+				L.death(TRUE)
 
 		falling_atoms -= AM
 		qdel(AM)
-		if(AM && !QDELETED(AM))	//It's indestructible
+		if(AM && !QDELETED(AM)) //It's indestructible
 			var/atom/parent = src.parent
 			parent.visible_message("<span class='boldwarning'>[parent] spits out [AM]!</span>")
 			AM.alpha = oldalpha

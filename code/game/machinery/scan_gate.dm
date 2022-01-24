@@ -1,22 +1,22 @@
-#define SCANGATE_NONE 			"Off"
-#define SCANGATE_MINDSHIELD 	"Mindshield"
-#define SCANGATE_NANITES 		"Nanites"
-#define SCANGATE_DISEASE 		"Disease"
-#define SCANGATE_GUNS 			"Guns"
-#define SCANGATE_WANTED			"Wanted"
-#define SCANGATE_SPECIES		"Species"
-#define SCANGATE_NUTRITION		"Nutrition"
+#define SCANGATE_NONE "Off"
+#define SCANGATE_MINDSHIELD "Mindshield"
+#define SCANGATE_NANITES "Nanites"
+#define SCANGATE_DISEASE "Disease"
+#define SCANGATE_GUNS "Guns"
+#define SCANGATE_WANTED "Wanted"
+#define SCANGATE_SPECIES "Species"
+#define SCANGATE_NUTRITION "Nutrition"
 
-#define SCANGATE_HUMAN			"human"
-#define SCANGATE_LIZARD			"lizard"
-#define SCANGATE_FELINID		"felinid"
-#define SCANGATE_FLY			"fly"
-#define SCANGATE_PLASMAMAN		"plasma"
-#define SCANGATE_MOTH			"moth"
-#define SCANGATE_JELLY			"jelly"
-#define SCANGATE_POD			"pod"
-#define SCANGATE_GOLEM			"golem"
-#define SCANGATE_ZOMBIE			"zombie"
+#define SCANGATE_HUMAN "human"
+#define SCANGATE_LIZARD "lizard"
+#define SCANGATE_FELINID "felinid"
+#define SCANGATE_FLY "fly"
+#define SCANGATE_PLASMAMAN "plasma"
+#define SCANGATE_MOTH "moth"
+#define SCANGATE_JELLY "jelly"
+#define SCANGATE_POD "pod"
+#define SCANGATE_GOLEM "golem"
+#define SCANGATE_ZOMBIE "zombie"
 
 /obj/machinery/scanner_gate
 	name = "scanner gate"
@@ -26,8 +26,6 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
 	circuit = /obj/item/circuitboard/machine/scanner_gate
-	ui_x = 400
-	ui_y = 300
 
 	var/scanline_timer
 	var/next_beep = 0 //avoids spam
@@ -51,8 +49,11 @@
 		. += "<span class='notice'>The control panel is unlocked. Swipe an ID to lock it.</span>"
 
 /obj/machinery/scanner_gate/Crossed(atom/movable/AM)
-	..()
-	if(!(stat & (BROKEN|NOPOWER)) && isliving(AM))
+	. = ..()
+	auto_scan(AM)
+
+/obj/machinery/scanner_gate/proc/auto_scan(atom/movable/AM)
+	if(!(machine_stat & (BROKEN|NOPOWER)) && isliving(AM))
 		perform_scan(AM)
 
 /obj/machinery/scanner_gate/proc/set_scanline(type, duration)
@@ -177,11 +178,10 @@
 		return FALSE
 	return ..()
 
-/obj/machinery/scanner_gate/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/scanner_gate/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "scanner_gate", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "ScannerGate", name)
 		ui.open()
 
 /obj/machinery/scanner_gate/ui_data()
@@ -196,8 +196,10 @@
 	return data
 
 /obj/machinery/scanner_gate/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
+
 	switch(action)
 		if("set_mode")
 			var/new_mode = params["new_mode"]
@@ -227,7 +229,7 @@
 			var/new_nutrition = params["new_nutrition"]
 			var/nutrition_list = list(
 				"Starving",
-  				"Obese"
+				"Obese"
 			)
 			if(new_nutrition && (new_nutrition in nutrition_list))
 				switch(new_nutrition)

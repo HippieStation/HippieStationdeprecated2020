@@ -2,27 +2,28 @@
 	plane = FLOOR_PLANE
 	var/slowdown = 0 //negative for faster, positive for slower
 
-	var/postdig_icon_change = FALSE
-	var/postdig_icon
-	var/wet
-
 	var/footstep = null
 	var/barefootstep = null
 	var/clawfootstep = null
 	var/heavyfootstep = null
 
-/turf/open/ComponentInitialize()
-	. = ..()
-	if(wet)
-		AddComponent(/datum/component/wet_floor, wet, INFINITY, 0, INFINITY, TRUE)
-
 //direction is direction of travel of A
 /turf/open/zPassIn(atom/movable/A, direction, turf/source)
-	return (direction == DOWN)
+	if(direction == DOWN)
+		for(var/obj/O in contents)
+			if(O.obj_flags & BLOCK_Z_IN_DOWN)
+				return FALSE
+		return TRUE
+	return FALSE
 
 //direction is direction of travel of A
 /turf/open/zPassOut(atom/movable/A, direction, turf/destination)
-	return (direction == UP)
+	if(direction == UP)
+		for(var/obj/O in contents)
+			if(O.obj_flags & BLOCK_Z_OUT_UP)
+				return FALSE
+		return TRUE
+	return FALSE
 
 //direction is direction of travel of air
 /turf/open/zAirIn(direction, turf/source)
@@ -52,18 +53,36 @@
 /turf/open/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return
 
-/turf/open/indestructible/sound
-	name = "squeaky floor"
+/turf/open/indestructible/white
+	icon_state = "white"
+
+/turf/open/indestructible/light
+	icon_state = "light_on-1"
+
+/turf/open/indestructible/permalube
+	icon_state = "darkfull"
+
+/turf/open/indestructible/permalube/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/wet_floor, TURF_WET_LUBE, INFINITY, 0, INFINITY, TRUE)
+
+/turf/open/indestructible/honk
+	name = "bananium floor"
+	icon_state = "bananium"
 	footstep = null
 	barefootstep = null
 	clawfootstep = null
 	heavyfootstep = null
-	var/sound
+	var/sound = 'sound/effects/clownstep1.ogg'
 
-/turf/open/indestructible/sound/Entered(var/mob/AM)
+/turf/open/indestructible/honk/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/wet_floor, TURF_WET_SUPERLUBE, INFINITY, 0, INFINITY, TRUE)
+
+/turf/open/indestructible/honk/Entered(atom/movable/AM)
 	..()
-	if(istype(AM))
-		playsound(src,sound,50,1)
+	if(ismob(AM))
+		playsound(src,sound,50,TRUE)
 
 /turf/open/indestructible/necropolis
 	name = "necropolis floor"
@@ -102,7 +121,7 @@
 	planetary_atmos = TRUE
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	baseturfs = /turf/open/indestructible/hierophant
-	smooth = SMOOTH_TRUE
+	smoothing_flags = SMOOTH_CORNERS
 	tiled_dirt = FALSE
 
 /turf/open/indestructible/hierophant/two
@@ -134,41 +153,6 @@
 	icon_state = "bluespace"
 	blocks_air = TRUE
 	baseturfs = /turf/open/indestructible/airblock
-
-/turf/open/indestructible/clock_spawn_room
-	name = "cogmetal floor"
-	desc = "Brass plating that gently radiates heat. For some reason, it reminds you of blood."
-	icon_state = "reebe"
-	baseturfs = /turf/open/indestructible/clock_spawn_room
-	footstep = FOOTSTEP_PLATING
-	barefootstep = FOOTSTEP_HARD_BAREFOOT
-	clawfootstep = FOOTSTEP_HARD_CLAW
-	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-
-/turf/open/indestructible/clock_spawn_room/Entered()
-	..()
-	START_PROCESSING(SSfastprocess, src)
-
-/turf/open/indestructible/clock_spawn_room/Destroy()
-	STOP_PROCESSING(SSfastprocess, src)
-	. = ..()
-
-/turf/open/indestructible/clock_spawn_room/process()
-	if(!port_servants())
-		STOP_PROCESSING(SSfastprocess, src)
-
-/turf/open/indestructible/clock_spawn_room/proc/port_servants()
-	. = FALSE
-	for(var/mob/living/L in src)
-		if(is_servant_of_ratvar(L) && L.stat != DEAD)
-			. = TRUE
-			L.forceMove(get_turf(pick(GLOB.servant_spawns)))
-			visible_message("<span class='warning'>[L] vanishes in a flash of red!</span>")
-			L.visible_message("<span class='warning'>[L] appears in a flash of red!</span>", \
-			"<span class='bold cult'>sas'so c'arta forbici</span><br><span class='danger'>You're yanked away from [src]!</span>")
-			playsound(src, 'sound/magic/enter_blood.ogg', 50, TRUE)
-			playsound(L, 'sound/magic/exit_blood.ogg', 50, TRUE)
-			flash_color(L, flash_color = "#C80000", flash_time = 10)
 
 /turf/open/Initalize_Atmos(times_fired)
 	excited = FALSE
@@ -212,54 +196,36 @@
 	for(var/mob/living/simple_animal/slime/M in src)
 		M.apply_water()
 
-	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
-	for(var/obj/effect/O in src)
-		if(is_cleanable(O))
-			qdel(O)
+	wash(CLEAN_WASH)
+	for(var/am in src)
+		var/atom/movable/movable_content = am
+		if(ismopable(movable_content)) // Will have already been washed by the wash call above at this point.
+			continue
+		movable_content.wash(CLEAN_WASH)
 	return TRUE
 
 /turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze_amount, force_drop)
 	if(C.movement_type & FLYING)
-		return 0
+		return FALSE
 	if(has_gravity(src))
 		var/obj/buckled_obj
 		if(C.buckled)
 			buckled_obj = C.buckled
 			if(!(lube&GALOSHES_DONT_HELP)) //can't slip while buckled unless it's lube.
-				return 0
+				return FALSE
 		else
-			if(!(lube&SLIP_WHEN_CRAWLING) && (!(C.mobility_flags & MOBILITY_STAND) || !(C.status_flags & CANKNOCKDOWN))) // can't slip unbuckled mob if they're lying or can't fall.
-				return 0
+			if(!(lube & SLIP_WHEN_CRAWLING) && (C.body_position == LYING_DOWN || !(C.status_flags & CANKNOCKDOWN))) // can't slip unbuckled mob if they're lying or can't fall.
+				return FALSE
 			if(C.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
-				return 0
+				return FALSE
 		if(!(lube&SLIDE_ICE))
 			to_chat(C, "<span class='notice'>You slipped[ O ? " on the [O.name]" : ""]!</span>")
-			// Hippie Start - custom sounds for slipping
-			var/slip_sound = 'sound/misc/slip.ogg'
-			if(prob(95))
-				if (O)
-					if (istype(O, /obj))
-						var/obj/Obj = O
-						if (Obj)
-							LAZYINITLIST(Obj.alternate_slip_sounds)
-							if (LAZYLEN(Obj.alternate_slip_sounds))
-								slip_sound = pick(Obj.alternate_slip_sounds)
-			else
-				slip_sound = 'hippiestation/sound/misc/oof.ogg'
-			playsound(C.loc, (slip_sound), 50, 1, -3)
-			// Hippie End
+			playsound(C.loc, 'sound/misc/slip.ogg', 50, TRUE, -3)
 
-		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
+		SEND_SIGNAL(C, COMSIG_ON_CARBON_SLIP)
 		if(force_drop)
 			for(var/obj/item/I in C.held_items)
 				C.accident(I)
-
-		// hippie start -- Throw some hats if we slipped
-		if (prob(33))
-			var/list/L = list()
-			LAZYADD(L, C.dir)
-			C.throw_hats(1 + rand(1, 3), L)
-		// hippie end
 
 		var/olddir = C.dir
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
@@ -268,23 +234,19 @@
 			C.Paralyze(paralyze_amount)
 			C.stop_pulling()
 		else
-			C.Stun(20) //Hippie edit - reverts knockdown to stun
-
+			C.Knockdown(20)
 
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
 			lube |= SLIDE_ICE
 
 		if(lube&SLIDE)
-			if(C.force_moving)
-				qdel(C.force_moving)
 			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 4), 1, FALSE, CALLBACK(C, /mob/living/carbon/.proc/spin, 1, 1))
 		else if(lube&SLIDE_ICE)
 			if(C.force_moving) //If we're already slipping extend it
 				qdel(C.force_moving)
-			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
-		
-		return 1
+			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 1), 1, FALSE) //spinning would be bad for ice, fucks up the next dir
+		return TRUE
 
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0, max_wet_time = MAXIMUM_WET_TIME, permanent)
 	AddComponent(/datum/component/wet_floor, wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
@@ -298,14 +260,28 @@
 /turf/open/proc/ClearWet()//Nuclear option of immediately removing slipperyness from the tile instead of the natural drying over time
 	qdel(GetComponent(/datum/component/wet_floor))
 
-/turf/open/rad_act(pulse_strength)
+/turf/open/rad_act(strength)
 	. = ..()
-	if (air.gases[/datum/gas/carbon_dioxide] && air.gases[/datum/gas/oxygen])
-		pulse_strength = min(pulse_strength,air.gases[/datum/gas/carbon_dioxide][MOLES]*1000,air.gases[/datum/gas/oxygen][MOLES]*2000) //Ensures matter is conserved properly
-		air.gases[/datum/gas/carbon_dioxide][MOLES]=max(air.gases[/datum/gas/carbon_dioxide][MOLES]-(pulse_strength/1000),0)
-		air.gases[/datum/gas/oxygen][MOLES]=max(air.gases[/datum/gas/oxygen][MOLES]-(pulse_strength/2000),0)
-		air.assert_gas(/datum/gas/pluoxium)
-		air.gases[/datum/gas/pluoxium][MOLES]+=(pulse_strength/4000)
+	var/gas_change = FALSE
+	var/list/cached_gases = air.gases
+	if(cached_gases[/datum/gas/oxygen] && cached_gases[/datum/gas/carbon_dioxide])
+		gas_change = TRUE
+		var/pulse_strength = min(strength, cached_gases[/datum/gas/oxygen][MOLES] * 1000, cached_gases[/datum/gas/carbon_dioxide][MOLES] * 2000)
+		cached_gases[/datum/gas/carbon_dioxide][MOLES] -= pulse_strength / 2000
+		cached_gases[/datum/gas/oxygen][MOLES] -= pulse_strength / 1000
+		ASSERT_GAS(/datum/gas/pluoxium, air)
+		cached_gases[/datum/gas/pluoxium][MOLES] += pulse_strength / 4000
+		strength -= pulse_strength
+
+	if(cached_gases[/datum/gas/hydrogen])
+		gas_change = TRUE
+		var/pulse_strength = min(strength, cached_gases[/datum/gas/hydrogen][MOLES] * 1000)
+		cached_gases[/datum/gas/hydrogen][MOLES] -= pulse_strength / 1000
+		ASSERT_GAS(/datum/gas/tritium, air)
+		cached_gases[/datum/gas/tritium][MOLES] += pulse_strength / 1000
+		strength -= pulse_strength
+
+	if(gas_change)
 		air.garbage_collect()
 		air_update_turf(FALSE, FALSE)
 

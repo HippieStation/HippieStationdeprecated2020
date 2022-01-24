@@ -7,6 +7,10 @@
 	earliest_start = 30 MINUTES
 	gamemode_blacklist = list("nuclear")
 
+#define PIRATES_ROGUES "Rogues"
+#define PIRATES_SILVERSCALES "Silverscales"
+#define PIRATES_DUTCHMAN "Flying Dutchman"
+
 /datum/round_event_control/pirates/preRunEvent()
 	if (!SSmapping.empty_space)
 		return EVENT_CANT_RUN
@@ -19,23 +23,45 @@
 	var/payoff = 0
 	var/payoff_min = 20000
 	var/paid_off = FALSE
+	var/pirate_type
+	var/ship_template
 	var/ship_name = "Space Privateers Association"
 	var/shuttle_spawned = FALSE
 
 /datum/round_event/pirates/setup()
-	ship_name = pick(strings(PIRATE_NAMES_FILE, "ship_names"))
+	pirate_type = pick(PIRATES_ROGUES, PIRATES_SILVERSCALES, PIRATES_DUTCHMAN)
+	switch(pirate_type)
+		if(PIRATES_ROGUES)
+			ship_name = pick(strings(PIRATE_NAMES_FILE, "rogue_names"))
+		if(PIRATES_SILVERSCALES)
+			ship_name = pick(strings(PIRATE_NAMES_FILE, "silverscale_names"))
+		if(PIRATES_DUTCHMAN)
+			ship_name = "Flying Dutchman"
 
 /datum/round_event/pirates/announce(fake)
-	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", 'sound/ai/commandreport.ogg')
+	priority_announce("Incoming subspace communication. Secure channel opened at all communication consoles.", "Incoming Message", SSstation.announcer.get_rand_report_sound())
 	if(fake)
 		return
 	threat = new
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 	if(D)
 		payoff = max(payoff_min, FLOOR(D.account_balance * 0.80, 1000))
-	threat.title = "Business proposition"
-	threat.content = "This is [ship_name]. Pay up [payoff] credits or you'll walk the plank."
-	threat.possible_answers = list("We'll pay.","No way.")
+	switch(pirate_type)
+		if(PIRATES_ROGUES)
+			ship_template = /datum/map_template/shuttle/pirate/default
+			threat.title = "Sector protection offer"
+			threat.content = "Greetings from the [ship_name]. Your sector needs protection, how about you pay us [payoff] credits, or else you may be left wide open to an attack."
+			threat.possible_answers = list("We'll pay.","That sounds like a scam.")
+		if(PIRATES_SILVERSCALES)
+			ship_template = /datum/map_template/shuttle/pirate/silverscale
+			threat.title = "Tribute to high society"
+			threat.content = "This is the [ship_name]. The Silver Scales wish for some tribute from your plebeian lizards. [payoff] credits should do the trick."
+			threat.possible_answers = list("We'll pay.","Tribute? Really? Go away.")
+		if(PIRATES_DUTCHMAN)
+			ship_template = /datum/map_template/shuttle/pirate/dutchman
+			threat.title = "Business proposition"
+			threat.content = "Ahoy! This be the [ship_name]. Cough up [payoff] credits or you'll walk the plank."
+			threat.possible_answers = list("We'll pay.","We will not be extorted.")
 	threat.answer_callback = CALLBACK(src,.proc/answered)
 	SScommunications.send_message(threat,unique = TRUE)
 
@@ -51,10 +77,13 @@
 				priority_announce("Trying to cheat us? You'll regret this!",sender_override = ship_name)
 	if(!shuttle_spawned)
 		spawn_shuttle()
-
-
+	else
+		priority_announce("Too late to beg for mercy!",sender_override = ship_name)
 
 /datum/round_event/pirates/start()
+	if(threat && !threat.answered)
+		threat.possible_answers = list("Too late")
+		threat.answered = 1
 	if(!paid_off && !shuttle_spawned)
 		spawn_shuttle()
 
@@ -64,7 +93,7 @@
 	var/list/candidates = pollGhostCandidates("Do you wish to be considered for pirate crew?", ROLE_TRAITOR)
 	shuffle_inplace(candidates)
 
-	var/datum/map_template/shuttle/pirate/default/ship = new
+	var/datum/map_template/shuttle/pirate/ship = new ship_template
 	var/x = rand(TRANSITIONEDGE,world.maxx - TRANSITIONEDGE - ship.width)
 	var/y = rand(TRANSITIONEDGE,world.maxy - TRANSITIONEDGE - ship.height)
 	var/z = SSmapping.empty_space.z_value
@@ -140,15 +169,18 @@
 //interrupt_research
 /obj/machinery/shuttle_scrambler/proc/interrupt_research()
 	for(var/obj/machinery/rnd/server/S in GLOB.machines)
-		if(S.stat & (NOPOWER|BROKEN))
+		if(S.machine_stat & (NOPOWER|BROKEN))
 			continue
 		S.emp_act(1)
 		new /obj/effect/temp_visual/emp(get_turf(S))
 
 /obj/machinery/shuttle_scrambler/proc/dump_loot(mob/user)
-	new /obj/item/holochip(drop_location(), credits_stored)
-	to_chat(user,"<span class='notice'>You retrieve the siphoned credits!</span>")
-	credits_stored = 0
+	if(credits_stored) // Prevents spamming empty holochips
+		new /obj/item/holochip(drop_location(), credits_stored)
+		to_chat(user,"<span class='notice'>You retrieve the siphoned credits!</span>")
+		credits_stored = 0
+	else
+		to_chat(user,"<span class='notice'>There's nothing to withdraw.</span>")
 
 /obj/machinery/shuttle_scrambler/proc/send_notification()
 	priority_announce("Data theft signal detected, source registered on local gps units.")
@@ -158,7 +190,7 @@
 	active = FALSE
 	STOP_PROCESSING(SSobj,src)
 
-/obj/machinery/shuttle_scrambler/update_icon()
+/obj/machinery/shuttle_scrambler/update_icon_state()
 	if(active)
 		icon_state = "dominator-blue"
 	else
@@ -173,7 +205,7 @@
 	shuttleId = "pirateship"
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
-	light_color = LIGHT_COLOR_RED
+	light_color = COLOR_SOFT_RED
 	possible_destinations = "pirateship_away;pirateship_home;pirateship_custom"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/pirate
@@ -196,7 +228,6 @@
 	helmet_type = /obj/item/clothing/head/helmet/space
 	mask_type = /obj/item/clothing/mask/breath
 	storage_type = /obj/item/tank/internals/oxygen
-
 
 /obj/machinery/loot_locator
 	name = "Booty Locator"
@@ -250,7 +281,7 @@
 
 /obj/machinery/computer/piratepad_control
 	name = "cargo hold control terminal"
-	var/status_report = "Idle"
+	var/status_report = "Ready for delivery."
 	var/obj/machinery/piratepad/pad
 	var/warmup_time = 100
 	var/sending = FALSE
@@ -268,7 +299,6 @@
 	if (istype(I) && istype(I.buffer,/obj/machinery/piratepad))
 		to_chat(user, "<span class='notice'>You link [src] with [I.buffer] in [I] buffer.</span>")
 		pad = I.buffer
-		updateDialog()
 		return TRUE
 
 /obj/machinery/computer/piratepad_control/LateInitialize()
@@ -281,37 +311,57 @@
 	else
 		pad = locate() in range(4,src)
 
-/obj/machinery/computer/piratepad_control/ui_interact(mob/user)
-	. = ..()
-	var/list/t = list()
-	t += "<div class='statusDisplay'>Cargo Hold Control<br>"
-	t += "Current cargo value : [points]"
-	t += "</div>"
-	if(!pad)
-		t += "<div class='statusDisplay'>No pad located.</div><BR>"
-	else
-		t += "<br>[status_report]<br>"
-		if(!sending)
-			t += "<a href='?src=[REF(src)];recalc=1;'>Recalculate Value</a><a href='?src=[REF(src)];send=1'>Send</a>"
-		else
-			t += "<a href='?src=[REF(src)];stop=1'>Stop sending</a>"
+/obj/machinery/computer/piratepad_control/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "CargoHoldTerminal", name)
+		ui.open()
 
-	var/datum/browser/popup = new(user, "piratepad", name, 300, 500)
-	popup.set_content(t.Join())
-	popup.open()
+/obj/machinery/computer/piratepad_control/ui_data(mob/user)
+	var/list/data = list()
+	data["points"] = points
+	data["pad"] = pad ? TRUE : FALSE
+	data["sending"] = sending
+	data["status_report"] = status_report
+	return data
+
+/obj/machinery/computer/piratepad_control/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+	if(!pad)
+		return
+
+	switch(action)
+		if("recalc")
+			recalc()
+			. = TRUE
+		if("send")
+			start_sending()
+			. = TRUE
+		if("stop")
+			stop_sending()
+			. = TRUE
 
 /obj/machinery/computer/piratepad_control/proc/recalc()
 	if(sending)
 		return
-	status_report = "Predicted value:<br>"
+
+	status_report = "Predicted value: "
+	var/value = 0
 	var/datum/export_report/ex = new
 	for(var/atom/movable/AM in get_turf(pad))
 		if(AM == pad)
 			continue
-		export_item_and_contents(AM, EXPORT_PIRATE | EXPORT_CARGO | EXPORT_CONTRABAND | EXPORT_EMAG, apply_elastic = FALSE, dry_run = TRUE, external_report = ex)
+		export_item_and_contents(AM, apply_elastic = FALSE, dry_run = TRUE, external_report = ex)
 
 	for(var/datum/export/E in ex.total_amount)
-		status_report += E.total_printout(ex,notes = FALSE) + "<br>"
+		status_report += E.total_printout(ex,notes = FALSE)
+		status_report += " "
+		value += ex.total_value[E]
+
+	if(!value)
+		status_report += "0"
 
 /obj/machinery/computer/piratepad_control/proc/send()
 	if(!sending)
@@ -324,14 +374,15 @@
 			continue
 		export_item_and_contents(AM, EXPORT_PIRATE | EXPORT_CARGO | EXPORT_CONTRABAND | EXPORT_EMAG, apply_elastic = FALSE, delete_unsold = FALSE, external_report = ex)
 
-	status_report = "Sold:<br>"
+	status_report = "Sold: "
 	var/value = 0
 	for(var/datum/export/E in ex.total_amount)
 		var/export_text = E.total_printout(ex,notes = FALSE) //Don't want nanotrasen messages, makes no sense here.
 		if(!export_text)
 			continue
 
-		status_report += export_text + "<br>"
+		status_report += export_text
+		status_report += " "
 		value += ex.total_value[E]
 
 	if(!total_report)
@@ -341,48 +392,36 @@
 		for(var/datum/export/E in ex.total_amount)
 			total_report.total_amount[E] += ex.total_amount[E]
 			total_report.total_value[E] += ex.total_value[E]
+		playsound(loc, 'sound/machines/wewewew.ogg', 70, TRUE)
 
 	points += value
+
+	if(!value)
+		status_report += "Nothing"
 
 	pad.visible_message("<span class='notice'>[pad] activates!</span>")
 	flick(pad.sending_state,pad)
 	pad.icon_state = pad.idle_state
 	sending = FALSE
-	updateDialog()
 
 /obj/machinery/computer/piratepad_control/proc/start_sending()
 	if(sending)
 		return
 	sending = TRUE
-	status_report = "Sending..."
+	status_report = "Sending... "
 	pad.visible_message("<span class='notice'>[pad] starts charging up.</span>")
 	pad.icon_state = pad.warmup_state
 	sending_timer = addtimer(CALLBACK(src,.proc/send),warmup_time, TIMER_STOPPABLE)
 
-/obj/machinery/computer/piratepad_control/proc/stop_sending()
+/obj/machinery/computer/piratepad_control/proc/stop_sending(custom_report)
 	if(!sending)
 		return
 	sending = FALSE
-	status_report = "Idle"
+	status_report = "Ready for delivery."
+	if(custom_report)
+		status_report = custom_report
 	pad.icon_state = pad.idle_state
 	deltimer(sending_timer)
-
-/obj/machinery/computer/piratepad_control/Topic(href, href_list)
-	if(..())
-		return
-	if(pad)
-		if(href_list["recalc"])
-			recalc()
-		if(href_list["send"])
-			start_sending()
-		if(href_list["stop"])
-			stop_sending()
-		updateDialog()
-	else
-		updateDialog()
-
-/datum/export/pirate
-	export_category = EXPORT_PIRATE
 
 //Attempts to find the thing on station
 /datum/export/pirate/proc/find_loot()

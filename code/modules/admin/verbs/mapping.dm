@@ -20,18 +20,18 @@
 //- Check if the area has too much empty space. If so, make it smaller and replace the rest with maintenance tunnels.
 
 GLOBAL_LIST_INIT(admin_verbs_debug_mapping, list(
-	/client/proc/camera_view, 				//-errorage
-	/client/proc/sec_camera_report, 		//-errorage
-	/client/proc/intercom_view, 			//-errorage
+	/client/proc/camera_view, //-errorage
+	/client/proc/sec_camera_report, //-errorage
+	/client/proc/intercom_view, //-errorage
 	/client/proc/air_status, //Air things
 	/client/proc/Cell, //More air things
 	/client/proc/atmosscan, //check plumbing
 	/client/proc/powerdebug, //check power
 	/client/proc/count_objects_on_z_level,
 	/client/proc/count_objects_all,
-	/client/proc/cmd_assume_direct_control,	//-errorage
-	/client/proc/startSinglo,
-	/client/proc/set_server_fps,	//allows you to set the ticklag.
+	/client/proc/cmd_assume_direct_control, //-errorage
+	/client/proc/cmd_give_direct_control,
+	/client/proc/set_server_fps, //allows you to set the ticklag.
 	/client/proc/cmd_admin_grantfullaccess,
 	/client/proc/cmd_admin_areatest_all,
 	/client/proc/cmd_admin_areatest_station,
@@ -56,7 +56,7 @@ GLOBAL_PROTECT(admin_verbs_debug_mapping)
 
 /obj/effect/debugging/mapfix_marker
 	name = "map fix marker"
-	icon = 'icons/mob/screen_gen.dmi'
+	icon = 'icons/hud/screen_gen.dmi'
 	icon_state = "mapfixmarker"
 	desc = "I am a mappers mistake."
 
@@ -65,7 +65,7 @@ GLOBAL_PROTECT(admin_verbs_debug_mapping)
 	icon_state = "yellow"
 
 /obj/effect/debugging/marker/Move()
-	return 0
+	return FALSE
 
 /client/proc/camera_view()
 	set category = "Mapping"
@@ -83,7 +83,7 @@ GLOBAL_PROTECT(admin_verbs_debug_mapping)
 			for(var/turf/T in C.can_see())
 				seen[T]++
 		for(var/turf/T in seen)
-			T.maptext = "[seen[T]]"
+			T.maptext = MAPTEXT(seen[T])
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Camera Range") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Camera Range")
 
@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 
 	if(!Master)
 		alert(usr,"Master_controller not found.","Sec Camera Report")
-		return 0
+		return FALSE
 
 	var/list/obj/machinery/camera/CL = list()
 
@@ -134,7 +134,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 			if(!(locate(/obj/structure/grille) in T))
 				var/window_check = 0
 				for(var/obj/structure/window/W in T)
-					if (W.dir == turn(C1.dir,180) || (W.dir in list(5,6,9,10)))
+					if (W.dir == turn(C1.dir,180) || (W.dir in list(NORTHEAST,SOUTHEAST,NORTHWEST,SOUTHWEST)) )
 						window_check = 1
 						break
 				if(!window_check)
@@ -168,7 +168,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	set desc = "Displays a list of active turfs coordinates at roundstart"
 
 	var/dat = {"<b>Coordinate list of Active Turfs at Roundstart</b>
-	 <br>Real-time Active Turfs list you can see in Air Subsystem at active_turfs var<br>"}
+		<br>Real-time Active Turfs list you can see in Air Subsystem at active_turfs var<br>"}
 
 	for(var/t in GLOB.active_turfs_startlist)
 		var/turf/T = t
@@ -204,21 +204,21 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	set name = "Debug verbs - Enable"
 	if(!check_rights(R_DEBUG))
 		return
-	verbs -= /client/proc/enable_debug_verbs
-	verbs.Add(/client/proc/disable_debug_verbs, GLOB.admin_verbs_debug_mapping)
+	remove_verb(src, /client/proc/enable_debug_verbs)
+	add_verb(src, list(/client/proc/disable_debug_verbs, GLOB.admin_verbs_debug_mapping))
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Enable Debug Verbs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/disable_debug_verbs()
 	set category = "Debug"
 	set name = "Debug verbs - Disable"
-	verbs.Remove(/client/proc/disable_debug_verbs, GLOB.admin_verbs_debug_mapping)
-	verbs += /client/proc/enable_debug_verbs
+	remove_verb(src, list(/client/proc/disable_debug_verbs, GLOB.admin_verbs_debug_mapping))
+	add_verb(src, /client/proc/enable_debug_verbs)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Disable Debug Verbs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/count_objects_on_z_level()
 	set category = "Mapping"
 	set name = "Count Objects On Level"
-	var/level = input("Which z-level?","Level?") as text
+	var/level = input("Which z-level?","Level?") as text|null
 	if(!level)
 		return
 	var/num_level = text2num(level)
@@ -227,7 +227,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	if(!isnum(num_level))
 		return
 
-	var/type_text = input("Which type path?","Path?") as text
+	var/type_text = input("Which type path?","Path?") as text|null
 	if(!type_text)
 		return
 	var/type_path = text2path(type_text)
@@ -242,7 +242,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 		if(istype(A,type_path))
 			var/atom/B = A
 			while(!(isturf(B.loc)))
-				if(B && B.loc)
+				if(B?.loc)
 					B = B.loc
 				else
 					break
@@ -258,7 +258,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	set category = "Mapping"
 	set name = "Count Objects All"
 
-	var/type_text = input("Which type path?","") as text
+	var/type_text = input("Which type path?","") as text|null
 	if(!type_text)
 		return
 	var/type_path = text2path(type_text)
@@ -312,7 +312,7 @@ GLOBAL_VAR_INIT(say_disabled, FALSE)
 	qdel(D)
 	//Also add the x
 	for(var/x_number in 1 to 4)
-		final.Insert(icon('icons/mob/screen_gen.dmi', "x[x_number == 1 ? "" : x_number]"), "x[x_number == 1 ? "" : x_number]")
+		final.Insert(icon('icons/hud/screen_gen.dmi', "x[x_number == 1 ? "" : x_number]"), "x[x_number == 1 ? "" : x_number]")
 	fcopy(final, "icons/mob/landmarks.dmi")
 
 /client/proc/debug_z_levels()
@@ -373,4 +373,4 @@ GLOBAL_VAR_INIT(say_disabled, FALSE)
 		messages += "<tr><td>[part.Join("</td><td>")]</td></tr>"
 	messages += "</table>"
 
-	to_chat(src, messages.Join(""))
+	to_chat(src, messages.Join(""), confidential = TRUE)

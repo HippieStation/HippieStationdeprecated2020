@@ -6,15 +6,20 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	desc = "A polaroid camera."
 	icon_state = "camera"
-	item_state = "camera"
+	inhand_icon_state = "camera"
+	worn_icon_state = "camera"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	light_color = LIGHT_COLOR_WHITE
+	light_system = MOVABLE_LIGHT //Used as a flash here.
+	light_range = 8
+	light_color = COLOR_WHITE
 	light_power = FLASH_LIGHT_POWER
+	light_on = FALSE
 	w_class = WEIGHT_CLASS_SMALL
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_NECK
-	materials = list(MAT_METAL = 50, MAT_GLASS = 150)
+	custom_materials = list(/datum/material/iron = 50, /datum/material/glass = 150)
+	custom_price = PAYCHECK_EASY * 2
 	var/flash_enabled = TRUE
 	var/state_on = "camera"
 	var/state_off = "camera_off"
@@ -22,7 +27,7 @@
 	var/pictures_left = 10
 	var/on = TRUE
 	var/cooldown = 64
-	var/blending = FALSE		//lets not take pictures while the previous is still processing!
+	var/blending = FALSE //lets not take pictures while the previous is still processing!
 	var/see_ghosts = CAMERA_NO_GHOSTS //for the spoop of it
 	var/obj/item/disk/holodisk/disk
 	var/sound/custom_sound
@@ -36,6 +41,7 @@
 	var/can_customise = TRUE
 	var/default_picture_name
 
+
 /obj/item/camera/attack_self(mob/user)
 	if(!disk)
 		return
@@ -48,8 +54,16 @@
 	. += "<span class='notice'>Alt-click to change its focusing, allowing you to set how big of an area it will capture.</span>"
 
 /obj/item/camera/proc/adjust_zoom(mob/user)
-	var/desired_x = input(user, "How high do you want the camera to shoot, between [picture_size_x_min] and [picture_size_x_max]?", "Zoom", picture_size_x) as num
-	var/desired_y = input(user, "How wide do you want the camera to shoot, between [picture_size_y_min] and [picture_size_y_max]?", "Zoom", picture_size_y) as num
+	var/desired_x = input(user, "How high do you want the camera to shoot, between [picture_size_x_min] and [picture_size_x_max]?", "Zoom", picture_size_x) as num|null
+
+	if (isnull(desired_x))
+		return
+
+	var/desired_y = input(user, "How wide do you want the camera to shoot, between [picture_size_y_min] and [picture_size_y_max]?", "Zoom", picture_size_y) as num|null
+
+	if (isnull(desired_y))
+		return
+
 	picture_size_x = min(clamp(desired_x, picture_size_x_min, picture_size_x_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
 	picture_size_y = min(clamp(desired_y, picture_size_y_min, picture_size_y_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
 
@@ -102,7 +116,7 @@
 			return FALSE
 		else if(!(get_turf(target) in get_hear(world.view, user)))
 			return FALSE
-	else					//user is an atom
+	else //user is an atom
 		if(!(get_turf(target) in view(world.view, user)))
 			return FALSE
 	return TRUE
@@ -125,12 +139,7 @@
 		return
 
 	on = FALSE
-
-	var/realcooldown = cooldown
-	var/mob/living/carbon/human/H = user
-	if (HAS_TRAIT(H, TRAIT_PHOTOGRAPHER))
-		realcooldown *= 0.5
-	addtimer(CALLBACK(src, .proc/cooldown), realcooldown)
+	addtimer(CALLBACK(src, .proc/cooldown), cooldown)
 
 	icon_state = state_off
 
@@ -150,7 +159,8 @@
 
 /obj/item/camera/proc/captureimage(atom/target, mob/user, flag, size_x = 1, size_y = 1)
 	if(flash_enabled)
-		flash_lighting_fx(8, light_power, light_color)
+		set_light_on(TRUE)
+		addtimer(CALLBACK(src, .proc/flash_end), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 	blending = TRUE
 	var/turf/target_turf = get_turf(target)
 	if(!isturf(target_turf))
@@ -177,7 +187,7 @@
 			T = SSmapping.get_turf_below(T)
 			if(!T)
 				break
-		
+
 		if(T && ((ai_user && GLOB.cameranet.checkTurfVis(placeholder)) || (placeholder in seen)))
 			turfs += T
 			for(var/mob/M in T)
@@ -193,16 +203,18 @@
 
 	var/psize_x = (size_x * 2 + 1) * world.icon_size
 	var/psize_y = (size_y * 2 + 1) * world.icon_size
-	var/get_icon = camera_get_icon(turfs, target_turf, psize_x, psize_y, clone_area, size_x, size_y, (size_x * 2 + 1), (size_y * 2 + 1))
+	var/icon/get_icon = camera_get_icon(turfs, target_turf, psize_x, psize_y, clone_area, size_x, size_y, (size_x * 2 + 1), (size_y * 2 + 1))
 	qdel(clone_area)
-	var/icon/temp = icon('icons/effects/96x96.dmi',"")
-	temp.Blend("#000", ICON_OVERLAY)
-	temp.Scale(psize_x, psize_y)
-	temp.Blend(get_icon, ICON_OVERLAY)
+	get_icon.Blend("#000", ICON_UNDERLAY)
 
-	var/datum/picture/P = new("picture", desc.Join(" "), mobs_spotted, dead_spotted, temp, null, psize_x, psize_y, blueprints)
+	var/datum/picture/P = new("picture", desc.Join(" "), mobs_spotted, dead_spotted, get_icon, null, psize_x, psize_y, blueprints, can_see_ghosts = see_ghosts)
 	after_picture(user, P, flag)
 	blending = FALSE
+
+
+/obj/item/camera/proc/flash_end()
+	set_light_on(FALSE)
+
 
 /obj/item/camera/proc/after_picture(mob/user, datum/picture/picture, proximity_flag)
 	printpicture(user, picture)

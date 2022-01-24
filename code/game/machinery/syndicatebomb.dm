@@ -1,5 +1,5 @@
 #define BUTTON_COOLDOWN 60 // cant delay the bomb forever
-#define BUTTON_DELAY	50 //five seconds
+#define BUTTON_DELAY 50 //five seconds
 
 /obj/machinery/syndicatebomb
 	icon = 'icons/obj/assemblies.dmi'
@@ -11,7 +11,8 @@
 	density = FALSE
 	layer = BELOW_MOB_LAYER //so people can't hide it and it's REALLY OBVIOUS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	speed_process = TRUE
+	processing_flags = START_PROCESSING_MANUALLY
+	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_OFFLINE
 
@@ -21,12 +22,12 @@
 
 	var/can_unanchor = TRUE
 
-	var/open_panel = FALSE 	//are the wires exposed?
-	var/active = FALSE		//is the bomb counting down?
+	var/open_panel = FALSE //are the wires exposed?
+	var/active = FALSE //is the bomb counting down?
 	var/obj/item/bombcore/payload = /obj/item/bombcore
 	var/beepsound = 'sound/items/timer.ogg'
-	var/delayedbig = FALSE	//delay wire pulsed?
-	var/delayedlittle  = FALSE	//activation wire pulsed?
+	var/delayedbig = FALSE //delay wire pulsed?
+	var/delayedlittle  = FALSE //activation wire pulsed?
 	var/obj/effect/countdown/syndicatebomb/countdown
 
 	var/next_beep
@@ -48,7 +49,7 @@
 
 /obj/machinery/syndicatebomb/process()
 	if(!active)
-		STOP_PROCESSING(SSfastprocess, src)
+		end_processing()
 		detonation_timer = null
 		next_beep = null
 		countdown.stop()
@@ -71,7 +72,7 @@
 				volume = 10
 			else
 				volume = 5
-		playsound(loc, beepsound, volume, 0)
+		playsound(loc, beepsound, volume, FALSE)
 		next_beep = world.time + 10
 
 	if(active && ((detonation_timer <= world.time) || explode_now))
@@ -87,19 +88,19 @@
 		payload = new payload(src)
 	update_icon()
 	countdown = new(src)
-	STOP_PROCESSING(SSfastprocess, src)
+	end_processing()
 
 /obj/machinery/syndicatebomb/Destroy()
 	QDEL_NULL(wires)
 	QDEL_NULL(countdown)
-	STOP_PROCESSING(SSfastprocess, src)
+	end_processing()
 	return ..()
 
 /obj/machinery/syndicatebomb/examine(mob/user)
 	. = ..()
 	. += {"A digital display on it reads "[seconds_remaining()]"."}
 
-/obj/machinery/syndicatebomb/update_icon()
+/obj/machinery/syndicatebomb/update_icon_state()
 	icon_state = "[initial(icon_state)][active ? "-active" : "-inactive"][open_panel ? "-wires" : ""]"
 
 /obj/machinery/syndicatebomb/proc/seconds_remaining()
@@ -116,14 +117,14 @@
 			else
 				to_chat(user, "<span class='notice'>You firmly wrench the bomb to the floor.</span>")
 				I.play_tool_sound(src)
-				setAnchored(TRUE)
+				set_anchored(TRUE)
 				if(active)
 					to_chat(user, "<span class='notice'>The bolts lock in place.</span>")
 		else
 			if(!active)
 				to_chat(user, "<span class='notice'>You wrench the bomb from the floor.</span>")
 				I.play_tool_sound(src)
-				setAnchored(FALSE)
+				set_anchored(FALSE)
 			else
 				to_chat(user, "<span class='warning'>The bolts are locked down!</span>")
 
@@ -183,15 +184,19 @@
 
 /obj/machinery/syndicatebomb/proc/activate()
 	active = TRUE
-	START_PROCESSING(SSfastprocess, src)
+	begin_processing()
 	countdown.start()
 	next_beep = world.time + 10
 	detonation_timer = world.time + (timer_set * 10)
-	playsound(loc, 'sound/machines/click.ogg', 30, 1)
+	playsound(loc, 'sound/machines/click.ogg', 30, TRUE)
 	notify_ghosts("\A [src] has been activated at [get_area(src)]!", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Bomb Planted")
 
 /obj/machinery/syndicatebomb/proc/settings(mob/user)
-	var/new_timer = input(user, "Please set the timer.", "Timer", "[timer_set]") as num
+	var/new_timer = input(user, "Please set the timer.", "Timer", "[timer_set]") as num|null
+
+	if (isnull(new_timer))
+		return
+
 	if(in_range(src, user) && isliving(user)) //No running off and setting bombs from across the station
 		timer_set = clamp(new_timer, minimum_timer, maximum_timer)
 		loc.visible_message("<span class='notice'>[icon2html(src, viewers(src))] timer set for [timer_set] seconds.</span>")
@@ -213,6 +218,11 @@
 	icon_state = "training-bomb"
 	desc = "A salvaged syndicate device gutted of its explosives to be used as a training aid for aspiring bomb defusers."
 	payload = /obj/item/bombcore/training
+
+/obj/machinery/syndicatebomb/emp
+	name = "EMP Bomb"
+	desc = "A modified bomb designed to release a crippling electromagnetic pulse instead of explode"
+	payload = /obj/item/bombcore/emp
 
 /obj/machinery/syndicatebomb/badmin
 	name = "generic summoning badmin bomb"
@@ -239,7 +249,7 @@
 	wires.cut_all()
 
 /obj/machinery/syndicatebomb/self_destruct
-	name = "self destruct device"
+	name = "self-destruct device"
 	desc = "Do not taunt. Warranty invalid if exposed to high temperature. Not suitable for agents under 3 years of age."
 	payload = /obj/item/bombcore/large
 	can_unanchor = FALSE
@@ -251,7 +261,7 @@
 	desc = "A powerful secondary explosive of syndicate design and unknown composition, it should be stable under normal conditions..."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "bombcore"
-	item_state = "eshield0"
+	inhand_icon_state = "eshield0"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
@@ -280,7 +290,7 @@
 	qdel(src)
 
 /obj/item/bombcore/proc/defuse()
-//Note: 	the machine's defusal is mostly done from the wires code, this is here if you want the core itself to do anything.
+//Note: the machine's defusal is mostly done from the wires code, this is here if you want the core itself to do anything.
 
 ///Bomb Core Subtypes///
 
@@ -318,7 +328,7 @@
 		attempts++
 		defusals++
 		holder.loc.visible_message("<span class='notice'>[icon2html(holder, viewers(holder))] Alert: Bomb has been defused. Your score is now [defusals] for [attempts]! Resetting wires in 5 seconds...</span>")
-		sleep(50)	//Just in case someone is trying to remove the bomb core this gives them a little window to crowbar it out
+		sleep(50) //Just in case someone is trying to remove the bomb core this gives them a little window to crowbar it out
 		if(istype(holder))
 			reset()
 
@@ -332,7 +342,7 @@
 	qdel(src)
 
 /obj/item/bombcore/badmin/summon
-	var/summon_path = /obj/item/reagent_containers/food/snacks/cookie
+	var/summon_path = /obj/item/food/cookie
 	var/amt_summon = 1
 
 /obj/item/bombcore/badmin/summon/detonate()
@@ -343,7 +353,7 @@
 
 /obj/item/bombcore/badmin/summon/clown
 	summon_path = /mob/living/simple_animal/hostile/retaliate/clown
-	amt_summon 	= 50
+	amt_summon = 50
 
 /obj/item/bombcore/badmin/summon/clown/defuse()
 	playsound(src, 'sound/misc/sadtrombone.ogg', 50)
@@ -413,14 +423,14 @@
 				reactants += S.reagents
 
 	if(!chem_splash(get_turf(src), spread_range, reactants, temp_boost))
-		playsound(loc, 'sound/items/screwdriver2.ogg', 50, 1)
+		playsound(loc, 'sound/items/screwdriver2.ogg', 50, TRUE)
 		return // The Explosion didn't do anything. No need to log, or disappear.
 
 	if(adminlog)
 		message_admins(adminlog)
 		log_game(adminlog)
 
-	playsound(loc, 'sound/effects/bamf.ogg', 75, 1, 5)
+	playsound(loc, 'sound/effects/bamf.ogg', 75, TRUE, 5)
 
 	if(loc && istype(loc, /obj/machinery/syndicatebomb/))
 		qdel(loc)
@@ -449,7 +459,7 @@
 	// Using different grenade casings, causes the payload to have different properties.
 	var/obj/item/stock_parts/matter_bin/MB = locate(/obj/item/stock_parts/matter_bin) in src
 	if(MB)
-		max_beakers += MB.rating	// max beakers = 2-5.
+		max_beakers += MB.rating // max beakers = 2-5.
 		qdel(MB)
 	for(var/obj/item/grenade/chem_grenade/G in src)
 
@@ -484,8 +494,20 @@
 
 		qdel(G)
 
+/obj/item/bombcore/emp
+	name = "EMP payload"
+	desc = "A set of superconducting electromagnetic coils designed to release a powerful pulse to destroy electronics and scramble circuits"
+	range_heavy = 15
+	range_medium = 25
 
+/obj/item/bombcore/emp/detonate()
+	if(adminlog)
+		message_admins(adminlog)
+		log_game(adminlog)
 
+	empulse(src, range_heavy, range_medium)
+
+	qdel(src)
 
 ///Syndicate Detonator (aka the big red button)///
 
@@ -494,13 +516,13 @@
 	desc = "Your standard issue bomb synchronizing button. Five second safety delay to prevent 'accidents'."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "bigred"
-	item_state = "electronic"
+	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	var/timer = 0
-	var/detonated =	0
-	var/existent =	0
+	var/detonated = 0
+	var/existent = 0
 
 /obj/item/syndicatedetonator/attack_self(mob/user)
 	if(timer < world.time)
@@ -509,13 +531,13 @@
 				B.detonation_timer = world.time + BUTTON_DELAY
 				detonated++
 			existent++
-		playsound(user, 'sound/machines/click.ogg', 20, 1)
+		playsound(user, 'sound/machines/click.ogg', 20, TRUE)
 		to_chat(user, "<span class='notice'>[existent] found, [detonated] triggered.</span>")
 		if(detonated)
 			detonated--
 			log_bomber(user, "remotely detonated [detonated ? "syndicate bombs" : "a syndicate bomb"] using a", src)
-		detonated =	0
-		existent =	0
+		detonated = 0
+		existent = 0
 		timer = world.time + BUTTON_COOLDOWN
 
 

@@ -1,24 +1,24 @@
-/*	Note from Carnie:
+/* Note from Carnie:
 		The way datum/mind stuff works has been changed a lot.
 		Minds now represent IC characters rather than following a client around constantly.
 
 	Guidelines for using minds properly:
 
-	-	Never mind.transfer_to(ghost). The var/current and var/original of a mind must always be of type mob/living!
+	- Never mind.transfer_to(ghost). The var/current and var/original of a mind must always be of type mob/living!
 		ghost.mind is however used as a reference to the ghost's corpse
 
-	-	When creating a new mob for an existing IC character (e.g. cloning a dead guy or borging a brain of a human)
+	- When creating a new mob for an existing IC character (e.g. cloning a dead guy or borging a brain of a human)
 		the existing mind of the old mob should be transfered to the new mob like so:
 
 			mind.transfer_to(new_mob)
 
-	-	You must not assign key= or ckey= after transfer_to() since the transfer_to transfers the client for you.
+	- You must not assign key= or ckey= after transfer_to() since the transfer_to transfers the client for you.
 		By setting key or ckey explicitly after transferring the mind with transfer_to you will cause bugs like DCing
 		the player.
 
-	-	IMPORTANT NOTE 2, if you want a player to become a ghost, use mob.ghostize() It does all the hard work for you.
+	- IMPORTANT NOTE 2, if you want a player to become a ghost, use mob.ghostize() It does all the hard work for you.
 
-	-	When creating a new mob which will be a new IC character (e.g. putting a shade in a construct or randomly selecting
+	- When creating a new mob which will be a new IC character (e.g. putting a shade in a construct or randomly selecting
 		a ghost to become a xeno during an event). Simply assign the key or ckey like you've always done.
 
 			new_mob.key = key
@@ -31,10 +31,10 @@
 
 /datum/mind
 	var/key
-	var/name				//replaces mob/var/original_name
-	var/ghostname			//replaces name for observers name if set
+	var/name //replaces mob/var/original_name
+	var/ghostname //replaces name for observers name if set
 	var/mob/living/current
-	var/active = 0
+	var/active = FALSE
 
 	var/memory
 
@@ -44,17 +44,14 @@
 
 	var/list/spell_list = list() // Wizard mode & "Give Spell" badmin button.
 
-	var/linglink
 	var/datum/martial_art/martial_art
 	var/static/default_martial_art = new/datum/martial_art
-	var/miming = 0 // Mime's vow of silence
+	var/miming = FALSE // Mime's vow of silence
 	var/list/antag_datums
 	var/antag_hud_icon_state = null //this mind's ANTAG_HUD should have this icon_state
 	var/datum/atom_hud/antag/antag_hud = null //this mind's antag HUD
 	var/damnation_type = 0
-	var/datum/mind/soulOwner //who owns the soul.  Under normal circumstances, this will point to src
-	var/hasSoul = TRUE // If false, renders the character unable to sell their soul.
-	var/isholy = FALSE //is this person a chaplain or admin role allowed to use bibles
+	var/holy_role = NONE //is this person a chaplain or admin role allowed to use bibles, Any rank besides 'NONE' allows for this.
 
 	var/mob/living/enslaved_to //If this mind's master is another mob (i.e. adamantine golems)
 	var/datum/language_holder/language_holder
@@ -67,65 +64,170 @@
 
 	var/list/learned_recipes //List of learned recipe TYPES.
 
-/datum/mind/New(var/key)
-	src.key = key
-	soulOwner = src
+	///List of skills the user has received a reward for. Should not be used to keep track of currently known skills. Lazy list because it shouldnt be filled often
+	var/list/skills_rewarded
+	///Assoc list of skills. Use SKILL_LVL to access level, and SKILL_EXP to access skill's exp.
+	var/list/known_skills = list()
+	///What character we joined in as- either at roundstart or latejoin, so we know for persistent scars if we ended as the same person or not
+	var/mob/original_character
+	/// The index for what character slot, if any, we were loaded from, so we can track persistent scars on a per-character basis. Each character slot gets PERSISTENT_SCAR_SLOTS scar slots
+	var/original_character_slot_index
+	/// The index for our current scar slot, so we don't have to constantly check the savefile (unlike the slots themselves, this index is independent of selected char slot, and increments whenever a valid char is joined with)
+	var/current_scar_slot_index
+
+	///Skill multiplier, adjusts how much xp you get/loose from adjust_xp. Dont override it directly, add your reason to experience_multiplier_reasons and use that as a key to put your value in there.
+	var/experience_multiplier = 1
+	///Skill multiplier list, just slap your multiplier change onto this with the type it is coming from as key.
+	var/list/experience_multiplier_reasons = list()
+
+	/// A lazy list of statuses to add next to this mind in the traitor panel
+	var/list/special_statuses
+
+	///Assoc list of addiction values, key is the type of withdrawal (as singleton type), and the value is the amount of addiction points (as number)
+	var/list/addiction_points
+	///Assoc list of key active addictions and value amount of cycles that it has been active.
+	var/list/active_addictions
+
+/datum/mind/New(_key)
+	key = _key
 	martial_art = default_martial_art
+	init_known_skills()
 
 /datum/mind/Destroy()
 	SSticker.minds -= src
 	if(islist(antag_datums))
 		QDEL_LIST(antag_datums)
 	current = null
-	soulOwner = null
 	return ..()
 
 /datum/mind/proc/get_language_holder()
 	if(!language_holder)
-		var/datum/language_holder/L = current.get_language_holder(shadow=FALSE)
-		language_holder = L.copy(src)
-
+		language_holder = new (src)
 	return language_holder
 
-/datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = 0)
-	if(current)	// remove ourself from our old body's mind variable
+/datum/mind/proc/transfer_to(mob/new_character, force_key_move = 0)
+	original_character = null
+	if(current) // remove ourself from our old body's mind variable
 		current.mind = null
-		UnregisterSignal(current, COMSIG_MOB_DEATH)
+		UnregisterSignal(current, COMSIG_LIVING_DEATH)
 		SStgui.on_transfer(current, new_character)
 
-	if(!language_holder)
-		var/datum/language_holder/mob_holder = new_character.get_language_holder(shadow = FALSE)
-		language_holder = mob_holder.copy(src)
-
 	if(key)
-		if(new_character.key != key)					//if we're transferring into a body with a key associated which is not ours
-			new_character.ghostize(1)						//we'll need to ghostize so that key isn't mobless.
+		if(new_character.key != key) //if we're transferring into a body with a key associated which is not ours
+			new_character.ghostize(1) //we'll need to ghostize so that key isn't mobless.
 	else
 		key = new_character.key
 
-	if(new_character.mind)								//disassociate any mind currently in our new body's mind variable
+	if(new_character.mind) //disassociate any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
 	var/datum/atom_hud/antag/hud_to_transfer = antag_hud//we need this because leave_hud() will clear this list
 	var/mob/living/old_current = current
 	if(current)
-		current.transfer_observers_to(new_character)	//transfer anyone observing the old character to the new one
-	current = new_character								//associate ourself with our new body
-	new_character.mind = src							//and associate our new body with ourself
-	for(var/a in antag_datums)	//Makes sure all antag datums effects are applied in the new body
+		current.transfer_observers_to(new_character) //transfer anyone observing the old character to the new one
+	current = new_character //associate ourself with our new body
+	new_character.mind = src //and associate our new body with ourself
+	for(var/a in antag_datums) //Makes sure all antag datums effects are applied in the new body
 		var/datum/antagonist/A = a
 		A.on_body_transfer(old_current, current)
 	if(iscarbon(new_character))
 		var/mob/living/carbon/C = new_character
 		C.last_mind = src
-	transfer_antag_huds(hud_to_transfer)				//inherit the antag HUD
+	transfer_antag_huds(hud_to_transfer) //inherit the antag HUD
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
-	RegisterSignal(new_character, COMSIG_MOB_DEATH, .proc/set_death_time)
+	RegisterSignal(new_character, COMSIG_LIVING_DEATH, .proc/set_death_time)
 	if(active || force_key_move)
-		new_character.key = key		//now transfer the key to link the client to our new body
+		new_character.key = key //now transfer the key to link the client to our new body
+	if(new_character.client)
+		LAZYCLEARLIST(new_character.client.recent_examines)
+		new_character.client.init_verbs() // re-initialize character specific verbs
+	current.update_atom_languages()
+
+/datum/mind/proc/init_known_skills()
+	for (var/type in GLOB.skill_types)
+		known_skills[type] = list(SKILL_LEVEL_NONE, 0)
+
+///Return the amount of EXP needed to go to the next level. Returns 0 if max level
+/datum/mind/proc/exp_needed_to_level_up(skill)
+	var/lvl = update_skill_level(skill)
+	if (lvl >= length(SKILL_EXP_LIST)) //If we're already past the last exp threshold
+		return 0
+	return SKILL_EXP_LIST[lvl+1] - known_skills[skill][SKILL_EXP]
+
+///Adjust experience of a specific skill
+/datum/mind/proc/adjust_experience(skill, amt, silent = FALSE, force_old_level = 0)
+	var/datum/skill/S = GetSkillRef(skill)
+	var/old_level = force_old_level ? force_old_level : known_skills[skill][SKILL_LVL] //Get current level of the S skill
+	experience_multiplier = initial(experience_multiplier)
+	for(var/key in experience_multiplier_reasons)
+		experience_multiplier += experience_multiplier_reasons[key]
+	known_skills[skill][SKILL_EXP] = max(0, known_skills[skill][SKILL_EXP] + amt*experience_multiplier) //Update exp. Prevent going below 0
+	known_skills[skill][SKILL_LVL] = update_skill_level(skill)//Check what the current skill level is based on that skill's exp
+	if(silent)
+		return
+	if(known_skills[skill][SKILL_LVL] > old_level)
+		S.level_gained(src, known_skills[skill][SKILL_LVL], old_level)
+	else if(known_skills[skill][SKILL_LVL] < old_level)
+		S.level_lost(src, known_skills[skill][SKILL_LVL], old_level)
+
+///Set experience of a specific skill to a number
+/datum/mind/proc/set_experience(skill, amt, silent = FALSE)
+	var/old_level = known_skills[skill][SKILL_EXP]
+	known_skills[skill][SKILL_EXP] = amt
+	adjust_experience(skill, 0, silent, old_level) //Make a call to adjust_experience to handle updating level
+
+///Set level of a specific skill
+/datum/mind/proc/set_level(skill, newlevel, silent = FALSE)
+	var/oldlevel = get_skill_level(skill)
+	var/difference = SKILL_EXP_LIST[newlevel] - SKILL_EXP_LIST[oldlevel]
+	adjust_experience(skill, difference, silent)
+
+///Check what the current skill level is based on that skill's exp
+/datum/mind/proc/update_skill_level(skill)
+	var/i = 0
+	for (var/exp in SKILL_EXP_LIST)
+		i ++
+		if (known_skills[skill][SKILL_EXP] >= SKILL_EXP_LIST[i])
+			continue
+		return i - 1 //Return level based on the last exp requirement that we were greater than
+	return i //If we had greater EXP than even the last exp threshold, we return the last level
+
+///Gets the skill's singleton and returns the result of its get_skill_modifier
+/datum/mind/proc/get_skill_modifier(skill, modifier)
+	var/datum/skill/S = GetSkillRef(skill)
+	return S.get_skill_modifier(modifier, known_skills[skill][SKILL_LVL])
+
+///Gets the player's current level number from the relevant skill
+/datum/mind/proc/get_skill_level(skill)
+	return known_skills[skill][SKILL_LVL]
+
+///Gets the player's current exp from the relevant skill
+/datum/mind/proc/get_skill_exp(skill)
+	return known_skills[skill][SKILL_EXP]
+
+/datum/mind/proc/get_skill_level_name(skill)
+	var/level = get_skill_level(skill)
+	return SSskills.level_names[level]
+
+/datum/mind/proc/print_levels(user)
+	var/list/shown_skills = list()
+	for(var/i in known_skills)
+		if(known_skills[i][SKILL_LVL] > SKILL_LEVEL_NONE) //Do we actually have a level in this?
+			shown_skills += i
+	if(!length(shown_skills))
+		to_chat(user, "<span class='notice'>You don't seem to have any particularly outstanding skills.</span>")
+		return
+	var/msg = "<span class='info'>*---------*\n<EM>Your skills</EM></span>\n<span class='notice'>"
+	for(var/i in shown_skills)
+		var/datum/skill/the_skill = i
+		msg += "[initial(the_skill.name)] - [get_skill_level_name(the_skill)]\n"
+	msg += "</span>"
+	to_chat(user, msg)
 
 /datum/mind/proc/set_death_time()
+	SIGNAL_HANDLER
+
 	last_death = world.time
 
 /datum/mind/proc/store_memory(new_text)
@@ -162,7 +264,7 @@
 	var/datum/team/antag_team = A.get_team()
 	if(antag_team)
 		antag_team.add_member(src)
-	A.on_gain()
+	INVOKE_ASYNC(A, /datum/antagonist.proc/on_gain)
 	log_game("[key_name(src)] has gained antag datum [A.name]([A.type])")
 	return A
 
@@ -183,7 +285,6 @@
 /datum/mind/proc/has_antag_datum(datum_type, check_subtypes = TRUE)
 	if(!datum_type)
 		return
-	. = FALSE
 	for(var/a in antag_datums)
 		var/datum/antagonist/A = a
 		if(check_subtypes && istype(A, datum_type))
@@ -208,7 +309,6 @@
 /datum/mind/proc/remove_brother()
 	if(src in SSticker.mode.brothers)
 		remove_antag_datum(/datum/antagonist/brother)
-	SSticker.mode.update_brother_icons_removed(src)
 
 /datum/mind/proc/remove_nukeop()
 	var/datum/antagonist/nukeop/nuke = has_antag_datum(/datum/antagonist/nukeop,TRUE)
@@ -247,7 +347,6 @@
 	remove_wizard()
 	remove_cultist()
 	remove_rev()
-	SSticker.mode.update_cult_icons_removed(src)
 
 /datum/mind/proc/equip_traitor(employer = "The Syndicate", silent = FALSE, datum/antagonist/uplink_owner)
 	if(!current)
@@ -265,27 +364,9 @@
 		P = locate() in PDA
 	if (!P) // If we couldn't find a pen in the PDA, or we didn't even have a PDA, do it the old way
 		P = locate() in all_contents
-		if(!P) // I do not have a pen.
-			var/obj/item/pen/inowhaveapen
-			if(istype(traitor_mob.back,/obj/item/storage)) //ok buddy you better have a backpack!
-				inowhaveapen = new /obj/item/pen(traitor_mob.back)
-			else
-				inowhaveapen = new /obj/item/pen(traitor_mob.loc)
-				traitor_mob.put_in_hands(inowhaveapen) // I hope you don't have arms and your traitor pen gets stolen for all this trouble you've caused.
-			P = inowhaveapen
-
-	var/obj/item/clothing/gloves/syndielad/SL // hippie -- syndielad
-	if(traitor_mob.client.prefs.uplink_spawn_loc == UPLINK_SYNDIELAD)
-		var/obj/item/clothing/gloves/syndielad/newSL
-		if(istype(traitor_mob.back,/obj/item/storage))
-			newSL = new /obj/item/clothing/gloves/syndielad/(traitor_mob.back)
-			SL = newSL
-		else
-			newSL = new /obj/item/clothing/gloves/syndielad/(traitor_mob.loc)
-			traitor_mob.put_in_hands(newSL)
-			SL = newSL // hippie end
 
 	var/obj/item/uplink_loc
+	var/implant = FALSE
 
 	if(traitor_mob.client && traitor_mob.client.prefs)
 		switch(traitor_mob.client.prefs.uplink_spawn_loc)
@@ -303,18 +384,13 @@
 					uplink_loc = P
 			if(UPLINK_PEN)
 				uplink_loc = P
-				if(!uplink_loc)
-					uplink_loc = PDA
-				if(!uplink_loc)
-					uplink_loc = R
-			if(UPLINK_SYNDIELAD) // hippie -- syndielad again
-				uplink_loc = SL // hippie end
+			if(UPLINK_IMPLANT)
+				implant = TRUE
 
-	if (!uplink_loc)
-		if(!silent)
-			to_chat(traitor_mob, "<span class='boldwarning'>Unfortunately, [employer] wasn't able to get you an Uplink.</span>")
-		. = 0
-	else
+	if(!uplink_loc) // We've looked everywhere, let's just implant you
+		implant = TRUE
+
+	if (!implant)
 		. = uplink_loc
 		var/datum/component/uplink/U = uplink_loc.AddComponent(/datum/component/uplink, traitor_mob.key)
 		if(!U)
@@ -327,13 +403,19 @@
 				to_chat(traitor_mob, "<span class='boldnotice'>[employer] has cunningly disguised a Syndicate Uplink as your [PDA.name]. Simply enter the code \"[U.unlock_code]\" into the ringtone select to unlock its hidden features.</span>")
 			else if(uplink_loc == P)
 				to_chat(traitor_mob, "<span class='boldnotice'>[employer] has cunningly disguised a Syndicate Uplink as your [P.name]. Simply twist the top of the pen [english_list(U.unlock_code)] from its starting position to unlock its hidden features.</span>")
-			else if(uplink_loc == SL) // hippie -- okay what do you think it is smartass
-				to_chat(traitor_mob, "<span class='boldnotice'>[employer] has gifted you a Syndie-Lad portable arm-mounted computer. Simply turn it on to use its features and your Syndicate Uplink.</span>") // hippie end
 
 		if(uplink_owner)
 			uplink_owner.antag_memory += U.unlock_note + "<br>"
 		else
 			traitor_mob.mind.store_memory(U.unlock_note)
+	else
+		var/obj/item/implant/uplink/starting/I = new(traitor_mob)
+		I.implant(traitor_mob, null, silent = TRUE)
+		if(!silent)
+			to_chat(traitor_mob, "<span class='boldnotice'>[employer] has cunningly implanted you with a Syndicate Uplink (although uplink implants cost valuable TC, so you will have slightly less). Simply trigger the uplink to access it.</span>")
+		return I
+
+
 
 //Link a new mobs mind to the creator of said mob. They will join any team they are currently on, and will only switch teams when their creator does.
 
@@ -344,9 +426,6 @@
 	else if(is_revolutionary(creator))
 		var/datum/antagonist/rev/converter = creator.mind.has_antag_datum(/datum/antagonist/rev,TRUE)
 		converter.add_revolutionary(src,FALSE)
-
-	else if(is_servant_of_ratvar(creator))
-		add_servant_of_ratvar(current)
 
 	else if(is_nuclear_operative(creator))
 		var/datum/antagonist/nukeop/converter = creator.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE)
@@ -363,7 +442,7 @@
 
 	if(creator.mind.special_role)
 		message_admins("[ADMIN_LOOKUPFLW(current)] has been created by [ADMIN_LOOKUPFLW(creator)], an antagonist.")
-		to_chat(current, "<span class='userdanger'>Despite your creators current allegiances, your true master remains [creator.real_name]. If their loyalties change, so do yours. This will never change unless your creator's body is destroyed.</span>")
+		to_chat(current, "<span class='userdanger'>Despite your creator's current allegiances, your true master remains [creator.real_name]. If their loyalties change, so do yours. This will never change unless your creator's body is destroyed.</span>")
 
 /datum/mind/proc/show_memory(mob/recipient, window=1)
 	if(!recipient)
@@ -410,7 +489,7 @@
 		A.admin_remove(usr)
 
 	if (href_list["role_edit"])
-		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in get_all_jobs()
+		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in sortList(get_all_jobs())
 		if (!new_role)
 			return
 		assigned_role = new_role
@@ -450,7 +529,7 @@
 					if(1)
 						target_antag = antag_datums[1]
 					else
-						var/datum/antagonist/target = input("Which antagonist gets the objective:", "Antagonist", "(new custom antag)") as null|anything in antag_datums + "(new custom antag)"
+						var/datum/antagonist/target = input("Which antagonist gets the objective:", "Antagonist", "(new custom antag)") as null|anything in sortList(antag_datums) + "(new custom antag)"
 						if (QDELETED(target))
 							return
 						else if(target == "(new custom antag)")
@@ -541,7 +620,7 @@
 		switch(href_list["common"])
 			if("undress")
 				for(var/obj/item/W in current)
-					current.dropItemToGround(W, TRUE) //The 1 forces all items to drop, since this is an admin undress.
+					current.dropItemToGround(W, TRUE) //The TRUE forces all items to drop, since this is an admin undress.
 			if("takeuplink")
 				take_uplink()
 				memory = null//Remove any memory they may have had.
@@ -600,6 +679,10 @@
 	if(!(has_antag_datum(/datum/antagonist/traitor)))
 		add_antag_datum(/datum/antagonist/traitor)
 
+/datum/mind/proc/make_Contractor_Support()
+	if(!(has_antag_datum(/datum/antagonist/traitor/contractor_support)))
+		add_antag_datum(/datum/antagonist/traitor/contractor_support)
+
 /datum/mind/proc/make_Changeling()
 	var/datum/antagonist/changeling/C = has_antag_datum(/datum/antagonist/changeling)
 	if(!C)
@@ -625,16 +708,12 @@
 	var/datum/antagonist/rev/head/head = new()
 	head.give_flash = TRUE
 	head.give_hud = TRUE
-	head.give_book = TRUE
 	add_antag_datum(head)
 	special_role = ROLE_REV_HEAD
 
 /datum/mind/proc/AddSpell(obj/effect/proc_holder/spell/S)
 	spell_list += S
 	S.action.Grant(current)
-
-/datum/mind/proc/owns_soul()
-	return soulOwner == src
 
 //To remove a specific spell from a mind
 /datum/mind/proc/RemoveSpell(obj/effect/proc_holder/spell/spell)
@@ -645,6 +724,7 @@
 		if(istype(S, spell))
 			spell_list -= S
 			qdel(S)
+	current?.client << output(null, "statbrowser:check_spells")
 
 /datum/mind/proc/RemoveAllSpells()
 	for(var/obj/effect/proc_holder/S in spell_list)
@@ -660,7 +740,7 @@
 			martial_art.teach(new_character)
 
 /datum/mind/proc/transfer_actions(mob/living/new_character)
-	if(current && current.actions)
+	if(current?.actions)
 		for(var/datum/action/A in current.actions)
 			A.Grant(new_character)
 	transfer_mindbound_actions(new_character)
@@ -693,6 +773,11 @@
 	if(G)
 		G.reenter_corpse()
 
+/// Sets our can_hijack to the fastest speed our antag datums allow.
+/datum/mind/proc/get_hijack_speed()
+	. = 0
+	for(var/datum/antagonist/A in antag_datums)
+		. = max(., A.hijack_speed())
 
 /datum/mind/proc/has_objective(objective_type)
 	for(var/datum/antagonist/A in antag_datums)
@@ -701,13 +786,25 @@
 				return TRUE
 
 /mob/proc/sync_mind()
-	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)
-	mind.active = 1		//indicates that the mind is currently synced with a client
+	mind_initialize() //updates the mind (or creates and initializes one if one doesn't exist)
+	mind.active = TRUE //indicates that the mind is currently synced with a client
 
-/datum/mind/proc/has_martialart(var/string)
+/datum/mind/proc/has_martialart(string)
 	if(martial_art && martial_art.id == string)
 		return martial_art
 	return FALSE
+
+///Adds addiction points to the specified addiction
+/datum/mind/proc/add_addiction_points(type, amount)
+	LAZYSET(addiction_points, type, min(LAZYACCESS(addiction_points, type) + amount, MAX_ADDICTION_POINTS))
+	var/datum/addiction/affected_addiction = SSaddiction.all_addictions[type]
+	return affected_addiction.on_gain_addiction_points(src)
+
+///Adds addiction points to the specified addiction
+/datum/mind/proc/remove_addiction_points(type, amount)
+	LAZYSET(addiction_points, type, max(LAZYACCESS(addiction_points, type) - amount, 0))
+	var/datum/addiction/affected_addiction = SSaddiction.all_addictions[type]
+	return affected_addiction.on_lose_addiction_points(src)
 
 /mob/dead/new_player/sync_mind()
 	return

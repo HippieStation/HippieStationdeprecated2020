@@ -1,12 +1,10 @@
 /datum/job/cyborg
 	title = "Cyborg"
-	flag = CYBORG
 	auto_deadmin_role_flags = DEADMIN_POSITION_SILICON
-	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 1
-	supervisors = "your laws and the AI"	//Nodrak
+	supervisors = "your laws and the AI" //Nodrak
 	selection_color = "#ddffdd"
 	minimal_player_age = 21
 	exp_requirements = 120

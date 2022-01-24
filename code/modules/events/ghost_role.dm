@@ -22,7 +22,7 @@
 	if((status == WAITING_FOR_SOMETHING))
 		if(retry >= MAX_SPAWN_ATTEMPT)
 			message_admins("[role_name] event has exceeded maximum spawn attempts. Aborting and refunding.")
-			if(control && control.occurrences > 0)	//Don't refund if it hasn't
+			if(control && control.occurrences > 0) //Don't refund if it hasn't
 				control.occurrences--
 			return
 		var/waittime = 300 * (2^retry)
@@ -36,6 +36,7 @@
 	else if(status == NOT_ENOUGH_PLAYERS)
 		message_admins("[role_name] cannot be spawned due to lack of players \
 			signing up.")
+		deadchat_broadcast(" did not get enough candidates ([minimum_required]) to spawn.", "<b>[role_name]</b>", message_type=DEADCHAT_ANNOUNCEMENT)
 	else if(status == SUCCESSFUL_SPAWN)
 		message_admins("[role_name] spawned successfully.")
 		if(spawned_mobs.len)

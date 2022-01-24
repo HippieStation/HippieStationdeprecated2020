@@ -15,10 +15,10 @@
 	gases.Cut()
 
 /datum/gas_mixture/immutable/archive()
-	return 1 //nothing changes, so we do nothing and the archive is successful
+	return TRUE //nothing changes, so we do nothing and the archive is successful
 
 /datum/gas_mixture/immutable/merge()
-	return 0 //we're immutable.
+	return FALSE //we're immutable.
 
 /datum/gas_mixture/immutable/share(datum/gas_mixture/sharer, atmos_adjacent_turfs = 4)
 	. = ..(sharer, 0)
@@ -26,19 +26,19 @@
 	garbage_collect()
 
 /datum/gas_mixture/immutable/react()
-	return 0 //we're immutable.
+	return FALSE //we're immutable.
 
 /datum/gas_mixture/immutable/copy()
 	return new type //we're immutable, so we can just return a new instance.
 
 /datum/gas_mixture/immutable/copy_from()
-	return 0 //we're immutable.
+	return FALSE //we're immutable.
 
 /datum/gas_mixture/immutable/copy_from_turf()
-	return 0 //we're immutable.
+	return FALSE //we're immutable.
 
 /datum/gas_mixture/immutable/parse_gas_string()
-	return 0 //we're immutable.
+	return FALSE //we're immutable.
 
 /datum/gas_mixture/immutable/temperature_share(datum/gas_mixture/sharer, conduction_coefficient, sharer_temperature, sharer_heat_capacity)
 	. = ..()
@@ -56,7 +56,6 @@
 
 /datum/gas_mixture/immutable/space/remove_ratio()
 	return copy() //we're always empty, so we can just return a copy.
-
 
 //planet side stuff
 /datum/gas_mixture/immutable/planetary
@@ -95,14 +94,3 @@
 		gases[id][ARCHIVE] = mix[id][MOLES]
 
 
-//used by cloners
-/datum/gas_mixture/immutable/cloner
-	initial_temperature = T20C
-
-/datum/gas_mixture/immutable/cloner/garbage_collect()
-	..()
-	ADD_GAS(/datum/gas/nitrogen, gases)
-	gases[/datum/gas/nitrogen][MOLES] = MOLES_O2STANDARD + MOLES_N2STANDARD
-
-/datum/gas_mixture/immutable/cloner/heat_capacity()
-	return (MOLES_O2STANDARD + MOLES_N2STANDARD)*20 //specific heat of nitrogen is 20

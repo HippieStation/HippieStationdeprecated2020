@@ -1,5 +1,5 @@
 #define TRAITOR_HUMAN "human"
-#define TRAITOR_AI	  "AI"
+#define TRAITOR_AI   "AI"
 
 /datum/antagonist/traitor
 	name = "Traitor"
@@ -7,17 +7,16 @@
 	antagpanel_category = "Traitor"
 	job_rank = ROLE_TRAITOR
 	antag_moodlet = /datum/mood_event/focused
+	antag_hud_type = ANTAG_HUD_TRAITOR
+	antag_hud_name = "traitor"
+	hijack_speed = 0.5 //10 seconds per hijack stage by default
 	var/special_role = ROLE_TRAITOR
 	var/employer = "The Syndicate"
 	var/give_objectives = TRUE
 	var/should_give_codewords = TRUE
 	var/should_equip = TRUE
 	var/traitor_kind = TRAITOR_HUMAN //Set on initial assignment
-	var/datum/syndicate_contract/current_contract
-	var/list/datum/syndicate_contract/assigned_contracts = list()
-	var/contract_TC_payed_out = 0
-	var/contract_TC_to_redeem = 0
-	can_hijack = HIJACK_HIJACKER
+	var/datum/contractor_hub/contractor_hub
 
 /datum/antagonist/traitor/on_gain()
 	if(owner.current && isAI(owner.current))
@@ -28,68 +27,26 @@
 	if(give_objectives)
 		forge_traitor_objectives()
 	finalize_traitor()
-	RegisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
-	..()
-
-/datum/antagonist/traitor/proc/create_contracts()
-	var/contract_generation_quantity = 6
-	// We don't want the sum of all the payouts to be under this amount
-	var/lowest_TC_threshold = 28
-
-	var/total = 0
-	var/lowest_paying_sum = 0
-	var/datum/syndicate_contract/lowest_paying_contract
-
-	for (var/i = 1; i <= contract_generation_quantity; i++)
-		var/datum/syndicate_contract/contract_to_add = new(owner)
-		var/contract_payout_total = contract_to_add.contract.payout + contract_to_add.contract.payout_bonus
-
-		if (!lowest_paying_contract || (contract_payout_total < lowest_paying_sum))
-			lowest_paying_sum = contract_payout_total
-			lowest_paying_contract = contract_to_add
-
-		total += contract_payout_total
-		contract_to_add.id = i
-		assigned_contracts.Add(contract_to_add)
-
-	// If the threshold for TC payouts isn't reached, boost the lowest paying contract
-	if (total < lowest_TC_threshold)
-		lowest_paying_contract.contract.payout_bonus += (lowest_TC_threshold - total)
-
-/datum/antagonist/traitor/apply_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			if(!silent)
-				to_chat(traitor_mob, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
-			traitor_mob.dna.remove_mutation(CLOWNMUT)
-
-/datum/antagonist/traitor/remove_innate_effects()
-	if(owner.assigned_role == "Clown")
-		var/mob/living/carbon/human/traitor_mob = owner.current
-		if(traitor_mob && istype(traitor_mob))
-			traitor_mob.dna.add_mutation(CLOWNMUT)
+	return ..()
 
 /datum/antagonist/traitor/on_removal()
 	//Remove malf powers.
 	if(traitor_kind == TRAITOR_AI && owner.current && isAI(owner.current))
 		var/mob/living/silicon/ai/A = owner.current
 		A.set_zeroth_law("")
-		A.verbs -= /mob/living/silicon/ai/proc/choose_modules
-		A.malf_picker.remove_malf_verbs(A)
-		qdel(A.malf_picker)
-	UnregisterSignal(owner.current, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
+		A.remove_malf_abilities()
+		QDEL_NULL(A.malf_picker)
 	SSticker.mode.traitors -= owner
 	if(!silent && owner.current)
-		to_chat(owner.current,"<span class='userdanger'> You are no longer the [special_role]! </span>")
+		to_chat(owner.current,"<span class='userdanger'>You are no longer the [special_role]!</span>")
 	owner.special_role = null
-	..()
+	return ..()
 
 /datum/antagonist/traitor/proc/handle_hearing(datum/source, list/hearing_args)
-	var/message = hearing_args[HEARING_MESSAGE]
+	var/message = hearing_args[HEARING_RAW_MESSAGE]
 	message = GLOB.syndicate_code_phrase_regex.Replace(message, "<span class='blue'>$1</span>")
 	message = GLOB.syndicate_code_response_regex.Replace(message, "<span class='red'>$1</span>")
-	hearing_args[HEARING_MESSAGE] = message
+	hearing_args[HEARING_RAW_MESSAGE] = message
 
 /datum/antagonist/traitor/proc/add_objective(datum/objective/O)
 	objectives += O
@@ -109,15 +66,8 @@
 	if (GLOB.joined_player_list.len >= 30) // Less murderboning on lowpop thanks
 		is_hijacker = prob(10)
 	var/martyr_chance = prob(20)
-	var/objective_count = is_hijacker 			//Hijacking counts towards number of objectives
-	if(!SSticker.mode.exchange_blue && SSticker.mode.traitors.len >= 8) 	//Set up an exchange if there are enough traitors
-		if(!SSticker.mode.exchange_red)
-			SSticker.mode.exchange_red = owner
-		else
-			SSticker.mode.exchange_blue = owner
-			assign_exchange_role(SSticker.mode.exchange_red)
-			assign_exchange_role(SSticker.mode.exchange_blue)
-		objective_count += 1					//Exchange counts towards number of objectives
+	var/objective_count = is_hijacker //Hijacking counts towards number of objectives
+
 	var/toa = CONFIG_GET(number/traitor_objectives_amount)
 	for(var/i = objective_count, i < toa, i++)
 		forge_single_objective()
@@ -161,9 +111,9 @@
 		kill_objective.find_target()
 		add_objective(kill_objective)
 
-	var/datum/objective/survive/exist/exist_objective = new
-	exist_objective.owner = owner
-	add_objective(exist_objective)
+	var/datum/objective/survive/malf/dont_die_objective = new
+	dont_die_objective.owner = owner
+	add_objective(dont_die_objective)
 
 
 /datum/antagonist/traitor/proc/forge_single_objective()
@@ -238,40 +188,36 @@
 	if(should_give_codewords)
 		give_codewords()
 
-/datum/antagonist/traitor/proc/update_traitor_icons_added(datum/mind/traitor_mind)
-	var/datum/atom_hud/antag/traitorhud = GLOB.huds[ANTAG_HUD_TRAITOR]
-	traitorhud.join_hud(owner.current)
-	set_antag_hud(owner.current, "traitor")
-
-/datum/antagonist/traitor/proc/update_traitor_icons_removed(datum/mind/traitor_mind)
-	var/datum/atom_hud/antag/traitorhud = GLOB.huds[ANTAG_HUD_TRAITOR]
-	traitorhud.leave_hud(owner.current)
-	set_antag_hud(owner.current, null)
-
 /datum/antagonist/traitor/proc/finalize_traitor()
 	switch(traitor_kind)
 		if(TRAITOR_AI)
 			add_law_zero()
-			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', 100, FALSE, pressure_affected = FALSE)
-			owner.current.grant_language(/datum/language/codespeak)
+			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/malf.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
+			owner.current.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MALF)
 		if(TRAITOR_HUMAN)
 			if(should_equip)
 				equip(silent)
-			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
+			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
 
 /datum/antagonist/traitor/apply_innate_effects(mob/living/mob_override)
 	. = ..()
-	update_traitor_icons_added()
-	var/mob/living/silicon/ai/A = mob_override || owner.current
+	var/mob/living/M = mob_override || owner.current
+	add_antag_hud(antag_hud_type, antag_hud_name, M)
+	handle_clown_mutation(M, mob_override ? null : "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
+	var/mob/living/silicon/ai/A = M
 	if(istype(A) && traitor_kind == TRAITOR_AI)
 		A.hack_software = TRUE
+	RegisterSignal(M, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
 
 /datum/antagonist/traitor/remove_innate_effects(mob/living/mob_override)
 	. = ..()
-	update_traitor_icons_removed()
-	var/mob/living/silicon/ai/A = mob_override || owner.current
+	var/mob/living/M = mob_override || owner.current
+	remove_antag_hud(antag_hud_type, M)
+	handle_clown_mutation(M, removing = FALSE)
+	var/mob/living/silicon/ai/A = M
 	if(istype(A)  && traitor_kind == TRAITOR_AI)
 		A.hack_software = FALSE
+	UnregisterSignal(M, COMSIG_MOVABLE_HEAR)
 
 /datum/antagonist/traitor/proc/give_codewords()
 	if(!owner.current)
@@ -302,48 +248,9 @@
 	to_chat(killer, "Your radio has been upgraded! Use :t to speak on an encrypted channel with Syndicate Agents!")
 	killer.add_malf_picker()
 
-/datum/antagonist/traitor/proc/equip(var/silent = FALSE)
+/datum/antagonist/traitor/proc/equip(silent = FALSE)
 	if(traitor_kind == TRAITOR_HUMAN)
 		owner.equip_traitor(employer, silent, src)
-
-/datum/antagonist/traitor/proc/assign_exchange_role()
-	//set faction
-	var/faction = "red"
-	if(owner == SSticker.mode.exchange_blue)
-		faction = "blue"
-
-	//Assign objectives
-	var/datum/objective/steal/exchange/exchange_objective = new
-	exchange_objective.set_faction(faction,((faction == "red") ? SSticker.mode.exchange_blue : SSticker.mode.exchange_red))
-	exchange_objective.owner = owner
-	add_objective(exchange_objective)
-
-	if(prob(20))
-		var/datum/objective/steal/exchange/backstab/backstab_objective = new
-		backstab_objective.set_faction(faction)
-		backstab_objective.owner = owner
-		add_objective(backstab_objective)
-
-	//Spawn and equip documents
-	var/mob/living/carbon/human/mob = owner.current
-
-	var/obj/item/folder/syndicate/folder
-	if(owner == SSticker.mode.exchange_red)
-		folder = new/obj/item/folder/syndicate/red(mob.loc)
-	else
-		folder = new/obj/item/folder/syndicate/blue(mob.loc)
-
-	var/list/slots = list (
-		"backpack" = ITEM_SLOT_BACKPACK,
-		"left pocket" = ITEM_SLOT_LPOCKET,
-		"right pocket" = ITEM_SLOT_RPOCKET
-	)
-
-	var/where = "At your feet"
-	var/equipped_slot = mob.equip_in_one_of_slots(folder, slots)
-	if (equipped_slot)
-		where = "In your [equipped_slot]"
-	to_chat(mob, "<BR><BR><span class='info'>[where] is a folder containing <b>secret documents</b> that another Syndicate group wants. We have set up a meeting with one of their agents on station to make an exchange. Exercise extreme caution as they cannot be trusted and may be hostile.</span><BR>")
 
 //TODO Collate
 /datum/antagonist/traitor/roundend_report()
@@ -385,19 +292,8 @@
 
 	var/special_role_text = lowertext(name)
 
-	var/completed_contracts = 0
-	var/tc_total = contract_TC_payed_out + contract_TC_to_redeem
-	for (var/datum/syndicate_contract/contract in assigned_contracts)
-		if (contract.status == CONTRACT_STATUS_COMPLETE)
-			completed_contracts++
-
-
-	if (completed_contracts > 0)
-		var/pluralCheck = "contract"
-		if (completed_contracts > 1)
-			pluralCheck = "contracts"
-		result += "<br>Completed <span class='greentext'>[completed_contracts]</span> [pluralCheck] for a total of \
-					<span class='greentext'>[tc_total] TC</span>!<br>"
+	if (contractor_hub)
+		result += contractor_round_end()
 
 	if(traitorwin)
 		result += "<span class='greentext'>The [special_role_text] was successful!</span>"
@@ -407,12 +303,48 @@
 
 	return result.Join("<br>")
 
+/// Proc detailing contract kit buys/completed contracts/additional info
+/datum/antagonist/traitor/proc/contractor_round_end()
+	var/result = ""
+	var/total_spent_rep = 0
+
+	var/completed_contracts = contractor_hub.contracts_completed
+	var/tc_total = contractor_hub.contract_TC_payed_out + contractor_hub.contract_TC_to_redeem
+
+	var/contractor_item_icons = "" // Icons of purchases
+	var/contractor_support_unit = "" // Set if they had a support unit - and shows appended to their contracts completed
+
+	/// Get all the icons/total cost for all our items bought
+	for (var/datum/contractor_item/contractor_purchase in contractor_hub.purchased_items)
+		contractor_item_icons += "<span class='tooltip_container'>\[ <i class=\"fas [contractor_purchase.item_icon]\"></i><span class='tooltip_hover'><b>[contractor_purchase.name] - [contractor_purchase.cost] Rep</b><br><br>[contractor_purchase.desc]</span> \]</span>"
+
+		total_spent_rep += contractor_purchase.cost
+
+		/// Special case for reinforcements, we want to show their ckey and name on round end.
+		if (istype(contractor_purchase, /datum/contractor_item/contractor_partner))
+			var/datum/contractor_item/contractor_partner/partner = contractor_purchase
+			contractor_support_unit += "<br><b>[partner.partner_mind.key]</b> played <b>[partner.partner_mind.current.name]</b>, their contractor support unit."
+
+	if (contractor_hub.purchased_items.len)
+		result += "<br>(used [total_spent_rep] Rep) "
+		result += contractor_item_icons
+	result += "<br>"
+	if (completed_contracts > 0)
+		var/pluralCheck = "contract"
+		if (completed_contracts > 1)
+			pluralCheck = "contracts"
+
+		result += "Completed <span class='greentext'>[completed_contracts]</span> [pluralCheck] for a total of \
+					<span class='greentext'>[tc_total] TC</span>![contractor_support_unit]<br>"
+
+	return result
+
 /datum/antagonist/traitor/roundend_report_footer()
 	var/phrases = jointext(GLOB.syndicate_code_phrase, ", ")
 	var/responses = jointext(GLOB.syndicate_code_response, ", ")
 
-	var message = "<br><b>The code phrases were:</b> <span class='bluetext'>[phrases]</span><br>\
-								<b>The code responses were:</b> <span class='redtext'>[responses]</span><br>"
+	var/message = "<br><b>The code phrases were:</b> <span class='bluetext'>[phrases]</span><br>\
+					<b>The code responses were:</b> <span class='redtext'>[responses]</span><br>"
 
 	return message
 

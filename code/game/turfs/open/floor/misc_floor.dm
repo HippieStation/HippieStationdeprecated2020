@@ -2,12 +2,12 @@
 	name = "commemorative plaque"
 	icon_state = "plaque"
 	desc = "\"This is a plaque in honour of our comrades on the G4407 Stations. Hopefully TG4407 model can live up to your fame and fortune.\" Scratched in beneath that is a crude image of a meteor and a spaceman. The spaceman is laughing. The meteor is exploding."
-	floor_tile = /obj/item/stack/tile/plasteel
+	floor_tile = /obj/item/stack/tile/iron
 	tiled_dirt = FALSE
 
 /turf/open/floor/vault
 	icon_state = "rockvault"
-	floor_tile = /obj/item/stack/tile/plasteel
+	floor_tile = /obj/item/stack/tile/iron
 
 //Circuit flooring, glows a little
 /turf/open/floor/circuit
@@ -31,10 +31,10 @@
 	if(on)
 		if(LAZYLEN(SSmapping.nuke_threats))
 			icon_state = "rcircuitanim"
-			light_color = LIGHT_COLOR_FLARE
+			set_light_color(LIGHT_COLOR_FLARE)
 		else
 			icon_state = icon_normal
-			light_color = initial(light_color)
+			set_light_color(initial(light_color))
 		set_light(1.4, 0.5)
 	else
 		icon_state = "[icon_normal]off"
@@ -104,17 +104,14 @@
 /turf/open/floor/pod
 	name = "pod floor"
 	icon_state = "podfloor"
-	icon_regular_floor = "podfloor"
 	floor_tile = /obj/item/stack/tile/pod
 
 /turf/open/floor/pod/light
 	icon_state = "podfloor_light"
-	icon_regular_floor = "podfloor_light"
 	floor_tile = /obj/item/stack/tile/pod/light
 
 /turf/open/floor/pod/dark
 	icon_state = "podfloor_dark"
-	icon_regular_floor = "podfloor_dark"
 	floor_tile = /obj/item/stack/tile/pod/dark
 
 
@@ -122,9 +119,13 @@
 	name = "high-traction floor"
 	icon_state = "noslip"
 	floor_tile = /obj/item/stack/tile/noslip
-	broken_states = list("noslip-damaged1","noslip-damaged2","noslip-damaged3")
-	burnt_states = list("noslip-scorched1","noslip-scorched2")
 	slowdown = -0.3
+
+/turf/open/floor/noslip/setup_broken_states()
+	return list("noslip-damaged1","noslip-damaged2","noslip-damaged3")
+
+/turf/open/floor/noslip/setup_burnt_states()
+	return list("noslip-scorched1","noslip-scorched2")
 
 /turf/open/floor/noslip/MakeSlippery(wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
 	return
@@ -132,113 +133,7 @@
 /turf/open/floor/oldshuttle
 	icon = 'icons/turf/shuttleold.dmi'
 	icon_state = "floor"
-	floor_tile = /obj/item/stack/tile/plasteel
-
-//Clockwork floor: Slowly heals toxin damage on nearby servants.
-/turf/open/floor/clockwork
-	name = "clockwork floor"
-	desc = "Tightly-pressed brass tiles. They emit minute vibration."
-	icon_state = "plating"
-	baseturfs = /turf/open/floor/clockwork
-	footstep = FOOTSTEP_PLATING
-	barefootstep = FOOTSTEP_HARD_BAREFOOT
-	clawfootstep = FOOTSTEP_HARD_CLAW
-	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	var/dropped_brass
-	var/uses_overlay = TRUE
-	var/obj/effect/clockwork/overlay/floor/realappearence
-
-/turf/open/floor/clockwork/Bless() //Who needs holy blessings when you have DADDY RATVAR?
-	return
-
-/turf/open/floor/clockwork/Initialize()
-	. = ..()
-	if(uses_overlay)
-		new /obj/effect/temp_visual/ratvar/floor(src)
-		new /obj/effect/temp_visual/ratvar/beam(src)
-		realappearence = new /obj/effect/clockwork/overlay/floor(src)
-		realappearence.linked = src
-
-/turf/open/floor/clockwork/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	if(uses_overlay && realappearence)
-		QDEL_NULL(realappearence)
-	return ..()
-
-/turf/open/floor/clockwork/ReplaceWithLattice()
-	. = ..()
-	for(var/obj/structure/lattice/L in src)
-		L.ratvar_act()
-
-/turf/open/floor/clockwork/Entered(atom/movable/AM)
-	..()
-	START_PROCESSING(SSobj, src)
-
-/turf/open/floor/clockwork/process()
-	if(!healservants())
-		STOP_PROCESSING(SSobj, src)
-
-/turf/open/floor/clockwork/proc/healservants()
-	for(var/mob/living/L in src)
-		if(L.stat == DEAD)
-			continue
-		. = 1
-		if(!is_servant_of_ratvar(L) || !L.toxloss)
-			continue
-
-		var/image/I = new('icons/effects/effects.dmi', src, "heal", ABOVE_MOB_LAYER) //fake a healing glow for servants
-		I.appearance_flags = RESET_COLOR
-		I.color = "#5A6068"
-		I.pixel_x = rand(-12, 12)
-		I.pixel_y = rand(-9, 0)
-		var/list/viewing = list()
-		for(var/mob/M in viewers(src))
-			if(M.client && (is_servant_of_ratvar(M) || isobserver(M) || M.stat == DEAD))
-				viewing += M.client
-		flick_overlay(I, viewing, 8)
-		L.adjustToxLoss(-3, TRUE, TRUE)
-
-/turf/open/floor/clockwork/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
-	return
-
-/turf/open/floor/clockwork/crowbar_act(mob/living/user, obj/item/I)
-	if(islist(baseturfs))
-		if(type in baseturfs)
-			return TRUE
-	else if(baseturfs == type)
-		return TRUE
-	user.visible_message("<span class='notice'>[user] begins slowly prying up [src]...</span>", "<span class='notice'>You begin painstakingly prying up [src]...</span>")
-	if(I.use_tool(src, user, 70, volume=80))
-		user.visible_message("<span class='notice'>[user] pries up [src]!</span>", "<span class='notice'>You pry up [src]!</span>")
-		make_plating()
-	return TRUE
-
-/turf/open/floor/clockwork/make_plating()
-	if(!dropped_brass)
-		new /obj/item/stack/tile/brass(src)
-		dropped_brass = TRUE
-	if(islist(baseturfs))
-		if(type in baseturfs)
-			return
-	else if(baseturfs == type)
-		return
-	return ..()
-
-/turf/open/floor/clockwork/narsie_act()
-	..()
-	if(istype(src, /turf/open/floor/clockwork)) //if we haven't changed type
-		var/previouscolor = color
-		color = "#960000"
-		animate(src, color = previouscolor, time = 8)
-		addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 8)
-
-/turf/open/floor/clockwork/reebe
-	name = "cogplate"
-	desc = "Warm brass plating. You can feel it gently vibrating, as if machinery is on the other side."
-	icon_state = "reebe"
-	baseturfs = /turf/open/floor/clockwork/reebe
-	uses_overlay = FALSE
-	planetary_atmos = TRUE
+	floor_tile = /obj/item/stack/tile/iron
 
 /turf/open/floor/bluespace
 	slowdown = -1
@@ -265,6 +160,10 @@
 	planetary_atmos = TRUE
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
+/turf/open/floor/bronze/icemoon
+	planetary_atmos = TRUE
+	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
 /turf/open/floor/white
 	name = "white floor"
 	desc = "A tile in a pure white color."
@@ -273,3 +172,45 @@
 /turf/open/floor/black
 	name = "black floor"
 	icon_state = "black"
+
+/turf/open/floor/plastic
+	name = "plastic floor"
+	desc = "Cheap, lightweight flooring. Melts easily."
+	icon_state = "plastic"
+	thermal_conductivity = 0.1
+	heat_capacity = 900
+	custom_materials = list(/datum/material/plastic=500)
+	floor_tile = /obj/item/stack/tile/plastic
+
+/turf/open/floor/plastic/setup_broken_states()
+	return list("plastic-damaged1","plastic-damaged2")
+
+/turf/open/floor/eighties
+	name = "retro floor"
+	desc = "This one takes you back."
+	icon_state = "eighties"
+	floor_tile = /obj/item/stack/tile/eighties
+
+/turf/open/floor/eighties/setup_broken_states()
+	return list("eighties_damaged")
+
+/turf/open/floor/plating/rust
+	name = "rusted plating"
+	desc = "Corrupted steel."
+	icon_state = "plating_rust"
+
+/turf/open/floor/plating/rust/plasma
+	initial_gas_mix = "plasma=104;TEMP=293.15"
+
+/turf/open/floor/plating/rust/rust_heretic_act()
+	return
+
+/turf/open/floor/stone
+	name = "stone brick floor"
+	desc = "Odd, really, how it looks exactly like the iron walls yet is stone instead of iron. Now, if that's really more of a complaint about\
+		the ironness of walls or the stoneness of the floors, that's really up to you. But have you really ever seen iron that dull? I mean, it\
+		makes sense for the station to have dull metal walls but we're talking how a rudimentary iron wall would be. Medieval ages didn't even\
+		use iron walls, iron walls are actually not even something that exists because iron is an expensive and not-so-great thing to build walls\
+		out of. It only makes sense in the context of space because you're trying to keep a freezing vacuum out. Is anyone following me on this? \
+		The idea of a \"rudimentary\" iron wall makes no sense at all! Is anything i'm even saying here true? Someone's gotta fact check this!"
+	icon_state = "stone_floor"
